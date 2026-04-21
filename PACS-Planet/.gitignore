@@ -1,0 +1,118 @@
+# =========================
+# Build results
+# =========================
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+publish/
+out/
+artifacts/
+
+# =========================
+# Visual Studio
+# =========================
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# =========================
+# Visual Studio profiler / test
+# =========================
+*.psess
+*.vsp
+*.vspx
+*.sap
+TestResult*/
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+
+# =========================
+# NuGet
+# =========================
+*.nupkg
+*.snupkg
+packages/
+!**/packages/build/
+.nuget/
+project.lock.json
+project.fragment.lock.json
+
+# =========================
+# Rider / ReSharper (por si alguien del equipo lo usa)
+# =========================
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# =========================
+# SQL Server / Local DB
+# =========================
+*.mdf
+*.ldf
+*.ndf
+
+# =========================
+# Configuración local / secretos
+# =========================
+appsettings.Development.json
+appsettings.Local.json
+appsettings.*.local.json
+secrets.json
+*.env
+*.env.*
+
+# =========================
+# Certificados / claves / material criptográfico
+# IMPORTANTE: no subir claves reales
+# =========================
+*.pfx
+*.snk
+*.cer
+*.pem
+*.key
+*.pub.xml
+/private/
+/keys/
+/keymaterial/
+
+# =========================
+# Archivos generados por ejecución
+# =========================
+*.zip
+temp/
+tmp/
+generated/
+runtime/
+exports/
+
+# =========================
+# Logs y temporales
+# =========================
+*.log
+*.tmp
+*.temp
+*.cache
+
+# =========================
+# Sistema operativo
+# =========================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# =========================
+# Carpeta de paquetes legacy de Visual Studio
+# =========================
+# Mantener packages.config si existe
+!**/packages.config
