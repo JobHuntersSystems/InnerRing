@@ -1,0 +1,114 @@
+name: ci
+
+on:
+  pull_request:
+    branches: [dev, main]
+  push:
+    branches: [dev, main]
+
+jobs:
+  build_planets:
+    name: build-planets
+    runs-on: windows-latest
+
+    defaults:
+      run:
+        shell: pwsh
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore Planets
+        run: dotnet restore "./PACS-Planets/PACS-Planet.sln"
+
+      - name: Build Planets
+        run: dotnet build "./PACS-Planets/PACS-Planet.sln" --configuration Release --no-restore
+
+  build_spaceship:
+    name: build-spaceship
+    runs-on: windows-latest
+
+    defaults:
+      run:
+        shell: pwsh
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore SpaceShip
+        run: dotnet restore "./PACS-Spaceship/PACS-Spaceship.sln"
+
+      - name: Build SpaceShip
+        run: dotnet build "./PACS-Spaceship/PACS-Spaceship.sln" --configuration Release --no-restore
+
+  test_planets:
+    name: test-planets
+    runs-on: windows-latest
+    needs: build_planets
+
+    defaults:
+      run:
+        shell: pwsh
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Run Planets tests
+        run: |
+          $tests = Get-ChildItem -Path "./PACS-Planets" -Recurse -Filter "*Tests.csproj"
+          if ($tests.Count -eq 0) {
+            Write-Host "No test projects found for PACS-Planets. Skipping."
+            exit 0
+          }
+
+          foreach ($testProject in $tests) {
+            dotnet test $testProject.FullName --configuration Release --no-build
+          }
+
+  test_spaceship:
+    name: test-spaceship
+    runs-on: windows-latest
+    needs: build_spaceship
+
+    defaults:
+      run:
+        shell: pwsh
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Run SpaceShip tests
+        run: |
+          $tests = Get-ChildItem -Path "./PACS-Spaceship" -Recurse -Filter "*Tests.csproj"
+          if ($tests.Count -eq 0) {
+            Write-Host "No test projects found for PACS-Spaceship. Skipping."
+            exit 0
+          }
+
+          foreach ($testProject in $tests) {
+            dotnet test $testProject.FullName --configuration Release --no-build
+          }
