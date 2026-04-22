@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace PACS_Planet
 {
-    public partial class Form1 : Form
+    public partial class Comunicació : Form
     {
-        public Form1()
+        public Comunicació()
         {
             InitializeComponent();
         }
-    }
+	}
 }
