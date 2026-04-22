@@ -57,7 +57,7 @@ jobs:
     name: test-planets
     runs-on: windows-latest
     needs: build_planets
-
+    if: github.event_name == 'pull_request' && github.base_ref == 'main'
     defaults:
       run:
         shell: pwsh
@@ -87,7 +87,7 @@ jobs:
     name: test-spaceship
     runs-on: windows-latest
     needs: build_spaceship
-
+    if: github.event_name == 'pull_request' && github.base_ref == 'main'
     defaults:
       run:
         shell: pwsh
