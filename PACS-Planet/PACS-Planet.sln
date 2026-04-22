@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.37027.11
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PACS-Planet", "PACS-Planet\PACS-Planet.csproj", "{68107F4C-0312-4422-9B36-4E941A5A30A1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PACS-Center", "PACS-Center\PACS-Center.csproj", "{DA08766A-DBFB-465B-86CD-360FE7385368}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{68107F4C-0312-4422-9B36-4E941A5A30A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68107F4C-0312-4422-9B36-4E941A5A30A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68107F4C-0312-4422-9B36-4E941A5A30A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA08766A-DBFB-465B-86CD-360FE7385368}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA08766A-DBFB-465B-86CD-360FE7385368}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA08766A-DBFB-465B-86CD-360FE7385368}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA08766A-DBFB-465B-86CD-360FE7385368}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

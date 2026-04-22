@@ -1,7 +1,7 @@
 ﻿
 namespace PACS_Center
 {
-    partial class Form1
+    partial class frmInnerEncryption
     {
         /// <summary>
         /// Variable del diseñador necesaria.
