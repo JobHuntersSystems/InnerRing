@@ -25,10 +25,10 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Restore Planets
-        run: dotnet restore "./PACS-Planets/PACS-Planet.sln"
+        run: dotnet restore "./PACS-Planet/PACS-Planet.sln"
 
       - name: Build Planets
-        run: dotnet build "./PACS-Planets/PACS-Planet.sln" --configuration Release --no-restore
+        run: dotnet build "./PACS-Planet/PACS-Planet.sln" --configuration Release --no-restore
 
   build_spaceship:
     name: build-spaceship
@@ -73,9 +73,9 @@ jobs:
 
       - name: Run Planets tests
         run: |
-          $tests = Get-ChildItem -Path "./PACS-Planets" -Recurse -Filter "*Tests.csproj"
-          if ($tests.Count -eq 0) {
-            Write-Host "No test projects found for PACS-Planets. Skipping."
+          $tests = Get-ChildItem -Path "./PACS-Planet" -Recurse -Filter "*Tests.csproj"
+          if ($null -eq $tests -or $tests.Count -eq 0) {
+            Write-Host "No test projects found for PACS-Planet. Skipping."
             exit 0
           }
 
@@ -104,7 +104,7 @@ jobs:
       - name: Run SpaceShip tests
         run: |
           $tests = Get-ChildItem -Path "./PACS-Spaceship" -Recurse -Filter "*Tests.csproj"
-          if ($tests.Count -eq 0) {
+          if ($null -eq $tests -or $tests.Count -eq 0) {
             Write-Host "No test projects found for PACS-Spaceship. Skipping."
             exit 0
           }
