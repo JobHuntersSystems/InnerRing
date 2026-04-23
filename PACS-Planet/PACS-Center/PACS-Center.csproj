@@ -60,6 +60,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmInnerEncryption.resx">
+      <DependentUpon>frmInnerEncryption.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmKeyManager.resx">
       <DependentUpon>frmKeyManager.cs</DependentUpon>
     </EmbeddedResource>

@@ -16,14 +16,14 @@ namespace PACS_Center
         public frmInnerEncryption(int idPlanet)
         {
             _idPlanet = idPlanet;
-            InitializeComponent();
-            validationCode = RandomCode();
-            data = RandomValue();
+            InitializeComponent();            
         }
+
         private Dictionary<char, string> data;
         private string validationCode;
         Random rng = new Random();
         private int _idPlanet;
+        int pass;
 
         //----------------Genera el codigo de 12 caracteres y lo guarda en la bbdd ------------------------------\\
         private string RandomCode()
@@ -75,6 +75,47 @@ namespace PACS_Center
         {
             //hacer que el codigo de 12 sea un update y para las letras un delete y insert
         }
-        
+
+        private void btnCode_Click(object sender, EventArgs e)
+        {
+            btnCode.Enabled = false;
+            
+            pass = 0;
+            lstMsj.Items.Clear();
+
+            timerMsj.Start();     
+        }
+
+        private void timerMsj_Tick(object sender, EventArgs e)
+        {
+            switch (pass)
+            {
+                case 0:
+                    lstMsj.Items.Add("Generating encoding...");
+                    validationCode = RandomCode();
+                    data = RandomValue();
+                    break;
+                case 1:
+                    lstMsj.Items.Add("Validating encoding...");
+                    break;
+                case 2:
+                    lstMsj.Items.Add("Encoding validated.");
+                    timerMsj.Interval = 1000;
+                    break;
+                case 3:
+                    lstMsj.Items.Add("Uploading encoding to the system...");
+                    SaveCode();
+                    timerMsj.Interval = 2000;
+                    break;
+                case 4:
+                    lstMsj.Items.Add("Upload completed.");
+
+                    timerMsj.Stop();
+                    btnCode.Enabled = true;
+                    break;
+            }
+
+            pass++;
+        }
     }
 }
