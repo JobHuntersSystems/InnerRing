@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.37027.11
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PACS-Spaceship", "PACS-Spaceship\PACS-Spaceship.csproj", "{A21066D2-F342-40C6-A6FA-39B437DD5DAF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inner_DB_Access", "Inner_DB_Access\Inner_DB_Access.csproj", "{886FE758-4C70-4699-B614-F2287DCC7E48}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A21066D2-F342-40C6-A6FA-39B437DD5DAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A21066D2-F342-40C6-A6FA-39B437DD5DAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A21066D2-F342-40C6-A6FA-39B437DD5DAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{886FE758-4C70-4699-B614-F2287DCC7E48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{886FE758-4C70-4699-B614-F2287DCC7E48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{886FE758-4C70-4699-B614-F2287DCC7E48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{886FE758-4C70-4699-B614-F2287DCC7E48}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
