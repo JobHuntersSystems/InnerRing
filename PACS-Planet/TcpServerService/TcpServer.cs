@@ -10,7 +10,7 @@ using System.Net.Sockets;
 using System.Net;
 using System.IO;
 
-namespace TcpServers
+namespace TcpServerService
 {
     public class PlanetTcpServer
     {
@@ -24,7 +24,7 @@ namespace TcpServers
                 cts = new CancellationTokenSource();
                 listener = new TcpListener(IPAddress.Any, port);
                 listener.Start();
-               
+
                 while (!cts.IsCancellationRequested)
                 {
                     if (listener.Pending())
@@ -40,11 +40,11 @@ namespace TcpServers
                                 int messageLength = reader.ReadInt32();
                                 byte[] RecData = reader.ReadBytes(messageLength);
                                 string data = Encoding.UTF8.GetString(RecData);
-                                Log.writeLog($"[{ip_client}]: {data}");
+                                Console.WriteLine(data);
                             }
                             catch (Exception ex)
                             {
-                                Log.writeLog(ex.Message, Log.AlertType.error);
+                                Console.WriteLine(ex.Message);
                                 break;
                             }
                         }
@@ -58,15 +58,15 @@ namespace TcpServers
             }
             catch (SocketException ex)
             {
-                Log.writeLog(ex.Message, Log.AlertType.error);
+                Console.WriteLine(ex.Message);
             }
             catch (Exception ex)
             {
-                Log.writeLog(ex.Message, Log.AlertType.error);
+                Console.WriteLine(ex.Message);
             }
             finally
             {
-                listener?.Stop();  
+                listener?.Stop();
             }
         }
         public void stopServer()
@@ -74,35 +74,6 @@ namespace TcpServers
             cts?.Cancel();
             client?.Close();
             listener?.Stop();
-        }
-    }
-    static public class Log
-    {
-        static int ProgramAlertLevel = 2;
-        public enum AlertType
-        {
-            debug,
-            info,
-            warning,
-            error
-        }
-        static Dictionary<AlertType, int> AlertLevel = new Dictionary<AlertType, int>
-        {
-            { AlertType.debug, 1 },
-            { AlertType.info, 2 },
-            { AlertType.warning, 3 },
-            { AlertType.error, 4 }
-        };
-        static public void writeLog(string message, AlertType type = AlertType.info)
-        {
-            int level = AlertLevel[type];
-
-            if (level < ProgramAlertLevel)
-                return;
-
-            string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-
-            Console.WriteLine($"{timestamp} [{type}] {message}");
         }
     }
 }

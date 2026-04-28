@@ -33,6 +33,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,8 +43,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PlanetTcpServer.cs" />
+    <Compile Include="frmTcpServerDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTcpServerDashboard.Designer.cs">
+      <DependentUpon>frmTcpServerDashboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="frmTcpServerDashboard.resx">
+      <DependentUpon>frmTcpServerDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PACS-CustomControls\PACS-CustomControls.csproj">
+      <Project>{5e69e566-0081-4b55-8486-8341a9e082a1}</Project>
+      <Name>PACS-CustomControls</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -7,22 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
-using PACS_UI;
 
-namespace PACS_Planet
+namespace TcpServer
 {
-    public partial class frmMain : Form
+    public partial class frmTcpServerDashboard : Form
     {
-        public frmMain()
+        public frmTcpServerDashboard()
         {
             InitializeComponent();
         }
+      
 
-
-        private void btnSecuritySetup_Click(object sender, EventArgs e)
+        private void btnStartServer_Click(object sender, EventArgs e)
         {
-          
         }
     }
 }
