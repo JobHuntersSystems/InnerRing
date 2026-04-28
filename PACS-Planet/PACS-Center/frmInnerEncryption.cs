@@ -8,6 +8,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Inner_DB_Access;
 
 namespace PACS_Center
 {
@@ -44,7 +45,7 @@ namespace PACS_Center
             return result.ToString();
         }
 
-        //----------------Genera el diccionario de cifrado Letra ------------------------------\\
+        //----------------Genera el diccionario de cifrado letra ------------------------------\\
         private Dictionary<char, string> RandomValue()
         {
             char[] letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
@@ -73,7 +74,42 @@ namespace PACS_Center
         //----------------Guardar en la base de datos los datos--------------------------------\\
         private void SaveCode()
         {
-            //hacer que el codigo de 12 sea un update y para las letras un delete y insert
+            try
+            {
+                DB_CRUD db = new DB_CRUD();
+                string id = $"SELECT idInnerEncryption FROM InnerEncryption WHERE idPlanet = {_idPlanet}";
+                DataTable dt = db.PortarDataTable(id);
+
+                if(dt.Rows.Count == 0)
+                {
+                    timerMsj.Stop();
+                    btnCode.Enabled = true;
+                    lstMsj.Items.Add("Error!! The encryption record for this planet was not found in the database.");
+                    return;
+                }
+                int idInner = (int)dt.Rows[0]["idInnerEncryption"];
+
+                string queryCode = $"Update InnerEncryption SET ValidationCode = '{validationCode}' WHERE idPlanet = {_idPlanet}";
+                db.Executa(queryCode);
+
+
+                string queryDelete = $"DELETE FROM InnerEncryptionData WHERE idInnerEncryption = {idInner}";
+                db.Executa(queryDelete);
+
+                foreach (KeyValuePair<char, string> item in data)
+                {
+                    string queryInsert = $"INSERT INTO InnerEncryptionData (idInnerEncryption, Word, Numbers) " +
+                                         $"VALUES ({idInner}, '{item.Key}', '{item.Value}')";
+
+                    db.Executa(queryInsert);
+                }
+            }
+            catch
+            {
+                timerMsj.Stop();
+                btnCode.Enabled = true;
+                lstMsj.Items.Add("Error uploading to database!");
+            }
         }
 
         private void btnCode_Click(object sender, EventArgs e)
@@ -85,6 +121,8 @@ namespace PACS_Center
 
             timerMsj.Start();     
         }
+
+        //------------------Mensajes en pantalla y flujo del codigo-----------------------------\\
 
         private void timerMsj_Tick(object sender, EventArgs e)
         {
@@ -114,7 +152,6 @@ namespace PACS_Center
                     btnCode.Enabled = true;
                     break;
             }
-
             pass++;
         }
     }
