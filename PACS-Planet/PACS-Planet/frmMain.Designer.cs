@@ -84,7 +84,9 @@
             this.optionButton3.BackgroundPanelColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(28)))), ((int)(((byte)(30)))));
             this.optionButton3.BorderDarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
             this.optionButton3.BorderLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(105)))), ((int)(((byte)(95)))));
+            this.optionButton3.ClassName = null;
             this.optionButton3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.optionButton3.FormName = null;
             this.optionButton3.IsSelected = false;
             resources.ApplyResources(this.optionButton3, "optionButton3");
             this.optionButton3.Name = "optionButton3";
@@ -100,7 +102,9 @@
             this.optionButton4.BackgroundPanelColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(28)))), ((int)(((byte)(30)))));
             this.optionButton4.BorderDarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
             this.optionButton4.BorderLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(105)))), ((int)(((byte)(95)))));
+            this.optionButton4.ClassName = null;
             this.optionButton4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.optionButton4.FormName = null;
             this.optionButton4.IsSelected = false;
             resources.ApplyResources(this.optionButton4, "optionButton4");
             this.optionButton4.Name = "optionButton4";
@@ -116,7 +120,9 @@
             this.optionButton1.BackgroundPanelColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(28)))), ((int)(((byte)(30)))));
             this.optionButton1.BorderDarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
             this.optionButton1.BorderLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(105)))), ((int)(((byte)(95)))));
+            this.optionButton1.ClassName = null;
             this.optionButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.optionButton1.FormName = null;
             this.optionButton1.IsSelected = false;
             resources.ApplyResources(this.optionButton1, "optionButton1");
             this.optionButton1.Name = "optionButton1";
@@ -132,7 +138,9 @@
             this.optionButton2.BackgroundPanelColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(28)))), ((int)(((byte)(30)))));
             this.optionButton2.BorderDarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
             this.optionButton2.BorderLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(105)))), ((int)(((byte)(95)))));
+            this.optionButton2.ClassName = null;
             this.optionButton2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.optionButton2.FormName = null;
             this.optionButton2.IsSelected = false;
             resources.ApplyResources(this.optionButton2, "optionButton2");
             this.optionButton2.Name = "optionButton2";
@@ -173,7 +181,7 @@
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.BackColor = System.Drawing.Color.Black;
             this.Controls.Add(this.pnlMain);
             this.Controls.Add(this.flowMenuLeft);
             this.Controls.Add(this.panelLog);
