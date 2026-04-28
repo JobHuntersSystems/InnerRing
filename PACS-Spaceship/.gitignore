@@ -116,3 +116,6 @@ desktop.ini
 # =========================
 # Mantener packages.config si existe
 !**/packages.config
+
+app/*
+!app/**/
