@@ -1,5 +1,4 @@
 name: ci
-
 on:
   pull_request:
     branches: [dev, main]
@@ -10,34 +9,31 @@ jobs:
   build_planets:
     name: build-planets
     runs-on: windows-latest
-
     defaults:
       run:
         shell: pwsh
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '8.0.x'
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Setup NuGet
+        uses: nuget/setup-nuget@v2
 
       - name: Restore Planets
-        run: dotnet restore "./PACS-Planet/PACS-Planet.sln"
+        run: nuget restore "./PACS-Planet/PACS-Planet.sln"
 
       - name: Build Planets
-        run: dotnet build "./PACS-Planet/PACS-Planet.sln" --configuration Release --no-restore
+        run: msbuild "./PACS-Planet/PACS-Planet.sln" /p:Configuration=Release /p:Platform="Any CPU"
 
   build_spaceship:
     name: build-spaceship
     runs-on: windows-latest
-
     defaults:
       run:
         shell: pwsh
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -61,15 +57,15 @@ jobs:
     defaults:
       run:
         shell: pwsh
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '8.0.x'
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Setup NuGet
+        uses: nuget/setup-nuget@v2
 
       - name: Run Planets tests
         run: |
@@ -78,7 +74,6 @@ jobs:
             Write-Host "No test projects found for PACS-Planet. Skipping."
             exit 0
           }
-
           foreach ($testProject in $tests) {
             dotnet test $testProject.FullName --configuration Release --no-build
           }
@@ -91,7 +86,6 @@ jobs:
     defaults:
       run:
         shell: pwsh
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -108,7 +102,6 @@ jobs:
             Write-Host "No test projects found for PACS-Spaceship. Skipping."
             exit 0
           }
-
           foreach ($testProject in $tests) {
             dotnet test $testProject.FullName --configuration Release --no-build
           }
