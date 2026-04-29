@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Net.Sockets;
@@ -17,6 +13,12 @@ namespace TcpServers
         private TcpListener listener;
         private TcpClient client;
         static CancellationTokenSource cts;
+
+        // This event sends the received message to frmMain.
+        // First string = message
+        // Second string = client IP
+        public event Action<string, string> MessageReceived;
+
         public void startServer(int port)
         {
             try
@@ -24,7 +26,9 @@ namespace TcpServers
                 cts = new CancellationTokenSource();
                 listener = new TcpListener(IPAddress.Any, port);
                 listener.Start();
-               
+
+                Log.writeLog("Planet TCP server started on port " + port);
+
                 while (!cts.IsCancellationRequested)
                 {
                     if (listener.Pending())
@@ -34,13 +38,17 @@ namespace TcpServers
                         using (BinaryReader reader = new BinaryReader(stream, Encoding.UTF8, true))
                         {
                             string ip_client = ((IPEndPoint)client.Client.RemoteEndPoint).Address.ToString();
-                            //Log.writeLog($"{ip_client} Client Connected...");
+
                             try
                             {
                                 int messageLength = reader.ReadInt32();
                                 byte[] RecData = reader.ReadBytes(messageLength);
                                 string data = Encoding.UTF8.GetString(RecData);
+
                                 Log.writeLog($"[{ip_client}]: {data}");
+
+                                // Send the message to the form.
+                                MessageReceived?.Invoke(data, ip_client);
                             }
                             catch (Exception ex)
                             {
@@ -53,7 +61,6 @@ namespace TcpServers
                     {
                         Thread.Sleep(100);
                     }
-
                 }
             }
             catch (SocketException ex)
@@ -66,9 +73,10 @@ namespace TcpServers
             }
             finally
             {
-                listener?.Stop();  
+                listener?.Stop();
             }
         }
+
         public void stopServer()
         {
             cts?.Cancel();
@@ -76,9 +84,11 @@ namespace TcpServers
             listener?.Stop();
         }
     }
+
     static public class Log
     {
         static int ProgramAlertLevel = 2;
+
         public enum AlertType
         {
             debug,
@@ -86,6 +96,7 @@ namespace TcpServers
             warning,
             error
         }
+
         static Dictionary<AlertType, int> AlertLevel = new Dictionary<AlertType, int>
         {
             { AlertType.debug, 1 },
@@ -93,6 +104,7 @@ namespace TcpServers
             { AlertType.warning, 3 },
             { AlertType.error, 4 }
         };
+
         static public void writeLog(string message, AlertType type = AlertType.info)
         {
             int level = AlertLevel[type];
