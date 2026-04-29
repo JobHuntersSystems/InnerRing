@@ -104,11 +104,13 @@ namespace PACS_Center
                     db.Executa(queryInsert);
                 }
             }
-            catch
+            catch(Exception ex)
             {
                 timerMsj.Stop();
                 btnCode.Enabled = true;
                 lstMsj.Items.Add("Error uploading to database!");
+
+                MessageBox.Show(ex.Message);
             }
         }
 

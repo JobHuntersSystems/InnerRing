@@ -31,7 +31,7 @@ namespace Inner_DB_Access
         /// Método que permite encriptar la conexión string que se encuentra dentro de app.config.
         private void EncryptConnection()
         {
-            Configuration configuration = ConfigurationManager.OpenExeConfiguration("JobHuntersSystem.exe");
+            Configuration configuration = ConfigurationManager.OpenExeConfiguration("PACS-Center.exe");
             ConnectionStringsSection section = configuration.GetSection("connectionStrings") as ConnectionStringsSection;
 
             if (!section.SectionInformation.IsProtected)
@@ -53,13 +53,8 @@ namespace Inner_DB_Access
             }
         }
 
-
-
-
-
         /// Ejecuta una consulta SQL y devuelve los resultados. Se le manda la query que se desea ejecutar.</param>
         /// Un DataSet con los resultados de la consulta.
-
         public DataSet PortarPerConsulta(string consultaSql)
         {
             adapter = new SqlDataAdapter(consultaSql, cnn);
