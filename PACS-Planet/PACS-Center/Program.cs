@@ -16,7 +16,7 @@ namespace PACS_Center
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmInnerEncryption(1));
+            Application.Run();
         }
     }
 }
