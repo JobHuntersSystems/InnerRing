@@ -9,16 +9,19 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Cryptography;
 using System.IO;
+using Inner_DB_Access;
 
 namespace PACS_Center
 {
     public partial class frmKeyManager : Form
     {
-        public frmKeyManager()
+        public frmKeyManager(int idPlanet)
         {
-            //int idPlanet
+            _idPlanet = idPlanet;
             InitializeComponent();
         }
+
+        private int _idPlanet;
 
         //-------------------------Generar keys----------------------\\
         private void btnKeyGenerator_Click(object sender, EventArgs e)
@@ -43,8 +46,7 @@ namespace PACS_Center
                         rsa.PersistKeyInCsp = true;
                         string publicKey = rsa.ToXmlString(false);
 
-                        string filePath = $"{keyName}_PublicKey.xml";
-                        File.WriteAllText(filePath, publicKey);
+                        SaveDataBase(publicKey);
                     }
                 }
                 catch (Exception ex)
@@ -54,11 +56,55 @@ namespace PACS_Center
             }            
         }
 
+        //----------------------- Consultas de la Base de datos -------------------------\\
+
         private string SearchCode()
         {
-            string code = "a";
-            //metodo/query para hacer busqueda del codigo del planeta y agregarlo en el key container
+            string code = "";
+            try
+            {
+                DB_CRUD db = new DB_CRUD();
+                string queryCode = $"SELECT CodePlanet FROM Planets WHERE idPlanet = {_idPlanet}";
+                DataTable dt = db.PortarDataTable(queryCode);
+
+                if (dt.Rows.Count > 0)
+                {
+                    code = dt.Rows[0]["CodePlanet"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error de conexión al buscar el código del planeta:\n\n{ex.Message}", "Error de BBDD");
+            }
+
             return code;
+        }
+
+        private void SaveDataBase(string key)
+        {
+            try
+            {
+                DB_CRUD db = new DB_CRUD();
+
+                string queryCheck = $"SELECT idPlanet FROM PlanetKeys WHERE idPlanet = {_idPlanet}";
+                DataTable dt = db.PortarDataTable(queryCheck);
+
+                if (dt.Rows.Count > 0)
+                {
+                    string queryUpdate = $"UPDATE PlanetKeys SET XMLKey = '{key}' WHERE idPlanet = {_idPlanet}";
+                    db.Executa(queryUpdate);
+                }
+                else
+                {
+                    string queryInsert = $"INSERT INTO PlanetKeys (idPlanet, XMLKey) VALUES ({_idPlanet}, '{key}')";
+                    db.Executa(queryInsert);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Fallo al guardar la clave en la tabla PlanetKeys:\n\n{ex.Message}", "Error de BBDD");
+            }
+
         }
 
     }
