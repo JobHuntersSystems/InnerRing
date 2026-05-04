@@ -20,6 +20,7 @@ namespace TcpServer
 
         private void btnStartServer_Click(object sender, EventArgs e)
         {
+            pcsConsoleLog.AddOk("HOLAAA");
         }
     }
 }
