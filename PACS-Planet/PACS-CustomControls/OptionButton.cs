@@ -140,7 +140,7 @@ namespace PACS_CustomControls
 
         private string _ClassName;
         [Category("PACS")]
-        [Description("")]   
+        [Description("")]
         public string ClassName
         {
             get { return _ClassName; }
@@ -155,7 +155,7 @@ namespace PACS_CustomControls
             get { return _FormName; }
             set { _FormName = value; }
         }
-        
+
         public OptionButton()
         {
             InitializeComponent();
@@ -183,7 +183,7 @@ namespace PACS_CustomControls
         private Form getDllForm()
         {
             Object dllForm = null;
-         
+
             Assembly assembly;
             assembly = Assembly.LoadFrom(_ClassName);
 
@@ -196,7 +196,7 @@ namespace PACS_CustomControls
             return (Form)dllForm;
         }
         //Este método habre un formulario dentro de un panel especifico que esté creado en el form pasado como Argumento "parentForm"
-        private void openFormByDll(Form dllForm , Form parentForm)
+        private void openFormByDll(Form dllForm, Form parentForm)
         {
             foreach (Control ctrl in parentForm.Controls)
             {
@@ -244,7 +244,7 @@ namespace PACS_CustomControls
                         openFormByDll(dllForm, parentForm);
                     }
                 }
-                    
+
             }
             catch (Exception ex)
             {
@@ -456,5 +456,4 @@ namespace PACS_CustomControls
         }
         #endregion
     }
-
 }

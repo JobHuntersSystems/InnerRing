@@ -30586,7 +30586,7 @@
     <value>70, 0, 0, 0</value>
   </data>
   <data name="lblTitle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1236, 56</value>
+    <value>1236, 50</value>
   </data>
   <data name="lblTitle.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -30619,7 +30619,7 @@
     <value>14, 10, 14, 10</value>
   </data>
   <data name="panelHeader.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1264, 76</value>
+    <value>1264, 70</value>
   </data>
   <data name="panelHeader.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -30639,25 +30639,25 @@
   <data name="flowMenuLeft.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="optionButton3.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="obtnTCP.Location" type="System.Drawing.Point, System.Drawing">
     <value>15, 17</value>
   </data>
-  <data name="optionButton3.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="obtnTCP.Size" type="System.Drawing.Size, System.Drawing">
     <value>237, 72</value>
   </data>
-  <data name="optionButton3.TabIndex" type="System.Int32, mscorlib">
+  <data name="obtnTCP.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
   </data>
-  <data name="&gt;&gt;optionButton3.Name" xml:space="preserve">
-    <value>optionButton3</value>
+  <data name="&gt;&gt;obtnTCP.Name" xml:space="preserve">
+    <value>obtnTCP</value>
   </data>
-  <data name="&gt;&gt;optionButton3.Type" xml:space="preserve">
+  <data name="&gt;&gt;obtnTCP.Type" xml:space="preserve">
     <value>PACS_CustomControls.OptionButton, PACS-CustomControls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="&gt;&gt;optionButton3.Parent" xml:space="preserve">
+  <data name="&gt;&gt;obtnTCP.Parent" xml:space="preserve">
     <value>flowMenuLeft</value>
   </data>
-  <data name="&gt;&gt;optionButton3.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;obtnTCP.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="optionButton4.Location" type="System.Drawing.Point, System.Drawing">
@@ -30730,13 +30730,13 @@
     <value>TopDown</value>
   </data>
   <data name="flowMenuLeft.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 76</value>
+    <value>0, 70</value>
   </data>
   <data name="flowMenuLeft.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>12, 14, 12, 12</value>
   </data>
   <data name="flowMenuLeft.Size" type="System.Drawing.Size, System.Drawing">
-    <value>267, 542</value>
+    <value>267, 569</value>
   </data>
   <data name="flowMenuLeft.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -30756,36 +30756,31 @@
   <data name="&gt;&gt;flowMenuLeft.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="rtbLogs.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="pnlMain.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="rtbLogs.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Consolas, 9pt</value>
+  <data name="pnlMain.Location" type="System.Drawing.Point, System.Drawing">
+    <value>267, 70</value>
   </data>
-  <data name="rtbLogs.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 28</value>
+  <data name="pnlMain.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>12, 12, 12, 12</value>
   </data>
-  <data name="rtbLogs.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1240, 110</value>
+  <data name="pnlMain.Size" type="System.Drawing.Size, System.Drawing">
+    <value>997, 569</value>
   </data>
-  <data name="rtbLogs.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="pnlMain.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
-  <data name="rtbLogs.Text" xml:space="preserve">
-    <value>[10:24:31] [INFO ] Planet Control Center initialized
-[10:24:32] [INFO ] Waiting for operator command...
-</value>
+  <data name="&gt;&gt;pnlMain.Name" xml:space="preserve">
+    <value>pnlMain</value>
   </data>
-  <data name="&gt;&gt;rtbLogs.Name" xml:space="preserve">
-    <value>rtbLogs</value>
+  <data name="&gt;&gt;pnlMain.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;rtbLogs.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;pnlMain.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;rtbLogs.Parent" xml:space="preserve">
-    <value>panelLog</value>
-  </data>
-  <data name="&gt;&gt;rtbLogs.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;pnlMain.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="lblLogTitle.AutoSize" type="System.Boolean, mscorlib">
@@ -30821,17 +30816,49 @@
   <data name="&gt;&gt;lblLogTitle.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="rtbLogs.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="rtbLogs.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 9pt</value>
+  </data>
+  <data name="rtbLogs.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 28</value>
+  </data>
+  <data name="rtbLogs.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1240, 89</value>
+  </data>
+  <data name="rtbLogs.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="rtbLogs.Text" xml:space="preserve">
+    <value>[10:24:31] [INFO ] Planet Control Center initialized
+[10:24:32] [INFO ] Waiting for operator command...
+</value>
+  </data>
+  <data name="&gt;&gt;rtbLogs.Name" xml:space="preserve">
+    <value>rtbLogs</value>
+  </data>
+  <data name="&gt;&gt;rtbLogs.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rtbLogs.Parent" xml:space="preserve">
+    <value>panelLog</value>
+  </data>
+  <data name="&gt;&gt;rtbLogs.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="panelLog.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Bottom</value>
   </data>
   <data name="panelLog.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 618</value>
+    <value>0, 639</value>
   </data>
   <data name="panelLog.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>12, 28, 12, 12</value>
   </data>
   <data name="panelLog.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1264, 150</value>
+    <value>1264, 129</value>
   </data>
   <data name="panelLog.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -30847,33 +30874,6 @@
   </data>
   <data name="&gt;&gt;panelLog.ZOrder" xml:space="preserve">
     <value>2</value>
-  </data>
-  <data name="pnlMain.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="pnlMain.Location" type="System.Drawing.Point, System.Drawing">
-    <value>267, 76</value>
-  </data>
-  <data name="pnlMain.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>12, 12, 12, 12</value>
-  </data>
-  <data name="pnlMain.Size" type="System.Drawing.Size, System.Drawing">
-    <value>997, 542</value>
-  </data>
-  <data name="pnlMain.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;pnlMain.Name" xml:space="preserve">
-    <value>pnlMain</value>
-  </data>
-  <data name="&gt;&gt;pnlMain.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pnlMain.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;pnlMain.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
