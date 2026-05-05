@@ -1,6 +1,6 @@
-﻿namespace TcpServer
+﻿namespace TcpDashboard
 {
-    partial class frmTcpServerDashboard
+    partial class frmTcpDashboard
     {
         private System.ComponentModel.IContainer components = null;
 
@@ -29,7 +29,6 @@
             this.lblPlanetIp = new System.Windows.Forms.Label();
             this.lblConfigurationTitle = new System.Windows.Forms.Label();
             this.pnlControls = new System.Windows.Forms.Panel();
-            this.btnClearLog = new System.Windows.Forms.Button();
             this.btnCheckConnection = new System.Windows.Forms.Button();
             this.btnStopServer = new System.Windows.Forms.Button();
             this.btnStartServer = new System.Windows.Forms.Button();
@@ -209,7 +208,6 @@
             // 
             this.pnlControls.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(13)))), ((int)(((byte)(20)))));
             this.pnlControls.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlControls.Controls.Add(this.btnClearLog);
             this.pnlControls.Controls.Add(this.btnCheckConnection);
             this.pnlControls.Controls.Add(this.btnStopServer);
             this.pnlControls.Controls.Add(this.btnStartServer);
@@ -222,21 +220,6 @@
             this.pnlControls.Padding = new System.Windows.Forms.Padding(14);
             this.pnlControls.Size = new System.Drawing.Size(297, 228);
             this.pnlControls.TabIndex = 1;
-            // 
-            // btnClearLog
-            // 
-            this.btnClearLog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(18)))), ((int)(((byte)(28)))));
-            this.btnClearLog.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(180)))), ((int)(((byte)(40)))));
-            this.btnClearLog.FlatAppearance.BorderSize = 2;
-            this.btnClearLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClearLog.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
-            this.btnClearLog.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(180)))), ((int)(((byte)(40)))));
-            this.btnClearLog.Location = new System.Drawing.Point(20, 164);
-            this.btnClearLog.Name = "btnClearLog";
-            this.btnClearLog.Size = new System.Drawing.Size(250, 32);
-            this.btnClearLog.TabIndex = 4;
-            this.btnClearLog.Text = "CLEAR TCP LOG";
-            this.btnClearLog.UseVisualStyleBackColor = false;
             // 
             // btnCheckConnection
             // 
@@ -267,6 +250,7 @@
             this.btnStopServer.TabIndex = 2;
             this.btnStopServer.Text = "STOP TCP SERVER";
             this.btnStopServer.UseVisualStyleBackColor = false;
+            this.btnStopServer.Click += new System.EventHandler(this.btnStopServer_Click);
             // 
             // btnStartServer
             // 
@@ -622,7 +606,7 @@
             this.lblTitle.Text = "TCP/IP SERVER CONTROL";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // frmTcpServerDashboard
+            // frmTcpDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -630,8 +614,9 @@
             this.ClientSize = new System.Drawing.Size(985, 617);
             this.Controls.Add(this.pnlRoot);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmTcpServerDashboard";
+            this.Name = "frmTcpDashboard";
             this.Text = "TCP Server Dashboard";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmTcpDashboard_FormClosed);
             this.pnlRoot.ResumeLayout(false);
             this.tlpCenter.ResumeLayout(false);
             this.pnlConfiguration.ResumeLayout(false);
@@ -687,7 +672,6 @@
         private System.Windows.Forms.Button btnStartServer;
         private System.Windows.Forms.Button btnStopServer;
         private System.Windows.Forms.Button btnCheckConnection;
-        private System.Windows.Forms.Button btnClearLog;
 
         private System.Windows.Forms.Panel pnlConnection;
         private System.Windows.Forms.Label lblConnectionTitle;

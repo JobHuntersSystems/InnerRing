@@ -84,9 +84,9 @@
             this.obtnTCP.BackgroundPanelColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(28)))), ((int)(((byte)(30)))));
             this.obtnTCP.BorderDarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
             this.obtnTCP.BorderLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(105)))), ((int)(((byte)(95)))));
-            this.obtnTCP.ClassName = "TcpServer.dll";
+            this.obtnTCP.ClassName = "TcpDashboard.dll";
             this.obtnTCP.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.obtnTCP.FormName = "TcpServer.frmTcpServerDashboard";
+            this.obtnTCP.FormName = "TcpDashboard.frmTcpDashboard";
             this.obtnTCP.IsSelected = false;
             resources.ApplyResources(this.obtnTCP, "obtnTCP");
             this.obtnTCP.Name = "obtnTCP";
