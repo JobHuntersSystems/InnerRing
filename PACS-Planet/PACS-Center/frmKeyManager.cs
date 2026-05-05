@@ -29,7 +29,7 @@ namespace PACS_Center
             string keyName = SearchCode();
             if (string.IsNullOrEmpty(keyName))
             {
-                MessageBox.Show("Rellene el nombre de la key para poder seguir con el proceso");
+                lblMessage.Text = "Rellene el nombre de la key para poder seguir con el proceso";
                 return;
             }
 
@@ -51,7 +51,7 @@ namespace PACS_Center
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Ocurrió un error al generar o guardar la clave:\n\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    lblMessage.Text = $"Ocurrió un error al generar o guardar la clave:\n\n{ ex.Message}";
                 }                
             }            
         }
@@ -74,7 +74,7 @@ namespace PACS_Center
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error de conexión al buscar el código del planeta:\n\n{ex.Message}", "Error de BBDD");
+                lblMessage.Text = $"Error de conexión al buscar el código del planeta:\n\n{ex.Message}";
             }
 
             return code;
@@ -99,13 +99,13 @@ namespace PACS_Center
                     string queryInsert = $"INSERT INTO PlanetKeys (idPlanet, XMLKey) VALUES ({_idPlanet}, '{key}')";
                     db.Executa(queryInsert);
                 }
+
+                lblMessage.Text = "The key pair has already been generated";
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Fallo al guardar la clave en la tabla PlanetKeys:\n\n{ex.Message}", "Error de BBDD");
+                lblMessage.Text = $"Fallo al guardar la clave en la tabla PlanetKeys:\n\n{ex.Message}";                 
             }
-
         }
-
     }
 }

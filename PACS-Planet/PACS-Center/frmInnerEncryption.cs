@@ -84,7 +84,8 @@ namespace PACS_Center
                 {
                     timerMsj.Stop();
                     btnCode.Enabled = true;
-                    lstMsj.Items.Add("Error!! The encryption record for this planet was not found in the database.");
+                    string msj = "Error!! The encryption record for this planet was not found in the database.";
+                    lstMsj.AddError(msj);
                     return;
                 }
                 int idInner = (int)dt.Rows[0]["idInnerEncryption"];
@@ -108,7 +109,8 @@ namespace PACS_Center
             {
                 timerMsj.Stop();
                 btnCode.Enabled = true;
-                lstMsj.Items.Add("Error uploading to database!");
+                string msj = "Error uploading to database!";
+                lstMsj.AddError(msj);
 
                 MessageBox.Show(ex.Message);
             }
@@ -119,8 +121,8 @@ namespace PACS_Center
             btnCode.Enabled = false;
             
             pass = 0;
-            lstMsj.Items.Clear();
-
+            lstMsj.ClearConsole();
+            timerMsj.Interval = 600;
             timerMsj.Start();     
         }
 
@@ -131,24 +133,29 @@ namespace PACS_Center
             switch (pass)
             {
                 case 0:
-                    lstMsj.Items.Add("Generating encoding...");
+                    string msj = "Generating encoding...";
+                    lstMsj.AddInfo(msj);
                     validationCode = RandomCode();
                     data = RandomValue();
                     break;
                 case 1:
-                    lstMsj.Items.Add("Validating encoding...");
-                    break;
-                case 2:
-                    lstMsj.Items.Add("Encoding validated.");
+                    msj = "Validating encoding...";
+                    lstMsj.AddInfo(msj);
                     timerMsj.Interval = 1000;
                     break;
+                case 2:
+                    msj = "Encoding validated.";
+                    lstMsj.AddOk(msj);                    
+                    break;
                 case 3:
-                    lstMsj.Items.Add("Uploading encoding to the system...");
+                    msj = "Uploading encoding to the system...";
+                    lstMsj.AddInfo(msj);
                     SaveCode();
                     timerMsj.Interval = 2000;
                     break;
                 case 4:
-                    lstMsj.Items.Add("Upload completed.");
+                    msj = "Upload completed.";
+                    lstMsj.AddOk(msj);
 
                     timerMsj.Stop();
                     btnCode.Enabled = true;

@@ -31,41 +31,44 @@ namespace PACS_Center
         {
             this.components = new System.ComponentModel.Container();
             this.btnCode = new System.Windows.Forms.Button();
-            this.lstMsj = new System.Windows.Forms.ListBox();
             this.timerMsj = new System.Windows.Forms.Timer(this.components);
+            this.lstMsj = new PACS_CustomControls.PacsConsole();
             this.SuspendLayout();
             // 
             // btnCode
             // 
-            this.btnCode.Location = new System.Drawing.Point(102, 30);
+            this.btnCode.Location = new System.Drawing.Point(68, 19);
+            this.btnCode.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnCode.Name = "btnCode";
-            this.btnCode.Size = new System.Drawing.Size(123, 60);
+            this.btnCode.Size = new System.Drawing.Size(82, 39);
             this.btnCode.TabIndex = 0;
             this.btnCode.Text = "Generate codification";
             this.btnCode.UseVisualStyleBackColor = true;
             this.btnCode.Click += new System.EventHandler(this.btnCode_Click);
-            // 
-            // lstMsj
-            // 
-            this.lstMsj.FormattingEnabled = true;
-            this.lstMsj.ItemHeight = 20;
-            this.lstMsj.Location = new System.Drawing.Point(300, 30);
-            this.lstMsj.Name = "lstMsj";
-            this.lstMsj.Size = new System.Drawing.Size(346, 364);
-            this.lstMsj.TabIndex = 2;
             // 
             // timerMsj
             // 
             this.timerMsj.Interval = 600;
             this.timerMsj.Tick += new System.EventHandler(this.timerMsj_Tick);
             // 
+            // lstMsj
+            // 
+            this.lstMsj.AccentColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
+            this.lstMsj.BackColor = System.Drawing.Color.Transparent;
+            this.lstMsj.ConsoleTitle = "SYSTEM LOG CONSOLE";
+            this.lstMsj.Location = new System.Drawing.Point(188, 19);
+            this.lstMsj.Name = "lstMsj";
+            this.lstMsj.Size = new System.Drawing.Size(472, 427);
+            this.lstMsj.TabIndex = 3;
+            // 
             // frmInnerEncryption
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(865, 505);
             this.Controls.Add(this.lstMsj);
             this.Controls.Add(this.btnCode);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmInnerEncryption";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -75,8 +78,8 @@ namespace PACS_Center
         #endregion
 
         private System.Windows.Forms.Button btnCode;
-        private System.Windows.Forms.ListBox lstMsj;
         private System.Windows.Forms.Timer timerMsj;
+        private PACS_CustomControls.PacsConsole lstMsj;
     }
 }
 

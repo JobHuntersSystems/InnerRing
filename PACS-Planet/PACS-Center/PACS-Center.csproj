@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{DA08766A-DBFB-465B-86CD-360FE7385368}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Library</OutputType>
     <RootNamespace>PACS_Center</RootNamespace>
     <AssemblyName>PACS-Center</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -31,6 +31,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -92,6 +95,10 @@
     <ProjectReference Include="..\Inner_DB_Access\Inner_DB_Access.csproj">
       <Project>{886fe758-4c70-4699-b614-f2287dcc7e48}</Project>
       <Name>Inner_DB_Access</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PACS-CustomControls\PACS-CustomControls.csproj">
+      <Project>{5e69e566-0081-4b55-8486-8341a9e082a1}</Project>
+      <Name>PACS-CustomControls</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
