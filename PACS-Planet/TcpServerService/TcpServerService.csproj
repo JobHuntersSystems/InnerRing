@@ -7,8 +7,8 @@
     <ProjectGuid>{1EACA337-8B9D-40CD-86A7-657772375065}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TcpServerService</RootNamespace>
-    <AssemblyName>TcpServerService</AssemblyName>
+    <RootNamespace>TcpServerServices</RootNamespace>
+    <AssemblyName>TcpServerServices</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\App\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -43,6 +43,16 @@
   <ItemGroup>
     <Compile Include="TcpServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EventsClass\EventsClass.csproj">
+      <Project>{41d7d944-e5f9-4fb6-84ff-4b07aaa49e81}</Project>
+      <Name>EventsClass</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PACS-Common\PACS-Common.csproj">
+      <Project>{ae2dfbfd-20fc-4225-9991-62edaad6b012}</Project>
+      <Name>PACS-Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
