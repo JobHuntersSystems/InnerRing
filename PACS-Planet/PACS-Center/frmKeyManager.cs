@@ -15,9 +15,9 @@ namespace PACS_Center
 {
     public partial class frmKeyManager : Form
     {
-        public frmKeyManager(int idPlanet)
+        public frmKeyManager()
         {
-            _idPlanet = idPlanet;
+            _idPlanet = PACS_Common.Planet.idPlanet;
             InitializeComponent();
         }
 

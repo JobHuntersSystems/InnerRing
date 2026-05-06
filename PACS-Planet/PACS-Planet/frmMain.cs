@@ -18,7 +18,7 @@ namespace PACS_Planet
         public frmMain()
         {
             InitializeComponent();
-            frmKeyManager frm = new frmKeyManager(2);
+            PACS_Common.Planet.idPlanet = 7;
         }
 
         private void btnSecuritySetup_Click(object sender, EventArgs e)

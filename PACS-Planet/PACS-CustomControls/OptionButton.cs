@@ -163,7 +163,7 @@ namespace PACS_CustomControls
             this.MouseEnter += new EventHandler(OptionButton_MouseEnter);
             this.MouseLeave += new EventHandler(OptionButton_MouseLeave);
             this.MouseDown += new MouseEventHandler(OptionButton_MouseDown);
-            this.MouseUp += new MouseEventHandler(OptionButton_MouseLeave);
+            this.MouseUp += new MouseEventHandler(OptionButton_MouseLeave); 
             this.Click += Control_Click;
 
             SetStyle(

@@ -91,6 +91,10 @@
       <Project>{da08766a-dbfb-465b-86cd-360fe7385368}</Project>
       <Name>PACS-Center</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PACS-Common\PACS-Common.csproj">
+      <Project>{ae2dfbfd-20fc-4225-9991-62edaad6b012}</Project>
+      <Name>PACS-Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PACS-CustomControls\PACS-CustomControls.csproj">
       <Project>{5e69e566-0081-4b55-8486-8341a9e082a1}</Project>
       <Name>PACS-CustomControls</Name>

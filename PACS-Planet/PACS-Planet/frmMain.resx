@@ -34669,6 +34669,9 @@
         fMkK/P8I2W8MClJpvQAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>1260, 720</value>
   </data>

@@ -31,7 +31,7 @@ namespace Inner_DB_Access
         /// Método que permite encriptar la conexión string que se encuentra dentro de app.config.
         private void EncryptConnection()
         {
-            Configuration configuration = ConfigurationManager.OpenExeConfiguration("PACS-Center.exe");
+            Configuration configuration = ConfigurationManager.OpenExeConfiguration("PACS-Planet.exe");
             ConnectionStringsSection section = configuration.GetSection("connectionStrings") as ConnectionStringsSection;
 
             if (!section.SectionInformation.IsProtected)
