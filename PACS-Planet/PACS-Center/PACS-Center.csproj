@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{68107F4C-0312-4422-9B36-4E941A5A30A1}</ProjectGuid>
+    <ProjectGuid>{DA08766A-DBFB-465B-86CD-360FE7385368}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>PACS_Planet</RootNamespace>
-    <AssemblyName>PACS-Planet</AssemblyName>
+    <RootNamespace>PACS_Center</RootNamespace>
+    <AssemblyName>PACS-Center</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,9 +32,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationIcon>PACS_logo.ico</ApplicationIcon>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -49,28 +46,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmMain.cs">
+    <Compile Include="frmInnerEncryption.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMain.Designer.cs">
-      <DependentUpon>frmMain.cs</DependentUpon>
+    <Compile Include="frmInnerEncryption.Designer.cs">
+      <DependentUpon>frmInnerEncryption.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmPlanetValidation.cs">
+    <Compile Include="frmKeyManager.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmPlanetValidation.Designer.cs">
-      <DependentUpon>FrmPlanetValidation.cs</DependentUpon>
+    <Compile Include="frmKeyManager.Designer.cs">
+      <DependentUpon>frmKeyManager.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmMain.resx">
-      <DependentUpon>frmMain.cs</DependentUpon>
+    <EmbeddedResource Include="frmInnerEncryption.resx">
+      <DependentUpon>frmInnerEncryption.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMain.ssy.resx">
-      <DependentUpon>frmMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmPlanetValidation.resx">
-      <DependentUpon>FrmPlanetValidation.cs</DependentUpon>
+    <EmbeddedResource Include="frmKeyManager.resx">
+      <DependentUpon>frmKeyManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -80,7 +74,6 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -96,25 +89,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PACS-CustomControls\PACS-CustomControls.csproj">
-      <Project>{5e69e566-0081-4b55-8486-8341a9e082a1}</Project>
-      <Name>PACS-CustomControls</Name>
+    <ProjectReference Include="..\Inner_DB_Access\Inner_DB_Access.csproj">
+      <Project>{886fe758-4c70-4699-b614-f2287dcc7e48}</Project>
+      <Name>Inner_DB_Access</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PACS-InheratedControls\PACS-InheratedControls.csproj">
-      <Project>{f81b6a02-65c6-47cc-8792-693510674d9d}</Project>
-      <Name>PACS-InheratedControls</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PACS-UI\PACS-UI.csproj">
-      <Project>{f553bf70-c670-4b47-a179-b027740872ee}</Project>
-      <Name>PACS-UI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TcpServer\TcpServer.csproj">
-      <Project>{6AFA8F25-C3B0-4AFE-B506-83C1CFB4D676}</Project>
-      <Name>TcpServer</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="PACS_logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

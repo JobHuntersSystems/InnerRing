@@ -5,30 +5,40 @@ using System.Threading;
 using System.Net.Sockets;
 using System.Net;
 using System.IO;
+using EventsClass;
+using PACS_Common;
 
-namespace TcpServers
+namespace TcpServerServices
 {
-    public class PlanetTcpServer
+    public class TcpServerService
     {
         private TcpListener listener;
         private TcpClient client;
+        private bool isRunning;
         static CancellationTokenSource cts;
 
-        // This event sends the received message to frmMain.
-        // First string = message
-        // Second string = client IP
-        public event Action<string, string> MessageReceived;
+        private CommunicationEventClass cl;
 
+        public TcpServerService(CommunicationEventClass communicationEvents)
+        {
+            this.cl = communicationEvents;
+        }
+        
         public void startServer(int port)
         {
             try
             {
+                isRunning = true;
+
                 cts = new CancellationTokenSource();
                 listener = new TcpListener(IPAddress.Any, port);
                 listener.Start();
 
-                Log.writeLog("Planet TCP server started on port " + port);
-
+                cl.SendTcpEvent(
+                   "Init server in port: " + port,
+                   "",
+                   LogLevel.Info
+               );
                 while (!cts.IsCancellationRequested)
                 {
                     if (listener.Pending())
@@ -37,22 +47,33 @@ namespace TcpServers
                         using (NetworkStream stream = client.GetStream())
                         using (BinaryReader reader = new BinaryReader(stream, Encoding.UTF8, true))
                         {
-                            string ip_client = ((IPEndPoint)client.Client.RemoteEndPoint).Address.ToString();
+
+                            string clientIp = ((IPEndPoint)client.Client.RemoteEndPoint).Address.ToString();
+                            cl.SendTcpEvent(
+                                "Client connected",
+                                clientIp,
+                                LogLevel.Success
+                            );
 
                             try
                             {
                                 int messageLength = reader.ReadInt32();
                                 byte[] RecData = reader.ReadBytes(messageLength);
                                 string data = Encoding.UTF8.GetString(RecData);
-
-                                Log.writeLog($"[{ip_client}]: {data}");
-
-                                // Send the message to the form.
-                                MessageReceived?.Invoke(data, ip_client);
+                                cl.SendTcpEvent(
+                                    data,
+                                    clientIp,
+                                    LogLevel.Info
+                                );
                             }
                             catch (Exception ex)
                             {
-                                Log.writeLog(ex.Message, Log.AlertType.error);
+                                isRunning = false;
+                                cl.SendTcpEvent(
+                                    ex.Message,
+                                    clientIp,
+                                    LogLevel.Error
+                                );
                                 break;
                             }
                         }
@@ -65,15 +86,26 @@ namespace TcpServers
             }
             catch (SocketException ex)
             {
-                Log.writeLog(ex.Message, Log.AlertType.error);
+                isRunning = false;
+                cl.SendTcpEvent(
+                    ex.Message,
+                    "",
+                    LogLevel.Error
+                );
             }
             catch (Exception ex)
             {
-                Log.writeLog(ex.Message, Log.AlertType.error);
+                isRunning = false;
+                cl.SendTcpEvent(
+                    ex.Message,
+                    "",
+                    LogLevel.Error
+                );
             }
             finally
             {
                 listener?.Stop();
+
             }
         }
 
@@ -82,39 +114,13 @@ namespace TcpServers
             cts?.Cancel();
             client?.Close();
             listener?.Stop();
+            isRunning = false;
+            cl.SendTcpEvent(
+               "Closing server",
+                "",
+                LogLevel.Info
+            );
         }
-    }
-
-    static public class Log
-    {
-        static int ProgramAlertLevel = 2;
-
-        public enum AlertType
-        {
-            debug,
-            info,
-            warning,
-            error
-        }
-
-        static Dictionary<AlertType, int> AlertLevel = new Dictionary<AlertType, int>
-        {
-            { AlertType.debug, 1 },
-            { AlertType.info, 2 },
-            { AlertType.warning, 3 },
-            { AlertType.error, 4 }
-        };
-
-        static public void writeLog(string message, AlertType type = AlertType.info)
-        {
-            int level = AlertLevel[type];
-
-            if (level < ProgramAlertLevel)
-                return;
-
-            string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-
-            Console.WriteLine($"{timestamp} [{type}] {message}");
-        }
+       
     }
 }

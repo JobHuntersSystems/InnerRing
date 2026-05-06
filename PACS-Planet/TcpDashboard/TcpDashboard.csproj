@@ -4,10 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5E69E566-0081-4B55-8486-8341A9E082A1}</ProjectGuid>
+    <ProjectGuid>{6AFA8F25-C3B0-4AFE-B506-83C1CFB4D676}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>PACS_CustomControls</RootNamespace>
-    <AssemblyName>PACS-CustomControls</AssemblyName>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TcpDashboard</RootNamespace>
+    <AssemblyName>TcpDashboard</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -16,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\App\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -30,44 +31,51 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.VisualStudio.ComponentModelHost, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OptionButton.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="frmTcpDashboard.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="OptionButton.Designer.cs">
-      <DependentUpon>OptionButton.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PacsConsole.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PacsConsole.Designer.cs">
-      <DependentUpon>PacsConsole.cs</DependentUpon>
+    <Compile Include="frmTcpDashboard.Designer.cs">
+      <DependentUpon>frmTcpDashboard.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="OptionButton.resx">
-      <DependentUpon>OptionButton.cs</DependentUpon>
+    <EmbeddedResource Include="frmTcpDashboard.resx">
+      <DependentUpon>frmTcpDashboard.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EventsClass\EventsClass.csproj">
+      <Project>{41d7d944-e5f9-4fb6-84ff-4b07aaa49e81}</Project>
+      <Name>EventsClass</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PACS-Common\PACS-Common.csproj">
       <Project>{ae2dfbfd-20fc-4225-9991-62edaad6b012}</Project>
       <Name>PACS-Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PACS-CustomControls\PACS-CustomControls.csproj">
+      <Project>{5e69e566-0081-4b55-8486-8341a9e082a1}</Project>
+      <Name>PACS-CustomControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TcpClientService\TcpClientService.csproj">
+      <Project>{ac916f85-7d76-407b-90ec-97551c54d995}</Project>
+      <Name>TcpClientService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TcpServerService\TcpServerService.csproj">
+      <Project>{1eaca337-8b9d-40cd-86a7-657772375065}</Project>
+      <Name>TcpServerService</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

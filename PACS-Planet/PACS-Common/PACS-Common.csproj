@@ -4,10 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5E69E566-0081-4B55-8486-8341A9E082A1}</ProjectGuid>
+    <ProjectGuid>{AE2DFBFD-20FC-4225-9991-62EDAAD6B012}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>PACS_CustomControls</RootNamespace>
-    <AssemblyName>PACS-CustomControls</AssemblyName>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PACS_Common</RootNamespace>
+    <AssemblyName>PACS-Common</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -30,45 +31,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.VisualStudio.ComponentModelHost, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OptionButton.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="OptionButton.Designer.cs">
-      <DependentUpon>OptionButton.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PacsConsole.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PacsConsole.Designer.cs">
-      <DependentUpon>PacsConsole.cs</DependentUpon>
-    </Compile>
+    <Compile Include="LogLevel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="OptionButton.resx">
-      <DependentUpon>OptionButton.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\PACS-Common\PACS-Common.csproj">
-      <Project>{ae2dfbfd-20fc-4225-9991-62edaad6b012}</Project>
-      <Name>PACS-Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

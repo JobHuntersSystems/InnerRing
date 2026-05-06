@@ -128,6 +128,10 @@ namespace PACS_Planet
         {
             string fakeER = "ERNAVE00000001DELIVERY0001";
             OnMessageReceived(fakeER, "192.168.1.50");
+
+        private void btnSecuritySetup_Click(object sender, EventArgs e)
+        {
+          
         }
     }
 }
