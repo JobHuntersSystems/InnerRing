@@ -1,18 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PACS_Planet
 {
 	public partial class FrmPlanetValidation : Form
 	{
-
 		// =========================================================
 		// CURRENT PROTOCOL DATA
 		// =========================================================
@@ -63,6 +55,7 @@ namespace PACS_Planet
 			btnAcces.Enabled = false;
 
 			AddLog("Planet validation protocol loaded.");
+			AddLog("Simulation mode active. TCP/IP will be connected later.");
 			AddLog("Waiting for ER message from spaceship.");
 		}
 
@@ -77,6 +70,7 @@ namespace PACS_Planet
 		private void ShowPanel(Panel panelToShow)
 		{
 			HideAllPanels();
+
 			panelToShow.Visible = true;
 			panelToShow.BringToFront();
 		}
@@ -93,6 +87,12 @@ namespace PACS_Planet
 				LstProtocolLogs.TopIndex = LstProtocolLogs.Items.Count - 1;
 			}
 		}
+
+		// =========================================================
+		// NAVIGATION BUTTONS
+		// These only open panels.
+		// They do not execute protocol actions directly.
+		// =========================================================
 
 		private void btnValidateEntry_Click(object sender, EventArgs e)
 		{
@@ -166,8 +166,22 @@ namespace PACS_Planet
 			AddLog("Resolve Access panel opened.");
 		}
 
+		// =========================================================
+		// MESSAGE RECEIVER
+		//
+		// For now this is called by simulation buttons.
+		// Later, the TCP service should call this method when
+		// real data arrives from the spaceship.
+		// =========================================================
+
 		public void OnMessageReceived(string message, string remoteIp)
 		{
+			if (string.IsNullOrWhiteSpace(message))
+			{
+				AddLog("Empty message received.", "ERROR");
+				return;
+			}
+
 			AddLog("Message received from " + remoteIp + ": " + message, "RECV");
 
 			if (message.StartsWith("ER"))
@@ -195,8 +209,32 @@ namespace PACS_Planet
 			}
 		}
 
+		// =========================================================
+		// ER HANDLING
+		//
+		// Format:
+		// ERSSSSSSSSSSSSCCCCCCCCCCCC
+		// ER = 2 chars
+		// Ship ID = 12 chars
+		// Delivery ID = 12 chars
+		// =========================================================
+
 		private void HandleER(string message, string remoteIp)
 		{
+			if (erReceived)
+			{
+				AddLog("A new ER was received, but the current process already has an ER.", "ERROR");
+
+				MessageBox.Show(
+					"An ER message has already been received for the current process.",
+					"ER already received",
+					MessageBoxButtons.OK,
+					MessageBoxIcon.Warning
+				);
+
+				return;
+			}
+
 			AddLog("Processing ER message...");
 
 			if (message.Length != 26)
@@ -234,6 +272,13 @@ namespace PACS_Planet
 			AddLog("Validate Entry phase is now available.", "OK");
 		}
 
+		// =========================================================
+		// VK HANDLING
+		//
+		// Format:
+		// VK + encrypted validation code
+		// =========================================================
+
 		private void HandleVK(string message)
 		{
 			if (!vr1Sent)
@@ -243,6 +288,20 @@ namespace PACS_Planet
 				MessageBox.Show(
 					"VK was received before VR1 was sent.\nThe protocol order is incorrect.",
 					"VK error",
+					MessageBoxButtons.OK,
+					MessageBoxIcon.Warning
+				);
+
+				return;
+			}
+
+			if (vkReceived)
+			{
+				AddLog("A VK message has already been received for this process.", "ERROR");
+
+				MessageBox.Show(
+					"A VK message has already been received.",
+					"VK already received",
 					MessageBoxButtons.OK,
 					MessageBoxIcon.Warning
 				);
@@ -280,6 +339,10 @@ namespace PACS_Planet
 			AddLog("Validate Key phase is now available.", "OK");
 		}
 
+		// =========================================================
+		// SHIP CHECKSUM HANDLING
+		// =========================================================
+
 		private void HandleShipChecksum(string message)
 		{
 			if (!zipSent)
@@ -289,6 +352,20 @@ namespace PACS_Planet
 				MessageBox.Show(
 					"The spaceship checksum arrived before PACS.zip was sent.\nThe protocol order is incorrect.",
 					"Checksum error",
+					MessageBoxButtons.OK,
+					MessageBoxIcon.Warning
+				);
+
+				return;
+			}
+
+			if (shipChecksumReceived)
+			{
+				AddLog("A ship checksum has already been received for this process.", "ERROR");
+
+				MessageBox.Show(
+					"A ship checksum has already been received.",
+					"Checksum already received",
 					MessageBoxButtons.OK,
 					MessageBoxIcon.Warning
 				);
@@ -323,6 +400,11 @@ namespace PACS_Planet
 			AddLog("Resolve Access phase is now available.", "OK");
 		}
 
+		// =========================================================
+		// SIMULATION BUTTONS
+		// These simulate messages that will later come from TCP/IP.
+		// =========================================================
+
 		private void btnSimulateER_Click(object sender, EventArgs e)
 		{
 			string fakeER = "ERNAVE00000001DELIVERY0001";
@@ -341,6 +423,91 @@ namespace PACS_Planet
 			OnMessageReceived(fakeChecksum, "192.168.1.50");
 		}
 
+		// =========================================================
+		// PANEL 1 ACTION:
+		// VALIDATE ENTRY
+		// =========================================================
+
+		private void btnRunValidateEntry_Click(object sender, EventArgs e)
+		{
+			if (!erReceived)
+			{
+				MessageBox.Show(
+					"Cannot validate entry because ER has not been received.",
+					"Validate Entry error",
+					MessageBoxButtons.OK,
+					MessageBoxIcon.Warning
+				);
+
+				return;
+			}
+
+			if (vr1Sent)
+			{
+				MessageBox.Show(
+					"VR1 has already been sent for this process.",
+					"Validate Entry unavailable",
+					MessageBoxButtons.OK,
+					MessageBoxIcon.Warning
+				);
+
+				return;
+			}
+
+			AddLog("Checking DeliveryData table...");
+			AddLog("TEMP mode: DeliveryData validation is simulated.");
+
+			entryValidated = ValidateDeliveryData(
+				currentShipId,
+				currentDeliveryId,
+				currentShipIp
+			);
+
+			if (entryValidated)
+			{
+				lblEntryResult.Text = "Entry Result: ACCEPTED";
+				AddLog("DeliveryData validation accepted.", "OK");
+
+				SendVR(1, currentShipId, "VP");
+
+				vr1Sent = true;
+
+				AddLog("Waiting for VK message from spaceship.");
+			}
+			else
+			{
+				lblEntryResult.Text = "Entry Result: DENIED";
+				AddLog("DeliveryData validation rejected.", "ERROR");
+
+				SendVR(1, currentShipId, "AD");
+
+				vr1Sent = true;
+
+				AddLog("Process stopped.", "ERROR");
+			}
+		}
+
+		private bool ValidateDeliveryData(string shipId, string deliveryId, string shipIp)
+		{
+			/*
+			 * TEMPORARY PLACEHOLDER.
+			 *
+			 * Later this must check DeliveryData:
+			 * - Ship exists.
+			 * - Delivery exists.
+			 * - Ship is authorized.
+			 * - Ship IP matches.
+			 * - Delivery belongs to this planet.
+			 */
+
+			return true;
+		}
+
+		// =========================================================
+		// PANEL 2 ACTION:
+		// VALIDATE KEY
+		// =========================================================
+
 		private void btnRunValidateKey_Click(object sender, EventArgs e)
 		{
 			if (!vkReceived)
@@ -348,6 +515,18 @@ namespace PACS_Planet
 				MessageBox.Show(
 					"Cannot validate key because VK has not been received.",
 					"Validate Key error",
+					MessageBoxButtons.OK,
+					MessageBoxIcon.Warning
+				);
+
+				return;
+			}
+
+			if (vr2Sent)
+			{
+				MessageBox.Show(
+					"VR2 has already been sent for this process.",
+					"Validate Key unavailable",
 					MessageBoxButtons.OK,
 					MessageBoxIcon.Warning
 				);
@@ -393,21 +572,133 @@ namespace PACS_Planet
 			}
 		}
 
-		private bool ValidateDeliveryData(string shipId, string deliveryId, string shipIp)
+		private string DecryptValidationCode(string encryptedCode)
 		{
 			/*
 			 * TEMPORARY PLACEHOLDER.
 			 *
-			 * Later this must check the DeliveryData table:
-			 * - Ship exists.
-			 * - Delivery exists.
-			 * - Ship is authorized.
-			 * - Ship IP matches.
-			 * - Delivery belongs to this planet.
+			 * Later:
+			 * - Load private key from KeyPlanet.
+			 * - Decrypt encryptedCode using RSA.
 			 */
 
-			return true;
+			return "ABC123XYZ789";
 		}
+
+		private bool ValidateInnerEncryptionCode(string decryptedCode)
+		{
+			/*
+			 * TEMPORARY PLACEHOLDER.
+			 *
+			 * Later:
+			 * - Read expected validation code from InnerEncryption.
+			 */
+
+			string expectedCode = "ABC123XYZ789";
+
+			return decryptedCode == expectedCode;
+		}
+
+		// =========================================================
+		// PANEL 3 ACTION:
+		// PREPARE CHALLENGE
+		// =========================================================
+
+		private void btnRunCalculations_Click(object sender, EventArgs e)
+		{
+			if (!keyValidated)
+			{
+				MessageBox.Show(
+					"Cannot prepare challenge because the validation key has not been accepted.",
+					"Prepare Challenge error",
+					MessageBoxButtons.OK,
+					MessageBoxIcon.Warning
+				);
+
+				return;
+			}
+
+			if (zipSent || planetChecksumCalculated)
+			{
+				MessageBox.Show(
+					"The challenge has already been prepared for this process.",
+					"Prepare Challenge unavailable",
+					MessageBoxButtons.OK,
+					MessageBoxIcon.Warning
+				);
+
+				return;
+			}
+
+			AddLog("Reading XML configuration...");
+			lblXmlStatus.Text = "XML Config: Loaded";
+
+			AddLog("Generating PACS files...");
+			lblFilesStatus.Text = "Generated Files: OK";
+
+			AddLog("Creating PACS.zip...");
+			zipGenerated = true;
+			lblZipStatus.Text = "PACS.zip: Generated";
+
+			if (!zipGenerated)
+			{
+				MessageBox.Show(
+					"Cannot send PACS.zip because it has not been generated.",
+					"ZIP error",
+					MessageBoxButtons.OK,
+					MessageBoxIcon.Warning
+				);
+
+				return;
+			}
+
+			AddLog("Sending PACS.zip...", "SEND");
+
+			/*
+			 * TEMPORARY PLACEHOLDER.
+			 *
+			 * Later:
+			 * - Send the real PACS.zip using TCP/IP.
+			 */
+
+			zipSent = true;
+			lblZipStatus.Text = "PACS.zip: Sent";
+
+			AddLog("PACS.zip sent successfully.", "OK");
+
+			AddLog("Calculating planet checksum...");
+
+			planetChecksum = CalculatePlanetChecksum();
+
+			planetChecksumCalculated = true;
+
+			lblPlanetChecksum.Text = "Planet Checksum: " + planetChecksum;
+			lblPlanetChecksumFinal.Text = "Planet Checksum: " + planetChecksum;
+
+			AddLog("Planet checksum calculated: " + planetChecksum, "OK");
+			AddLog("Waiting for spaceship checksum.");
+		}
+
+		private int CalculatePlanetChecksum()
+		{
+			/*
+			 * TEMPORARY PLACEHOLDER.
+			 *
+			 * Later:
+			 * - Read generated files.
+			 * - Use InnerEncryptionData dictionary.
+			 * - Use TPL/Parallel processing.
+			 * - Sum digits.
+			 * - 0 counts as 10.
+			 */
+
+			return 45231;
+		}
+
+		// =========================================================
+		// PANEL 4 ACTION:
+		// RESOLVE ACCESS
+		// =========================================================
 
 		private void btnRunResolveAccess_Click(object sender, EventArgs e)
 		{
@@ -428,6 +719,18 @@ namespace PACS_Planet
 				MessageBox.Show(
 					"Cannot resolve access because the planet checksum has not been calculated.",
 					"Resolve Access error",
+					MessageBoxButtons.OK,
+					MessageBoxIcon.Warning
+				);
+
+				return;
+			}
+
+			if (finalResolved)
+			{
+				MessageBox.Show(
+					"Access has already been resolved for this process.",
+					"Resolve Access unavailable",
 					MessageBoxButtons.OK,
 					MessageBoxIcon.Warning
 				);
@@ -464,6 +767,10 @@ namespace PACS_Planet
 			finalResolved = true;
 		}
 
+		// =========================================================
+		// SEND VR MESSAGE
+		// =========================================================
+
 		private void SendVR(int number, string shipId, string result)
 		{
 			string message = $"VR{number}{shipId}{result}";
@@ -473,168 +780,22 @@ namespace PACS_Planet
 			/*
 			 * TEMPORARY PLACEHOLDER.
 			 *
-			 * Later:
-			 * - Send through TCP/IP.
+			 * Later this must send the message through the TCP service:
+			 * - VR1
+			 * - VR2
+			 * - VR3
 			 */
 		}
+
+		// =========================================================
+		// FINAL ACTION
+		// =========================================================
 
 		private void OpenShield()
 		{
 			lblShieldStatus.Text = "Shield Status: OPEN";
 			AddLog("Opening planetary energy shield...");
 			AddLog("Shield opened successfully.", "OK");
-		}
-
-		private void btnRunCalculations_Click(object sender, EventArgs e)
-		{
-			if (!keyValidated)
-			{
-				MessageBox.Show(
-					"Cannot prepare challenge because the validation key has not been accepted.",
-					"Prepare Challenge error",
-					MessageBoxButtons.OK,
-					MessageBoxIcon.Warning
-				);
-
-				return;
-			}
-
-			AddLog("Reading XML configuration...");
-			lblXmlStatus.Text = "XML Config: Loaded";
-
-			AddLog("Generating PACS files...");
-			lblFilesStatus.Text = "Generated Files: OK";
-
-			AddLog("Creating PACS.zip...");
-			zipGenerated = true;
-			lblZipStatus.Text = "PACS.zip: Generated";
-
-			AddLog("Sending PACS.zip...", "SEND");
-
-			if (!zipGenerated)
-			{
-				MessageBox.Show(
-					"Cannot send PACS.zip because it has not been generated.",
-					"ZIP error",
-					MessageBoxButtons.OK,
-					MessageBoxIcon.Warning
-				);
-
-				return;
-			}
-
-			/*
-			 * TEMPORARY PLACEHOLDER.
-			 *
-			 * Later:
-			 * - Send the real PACS.zip using TCP/IP.
-			 */
-
-			zipSent = true;
-			lblZipStatus.Text = "PACS.zip: Sent";
-
-			AddLog("PACS.zip sent successfully.", "OK");
-
-			AddLog("Calculating planet checksum...");
-			planetChecksum = CalculatePlanetChecksum();
-
-			planetChecksumCalculated = true;
-
-			lblPlanetChecksum.Text = "Planet Checksum: " + planetChecksum;
-			lblPlanetChecksumFinal.Text = "Planet Checksum: " + planetChecksum;
-
-			AddLog("Planet checksum calculated: " + planetChecksum, "OK");
-			AddLog("Waiting for spaceship checksum.");
-		}
-
-		private int CalculatePlanetChecksum()
-		{
-			/*
-			 * TEMPORARY PLACEHOLDER.
-			 *
-			 * Later:
-			 * - Read generated files.
-			 * - Use InnerEncryptionData dictionary.
-			 * - Use TPL/Parallel processing.
-			 * - Sum digits.
-			 * - 0 counts as 10.
-			 */
-
-			return 45231;
-		}
-
-		private void btnRunValidateEntry_Click(object sender, EventArgs e)
-		{
-			if (!erReceived)
-			{
-				MessageBox.Show(
-					"Cannot validate entry because ER has not been received.",
-					"Validate Entry error",
-					MessageBoxButtons.OK,
-					MessageBoxIcon.Warning
-				);
-
-				return;
-			}
-
-			AddLog("Checking DeliveryData table...");
-			AddLog("TEMP mode: DeliveryData validation is simulated.");
-
-			entryValidated = ValidateDeliveryData(
-				currentShipId,
-				currentDeliveryId,
-				currentShipIp
-			);
-
-			if (entryValidated)
-			{
-				lblEntryResult.Text = "Entry Result: ACCEPTED";
-				AddLog("DeliveryData validation accepted.", "OK");
-
-				SendVR(1, currentShipId, "VP");
-
-				vr1Sent = true;
-
-				AddLog("Waiting for VK message from spaceship.");
-			}
-			else
-			{
-				lblEntryResult.Text = "Entry Result: DENIED";
-				AddLog("DeliveryData validation rejected.", "ERROR");
-
-				SendVR(1, currentShipId, "AD");
-
-				vr1Sent = true;
-
-				AddLog("Process stopped.", "ERROR");
-			}
-		}
-
-		private string DecryptValidationCode(string encryptedCode)
-		{
-			/*
-			 * TEMPORARY PLACEHOLDER.
-			 *
-			 * Later:
-			 * - Load private key from KeyPlanet.
-			 * - Decrypt encryptedCode using RSA.
-			 */
-
-			return "ABC123XYZ789";
-		}
-
-		private bool ValidateInnerEncryptionCode(string decryptedCode)
-		{
-			/*
-			 * TEMPORARY PLACEHOLDER.
-			 *
-			 * Later:
-			 * - Read expected validation code from InnerEncryption.
-			 */
-
-			string expectedCode = "ABC123XYZ789";
-
-			return decryptedCode == expectedCode;
 		}
 	}
 }
