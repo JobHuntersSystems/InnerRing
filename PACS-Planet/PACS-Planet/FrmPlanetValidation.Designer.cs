@@ -35,23 +35,23 @@ namespace PACS_Planet
 			this.btnCalculate = new System.Windows.Forms.Button();
 			this.btnAcces = new System.Windows.Forms.Button();
 			this.pnlStartProcess = new System.Windows.Forms.Panel();
-			this.pnlCalculations = new System.Windows.Forms.Panel();
 			this.pnlResolveAccess = new System.Windows.Forms.Panel();
 			this.btnRunResolveAccess = new System.Windows.Forms.Button();
 			this.lblShieldStatus = new System.Windows.Forms.Label();
 			this.lblComparisonResult = new System.Windows.Forms.Label();
 			this.lblPlanetChecksumFinal = new System.Windows.Forms.Label();
 			this.lblShipChecksum = new System.Windows.Forms.Label();
-			this.btnRunCalculations = new System.Windows.Forms.Button();
-			this.lblPlanetChecksum = new System.Windows.Forms.Label();
-			this.lblZipStatus = new System.Windows.Forms.Label();
-			this.lblFilesStatus = new System.Windows.Forms.Label();
-			this.lblXmlStatus = new System.Windows.Forms.Label();
 			this.btnRunValidateEntry = new System.Windows.Forms.Button();
 			this.lblEntryResult = new System.Windows.Forms.Label();
 			this.lblEntryShipIP = new System.Windows.Forms.Label();
 			this.lblEntryDeliveryID = new System.Windows.Forms.Label();
 			this.lblEntryShipID = new System.Windows.Forms.Label();
+			this.pnlCalculations = new System.Windows.Forms.Panel();
+			this.btnRunCalculations = new System.Windows.Forms.Button();
+			this.lblPlanetChecksum = new System.Windows.Forms.Label();
+			this.lblFilesStatus = new System.Windows.Forms.Label();
+			this.lblXmlStatus = new System.Windows.Forms.Label();
+			this.lblZipStatus = new System.Windows.Forms.Label();
 			this.pnlValidateKey = new System.Windows.Forms.Panel();
 			this.btnRunValidateKey = new System.Windows.Forms.Button();
 			this.lblKeyResult = new System.Windows.Forms.Label();
@@ -62,8 +62,8 @@ namespace PACS_Planet
 			this.btnSimulateVK = new System.Windows.Forms.Button();
 			this.btnSimulateChecksum = new System.Windows.Forms.Button();
 			this.pnlStartProcess.SuspendLayout();
-			this.pnlCalculations.SuspendLayout();
 			this.pnlResolveAccess.SuspendLayout();
+			this.pnlCalculations.SuspendLayout();
 			this.pnlValidateKey.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -71,7 +71,7 @@ namespace PACS_Planet
 			// 
 			this.LstProtocolLogs.FormattingEnabled = true;
 			this.LstProtocolLogs.ItemHeight = 16;
-			this.LstProtocolLogs.Location = new System.Drawing.Point(538, 8);
+			this.LstProtocolLogs.Location = new System.Drawing.Point(538, 13);
 			this.LstProtocolLogs.Name = "LstProtocolLogs";
 			this.LstProtocolLogs.Size = new System.Drawing.Size(257, 436);
 			this.LstProtocolLogs.TabIndex = 0;
@@ -120,7 +120,6 @@ namespace PACS_Planet
 			// 
 			// pnlStartProcess
 			// 
-			this.pnlStartProcess.Controls.Add(this.pnlResolveAccess);
 			this.pnlStartProcess.Controls.Add(this.btnRunValidateEntry);
 			this.pnlStartProcess.Controls.Add(this.lblEntryResult);
 			this.pnlStartProcess.Controls.Add(this.lblEntryShipIP);
@@ -131,18 +130,6 @@ namespace PACS_Planet
 			this.pnlStartProcess.Size = new System.Drawing.Size(433, 249);
 			this.pnlStartProcess.TabIndex = 5;
 			this.pnlStartProcess.Visible = false;
-			// 
-			// pnlCalculations
-			// 
-			this.pnlCalculations.Controls.Add(this.btnRunCalculations);
-			this.pnlCalculations.Controls.Add(this.lblPlanetChecksum);
-			this.pnlCalculations.Controls.Add(this.lblFilesStatus);
-			this.pnlCalculations.Controls.Add(this.lblXmlStatus);
-			this.pnlCalculations.Location = new System.Drawing.Point(102, 94);
-			this.pnlCalculations.Name = "pnlCalculations";
-			this.pnlCalculations.Size = new System.Drawing.Size(430, 249);
-			this.pnlCalculations.TabIndex = 7;
-			this.pnlCalculations.Visible = false;
 			// 
 			// pnlResolveAccess
 			// 
@@ -203,57 +190,11 @@ namespace PACS_Planet
 			this.lblShipChecksum.TabIndex = 0;
 			this.lblShipChecksum.Text = "Ship Checksum: ---";
 			// 
-			// btnRunCalculations
-			// 
-			this.btnRunCalculations.Location = new System.Drawing.Point(154, 115);
-			this.btnRunCalculations.Name = "btnRunCalculations";
-			this.btnRunCalculations.Size = new System.Drawing.Size(263, 23);
-			this.btnRunCalculations.TabIndex = 4;
-			this.btnRunCalculations.Text = "GENERATE ZIP AND CALCULATE CHECKSUM";
-			this.btnRunCalculations.UseVisualStyleBackColor = true;
-			this.btnRunCalculations.Click += new System.EventHandler(this.btnRunCalculations_Click);
-			// 
-			// lblPlanetChecksum
-			// 
-			this.lblPlanetChecksum.AutoSize = true;
-			this.lblPlanetChecksum.Location = new System.Drawing.Point(27, 212);
-			this.lblPlanetChecksum.Name = "lblPlanetChecksum";
-			this.lblPlanetChecksum.Size = new System.Drawing.Size(140, 17);
-			this.lblPlanetChecksum.TabIndex = 3;
-			this.lblPlanetChecksum.Text = "Planet Checksum: ---";
-			// 
-			// lblZipStatus
-			// 
-			this.lblZipStatus.AutoSize = true;
-			this.lblZipStatus.Location = new System.Drawing.Point(27, 151);
-			this.lblZipStatus.Name = "lblZipStatus";
-			this.lblZipStatus.Size = new System.Drawing.Size(89, 17);
-			this.lblZipStatus.TabIndex = 2;
-			this.lblZipStatus.Text = "PACS.zip: ---";
-			// 
-			// lblFilesStatus
-			// 
-			this.lblFilesStatus.AutoSize = true;
-			this.lblFilesStatus.Location = new System.Drawing.Point(27, 88);
-			this.lblFilesStatus.Name = "lblFilesStatus";
-			this.lblFilesStatus.Size = new System.Drawing.Size(132, 17);
-			this.lblFilesStatus.TabIndex = 1;
-			this.lblFilesStatus.Text = "Generated Files: ---";
-			// 
-			// lblXmlStatus
-			// 
-			this.lblXmlStatus.AutoSize = true;
-			this.lblXmlStatus.Location = new System.Drawing.Point(27, 19);
-			this.lblXmlStatus.Name = "lblXmlStatus";
-			this.lblXmlStatus.Size = new System.Drawing.Size(103, 17);
-			this.lblXmlStatus.TabIndex = 0;
-			this.lblXmlStatus.Text = "XML Config: ---";
-			// 
 			// btnRunValidateEntry
 			// 
 			this.btnRunValidateEntry.Location = new System.Drawing.Point(157, 115);
 			this.btnRunValidateEntry.Name = "btnRunValidateEntry";
-			this.btnRunValidateEntry.Size = new System.Drawing.Size(273, 23);
+			this.btnRunValidateEntry.Size = new System.Drawing.Size(263, 23);
 			this.btnRunValidateEntry.TabIndex = 4;
 			this.btnRunValidateEntry.Text = "VALIDATE DELIVERY AND SEND VR1";
 			this.btnRunValidateEntry.UseVisualStyleBackColor = true;
@@ -295,11 +236,69 @@ namespace PACS_Planet
 			this.lblEntryShipID.TabIndex = 0;
 			this.lblEntryShipID.Text = "Ship ID: ---";
 			// 
+			// pnlCalculations
+			// 
+			this.pnlCalculations.Controls.Add(this.btnRunCalculations);
+			this.pnlCalculations.Controls.Add(this.lblPlanetChecksum);
+			this.pnlCalculations.Controls.Add(this.lblFilesStatus);
+			this.pnlCalculations.Controls.Add(this.lblZipStatus);
+			this.pnlCalculations.Controls.Add(this.lblXmlStatus);
+			this.pnlCalculations.Location = new System.Drawing.Point(0, 0);
+			this.pnlCalculations.Name = "pnlCalculations";
+			this.pnlCalculations.Size = new System.Drawing.Size(430, 249);
+			this.pnlCalculations.TabIndex = 7;
+			this.pnlCalculations.Visible = false;
+			// 
+			// btnRunCalculations
+			// 
+			this.btnRunCalculations.Location = new System.Drawing.Point(154, 118);
+			this.btnRunCalculations.Name = "btnRunCalculations";
+			this.btnRunCalculations.Size = new System.Drawing.Size(263, 23);
+			this.btnRunCalculations.TabIndex = 4;
+			this.btnRunCalculations.Text = "GENERATE ZIP AND CALCULATE CHECKSUM";
+			this.btnRunCalculations.UseVisualStyleBackColor = true;
+			this.btnRunCalculations.Click += new System.EventHandler(this.btnRunCalculations_Click);
+			// 
+			// lblPlanetChecksum
+			// 
+			this.lblPlanetChecksum.AutoSize = true;
+			this.lblPlanetChecksum.Location = new System.Drawing.Point(27, 212);
+			this.lblPlanetChecksum.Name = "lblPlanetChecksum";
+			this.lblPlanetChecksum.Size = new System.Drawing.Size(140, 17);
+			this.lblPlanetChecksum.TabIndex = 3;
+			this.lblPlanetChecksum.Text = "Planet Checksum: ---";
+			// 
+			// lblFilesStatus
+			// 
+			this.lblFilesStatus.AutoSize = true;
+			this.lblFilesStatus.Location = new System.Drawing.Point(27, 88);
+			this.lblFilesStatus.Name = "lblFilesStatus";
+			this.lblFilesStatus.Size = new System.Drawing.Size(132, 17);
+			this.lblFilesStatus.TabIndex = 1;
+			this.lblFilesStatus.Text = "Generated Files: ---";
+			// 
+			// lblXmlStatus
+			// 
+			this.lblXmlStatus.AutoSize = true;
+			this.lblXmlStatus.Location = new System.Drawing.Point(27, 19);
+			this.lblXmlStatus.Name = "lblXmlStatus";
+			this.lblXmlStatus.Size = new System.Drawing.Size(103, 17);
+			this.lblXmlStatus.TabIndex = 0;
+			this.lblXmlStatus.Text = "XML Config: ---";
+			// 
+			// lblZipStatus
+			// 
+			this.lblZipStatus.AutoSize = true;
+			this.lblZipStatus.Location = new System.Drawing.Point(27, 151);
+			this.lblZipStatus.Name = "lblZipStatus";
+			this.lblZipStatus.Size = new System.Drawing.Size(89, 17);
+			this.lblZipStatus.TabIndex = 2;
+			this.lblZipStatus.Text = "PACS.zip: ---";
+			// 
 			// pnlValidateKey
 			// 
 			this.pnlValidateKey.Controls.Add(this.btnRunValidateKey);
 			this.pnlValidateKey.Controls.Add(this.lblKeyResult);
-			this.pnlValidateKey.Controls.Add(this.lblZipStatus);
 			this.pnlValidateKey.Controls.Add(this.lblDecryptedCode);
 			this.pnlValidateKey.Controls.Add(this.lblEncryptedCode);
 			this.pnlValidateKey.Controls.Add(this.lblKeyStatus);
@@ -390,12 +389,13 @@ namespace PACS_Planet
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.Controls.Add(this.pnlStartProcess);
+			this.Controls.Add(this.pnlValidateKey);
 			this.Controls.Add(this.pnlCalculations);
+			this.Controls.Add(this.pnlResolveAccess);
 			this.Controls.Add(this.btnSimulateChecksum);
 			this.Controls.Add(this.btnSimulateVK);
 			this.Controls.Add(this.btnSimulateER);
-			this.Controls.Add(this.pnlValidateKey);
-			this.Controls.Add(this.pnlStartProcess);
 			this.Controls.Add(this.btnAcces);
 			this.Controls.Add(this.btnCalculate);
 			this.Controls.Add(this.btnValidateKey);
@@ -405,10 +405,10 @@ namespace PACS_Planet
 			this.Text = "FrmPlanetValidation";
 			this.pnlStartProcess.ResumeLayout(false);
 			this.pnlStartProcess.PerformLayout();
-			this.pnlCalculations.ResumeLayout(false);
-			this.pnlCalculations.PerformLayout();
 			this.pnlResolveAccess.ResumeLayout(false);
 			this.pnlResolveAccess.PerformLayout();
+			this.pnlCalculations.ResumeLayout(false);
+			this.pnlCalculations.PerformLayout();
 			this.pnlValidateKey.ResumeLayout(false);
 			this.pnlValidateKey.PerformLayout();
 			this.ResumeLayout(false);

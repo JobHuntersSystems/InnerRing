@@ -318,7 +318,7 @@ namespace PACS_Planet
 
 			AddLog("Ship checksum received: " + shipChecksum, "RECV");
 
-			btnRunResolveAccess.Enabled = true;
+			btnAcces.Enabled = true;
 
 			AddLog("Resolve Access phase is now available.", "OK");
 		}
@@ -343,11 +343,11 @@ namespace PACS_Planet
 
 		private void btnRunValidateKey_Click(object sender, EventArgs e)
 		{
-			if (!erReceived)
+			if (!vkReceived)
 			{
 				MessageBox.Show(
-					"Cannot validate entry because ER has not been received.",
-					"Validate Entry error",
+					"Cannot validate key because VK has not been received.",
+					"Validate Key error",
 					MessageBoxButtons.OK,
 					MessageBoxIcon.Warning
 				);
@@ -355,34 +355,39 @@ namespace PACS_Planet
 				return;
 			}
 
-			AddLog("Checking DeliveryData table...");
-			AddLog("TEMP mode: DeliveryData validation is simulated.");
+			AddLog("Decrypting VK using planet private key...");
+			AddLog("TEMP mode: RSA decryption is simulated.");
 
-			entryValidated = ValidateDeliveryData(
-				currentShipId,
-				currentDeliveryId,
-				currentShipIp
-			);
+			decryptedValidationCode = DecryptValidationCode(encryptedValidationCode);
 
-			if (entryValidated)
+			lblDecryptedCode.Text = "Decrypted Code: " + decryptedValidationCode;
+
+			AddLog("Decrypted validation code: " + decryptedValidationCode);
+			AddLog("Checking InnerEncryption table...");
+
+			keyValidated = ValidateInnerEncryptionCode(decryptedValidationCode);
+
+			if (keyValidated)
 			{
-				lblEntryResult.Text = "Entry Result: ACCEPTED";
-				AddLog("DeliveryData validation accepted.", "OK");
+				lblKeyResult.Text = "Key Result: ACCEPTED";
+				AddLog("Validation code accepted.", "OK");
 
-				SendVR(1, currentShipId, "VP");
+				SendVR(2, currentShipId, "VP");
 
-				vr1Sent = true;
+				vr2Sent = true;
 
-				AddLog("Waiting for VK message from spaceship.");
+				btnCalculate.Enabled = true;
+
+				AddLog("Prepare Challenge phase is now available.", "OK");
 			}
 			else
 			{
-				lblEntryResult.Text = "Entry Result: DENIED";
-				AddLog("DeliveryData validation rejected.", "ERROR");
+				lblKeyResult.Text = "Key Result: DENIED";
+				AddLog("Validation code rejected.", "ERROR");
 
-				SendVR(1, currentShipId, "AD");
+				SendVR(2, currentShipId, "AD");
 
-				vr1Sent = true;
+				vr2Sent = true;
 
 				AddLog("Process stopped.", "ERROR");
 			}
@@ -560,11 +565,11 @@ namespace PACS_Planet
 
 		private void btnRunValidateEntry_Click(object sender, EventArgs e)
 		{
-			if (!vkReceived)
+			if (!erReceived)
 			{
 				MessageBox.Show(
-					"Cannot validate key because VK has not been received.",
-					"Validate Key error",
+					"Cannot validate entry because ER has not been received.",
+					"Validate Entry error",
 					MessageBoxButtons.OK,
 					MessageBoxIcon.Warning
 				);
@@ -572,39 +577,34 @@ namespace PACS_Planet
 				return;
 			}
 
-			AddLog("Decrypting VK using planet private key...");
-			AddLog("TEMP mode: RSA decryption is simulated.");
+			AddLog("Checking DeliveryData table...");
+			AddLog("TEMP mode: DeliveryData validation is simulated.");
 
-			decryptedValidationCode = DecryptValidationCode(encryptedValidationCode);
+			entryValidated = ValidateDeliveryData(
+				currentShipId,
+				currentDeliveryId,
+				currentShipIp
+			);
 
-			lblDecryptedCode.Text = "Decrypted Code: " + decryptedValidationCode;
-
-			AddLog("Decrypted validation code: " + decryptedValidationCode);
-			AddLog("Checking InnerEncryption table...");
-
-			keyValidated = ValidateInnerEncryptionCode(decryptedValidationCode);
-
-			if (keyValidated)
+			if (entryValidated)
 			{
-				lblKeyResult.Text = "Key Result: ACCEPTED";
-				AddLog("Validation code accepted.", "OK");
+				lblEntryResult.Text = "Entry Result: ACCEPTED";
+				AddLog("DeliveryData validation accepted.", "OK");
 
-				SendVR(2, currentShipId, "VP");
+				SendVR(1, currentShipId, "VP");
 
-				vr2Sent = true;
+				vr1Sent = true;
 
-				btnCalculate.Enabled = true;
-
-				AddLog("Prepare Challenge phase is now available.", "OK");
+				AddLog("Waiting for VK message from spaceship.");
 			}
 			else
 			{
-				lblKeyResult.Text = "Key Result: DENIED";
-				AddLog("Validation code rejected.", "ERROR");
+				lblEntryResult.Text = "Entry Result: DENIED";
+				AddLog("DeliveryData validation rejected.", "ERROR");
 
-				SendVR(2, currentShipId, "AD");
+				SendVR(1, currentShipId, "AD");
 
-				vr2Sent = true;
+				vr1Sent = true;
 
 				AddLog("Process stopped.", "ERROR");
 			}
