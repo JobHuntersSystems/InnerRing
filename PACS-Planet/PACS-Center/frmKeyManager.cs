@@ -27,12 +27,6 @@ namespace PACS_Center
         private void btnKeyGenerator_Click(object sender, EventArgs e)
         {
             string keyName = SearchCode();
-            if (string.IsNullOrEmpty(keyName))
-            {
-                lblMessage.Text = "Rellene el nombre de la key para poder seguir con el proceso";
-                return;
-            }
-
             
             DialogResult validation = MessageBox.Show("Press confirm to generate the keys","Are you sure?", MessageBoxButtons.OKCancel) ;
             if (validation == DialogResult.OK)
@@ -40,7 +34,6 @@ namespace PACS_Center
                 try
                 {
                     CspParameters cspp = new CspParameters { KeyContainerName = keyName };
-
                     using (RSACryptoServiceProvider rsa = new RSACryptoServiceProvider(cspp))
                     {
                         rsa.PersistKeyInCsp = true;
@@ -51,7 +44,7 @@ namespace PACS_Center
                 }
                 catch (Exception ex)
                 {
-                    lblMessage.Text = $"Ocurrió un error al generar o guardar la clave:\n\n{ ex.Message}";
+                    lblMessage.Text = $"An error occurred while generating or saving the key:\n\n{ ex.Message}";
                 }                
             }            
         }
@@ -74,9 +67,8 @@ namespace PACS_Center
             }
             catch (Exception ex)
             {
-                lblMessage.Text = $"Error de conexión al buscar el código del planeta:\n\n{ex.Message}";
+                lblMessage.Text = $"Connection error while searching for the planet code:\n\n{ex.Message}";
             }
-
             return code;
         }
 
@@ -104,7 +96,7 @@ namespace PACS_Center
             }
             catch (Exception ex)
             {
-                lblMessage.Text = $"Fallo al guardar la clave en la tabla PlanetKeys:\n\n{ex.Message}";                 
+                lblMessage.Text = $"Failed to save the key in the PlanetKeys table:\n\n{ex.Message}";                 
             }
         }
     }

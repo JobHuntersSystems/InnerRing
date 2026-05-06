@@ -64,11 +64,11 @@ namespace PACS_Center
             // lblMessage
             // 
             this.lblMessage.AutoSize = true;
-            this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lblMessage.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold);
             this.lblMessage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
-            this.lblMessage.Location = new System.Drawing.Point(25, 140);
+            this.lblMessage.Location = new System.Drawing.Point(25, 151);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(0, 20);
+            this.lblMessage.Size = new System.Drawing.Size(0, 19);
             this.lblMessage.TabIndex = 3;
             // 
             // frmKeyManager
@@ -79,7 +79,7 @@ namespace PACS_Center
             this.ClientSize = new System.Drawing.Size(478, 257);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmKeyManager";
             this.Text = "frmKeyManager";
             this.panel1.ResumeLayout(false);

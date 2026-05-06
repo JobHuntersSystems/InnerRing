@@ -95,7 +95,6 @@ namespace PACS_Center
                 string queryCode = $"Update InnerEncryption SET ValidationCode = '{validationCode}' WHERE idPlanet = {_idPlanet}";
                 db.Executa(queryCode);
 
-
                 string queryDelete = $"DELETE FROM InnerEncryptionData WHERE idInnerEncryption = {idInner}";
                 db.Executa(queryDelete);
 
@@ -123,7 +122,6 @@ namespace PACS_Center
             btnCode.Enabled = false;
             
             pass = 0;
-            lstMsj.ClearConsole();
             timerMsj.Interval = 600;
             timerMsj.Start();     
         }

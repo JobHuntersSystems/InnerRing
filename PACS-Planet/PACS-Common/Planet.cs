@@ -12,5 +12,8 @@ namespace PACS_Common
         public static string CodePlanet { get; set; }
         public static string DescPlanet { get; set; }
         public static string PlanetPicture { get; set; }
+        public static string IPPlanet { get; set; }
+        public static string PortPlanet { get; set; }
+        public static string PortPlanet1 { get; set; }
     }
 }

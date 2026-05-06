@@ -30,21 +30,10 @@ namespace PACS_Center
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.btnCode = new System.Windows.Forms.Button();
             this.timerMsj = new System.Windows.Forms.Timer(this.components);
             this.lstMsj = new PACS_CustomControls.PacsConsole();
+            this.btnCode = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // btnCode
-            // 
-            this.btnCode.Location = new System.Drawing.Point(68, 19);
-            this.btnCode.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnCode.Name = "btnCode";
-            this.btnCode.Size = new System.Drawing.Size(82, 39);
-            this.btnCode.TabIndex = 0;
-            this.btnCode.Text = "Generate codification";
-            this.btnCode.UseVisualStyleBackColor = true;
-            this.btnCode.Click += new System.EventHandler(this.btnCode_Click);
             // 
             // timerMsj
             // 
@@ -56,19 +45,36 @@ namespace PACS_Center
             this.lstMsj.AccentColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
             this.lstMsj.BackColor = System.Drawing.Color.Transparent;
             this.lstMsj.ConsoleTitle = "SYSTEM LOG CONSOLE";
-            this.lstMsj.Location = new System.Drawing.Point(188, 19);
+            this.lstMsj.Location = new System.Drawing.Point(251, 19);
             this.lstMsj.Name = "lstMsj";
-            this.lstMsj.Size = new System.Drawing.Size(472, 427);
+            this.lstMsj.Size = new System.Drawing.Size(364, 474);
             this.lstMsj.TabIndex = 3;
+            // 
+            // btnCode
+            // 
+            this.btnCode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(18)))), ((int)(((byte)(28)))));
+            this.btnCode.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
+            this.btnCode.FlatAppearance.BorderSize = 2;
+            this.btnCode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCode.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold);
+            this.btnCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
+            this.btnCode.Location = new System.Drawing.Point(30, 37);
+            this.btnCode.Name = "btnCode";
+            this.btnCode.Size = new System.Drawing.Size(200, 92);
+            this.btnCode.TabIndex = 4;
+            this.btnCode.Text = "Generate Codes";
+            this.btnCode.UseVisualStyleBackColor = false;
+            this.btnCode.Click += new System.EventHandler(this.btnCode_Click);
             // 
             // frmInnerEncryption
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(865, 505);
-            this.Controls.Add(this.lstMsj);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(11)))), ((int)(((byte)(10)))));
+            this.ClientSize = new System.Drawing.Size(638, 514);
             this.Controls.Add(this.btnCode);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Controls.Add(this.lstMsj);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmInnerEncryption";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -76,10 +82,9 @@ namespace PACS_Center
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnCode;
         private System.Windows.Forms.Timer timerMsj;
         private PACS_CustomControls.PacsConsole lstMsj;
+        private System.Windows.Forms.Button btnCode;
     }
 }
 
