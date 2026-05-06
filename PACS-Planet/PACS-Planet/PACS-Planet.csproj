@@ -108,7 +108,7 @@
       <Project>{f553bf70-c670-4b47-a179-b027740872ee}</Project>
       <Name>PACS-UI</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TcpServer\TcpServer.csproj">
+    <ProjectReference Include="..\TcpDashboard\TcpDashboard.csproj">
       <Project>{6AFA8F25-C3B0-4AFE-B506-83C1CFB4D676}</Project>
       <Name>TcpServer</Name>
     </ProjectReference>
