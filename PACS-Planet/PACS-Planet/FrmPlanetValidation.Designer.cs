@@ -35,23 +35,23 @@ namespace PACS_Planet
 			this.btnCalculate = new System.Windows.Forms.Button();
 			this.btnAcces = new System.Windows.Forms.Button();
 			this.pnlStartProcess = new System.Windows.Forms.Panel();
+			this.btnRunValidateEntry = new System.Windows.Forms.Button();
+			this.lblEntryResult = new System.Windows.Forms.Label();
+			this.lblEntryShipIP = new System.Windows.Forms.Label();
+			this.lblEntryDeliveryID = new System.Windows.Forms.Label();
+			this.lblEntryShipID = new System.Windows.Forms.Label();
 			this.pnlResolveAccess = new System.Windows.Forms.Panel();
 			this.btnRunResolveAccess = new System.Windows.Forms.Button();
 			this.lblShieldStatus = new System.Windows.Forms.Label();
 			this.lblComparisonResult = new System.Windows.Forms.Label();
 			this.lblPlanetChecksumFinal = new System.Windows.Forms.Label();
 			this.lblShipChecksum = new System.Windows.Forms.Label();
-			this.btnRunValidateEntry = new System.Windows.Forms.Button();
-			this.lblEntryResult = new System.Windows.Forms.Label();
-			this.lblEntryShipIP = new System.Windows.Forms.Label();
-			this.lblEntryDeliveryID = new System.Windows.Forms.Label();
-			this.lblEntryShipID = new System.Windows.Forms.Label();
 			this.pnlCalculations = new System.Windows.Forms.Panel();
 			this.btnRunCalculations = new System.Windows.Forms.Button();
 			this.lblPlanetChecksum = new System.Windows.Forms.Label();
 			this.lblFilesStatus = new System.Windows.Forms.Label();
-			this.lblXmlStatus = new System.Windows.Forms.Label();
 			this.lblZipStatus = new System.Windows.Forms.Label();
+			this.lblXmlStatus = new System.Windows.Forms.Label();
 			this.pnlValidateKey = new System.Windows.Forms.Panel();
 			this.btnRunValidateKey = new System.Windows.Forms.Button();
 			this.lblKeyResult = new System.Windows.Forms.Label();
@@ -131,6 +131,52 @@ namespace PACS_Planet
 			this.pnlStartProcess.TabIndex = 5;
 			this.pnlStartProcess.Visible = false;
 			// 
+			// btnRunValidateEntry
+			// 
+			this.btnRunValidateEntry.Location = new System.Drawing.Point(157, 115);
+			this.btnRunValidateEntry.Name = "btnRunValidateEntry";
+			this.btnRunValidateEntry.Size = new System.Drawing.Size(263, 23);
+			this.btnRunValidateEntry.TabIndex = 4;
+			this.btnRunValidateEntry.Text = "VALIDATE DELIVERY AND SEND VR1";
+			this.btnRunValidateEntry.UseVisualStyleBackColor = true;
+			this.btnRunValidateEntry.Click += new System.EventHandler(this.btnRunValidateEntry_Click);
+			// 
+			// lblEntryResult
+			// 
+			this.lblEntryResult.AutoSize = true;
+			this.lblEntryResult.Location = new System.Drawing.Point(30, 212);
+			this.lblEntryResult.Name = "lblEntryResult";
+			this.lblEntryResult.Size = new System.Drawing.Size(108, 17);
+			this.lblEntryResult.TabIndex = 3;
+			this.lblEntryResult.Text = "Entry Result: ---";
+			// 
+			// lblEntryShipIP
+			// 
+			this.lblEntryShipIP.AutoSize = true;
+			this.lblEntryShipIP.Location = new System.Drawing.Point(30, 149);
+			this.lblEntryShipIP.Name = "lblEntryShipIP";
+			this.lblEntryShipIP.Size = new System.Drawing.Size(75, 17);
+			this.lblEntryShipIP.TabIndex = 2;
+			this.lblEntryShipIP.Text = "Ship IP: ---";
+			// 
+			// lblEntryDeliveryID
+			// 
+			this.lblEntryDeliveryID.AutoSize = true;
+			this.lblEntryDeliveryID.Location = new System.Drawing.Point(30, 88);
+			this.lblEntryDeliveryID.Name = "lblEntryDeliveryID";
+			this.lblEntryDeliveryID.Size = new System.Drawing.Size(99, 17);
+			this.lblEntryDeliveryID.TabIndex = 1;
+			this.lblEntryDeliveryID.Text = "Delivery ID: ---";
+			// 
+			// lblEntryShipID
+			// 
+			this.lblEntryShipID.AutoSize = true;
+			this.lblEntryShipID.Location = new System.Drawing.Point(30, 23);
+			this.lblEntryShipID.Name = "lblEntryShipID";
+			this.lblEntryShipID.Size = new System.Drawing.Size(76, 17);
+			this.lblEntryShipID.TabIndex = 0;
+			this.lblEntryShipID.Text = "Ship ID: ---";
+			// 
 			// pnlResolveAccess
 			// 
 			this.pnlResolveAccess.Controls.Add(this.btnRunResolveAccess);
@@ -138,7 +184,7 @@ namespace PACS_Planet
 			this.pnlResolveAccess.Controls.Add(this.lblComparisonResult);
 			this.pnlResolveAccess.Controls.Add(this.lblPlanetChecksumFinal);
 			this.pnlResolveAccess.Controls.Add(this.lblShipChecksum);
-			this.pnlResolveAccess.Location = new System.Drawing.Point(0, 0);
+			this.pnlResolveAccess.Location = new System.Drawing.Point(99, 97);
 			this.pnlResolveAccess.Name = "pnlResolveAccess";
 			this.pnlResolveAccess.Size = new System.Drawing.Size(430, 249);
 			this.pnlResolveAccess.TabIndex = 8;
@@ -190,52 +236,6 @@ namespace PACS_Planet
 			this.lblShipChecksum.TabIndex = 0;
 			this.lblShipChecksum.Text = "Ship Checksum: ---";
 			// 
-			// btnRunValidateEntry
-			// 
-			this.btnRunValidateEntry.Location = new System.Drawing.Point(157, 115);
-			this.btnRunValidateEntry.Name = "btnRunValidateEntry";
-			this.btnRunValidateEntry.Size = new System.Drawing.Size(263, 23);
-			this.btnRunValidateEntry.TabIndex = 4;
-			this.btnRunValidateEntry.Text = "VALIDATE DELIVERY AND SEND VR1";
-			this.btnRunValidateEntry.UseVisualStyleBackColor = true;
-			this.btnRunValidateEntry.Click += new System.EventHandler(this.btnRunValidateEntry_Click);
-			// 
-			// lblEntryResult
-			// 
-			this.lblEntryResult.AutoSize = true;
-			this.lblEntryResult.Location = new System.Drawing.Point(30, 212);
-			this.lblEntryResult.Name = "lblEntryResult";
-			this.lblEntryResult.Size = new System.Drawing.Size(108, 17);
-			this.lblEntryResult.TabIndex = 3;
-			this.lblEntryResult.Text = "Entry Result: ---";
-			// 
-			// lblEntryShipIP
-			// 
-			this.lblEntryShipIP.AutoSize = true;
-			this.lblEntryShipIP.Location = new System.Drawing.Point(30, 149);
-			this.lblEntryShipIP.Name = "lblEntryShipIP";
-			this.lblEntryShipIP.Size = new System.Drawing.Size(75, 17);
-			this.lblEntryShipIP.TabIndex = 2;
-			this.lblEntryShipIP.Text = "Ship IP: ---";
-			// 
-			// lblEntryDeliveryID
-			// 
-			this.lblEntryDeliveryID.AutoSize = true;
-			this.lblEntryDeliveryID.Location = new System.Drawing.Point(30, 88);
-			this.lblEntryDeliveryID.Name = "lblEntryDeliveryID";
-			this.lblEntryDeliveryID.Size = new System.Drawing.Size(99, 17);
-			this.lblEntryDeliveryID.TabIndex = 1;
-			this.lblEntryDeliveryID.Text = "Delivery ID: ---";
-			// 
-			// lblEntryShipID
-			// 
-			this.lblEntryShipID.AutoSize = true;
-			this.lblEntryShipID.Location = new System.Drawing.Point(30, 23);
-			this.lblEntryShipID.Name = "lblEntryShipID";
-			this.lblEntryShipID.Size = new System.Drawing.Size(76, 17);
-			this.lblEntryShipID.TabIndex = 0;
-			this.lblEntryShipID.Text = "Ship ID: ---";
-			// 
 			// pnlCalculations
 			// 
 			this.pnlCalculations.Controls.Add(this.btnRunCalculations);
@@ -243,7 +243,7 @@ namespace PACS_Planet
 			this.pnlCalculations.Controls.Add(this.lblFilesStatus);
 			this.pnlCalculations.Controls.Add(this.lblZipStatus);
 			this.pnlCalculations.Controls.Add(this.lblXmlStatus);
-			this.pnlCalculations.Location = new System.Drawing.Point(0, 0);
+			this.pnlCalculations.Location = new System.Drawing.Point(99, 97);
 			this.pnlCalculations.Name = "pnlCalculations";
 			this.pnlCalculations.Size = new System.Drawing.Size(430, 249);
 			this.pnlCalculations.TabIndex = 7;
@@ -277,15 +277,6 @@ namespace PACS_Planet
 			this.lblFilesStatus.TabIndex = 1;
 			this.lblFilesStatus.Text = "Generated Files: ---";
 			// 
-			// lblXmlStatus
-			// 
-			this.lblXmlStatus.AutoSize = true;
-			this.lblXmlStatus.Location = new System.Drawing.Point(27, 19);
-			this.lblXmlStatus.Name = "lblXmlStatus";
-			this.lblXmlStatus.Size = new System.Drawing.Size(103, 17);
-			this.lblXmlStatus.TabIndex = 0;
-			this.lblXmlStatus.Text = "XML Config: ---";
-			// 
 			// lblZipStatus
 			// 
 			this.lblZipStatus.AutoSize = true;
@@ -295,6 +286,15 @@ namespace PACS_Planet
 			this.lblZipStatus.TabIndex = 2;
 			this.lblZipStatus.Text = "PACS.zip: ---";
 			// 
+			// lblXmlStatus
+			// 
+			this.lblXmlStatus.AutoSize = true;
+			this.lblXmlStatus.Location = new System.Drawing.Point(27, 19);
+			this.lblXmlStatus.Name = "lblXmlStatus";
+			this.lblXmlStatus.Size = new System.Drawing.Size(103, 17);
+			this.lblXmlStatus.TabIndex = 0;
+			this.lblXmlStatus.Text = "XML Config: ---";
+			// 
 			// pnlValidateKey
 			// 
 			this.pnlValidateKey.Controls.Add(this.btnRunValidateKey);
@@ -302,7 +302,7 @@ namespace PACS_Planet
 			this.pnlValidateKey.Controls.Add(this.lblDecryptedCode);
 			this.pnlValidateKey.Controls.Add(this.lblEncryptedCode);
 			this.pnlValidateKey.Controls.Add(this.lblKeyStatus);
-			this.pnlValidateKey.Location = new System.Drawing.Point(102, 94);
+			this.pnlValidateKey.Location = new System.Drawing.Point(99, 97);
 			this.pnlValidateKey.Name = "pnlValidateKey";
 			this.pnlValidateKey.Size = new System.Drawing.Size(430, 249);
 			this.pnlValidateKey.TabIndex = 6;
