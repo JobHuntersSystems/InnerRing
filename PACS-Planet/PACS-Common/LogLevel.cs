@@ -4,9 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EventDrivenCommunication
+namespace PACS_Common
 {
-    public class Class1
+    public enum LogLevel
     {
+        Debug,
+        Info,
+        Success,
+        Warn,
+        Error
     }
 }

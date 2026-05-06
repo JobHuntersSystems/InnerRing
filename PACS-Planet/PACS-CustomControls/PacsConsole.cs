@@ -3,12 +3,13 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using System.Collections.Generic;
+using PACS_Common;
 
 namespace PACS_CustomControls
 {
     public partial class PacsConsole : UserControl
     {
-        private string consoleTitle = "SYSTEM LOG CONSOLE";
 
         private Color borderDarkColor = Color.FromArgb(22, 24, 24);
         private Color borderMidColor = Color.FromArgb(55, 60, 58);
@@ -36,8 +37,6 @@ namespace PACS_CustomControls
             rtbConsole.Font = new Font("Consolas", 9F, FontStyle.Regular);
             rtbConsole.BorderStyle = BorderStyle.None;
             rtbConsole.ReadOnly = true;
-
-            lblTitle.Text = consoleTitle;
         }
 
 
@@ -67,24 +66,20 @@ namespace PACS_CustomControls
             }
         }
 
-        public void AddInfo(string message)
-        {
-            AddLine("INFO", message, Color.FromArgb(130, 220, 105));
-        }
+        private Dictionary<LogLevel, (string Label, Color Color)> _logConfig { get; } =
+            new Dictionary<LogLevel, (string, Color)>
+            {
+                { LogLevel.Info, ("INFO", Color.FromArgb(130, 220, 105)) },
+                { LogLevel.Debug, ("DEBUG", Color.FromArgb(0, 220, 255)) },
+                { LogLevel.Warn, ("WARN", Color.FromArgb(255, 180, 40)) },
+                { LogLevel.Error, ("ERROR", Color.FromArgb(255, 60, 60)) },
+                { LogLevel.Success, ("SUCCESS", Color.FromArgb(255, 255, 255)) },
 
-        public void AddOk(string message)
+            };
+        public void AddLog(LogLevel type, string message)
         {
-            AddLine("OK", message, Color.FromArgb(0, 220, 255));
-        }
-
-        public void AddWarning(string message)
-        {
-            AddLine("WARN", message, Color.FromArgb(255, 180, 40));
-        }
-
-        public void AddError(string message)
-        {
-            AddLine("ERROR", message, Color.FromArgb(255, 60, 60));
+            var config = _logConfig[type];
+            AddLine(config.Label, message, config.Color);
         }
 
         public void ClearConsole()
@@ -117,8 +112,7 @@ namespace PACS_CustomControls
 
         #region UI_Design
         protected override void OnPaintBackground(PaintEventArgs e)
-        {
-            // Evita parpadeo. Pintamos el fondo en OnPaint.
+        {          
         }
 
         protected override void OnPaint(PaintEventArgs e)

@@ -9,22 +9,40 @@ using System.Threading;
 using System.Net.Sockets;
 using System.Net;
 using System.IO;
+using EventsClass;
+using PACS_Common;
 
-namespace TcpServerService
+namespace TcpServerServices
 {
-    public class PlanetTcpServer
+    public class TcpServerService
     {
         private TcpListener listener;
         private TcpClient client;
+        private bool isRunning;
         static CancellationTokenSource cts;
+
+        private CommunicationEventClass cl;
+
+        public TcpServerService(CommunicationEventClass communicationEvents)
+        {
+            this.cl = communicationEvents;
+        }
+        
         public void startServer(int port)
         {
             try
             {
+                isRunning = true;
+
                 cts = new CancellationTokenSource();
                 listener = new TcpListener(IPAddress.Any, port);
                 listener.Start();
 
+                cl.SendTcpEvent(
+                   "Init server in port: " + port,
+                   "",
+                   LogLevel.Info
+               );
                 while (!cts.IsCancellationRequested)
                 {
                     if (listener.Pending())
@@ -33,18 +51,33 @@ namespace TcpServerService
                         using (NetworkStream stream = client.GetStream())
                         using (BinaryReader reader = new BinaryReader(stream, Encoding.UTF8, true))
                         {
-                            string ip_client = ((IPEndPoint)client.Client.RemoteEndPoint).Address.ToString();
-                            //Log.writeLog($"{ip_client} Client Connected...");
+
+                            string clientIp = ((IPEndPoint)client.Client.RemoteEndPoint).Address.ToString();
+                            cl.SendTcpEvent(
+                                "Client connected",
+                                clientIp,
+                                LogLevel.Success
+                            );
+
                             try
                             {
                                 int messageLength = reader.ReadInt32();
                                 byte[] RecData = reader.ReadBytes(messageLength);
                                 string data = Encoding.UTF8.GetString(RecData);
-                                Console.WriteLine(data);
+                                cl.SendTcpEvent(
+                                    data,
+                                    clientIp,
+                                    LogLevel.Info
+                                );
                             }
                             catch (Exception ex)
                             {
-                                Console.WriteLine(ex.Message);
+                                isRunning = false;
+                                cl.SendTcpEvent(
+                                    ex.Message,
+                                    clientIp,
+                                    LogLevel.Error
+                                );
                                 break;
                             }
                         }
@@ -58,15 +91,26 @@ namespace TcpServerService
             }
             catch (SocketException ex)
             {
-                Console.WriteLine(ex.Message);
+                isRunning = false;
+                cl.SendTcpEvent(
+                    ex.Message,
+                    "",
+                    LogLevel.Error
+                );
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                isRunning = false;
+                cl.SendTcpEvent(
+                    ex.Message,
+                    "",
+                    LogLevel.Error
+                );
             }
             finally
             {
                 listener?.Stop();
+
             }
         }
         public void stopServer()
@@ -74,6 +118,13 @@ namespace TcpServerService
             cts?.Cancel();
             client?.Close();
             listener?.Stop();
+            isRunning = false;
+            cl.SendTcpEvent(
+               "Closing server",
+                "",
+                LogLevel.Info
+            );
         }
+       
     }
 }
