@@ -53,9 +53,6 @@
             this.pnlFilePort = new System.Windows.Forms.Panel();
             this.lblFilePortValue = new System.Windows.Forms.Label();
             this.lblFilePortTitle = new System.Windows.Forms.Label();
-            this.pnlConnections = new System.Windows.Forms.Panel();
-            this.lblConnectionsValue = new System.Windows.Forms.Label();
-            this.lblConnectionsTitle = new System.Windows.Forms.Label();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.lblSubtitle = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
@@ -69,7 +66,6 @@
             this.pnlServerStatus.SuspendLayout();
             this.pnlDataPort.SuspendLayout();
             this.pnlFilePort.SuspendLayout();
-            this.pnlConnections.SuspendLayout();
             this.pnlHeader.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -400,15 +396,14 @@
             // 
             // tlpStatus
             // 
-            this.tlpStatus.ColumnCount = 4;
+            this.tlpStatus.ColumnCount = 3;
             this.tlpStatus.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tlpStatus.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tlpStatus.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tlpStatus.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlpStatus.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.34964F));
+            this.tlpStatus.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.70239F));
             this.tlpStatus.Controls.Add(this.pnlServerStatus, 0, 0);
             this.tlpStatus.Controls.Add(this.pnlDataPort, 1, 0);
             this.tlpStatus.Controls.Add(this.pnlFilePort, 2, 0);
-            this.tlpStatus.Controls.Add(this.pnlConnections, 3, 0);
             this.tlpStatus.Dock = System.Windows.Forms.DockStyle.Top;
             this.tlpStatus.Location = new System.Drawing.Point(12, 70);
             this.tlpStatus.Name = "tlpStatus";
@@ -429,7 +424,7 @@
             this.pnlServerStatus.Margin = new System.Windows.Forms.Padding(5);
             this.pnlServerStatus.Name = "pnlServerStatus";
             this.pnlServerStatus.Padding = new System.Windows.Forms.Padding(8);
-            this.pnlServerStatus.Size = new System.Drawing.Size(230, 70);
+            this.pnlServerStatus.Size = new System.Drawing.Size(313, 70);
             this.pnlServerStatus.TabIndex = 0;
             // 
             // lblServerStatusValue
@@ -439,7 +434,7 @@
             this.lblServerStatusValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(180)))), ((int)(((byte)(40)))));
             this.lblServerStatusValue.Location = new System.Drawing.Point(8, 30);
             this.lblServerStatusValue.Name = "lblServerStatusValue";
-            this.lblServerStatusValue.Size = new System.Drawing.Size(212, 30);
+            this.lblServerStatusValue.Size = new System.Drawing.Size(295, 30);
             this.lblServerStatusValue.TabIndex = 1;
             this.lblServerStatusValue.Text = "● OFFLINE";
             this.lblServerStatusValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -451,7 +446,7 @@
             this.lblServerStatusTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(245)))));
             this.lblServerStatusTitle.Location = new System.Drawing.Point(8, 8);
             this.lblServerStatusTitle.Name = "lblServerStatusTitle";
-            this.lblServerStatusTitle.Size = new System.Drawing.Size(212, 22);
+            this.lblServerStatusTitle.Size = new System.Drawing.Size(295, 22);
             this.lblServerStatusTitle.TabIndex = 0;
             this.lblServerStatusTitle.Text = "SERVER STATUS";
             this.lblServerStatusTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -463,11 +458,11 @@
             this.pnlDataPort.Controls.Add(this.lblDataPortValue);
             this.pnlDataPort.Controls.Add(this.lblDataPortTitle);
             this.pnlDataPort.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlDataPort.Location = new System.Drawing.Point(245, 15);
+            this.pnlDataPort.Location = new System.Drawing.Point(328, 15);
             this.pnlDataPort.Margin = new System.Windows.Forms.Padding(5);
             this.pnlDataPort.Name = "pnlDataPort";
             this.pnlDataPort.Padding = new System.Windows.Forms.Padding(8);
-            this.pnlDataPort.Size = new System.Drawing.Size(230, 70);
+            this.pnlDataPort.Size = new System.Drawing.Size(313, 70);
             this.pnlDataPort.TabIndex = 1;
             // 
             // lblDataPortValue
@@ -477,7 +472,7 @@
             this.lblDataPortValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
             this.lblDataPortValue.Location = new System.Drawing.Point(8, 30);
             this.lblDataPortValue.Name = "lblDataPortValue";
-            this.lblDataPortValue.Size = new System.Drawing.Size(212, 30);
+            this.lblDataPortValue.Size = new System.Drawing.Size(295, 30);
             this.lblDataPortValue.TabIndex = 1;
             this.lblDataPortValue.Text = "5050";
             this.lblDataPortValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -489,7 +484,7 @@
             this.lblDataPortTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(245)))));
             this.lblDataPortTitle.Location = new System.Drawing.Point(8, 8);
             this.lblDataPortTitle.Name = "lblDataPortTitle";
-            this.lblDataPortTitle.Size = new System.Drawing.Size(212, 22);
+            this.lblDataPortTitle.Size = new System.Drawing.Size(295, 22);
             this.lblDataPortTitle.TabIndex = 0;
             this.lblDataPortTitle.Text = "DATA PORT";
             this.lblDataPortTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -501,11 +496,11 @@
             this.pnlFilePort.Controls.Add(this.lblFilePortValue);
             this.pnlFilePort.Controls.Add(this.lblFilePortTitle);
             this.pnlFilePort.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlFilePort.Location = new System.Drawing.Point(485, 15);
+            this.pnlFilePort.Location = new System.Drawing.Point(651, 15);
             this.pnlFilePort.Margin = new System.Windows.Forms.Padding(5);
             this.pnlFilePort.Name = "pnlFilePort";
             this.pnlFilePort.Padding = new System.Windows.Forms.Padding(8);
-            this.pnlFilePort.Size = new System.Drawing.Size(230, 70);
+            this.pnlFilePort.Size = new System.Drawing.Size(305, 70);
             this.pnlFilePort.TabIndex = 2;
             // 
             // lblFilePortValue
@@ -515,7 +510,7 @@
             this.lblFilePortValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
             this.lblFilePortValue.Location = new System.Drawing.Point(8, 30);
             this.lblFilePortValue.Name = "lblFilePortValue";
-            this.lblFilePortValue.Size = new System.Drawing.Size(212, 30);
+            this.lblFilePortValue.Size = new System.Drawing.Size(287, 30);
             this.lblFilePortValue.TabIndex = 1;
             this.lblFilePortValue.Text = "5051";
             this.lblFilePortValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -527,48 +522,10 @@
             this.lblFilePortTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(245)))));
             this.lblFilePortTitle.Location = new System.Drawing.Point(8, 8);
             this.lblFilePortTitle.Name = "lblFilePortTitle";
-            this.lblFilePortTitle.Size = new System.Drawing.Size(212, 22);
+            this.lblFilePortTitle.Size = new System.Drawing.Size(287, 22);
             this.lblFilePortTitle.TabIndex = 0;
             this.lblFilePortTitle.Text = "FILE PORT";
             this.lblFilePortTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pnlConnections
-            // 
-            this.pnlConnections.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(15)))), ((int)(((byte)(22)))));
-            this.pnlConnections.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlConnections.Controls.Add(this.lblConnectionsValue);
-            this.pnlConnections.Controls.Add(this.lblConnectionsTitle);
-            this.pnlConnections.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlConnections.Location = new System.Drawing.Point(725, 15);
-            this.pnlConnections.Margin = new System.Windows.Forms.Padding(5);
-            this.pnlConnections.Name = "pnlConnections";
-            this.pnlConnections.Padding = new System.Windows.Forms.Padding(8);
-            this.pnlConnections.Size = new System.Drawing.Size(231, 70);
-            this.pnlConnections.TabIndex = 3;
-            // 
-            // lblConnectionsValue
-            // 
-            this.lblConnectionsValue.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblConnectionsValue.Font = new System.Drawing.Font("Consolas", 13F, System.Drawing.FontStyle.Bold);
-            this.lblConnectionsValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(255)))), ((int)(((byte)(90)))));
-            this.lblConnectionsValue.Location = new System.Drawing.Point(8, 30);
-            this.lblConnectionsValue.Name = "lblConnectionsValue";
-            this.lblConnectionsValue.Size = new System.Drawing.Size(213, 30);
-            this.lblConnectionsValue.TabIndex = 1;
-            this.lblConnectionsValue.Text = "0";
-            this.lblConnectionsValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblConnectionsTitle
-            // 
-            this.lblConnectionsTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblConnectionsTitle.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
-            this.lblConnectionsTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(245)))));
-            this.lblConnectionsTitle.Location = new System.Drawing.Point(8, 8);
-            this.lblConnectionsTitle.Name = "lblConnectionsTitle";
-            this.lblConnectionsTitle.Size = new System.Drawing.Size(213, 22);
-            this.lblConnectionsTitle.TabIndex = 0;
-            this.lblConnectionsTitle.Text = "ACTIVE CONNECTIONS";
-            this.lblConnectionsTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pnlHeader
             // 
@@ -631,7 +588,6 @@
             this.pnlServerStatus.ResumeLayout(false);
             this.pnlDataPort.ResumeLayout(false);
             this.pnlFilePort.ResumeLayout(false);
-            this.pnlConnections.ResumeLayout(false);
             this.pnlHeader.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -654,9 +610,6 @@
         private System.Windows.Forms.Panel pnlFilePort;
         private System.Windows.Forms.Label lblFilePortTitle;
         private System.Windows.Forms.Label lblFilePortValue;
-        private System.Windows.Forms.Panel pnlConnections;
-        private System.Windows.Forms.Label lblConnectionsTitle;
-        private System.Windows.Forms.Label lblConnectionsValue;
 
         private System.Windows.Forms.TableLayoutPanel tlpCenter;
         private System.Windows.Forms.Panel pnlConfiguration;

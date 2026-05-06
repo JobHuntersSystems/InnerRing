@@ -61,6 +61,9 @@ namespace TcpDashboard
                 int portData = int.Parse(txtDataPort.Text);
                 serverDataThread = new Thread(() => serverData.startServer(portData));
                 serverDataThread.Start();
+
+                lblServerStatusValue.Text = "● ONLINE";
+                lblServerStatusValue.ForeColor = Color.FromArgb(80, 255, 90);
             }
         }
 
@@ -68,8 +71,10 @@ namespace TcpDashboard
         {
             if (serverDataThread != null)
             {
-                serverData.stopServer();
-                serverDataThread = null;
+                    serverData.stopServer();
+                    serverDataThread = null;
+                    lblServerStatusValue.Text = "● OFFLINE";
+                    lblServerStatusValue.ForeColor = Color.FromArgb(255, 180, 40);
             }
         }
 
