@@ -36,8 +36,6 @@ namespace TcpServerServices
         {
             try
             {
-                isRunning = true;
-
                 cts = new CancellationTokenSource();
 
                 listener = new TcpListener(IPAddress.Any, serverPort);
