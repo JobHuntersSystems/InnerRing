@@ -61,7 +61,6 @@
     <Compile Include="frmKeyManager.Designer.cs">
       <DependentUpon>frmKeyManager.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmInnerEncryption.resx">
       <DependentUpon>frmInnerEncryption.cs</DependentUpon>

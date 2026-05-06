@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using PACS_UI;
+using PACS_Center;
 
 namespace PACS_Planet
 {
@@ -17,8 +18,8 @@ namespace PACS_Planet
         public frmMain()
         {
             InitializeComponent();
+            frmKeyManager frm = new frmKeyManager(2);
         }
-
 
         private void btnSecuritySetup_Click(object sender, EventArgs e)
         {
