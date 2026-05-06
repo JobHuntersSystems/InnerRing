@@ -235,6 +235,7 @@
             this.btnCheckConnection.TabIndex = 3;
             this.btnCheckConnection.Text = "CHECK CONNECTION";
             this.btnCheckConnection.UseVisualStyleBackColor = false;
+            this.btnCheckConnection.Click += new System.EventHandler(this.btnCheckConnection_Click);
             // 
             // btnStopServer
             // 
@@ -391,7 +392,7 @@
             // 
             this.pcsConsoleLog.AccentColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
             this.pcsConsoleLog.BackColor = System.Drawing.Color.Transparent;
-            this.pcsConsoleLog.ConsoleTitle = "SYSTEM LOG CONSOLE";
+            this.pcsConsoleLog.ConsoleTitle = "TCP LOG CONSOLE";
             this.pcsConsoleLog.Location = new System.Drawing.Point(2, -1);
             this.pcsConsoleLog.Name = "pcsConsoleLog";
             this.pcsConsoleLog.Size = new System.Drawing.Size(953, 187);

@@ -29,13 +29,10 @@
             this.optionButton1 = new PACS_CustomControls.OptionButton();
             this.optionButton2 = new PACS_CustomControls.OptionButton();
             this.pnlMain = new System.Windows.Forms.Panel();
-            this.lblLogTitle = new System.Windows.Forms.Label();
-            this.rtbLogs = new System.Windows.Forms.RichTextBox();
             this.panelLog = new System.Windows.Forms.Panel();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.flowMenuLeft.SuspendLayout();
-            this.panelLog.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelHeader
@@ -53,6 +50,7 @@
             resources.ApplyResources(this.picLogo, "picLogo");
             this.picLogo.Name = "picLogo";
             this.picLogo.TabStop = false;
+            this.picLogo.Click += new System.EventHandler(this.picLogo_Click);
             // 
             // lblSubStatus
             // 
@@ -154,26 +152,9 @@
             resources.ApplyResources(this.pnlMain, "pnlMain");
             this.pnlMain.Name = "pnlMain";
             // 
-            // lblLogTitle
-            // 
-            resources.ApplyResources(this.lblLogTitle, "lblLogTitle");
-            this.lblLogTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
-            this.lblLogTitle.Name = "lblLogTitle";
-            // 
-            // rtbLogs
-            // 
-            this.rtbLogs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(5)))), ((int)(((byte)(8)))));
-            this.rtbLogs.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            resources.ApplyResources(this.rtbLogs, "rtbLogs");
-            this.rtbLogs.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(255)))), ((int)(((byte)(90)))));
-            this.rtbLogs.Name = "rtbLogs";
-            this.rtbLogs.ReadOnly = true;
-            // 
             // panelLog
             // 
             this.panelLog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(8)))), ((int)(((byte)(12)))));
-            this.panelLog.Controls.Add(this.rtbLogs);
-            this.panelLog.Controls.Add(this.lblLogTitle);
             resources.ApplyResources(this.panelLog, "panelLog");
             this.panelLog.Name = "panelLog";
             // 
@@ -192,8 +173,6 @@
             this.panelHeader.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.flowMenuLeft.ResumeLayout(false);
-            this.panelLog.ResumeLayout(false);
-            this.panelLog.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -212,8 +191,6 @@
         private PACS_CustomControls.OptionButton optionButton1;
         private PACS_CustomControls.OptionButton optionButton2;
         private System.Windows.Forms.Label lblSubStatus;
-        private System.Windows.Forms.Label lblLogTitle;
-        private System.Windows.Forms.RichTextBox rtbLogs;
         private System.Windows.Forms.Panel panelLog;
     }
 }

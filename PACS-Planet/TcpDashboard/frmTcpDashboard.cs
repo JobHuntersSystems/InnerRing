@@ -17,8 +17,12 @@ namespace TcpDashboard
     public partial class frmTcpDashboard : Form
     {
         private CommunicationEventClass cl = new CommunicationEventClass();
-        private TcpServerService server;
-        private Thread serverThread;
+
+        private Thread clientDataThread;
+        private TcpClientService clientData;
+
+        private TcpServerService serverData;
+        private Thread serverDataThread;
         public frmTcpDashboard()
         {
             InitializeComponent();
@@ -32,6 +36,7 @@ namespace TcpDashboard
             else
                 act();
         }
+        #region EventClass
         public void OnMessageReceived(object sender, EventArgs e)
         {
             var tcp = (CommunicationEventClass.TcpEventArgs)e;
@@ -44,33 +49,43 @@ namespace TcpDashboard
                 );
             });
         }
-        
+        #endregion
+        #region EventsForm
         private void btnStartServer_Click(object sender, EventArgs e)
-        {
-            if (server == null && serverThread == null)
-            {
-                int port = int.Parse(txtDataPort.Text);
+        {   
+            if (serverData == null)
+                serverData = new TcpServerService(cl);
 
-                server = new TcpServerService(cl);
-                serverThread = new Thread(() => server.startServer(port));
-                serverThread.Start();
+            if (serverData.isRunning == false && serverDataThread == null)
+            {
+                int portData = int.Parse(txtDataPort.Text);
+                serverDataThread = new Thread(() => serverData.startServer(portData));
+                serverDataThread.Start();
             }
         }
 
         private void btnStopServer_Click(object sender, EventArgs e)
         {
-            if (serverThread.IsAlive)
+            if (serverDataThread != null)
             {
-                server.stopServer();
+                serverData.stopServer();
+                serverDataThread = null;
             }
         }
 
         private void frmTcpDashboard_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (serverThread.IsAlive)
-            {
-                server.stopServer();
-            }
         }
+
+        private void btnCheckConnection_Click(object sender, EventArgs e)
+        {
+            string ip = txtPlanetIp.Text;
+            int port = int.Parse(txtDataPort.Text);
+            clientData = new TcpClientService(cl);
+
+            clientDataThread = new Thread(() => clientData.checkConnection(ip));
+            clientDataThread.Start();
+        }
+        #endregion
     }
 }

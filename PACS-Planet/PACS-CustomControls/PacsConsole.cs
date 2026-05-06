@@ -98,7 +98,7 @@ namespace PACS_CustomControls
             rtbConsole.AppendText($"[{timestamp}] ");
 
             rtbConsole.SelectionColor = color;
-            rtbConsole.AppendText($"[{level.PadRight(6)}] {message}\n");
+            rtbConsole.AppendText($"[{level.PadRight(7)}] {message}\n");
 
 
             rtbConsole.SelectionStart = rtbConsole.TextLength;

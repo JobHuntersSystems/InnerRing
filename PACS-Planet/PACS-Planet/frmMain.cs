@@ -24,5 +24,10 @@ namespace PACS_Planet
         {
           
         }
+
+        private void picLogo_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

@@ -17,8 +17,12 @@ namespace TcpServerServices
     public class TcpServerService
     {
         private TcpListener listener;
-        private TcpClient client;
-        private bool isRunning;
+
+        private bool _isRunning;
+        public bool isRunning
+        {
+            get { return _isRunning; }
+        }
         static CancellationTokenSource cts;
 
         private CommunicationEventClass cl;
@@ -28,18 +32,17 @@ namespace TcpServerServices
             this.cl = communicationEvents;
         }
         
-        public void startServer(int port)
+        public void startServer(int serverPort)
         {
             try
             {
-                isRunning = true;
-
                 cts = new CancellationTokenSource();
-                listener = new TcpListener(IPAddress.Any, port);
-                listener.Start();
 
+                listener = new TcpListener(IPAddress.Any, serverPort);
+                listener.Start();
+                _isRunning = true;
                 cl.SendTcpEvent(
-                   "Init server in port: " + port,
+                   "Init server in port: " + serverPort,
                    "",
                    LogLevel.Info
                );
@@ -47,7 +50,7 @@ namespace TcpServerServices
                 {
                     if (listener.Pending())
                     {
-                        using (client = listener.AcceptTcpClient())
+                        using (TcpClient client = listener.AcceptTcpClient())
                         using (NetworkStream stream = client.GetStream())
                         using (BinaryReader reader = new BinaryReader(stream, Encoding.UTF8, true))
                         {
@@ -72,13 +75,12 @@ namespace TcpServerServices
                             }
                             catch (Exception ex)
                             {
-                                isRunning = false;
+                                _isRunning = false;
                                 cl.SendTcpEvent(
                                     ex.Message,
                                     clientIp,
                                     LogLevel.Error
                                 );
-                                break;
                             }
                         }
                     }
@@ -91,7 +93,7 @@ namespace TcpServerServices
             }
             catch (SocketException ex)
             {
-                isRunning = false;
+                _isRunning = false;
                 cl.SendTcpEvent(
                     ex.Message,
                     "",
@@ -100,7 +102,7 @@ namespace TcpServerServices
             }
             catch (Exception ex)
             {
-                isRunning = false;
+                _isRunning = false;
                 cl.SendTcpEvent(
                     ex.Message,
                     "",
@@ -110,19 +112,18 @@ namespace TcpServerServices
             finally
             {
                 listener?.Stop();
-
+                _isRunning = false;
             }
         }
         public void stopServer()
         {
+            _isRunning = false;
             cts?.Cancel();
-            client?.Close();
-            listener?.Stop();
-            isRunning = false;
+   
             cl.SendTcpEvent(
                "Closing server",
                 "",
-                LogLevel.Info
+                LogLevel.Warn
             );
         }
        

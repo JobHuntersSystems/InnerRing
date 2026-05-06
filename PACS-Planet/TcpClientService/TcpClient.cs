@@ -10,6 +10,8 @@ using System.Net.Sockets;
 using System.Net;
 using System.IO;
 using System.Net.NetworkInformation;
+using EventsClass;
+using PACS_Common;
 
 namespace TcpClientServices
 {
@@ -21,108 +23,101 @@ namespace TcpClientServices
             "1.0.0.1",        // Cloudflare secondary
             "8.8.8.8",        // Google DNS primary
             "8.8.4.4",        // Google DNS secondary
-            "9.9.9.9",        // Quad9 primary
-            "149.112.112.112", // Quad9 secondary
-            "208.67.222.222",  // OpenDNS primary
-            "208.67.220.220",  // OpenDNS secondary
-            "4.2.2.1",        // Level3 primary
-            "4.2.2.2"         // Level3 secondary
         };
-        Boolean networkAvaible;
-        string currentIP;
-        int currentPort;
 
-        TcpClient client;
-        NetworkStream ns;
-        public bool testConnection()
+        private CommunicationEventClass cl;
+        public TcpClientService(CommunicationEventClass communicationEvents)
         {
-            networkAvaible = true;
-           
-            networkAvaible = NetworkInterface.GetIsNetworkAvailable();
-            if (networkAvaible)
-            {
-                Ping myPing = new Ping();
-                PingReply reply;
-                foreach (var ip in public_ips)
-                {
-                    try
-                    {
-                        reply = myPing.Send(ip, 1000);
-                        if (reply.Address != null)
-                        {
-                            string message = $"Ping to {ip} - OK";
-                           
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        string message = $"Ping to {ip} - NOK";
-                      
-                        throw new Exception($"Error Connection: Ping to {ip} not respond");
-                    }
-                }
-            }
-            return networkAvaible;
+            this.cl = communicationEvents;
         }
-      
-        public void verifyConnection()
+        public void checkConnection(string hostIp)
         {
-            bool networkStatus = false;
+            bool networkAvaible = true;
             try
             {
-                networkStatus = testConnection();
-
-
-                if (currentIP != null && currentPort != 0)
+                networkAvaible = NetworkInterface.GetIsNetworkAvailable();
+                if (networkAvaible)
                 {
-                    client = new TcpClient();
+                    Ping myPing = new Ping();
+                    PingReply reply;
+                    foreach (var ip in public_ips)
+                    {
+                        try
+                        {
+                            reply = myPing.Send(ip, 1000);
+                            if (reply.Address != null)
+                            {
+                                string message = $"Ping to {ip} - OK";
+                                cl.SendTcpEvent(
+                                    message,
+                                    "",
+                                    LogLevel.Success
+                                );
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            string message = $"Ping to {ip} - NOK";
+                            cl.SendTcpEvent(
+                                    message,
+                                    "",
+                                    LogLevel.Success
+                                );
+                            networkAvaible = false;
+                            throw new Exception($"Error Connection: Ping to {ip} not respond");
+                        }
+                    }
+                    reply = myPing.Send(hostIp, 1000);
+                    if (reply.Address != null)
+                    {
+                        string message = $"Ping to Host: {hostIp} - OK";
+                        cl.SendTcpEvent(
+                            message,
+                            "",
+                            LogLevel.Success
+                        );
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                cl.SendTcpEvent(
+                  ex.Message,
+                  "",
+                  LogLevel.Error
+              );
+            }
+        }
+        public void sendMessage(string hostIp, int hostPort,string message)
+        {
+            try
+            {
+                using (TcpClient client = new TcpClient(hostIp, hostPort))
+                {
                     client.SendTimeout = 5000;
                     client.ReceiveTimeout = 5000;
-                    client.Connect(currentIP, currentPort);
-                    ns = client.GetStream();
+                    using (NetworkStream ns = client.GetStream())
+                    using (BinaryWriter writer = new BinaryWriter(ns, Encoding.UTF8, true))
+                    {
+                        byte[] dades = Encoding.UTF8.GetBytes(message);
+
+                        if (dades.Length > 1024 * 1024)
+                        {
+                            throw new Exception("Message overweight ✘");
+                        }
+                        writer.Write(dades.Length);
+                        writer.Write(dades);
+                    }
                 }
-                else
-                {
-                    throw new Exception("Undefined IP addresse or port in xml setting file ✘");
-                }
-            }
-            catch (IOException ex)
-            {
-               
-            }
-            catch (SocketException ex)
-            {
-              
             }
             catch (Exception ex)
             {
-              
-            }
-
-        }
-        public void sendMessage(string message)
-        {
-            using (BinaryWriter writer = new BinaryWriter(ns, Encoding.UTF8, true))
-            {
-                byte[] dades = Encoding.UTF8.GetBytes(message);
-
-                if (dades.Length > 1024 * 1024)
-                {
-                    throw new Exception("Message overweight ✘");
-                }
-                writer.Write(dades.Length);
-                writer.Write(dades);
+                cl.SendTcpEvent(
+                    ex.Message,
+                    "",
+                    LogLevel.Error
+                );
             }
         }
-        public void closeConexion()
-        {
-            if (ns != null)
-                ns.Close();
-
-            if (client != null)
-                client.Close();
-        }
-
-
     }
 }

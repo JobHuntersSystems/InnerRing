@@ -117,7 +117,72 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="&gt;&gt;picLogo.Name" xml:space="preserve">
+    <value>picLogo</value>
+  </data>
+  <data name="&gt;&gt;picLogo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;picLogo.Parent" xml:space="preserve">
+    <value>panelHeader</value>
+  </data>
+  <data name="&gt;&gt;picLogo.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;lblSubStatus.Name" xml:space="preserve">
+    <value>lblSubStatus</value>
+  </data>
+  <data name="&gt;&gt;lblSubStatus.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblSubStatus.Parent" xml:space="preserve">
+    <value>panelHeader</value>
+  </data>
+  <data name="&gt;&gt;lblSubStatus.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;lblTitle.Name" xml:space="preserve">
+    <value>lblTitle</value>
+  </data>
+  <data name="&gt;&gt;lblTitle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblTitle.Parent" xml:space="preserve">
+    <value>panelHeader</value>
+  </data>
+  <data name="&gt;&gt;lblTitle.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="panelHeader.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="panelHeader.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="panelHeader.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>14, 10, 14, 10</value>
+  </data>
+  <data name="panelHeader.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1264, 70</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="panelHeader.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;panelHeader.Name" xml:space="preserve">
+    <value>panelHeader</value>
+  </data>
+  <data name="&gt;&gt;panelHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panelHeader.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;panelHeader.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
   <data name="picLogo.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAABOYAAATmCAIAAAAKnjl9AAAABGdBTUEAALGPC/xhBQAA/8dJREFUeF6s
@@ -30505,7 +30570,6 @@
         BSKHfwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="picLogo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -30518,7 +30582,6 @@
   <data name="picLogo.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>StretchImage</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="picLogo.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
@@ -30609,35 +30672,89 @@
   <data name="&gt;&gt;lblTitle.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="panelHeader.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="panelHeader.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="panelHeader.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>14, 10, 14, 10</value>
-  </data>
-  <data name="panelHeader.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1264, 70</value>
-  </data>
-  <data name="panelHeader.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;panelHeader.Name" xml:space="preserve">
-    <value>panelHeader</value>
-  </data>
-  <data name="&gt;&gt;panelHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panelHeader.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;panelHeader.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
   <data name="flowMenuLeft.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="&gt;&gt;obtnTCP.Name" xml:space="preserve">
+    <value>obtnTCP</value>
+  </data>
+  <data name="&gt;&gt;obtnTCP.Type" xml:space="preserve">
+    <value>PACS_CustomControls.OptionButton, PACS-CustomControls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;obtnTCP.Parent" xml:space="preserve">
+    <value>flowMenuLeft</value>
+  </data>
+  <data name="&gt;&gt;obtnTCP.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;optionButton4.Name" xml:space="preserve">
+    <value>optionButton4</value>
+  </data>
+  <data name="&gt;&gt;optionButton4.Type" xml:space="preserve">
+    <value>PACS_CustomControls.OptionButton, PACS-CustomControls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;optionButton4.Parent" xml:space="preserve">
+    <value>flowMenuLeft</value>
+  </data>
+  <data name="&gt;&gt;optionButton4.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;optionButton1.Name" xml:space="preserve">
+    <value>optionButton1</value>
+  </data>
+  <data name="&gt;&gt;optionButton1.Type" xml:space="preserve">
+    <value>PACS_CustomControls.OptionButton, PACS-CustomControls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;optionButton1.Parent" xml:space="preserve">
+    <value>flowMenuLeft</value>
+  </data>
+  <data name="&gt;&gt;optionButton1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;optionButton2.Name" xml:space="preserve">
+    <value>optionButton2</value>
+  </data>
+  <data name="&gt;&gt;optionButton2.Type" xml:space="preserve">
+    <value>PACS_CustomControls.OptionButton, PACS-CustomControls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;optionButton2.Parent" xml:space="preserve">
+    <value>flowMenuLeft</value>
+  </data>
+  <data name="&gt;&gt;optionButton2.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="flowMenuLeft.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="flowMenuLeft.FlowDirection" type="System.Windows.Forms.FlowDirection, System.Windows.Forms">
+    <value>TopDown</value>
+  </data>
+  <data name="flowMenuLeft.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 70</value>
+  </data>
+  <data name="flowMenuLeft.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>12, 14, 12, 12</value>
+  </data>
+  <data name="flowMenuLeft.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 569</value>
+  </data>
+  <data name="flowMenuLeft.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="flowMenuLeft.WrapContents" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;flowMenuLeft.Name" xml:space="preserve">
+    <value>flowMenuLeft</value>
+  </data>
+  <data name="&gt;&gt;flowMenuLeft.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;flowMenuLeft.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;flowMenuLeft.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="obtnTCP.Location" type="System.Drawing.Point, System.Drawing">
     <value>15, 17</value>
@@ -30723,39 +30840,6 @@
   <data name="&gt;&gt;optionButton2.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="flowMenuLeft.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Left</value>
-  </data>
-  <data name="flowMenuLeft.FlowDirection" type="System.Windows.Forms.FlowDirection, System.Windows.Forms">
-    <value>TopDown</value>
-  </data>
-  <data name="flowMenuLeft.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 70</value>
-  </data>
-  <data name="flowMenuLeft.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>12, 14, 12, 12</value>
-  </data>
-  <data name="flowMenuLeft.Size" type="System.Drawing.Size, System.Drawing">
-    <value>267, 569</value>
-  </data>
-  <data name="flowMenuLeft.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="flowMenuLeft.WrapContents" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;flowMenuLeft.Name" xml:space="preserve">
-    <value>flowMenuLeft</value>
-  </data>
-  <data name="&gt;&gt;flowMenuLeft.Type" xml:space="preserve">
-    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;flowMenuLeft.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;flowMenuLeft.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="pnlMain.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -30781,71 +30865,6 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pnlMain.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="lblLogTitle.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblLogTitle.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Consolas, 10pt, style=Bold</value>
-  </data>
-  <data name="lblLogTitle.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblLogTitle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 7</value>
-  </data>
-  <data name="lblLogTitle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 17</value>
-  </data>
-  <data name="lblLogTitle.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="lblLogTitle.Text" xml:space="preserve">
-    <value>SYSTEM LOG CONSOLE</value>
-  </data>
-  <data name="&gt;&gt;lblLogTitle.Name" xml:space="preserve">
-    <value>lblLogTitle</value>
-  </data>
-  <data name="&gt;&gt;lblLogTitle.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblLogTitle.Parent" xml:space="preserve">
-    <value>panelLog</value>
-  </data>
-  <data name="&gt;&gt;lblLogTitle.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="rtbLogs.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="rtbLogs.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Consolas, 9pt</value>
-  </data>
-  <data name="rtbLogs.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 28</value>
-  </data>
-  <data name="rtbLogs.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1240, 89</value>
-  </data>
-  <data name="rtbLogs.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="rtbLogs.Text" xml:space="preserve">
-    <value>[10:24:31] [INFO ] Planet Control Center initialized
-[10:24:32] [INFO ] Waiting for operator command...
-</value>
-  </data>
-  <data name="&gt;&gt;rtbLogs.Name" xml:space="preserve">
-    <value>rtbLogs</value>
-  </data>
-  <data name="&gt;&gt;rtbLogs.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rtbLogs.Parent" xml:space="preserve">
-    <value>panelLog</value>
-  </data>
-  <data name="&gt;&gt;rtbLogs.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="panelLog.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
