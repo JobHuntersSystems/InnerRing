@@ -46,14 +46,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -75,6 +78,20 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\PACS-Planet\PACS-Common\PACS-Common.csproj">
+      <Project>{ae2dfbfd-20fc-4225-9991-62edaad6b012}</Project>
+      <Name>PACS-Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\PACS-Planet\PACS-CustomControls\PACS-CustomControls.csproj">
+      <Project>{5e69e566-0081-4b55-8486-8341a9e082a1}</Project>
+      <Name>PACS-CustomControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Inner_DB_Access\Inner_DB_Access.csproj">
+      <Project>{886fe758-4c70-4699-b614-f2287dcc7e48}</Project>
+      <Name>Inner_DB_Access</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
