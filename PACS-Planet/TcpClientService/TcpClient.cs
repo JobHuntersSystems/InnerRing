@@ -10,27 +10,21 @@ using System.Net.Sockets;
 using System.Net;
 using System.IO;
 using System.Net.NetworkInformation;
-using EventsClass;
 using PACS_Common;
 
 namespace TcpClientServices
 {
     public class TcpClientService
     {
-        List<string> public_ips = new List<string>()
+        private List<string> public_ips = new List<string>()
         {
             "1.1.1.1",        // Cloudflare primary
             "1.0.0.1",        // Cloudflare secondary
             "8.8.8.8",        // Google DNS primary
             "8.8.4.4",        // Google DNS secondary
         };
-
-        private CommunicationEventClass cl;
-        public TcpClientService(CommunicationEventClass communicationEvents)
-        {
-            this.cl = communicationEvents;
-        }
-        public void checkConnection(string hostIp)
+        private Thread clientThread;
+        private void _checkConnection(string hostIp)
         {
             bool networkAvaible = true;
             try
@@ -48,9 +42,8 @@ namespace TcpClientServices
                             if (reply.Address != null)
                             {
                                 string message = $"Ping to {ip} - OK";
-                                cl.SendTcpEvent(
+                                SendTcpEvent(
                                     message,
-                                    "",
                                     LogLevel.Success
                                 );
                             }
@@ -58,10 +51,9 @@ namespace TcpClientServices
                         catch (Exception)
                         {
                             string message = $"Ping to {ip} - NOK";
-                            cl.SendTcpEvent(
+                            SendTcpEvent(
                                     message,
-                                    "",
-                                    LogLevel.Success
+                                    LogLevel.Error
                                 );
                             networkAvaible = false;
                             throw new Exception($"Error Connection: Ping to {ip} not respond");
@@ -71,24 +63,22 @@ namespace TcpClientServices
                     if (reply.Address != null)
                     {
                         string message = $"Ping to Host: {hostIp} - OK";
-                        cl.SendTcpEvent(
+                        SendTcpEvent(
                             message,
-                            "",
                             LogLevel.Success
                         );
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                cl.SendTcpEvent(
+                SendTcpEvent(
                   ex.Message,
-                  "",
                   LogLevel.Error
               );
             }
         }
-        public void sendMessage(string hostIp, int hostPort,string message)
+        private void _sendMessage(string hostIp, int hostPort, string message)
         {
             try
             {
@@ -112,12 +102,46 @@ namespace TcpClientServices
             }
             catch (Exception ex)
             {
-                cl.SendTcpEvent(
+                SendTcpEvent(
                     ex.Message,
-                    "",
                     LogLevel.Error
                 );
             }
         }
+
+        public void sendMessage(string hostIp, int hostPort, string message)
+        {
+            clientThread = new Thread(() => _sendMessage(hostIp, hostPort, message));
+            clientThread.Start();
+        }
+        public void checkConnection(string hostIp)
+        {
+            clientThread = new Thread(() => _checkConnection(hostIp));
+            clientThread.Start();
+        }
+
+        #region Event SendMessage
+        public event EventHandler SendMessage;
+        public class TcpEventArgs : EventArgs
+        {
+            public string Message { get; set; }
+            public LogLevel Level { get; set; }
+        }
+        protected virtual void OnSendMessage(TcpEventArgs e)
+        {
+            if (null != SendMessage)
+            {
+                SendMessage(this, e);
+            }
+        }
+        private void SendTcpEvent(string msg, LogLevel level)
+        {
+            this.OnSendMessage(new TcpEventArgs
+            {
+                Message = msg,
+                Level = level
+            });
+        }
+        #endregion
     }
 }

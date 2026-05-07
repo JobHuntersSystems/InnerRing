@@ -7,8 +7,8 @@
     <ProjectGuid>{6AFA8F25-C3B0-4AFE-B506-83C1CFB4D676}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TcpDashboard</RootNamespace>
-    <AssemblyName>TcpDashboard</AssemblyName>
+    <RootNamespace>TcpManager</RootNamespace>
+    <AssemblyName>TcpManager</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -43,23 +43,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmTcpDashboard.cs">
+    <Compile Include="frmTcpManager.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmTcpDashboard.Designer.cs">
-      <DependentUpon>frmTcpDashboard.cs</DependentUpon>
+    <Compile Include="frmTcpManager.Designer.cs">
+      <DependentUpon>frmTcpManager.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="frmTcpDashboard.resx">
-      <DependentUpon>frmTcpDashboard.cs</DependentUpon>
+    <EmbeddedResource Include="frmTcpManager.resx">
+      <DependentUpon>frmTcpManager.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EventsClass\EventsClass.csproj">
-      <Project>{41d7d944-e5f9-4fb6-84ff-4b07aaa49e81}</Project>
-      <Name>EventsClass</Name>
+    <ProjectReference Include="..\Inner_DB_Access\Inner_DB_Access.csproj">
+      <Project>{886fe758-4c70-4699-b614-f2287dcc7e48}</Project>
+      <Name>Inner_DB_Access</Name>
     </ProjectReference>
     <ProjectReference Include="..\PACS-Common\PACS-Common.csproj">
       <Project>{ae2dfbfd-20fc-4225-9991-62edaad6b012}</Project>

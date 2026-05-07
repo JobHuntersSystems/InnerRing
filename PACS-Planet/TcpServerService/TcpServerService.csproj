@@ -45,10 +45,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EventsClass\EventsClass.csproj">
-      <Project>{41d7d944-e5f9-4fb6-84ff-4b07aaa49e81}</Project>
-      <Name>EventsClass</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PACS-Common\PACS-Common.csproj">
       <Project>{ae2dfbfd-20fc-4225-9991-62edaad6b012}</Project>
       <Name>PACS-Common</Name>

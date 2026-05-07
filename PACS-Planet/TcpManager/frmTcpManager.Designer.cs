@@ -1,6 +1,6 @@
-﻿namespace TcpDashboard
+﻿namespace TcpManager
 {
-    partial class frmTcpDashboard
+    partial class frmTcpManager
     {
         private System.ComponentModel.IContainer components = null;
 
@@ -51,11 +51,14 @@
             this.lblDataPortValue = new System.Windows.Forms.Label();
             this.lblDataPortTitle = new System.Windows.Forms.Label();
             this.pnlFilePort = new System.Windows.Forms.Panel();
-            this.lblFilePortValue = new System.Windows.Forms.Label();
-            this.lblFilePortTitle = new System.Windows.Forms.Label();
+            this.lblIPPlanetValue = new System.Windows.Forms.Label();
+            this.lblIPPlanet = new System.Windows.Forms.Label();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.lblSubtitle = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.pnlRoot.SuspendLayout();
             this.tlpCenter.SuspendLayout();
             this.pnlConfiguration.SuspendLayout();
@@ -67,6 +70,7 @@
             this.pnlDataPort.SuspendLayout();
             this.pnlFilePort.SuspendLayout();
             this.pnlHeader.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlRoot
@@ -152,6 +156,7 @@
             this.txtPlanetIp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(255)))), ((int)(((byte)(90)))));
             this.txtPlanetIp.Location = new System.Drawing.Point(130, 51);
             this.txtPlanetIp.Name = "txtPlanetIp";
+            this.txtPlanetIp.ReadOnly = true;
             this.txtPlanetIp.Size = new System.Drawing.Size(150, 23);
             this.txtPlanetIp.TabIndex = 2;
             this.txtPlanetIp.Text = "127.0.0.1";
@@ -374,7 +379,8 @@
             // 
             // pnlLog
             // 
-            this.pnlLog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.pnlLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlLog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(13)))), ((int)(((byte)(20)))));
             this.pnlLog.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlLog.Controls.Add(this.pcsConsoleLog);
@@ -386,21 +392,22 @@
             // 
             // pcsConsoleLog
             // 
-            this.pcsConsoleLog.AccentColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
+            this.pcsConsoleLog.AccentColor = System.Drawing.Color.Yellow;
             this.pcsConsoleLog.BackColor = System.Drawing.Color.Transparent;
             this.pcsConsoleLog.ConsoleTitle = "TCP LOG CONSOLE";
             this.pcsConsoleLog.Location = new System.Drawing.Point(2, -1);
             this.pcsConsoleLog.Name = "pcsConsoleLog";
-            this.pcsConsoleLog.Size = new System.Drawing.Size(953, 187);
+            this.pcsConsoleLog.Size = new System.Drawing.Size(599, 187);
             this.pcsConsoleLog.TabIndex = 0;
             // 
             // tlpStatus
             // 
-            this.tlpStatus.ColumnCount = 3;
+            this.tlpStatus.ColumnCount = 4;
             this.tlpStatus.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tlpStatus.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tlpStatus.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.34964F));
             this.tlpStatus.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.70239F));
+            this.tlpStatus.Controls.Add(this.panel1, 0, 0);
             this.tlpStatus.Controls.Add(this.pnlServerStatus, 0, 0);
             this.tlpStatus.Controls.Add(this.pnlDataPort, 1, 0);
             this.tlpStatus.Controls.Add(this.pnlFilePort, 2, 0);
@@ -424,7 +431,7 @@
             this.pnlServerStatus.Margin = new System.Windows.Forms.Padding(5);
             this.pnlServerStatus.Name = "pnlServerStatus";
             this.pnlServerStatus.Padding = new System.Windows.Forms.Padding(8);
-            this.pnlServerStatus.Size = new System.Drawing.Size(313, 70);
+            this.pnlServerStatus.Size = new System.Drawing.Size(230, 70);
             this.pnlServerStatus.TabIndex = 0;
             // 
             // lblServerStatusValue
@@ -434,7 +441,7 @@
             this.lblServerStatusValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(180)))), ((int)(((byte)(40)))));
             this.lblServerStatusValue.Location = new System.Drawing.Point(8, 30);
             this.lblServerStatusValue.Name = "lblServerStatusValue";
-            this.lblServerStatusValue.Size = new System.Drawing.Size(295, 30);
+            this.lblServerStatusValue.Size = new System.Drawing.Size(212, 30);
             this.lblServerStatusValue.TabIndex = 1;
             this.lblServerStatusValue.Text = "● OFFLINE";
             this.lblServerStatusValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -446,7 +453,7 @@
             this.lblServerStatusTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(245)))));
             this.lblServerStatusTitle.Location = new System.Drawing.Point(8, 8);
             this.lblServerStatusTitle.Name = "lblServerStatusTitle";
-            this.lblServerStatusTitle.Size = new System.Drawing.Size(295, 22);
+            this.lblServerStatusTitle.Size = new System.Drawing.Size(212, 22);
             this.lblServerStatusTitle.TabIndex = 0;
             this.lblServerStatusTitle.Text = "SERVER STATUS";
             this.lblServerStatusTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -458,11 +465,11 @@
             this.pnlDataPort.Controls.Add(this.lblDataPortValue);
             this.pnlDataPort.Controls.Add(this.lblDataPortTitle);
             this.pnlDataPort.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlDataPort.Location = new System.Drawing.Point(328, 15);
+            this.pnlDataPort.Location = new System.Drawing.Point(485, 15);
             this.pnlDataPort.Margin = new System.Windows.Forms.Padding(5);
             this.pnlDataPort.Name = "pnlDataPort";
             this.pnlDataPort.Padding = new System.Windows.Forms.Padding(8);
-            this.pnlDataPort.Size = new System.Drawing.Size(313, 70);
+            this.pnlDataPort.Size = new System.Drawing.Size(223, 70);
             this.pnlDataPort.TabIndex = 1;
             // 
             // lblDataPortValue
@@ -472,7 +479,7 @@
             this.lblDataPortValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
             this.lblDataPortValue.Location = new System.Drawing.Point(8, 30);
             this.lblDataPortValue.Name = "lblDataPortValue";
-            this.lblDataPortValue.Size = new System.Drawing.Size(295, 30);
+            this.lblDataPortValue.Size = new System.Drawing.Size(205, 30);
             this.lblDataPortValue.TabIndex = 1;
             this.lblDataPortValue.Text = "5050";
             this.lblDataPortValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -484,7 +491,7 @@
             this.lblDataPortTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(245)))));
             this.lblDataPortTitle.Location = new System.Drawing.Point(8, 8);
             this.lblDataPortTitle.Name = "lblDataPortTitle";
-            this.lblDataPortTitle.Size = new System.Drawing.Size(295, 22);
+            this.lblDataPortTitle.Size = new System.Drawing.Size(205, 22);
             this.lblDataPortTitle.TabIndex = 0;
             this.lblDataPortTitle.Text = "DATA PORT";
             this.lblDataPortTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -493,39 +500,39 @@
             // 
             this.pnlFilePort.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(15)))), ((int)(((byte)(22)))));
             this.pnlFilePort.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlFilePort.Controls.Add(this.lblFilePortValue);
-            this.pnlFilePort.Controls.Add(this.lblFilePortTitle);
+            this.pnlFilePort.Controls.Add(this.lblIPPlanetValue);
+            this.pnlFilePort.Controls.Add(this.lblIPPlanet);
             this.pnlFilePort.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlFilePort.Location = new System.Drawing.Point(651, 15);
+            this.pnlFilePort.Location = new System.Drawing.Point(718, 15);
             this.pnlFilePort.Margin = new System.Windows.Forms.Padding(5);
             this.pnlFilePort.Name = "pnlFilePort";
             this.pnlFilePort.Padding = new System.Windows.Forms.Padding(8);
-            this.pnlFilePort.Size = new System.Drawing.Size(305, 70);
+            this.pnlFilePort.Size = new System.Drawing.Size(238, 70);
             this.pnlFilePort.TabIndex = 2;
             // 
-            // lblFilePortValue
+            // lblIPPlanetValue
             // 
-            this.lblFilePortValue.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblFilePortValue.Font = new System.Drawing.Font("Consolas", 13F, System.Drawing.FontStyle.Bold);
-            this.lblFilePortValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
-            this.lblFilePortValue.Location = new System.Drawing.Point(8, 30);
-            this.lblFilePortValue.Name = "lblFilePortValue";
-            this.lblFilePortValue.Size = new System.Drawing.Size(287, 30);
-            this.lblFilePortValue.TabIndex = 1;
-            this.lblFilePortValue.Text = "5051";
-            this.lblFilePortValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblIPPlanetValue.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblIPPlanetValue.Font = new System.Drawing.Font("Consolas", 13F, System.Drawing.FontStyle.Bold);
+            this.lblIPPlanetValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
+            this.lblIPPlanetValue.Location = new System.Drawing.Point(8, 30);
+            this.lblIPPlanetValue.Name = "lblIPPlanetValue";
+            this.lblIPPlanetValue.Size = new System.Drawing.Size(220, 30);
+            this.lblIPPlanetValue.TabIndex = 1;
+            this.lblIPPlanetValue.Text = "127.0.0.1";
+            this.lblIPPlanetValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblFilePortTitle
+            // lblIPPlanet
             // 
-            this.lblFilePortTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblFilePortTitle.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
-            this.lblFilePortTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(245)))));
-            this.lblFilePortTitle.Location = new System.Drawing.Point(8, 8);
-            this.lblFilePortTitle.Name = "lblFilePortTitle";
-            this.lblFilePortTitle.Size = new System.Drawing.Size(287, 22);
-            this.lblFilePortTitle.TabIndex = 0;
-            this.lblFilePortTitle.Text = "FILE PORT";
-            this.lblFilePortTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblIPPlanet.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblIPPlanet.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
+            this.lblIPPlanet.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(245)))));
+            this.lblIPPlanet.Location = new System.Drawing.Point(8, 8);
+            this.lblIPPlanet.Name = "lblIPPlanet";
+            this.lblIPPlanet.Size = new System.Drawing.Size(220, 22);
+            this.lblIPPlanet.TabIndex = 0;
+            this.lblIPPlanet.Text = "PLANET IP";
+            this.lblIPPlanet.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pnlHeader
             // 
@@ -564,6 +571,44 @@
             this.lblTitle.Text = "TCP/IP SERVER CONTROL";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(15)))), ((int)(((byte)(22)))));
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(245, 15);
+            this.panel1.Margin = new System.Windows.Forms.Padding(5);
+            this.panel1.Name = "panel1";
+            this.panel1.Padding = new System.Windows.Forms.Padding(8);
+            this.panel1.Size = new System.Drawing.Size(230, 70);
+            this.panel1.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Font = new System.Drawing.Font("Consolas", 13F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
+            this.label1.Location = new System.Drawing.Point(8, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(212, 30);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "5051";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label2
+            // 
+            this.label2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label2.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(245)))));
+            this.label2.Location = new System.Drawing.Point(8, 8);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(212, 22);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "FILE PORT";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // frmTcpDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -574,7 +619,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmTcpDashboard";
             this.Text = "TCP Server Dashboard";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmTcpDashboard_FormClosed);
             this.pnlRoot.ResumeLayout(false);
             this.tlpCenter.ResumeLayout(false);
             this.pnlConfiguration.ResumeLayout(false);
@@ -589,6 +633,7 @@
             this.pnlDataPort.ResumeLayout(false);
             this.pnlFilePort.ResumeLayout(false);
             this.pnlHeader.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -608,8 +653,8 @@
         private System.Windows.Forms.Label lblDataPortTitle;
         private System.Windows.Forms.Label lblDataPortValue;
         private System.Windows.Forms.Panel pnlFilePort;
-        private System.Windows.Forms.Label lblFilePortTitle;
-        private System.Windows.Forms.Label lblFilePortValue;
+        private System.Windows.Forms.Label lblIPPlanet;
+        private System.Windows.Forms.Label lblIPPlanetValue;
 
         private System.Windows.Forms.TableLayoutPanel tlpCenter;
         private System.Windows.Forms.Panel pnlConfiguration;
@@ -637,5 +682,8 @@
         private System.Windows.Forms.Label lblLastMessageValue;
         private System.Windows.Forms.Panel pnlLog;
         private PACS_CustomControls.PacsConsole pcsConsoleLog;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

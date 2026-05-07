@@ -140,7 +140,7 @@ namespace PACS_CustomControls
 
         private string _ClassName;
         [Category("PACS")]
-        [Description("")]
+        [Description(".dll file")]
         public string ClassName
         {
             get { return _ClassName; }
@@ -149,7 +149,7 @@ namespace PACS_CustomControls
 
         private string _FormName;
         [Category("PACS")]
-        [Description("")]
+        [Description("namespaceName.formName")]
         public string FormName
         {
             get { return _FormName; }
@@ -182,8 +182,6 @@ namespace PACS_CustomControls
         private Type formType;
         private Form getDllForm()
         {
-            Object dllForm = null;
-
             Assembly assembly;
             assembly = Assembly.LoadFrom(_ClassName);
 
@@ -191,7 +189,7 @@ namespace PACS_CustomControls
             if (formType == null)
                 throw new Exception($"Form type not found: {_FormName}");
 
-            dllForm = Activator.CreateInstance(formType);
+            Object dllForm = Activator.CreateInstance(formType);
 
             return (Form)dllForm;
         }
@@ -219,32 +217,32 @@ namespace PACS_CustomControls
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(_ClassName) || string.IsNullOrWhiteSpace(_FormName))
-                    throw new Exception("OptionButton properties FormName and ClassName are not set.");
-
-                Form dllForm = getDllForm();
-
-                if (dllForm != null)
+                if (!string.IsNullOrWhiteSpace(_ClassName) && !string.IsNullOrWhiteSpace(_FormName))
                 {
-                    bool formLoaded = false;
-                    Form parentForm = this.FindForm();
 
-                    //Buscamos si ya hay algún formulario abierto del mismo tipo de la ddl. Si se encuentra, se trae al frente.
-                    foreach (Form frm in Application.OpenForms)
+                    Form dllForm = getDllForm();
+
+                    if (dllForm != null)
                     {
-                        if (frm.GetType() == formType)
+                        bool formLoaded = false;
+                        Form parentForm = this.FindForm();
+
+                        //Buscamos si ya hay algún formulario abierto del mismo tipo de la ddl. Si se encuentra, se trae al frente.
+                        foreach (Form frm in Application.OpenForms)
                         {
-                            formLoaded = true;
-                            frm.BringToFront();
+                            if (frm.GetType() == formType)
+                            {
+                                formLoaded = true;
+                                frm.BringToFront();
+                            }
+                        }
+                        //En caso de no se encontrado, se abre.
+                        if (!formLoaded)
+                        {
+                            openFormByDll(dllForm, parentForm);
                         }
                     }
-                    // en caso de no se encontrado, se abre.
-                    if (!formLoaded)
-                    {
-                        openFormByDll(dllForm, parentForm);
-                    }
                 }
-
             }
             catch (Exception ex)
             {
@@ -436,7 +434,7 @@ namespace PACS_CustomControls
 
         private void DrawButtonContent(Graphics g, Rectangle rect, Color accent)
         {
-            Rectangle iconRect = new Rectangle(22, 15, 34, 34);
+            Rectangle iconRect = new Rectangle(26, 13, 32, 32);
             Rectangle textRect = new Rectangle(72, 8, rect.Width - 82, rect.Height - 16);
 
             if (_OptionIcon != null)
