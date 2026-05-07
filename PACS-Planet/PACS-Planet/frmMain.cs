@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using PACS_UI;
+using PACS_Center;
 
 namespace PACS_Planet
 {
@@ -17,9 +18,9 @@ namespace PACS_Planet
         public frmMain()
         {
             InitializeComponent();
+            PACS_Common.Planet.idPlanet = 7;
         }
 
-           
         private void btnSecuritySetup_Click(object sender, EventArgs e)
         {
         
