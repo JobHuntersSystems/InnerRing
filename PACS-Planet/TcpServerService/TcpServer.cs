@@ -207,7 +207,7 @@ namespace TcpServerServices
         {
             public MessageType MessageType { get; set; }
             public string RawData { get; set; }
-            public string ClientIp { get; set; }
+            public string HostIp { get; set; }
         }
         protected virtual void OnProtocolMessage(ProtocolEventArgs e)
         {
@@ -222,7 +222,7 @@ namespace TcpServerServices
             {
                 MessageType = msgType,
                 RawData = rawData,
-                ClientIp = clientIp
+                HostIp = clientIp
             });
         }
 

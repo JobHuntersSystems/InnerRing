@@ -12,7 +12,7 @@ namespace PACS_Common
         VK,
         VR
     }
-    public enum resultType
+    public enum ResultType
     {
         VP,
         AD
