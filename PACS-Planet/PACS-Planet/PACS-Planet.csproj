@@ -84,6 +84,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PACS-Center\PACS-Center.csproj">
+      <Project>{da08766a-dbfb-465b-86cd-360fe7385368}</Project>
+      <Name>PACS-Center</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PACS-Common\PACS-Common.csproj">
       <Project>{ae2dfbfd-20fc-4225-9991-62edaad6b012}</Project>
       <Name>PACS-Common</Name>

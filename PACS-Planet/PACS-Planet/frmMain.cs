@@ -19,6 +19,7 @@ namespace PACS_Planet
         public frmMain()
         {
             InitializeComponent();
+            PACS_Common.Planet.idPlanet = 7;
         }
         #region Helpers
         private void genericInvokeAction(Control ctr, Action act)
