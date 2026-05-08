@@ -19,19 +19,19 @@ namespace PACS_ProcessForms
 
         private void btnPhase1_Click(object sender, EventArgs e)
         {
-            this.Enabled = false;
+            btnPhase1.Enabled = false;
             btnPhase2.Enabled = true;
         }
 
         private void btnPhase2_Click(object sender, EventArgs e)
         {
-            this.Enabled = false;
+            btnPhase2.Enabled = false;
             btnPhase3.Enabled = true;
         }
 
         private void btnPhase3_Click(object sender, EventArgs e)
         {
-            this.Enabled = false;
+            btnPhase3.Enabled = false;
             btnPhase4.Enabled = true;
         }
     }

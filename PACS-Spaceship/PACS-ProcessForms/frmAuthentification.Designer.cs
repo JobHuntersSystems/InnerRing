@@ -30,18 +30,20 @@ namespace PACS_ProcessForms
         private void InitializeComponent()
         {
             this.pnlControls = new System.Windows.Forms.Panel();
-            this.btnPhase4 = new PACS_CustomControls.ProcessButton();
             this.lblTarget = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.protocolConsole = new PACS_CustomControls.PacsConsole();
+            this.btnPhase4 = new PACS_CustomControls.ProcessButton();
             this.btnPhase1 = new PACS_CustomControls.ProcessButton();
             this.btnPhase2 = new PACS_CustomControls.ProcessButton();
             this.btnPhase3 = new PACS_CustomControls.ProcessButton();
-            this.protocolConsole = new PACS_CustomControls.PacsConsole();
             this.pnlControls.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlControls
             // 
-            this.pnlControls.BackColor = System.Drawing.Color.Transparent;
+            this.pnlControls.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(12)))), ((int)(((byte)(16)))));
             this.pnlControls.Controls.Add(this.btnPhase4);
             this.pnlControls.Controls.Add(this.lblTarget);
             this.pnlControls.Controls.Add(this.btnPhase1);
@@ -51,8 +53,46 @@ namespace PACS_ProcessForms
             this.pnlControls.Location = new System.Drawing.Point(0, 0);
             this.pnlControls.Margin = new System.Windows.Forms.Padding(4);
             this.pnlControls.Name = "pnlControls";
-            this.pnlControls.Size = new System.Drawing.Size(1320, 434);
+            this.pnlControls.Size = new System.Drawing.Size(1320, 407);
             this.pnlControls.TabIndex = 0;
+            // 
+            // lblTarget
+            // 
+            this.lblTarget.AutoSize = true;
+            this.lblTarget.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblTarget.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.lblTarget.Font = new System.Drawing.Font("Consolas", 14F, System.Drawing.FontStyle.Bold);
+            this.lblTarget.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
+            this.lblTarget.Location = new System.Drawing.Point(45, 28);
+            this.lblTarget.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTarget.Name = "lblTarget";
+            this.lblTarget.Size = new System.Drawing.Size(469, 30);
+            this.lblTarget.TabIndex = 3;
+            this.lblTarget.Text = "/// TARGET: SECTOR 4 - PLANET ORBIT";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(12)))), ((int)(((byte)(16)))));
+            this.panel1.Controls.Add(this.protocolConsole);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 407);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1320, 184);
+            this.panel1.TabIndex = 5;
+            // 
+            // protocolConsole
+            // 
+            this.protocolConsole.AccentColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(220)))), ((int)(((byte)(235)))));
+            this.protocolConsole.BackColor = System.Drawing.Color.Transparent;
+            this.protocolConsole.ConsoleTitle = "TCP/IP ORBITAL LINK PROTOCOL";
+            this.protocolConsole.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.protocolConsole.Location = new System.Drawing.Point(0, 0);
+            this.protocolConsole.Margin = new System.Windows.Forms.Padding(5);
+            this.protocolConsole.Name = "protocolConsole";
+            this.protocolConsole.Padding = new System.Windows.Forms.Padding(40, 0, 40, 37);
+            this.protocolConsole.Size = new System.Drawing.Size(1320, 184);
+            this.protocolConsole.TabIndex = 1;
             // 
             // btnPhase4
             // 
@@ -66,18 +106,6 @@ namespace PACS_ProcessForms
             this.btnPhase4.Size = new System.Drawing.Size(373, 62);
             this.btnPhase4.TabIndex = 4;
             this.btnPhase4.ThemeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            // 
-            // lblTarget
-            // 
-            this.lblTarget.AutoSize = true;
-            this.lblTarget.Font = new System.Drawing.Font("Consolas", 14F, System.Drawing.FontStyle.Bold);
-            this.lblTarget.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(180)))), ((int)(((byte)(40)))));
-            this.lblTarget.Location = new System.Drawing.Point(40, 25);
-            this.lblTarget.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblTarget.Name = "lblTarget";
-            this.lblTarget.Size = new System.Drawing.Size(415, 28);
-            this.lblTarget.TabIndex = 3;
-            this.lblTarget.Text = "TARGET: SECTOR 4 - PLANET ORBIT";
             // 
             // btnPhase1
             // 
@@ -120,26 +148,13 @@ namespace PACS_ProcessForms
             this.btnPhase3.ThemeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(220)))), ((int)(((byte)(105)))));
             this.btnPhase3.Click += new System.EventHandler(this.btnPhase3_Click);
             // 
-            // protocolConsole
-            // 
-            this.protocolConsole.AccentColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(220)))), ((int)(((byte)(235)))));
-            this.protocolConsole.BackColor = System.Drawing.Color.Transparent;
-            this.protocolConsole.ConsoleTitle = "TCP/IP ORBITAL LINK PROTOCOL";
-            this.protocolConsole.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.protocolConsole.Location = new System.Drawing.Point(0, 434);
-            this.protocolConsole.Margin = new System.Windows.Forms.Padding(5);
-            this.protocolConsole.Name = "protocolConsole";
-            this.protocolConsole.Padding = new System.Windows.Forms.Padding(40, 0, 40, 37);
-            this.protocolConsole.Size = new System.Drawing.Size(1320, 157);
-            this.protocolConsole.TabIndex = 1;
-            // 
             // frmAuthentification
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(12)))), ((int)(((byte)(16)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1320, 591);
-            this.Controls.Add(this.protocolConsole);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlControls);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -147,6 +162,7 @@ namespace PACS_ProcessForms
             this.Text = "Planet Validation";
             this.pnlControls.ResumeLayout(false);
             this.pnlControls.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -160,6 +176,7 @@ namespace PACS_ProcessForms
         private PACS_CustomControls.ProcessButton btnPhase3;
         private PACS_CustomControls.PacsConsole protocolConsole;
         private PACS_CustomControls.ProcessButton btnPhase4;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 
