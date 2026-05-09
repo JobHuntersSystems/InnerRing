@@ -42,7 +42,7 @@ namespace TcpClientServices
                             if (reply.Address != null)
                             {
                                 string message = $"Ping to {ip} - OK";
-                                SendTcpEvent(
+                                RaiseNotificationSent(
                                     message,
                                     LogLevel.Success
                                 );
@@ -51,10 +51,10 @@ namespace TcpClientServices
                         catch (Exception)
                         {
                             string message = $"Ping to {ip} - NOK";
-                            SendTcpEvent(
-                                    message,
-                                    LogLevel.Error
-                                );
+                            RaiseNotificationSent(
+                                message,
+                                LogLevel.Error
+                            );
                             networkAvaible = false;
                             throw new Exception($"Error Connection: Ping to {ip} not respond");
                         }
@@ -62,8 +62,8 @@ namespace TcpClientServices
                     reply = myPing.Send(hostIp, 1000);
                     if (reply.Address != null)
                     {
-                        string message = $"Ping to Host: {hostIp} - OK";
-                        SendTcpEvent(
+                        string message = $"Ping to Spaceship: {hostIp} - OK";
+                        RaiseNotificationSent(
                             message,
                             LogLevel.Success
                         );
@@ -72,7 +72,7 @@ namespace TcpClientServices
             }
             catch (Exception ex)
             {
-                SendTcpEvent(
+                RaiseNotificationSent(
                   ex.Message,
                   LogLevel.Error
               );
@@ -102,7 +102,7 @@ namespace TcpClientServices
             }
             catch (Exception ex)
             {
-                SendTcpEvent(
+                RaiseNotificationSent(
                     ex.Message,
                     LogLevel.Error
                 );
@@ -120,23 +120,23 @@ namespace TcpClientServices
             clientThread.Start();
         }
 
-        #region Event SendMessage
-        public event EventHandler SendMessage;
-        public class TcpEventArgs : EventArgs
+        #region Event NotificationSent
+        public event EventHandler NotificationSent;
+        public class NotificationSentEventArgs : EventArgs
         {
             public string Message { get; set; }
             public LogLevel Level { get; set; }
         }
-        protected virtual void OnSendMessage(TcpEventArgs e)
+        protected virtual void OnNotificationSent(NotificationSentEventArgs e)
         {
-            if (null != SendMessage)
+            if (null != NotificationSent)
             {
-                SendMessage(this, e);
+                NotificationSent(this, e);
             }
         }
-        private void SendTcpEvent(string msg, LogLevel level)
+        private void RaiseNotificationSent(string msg, LogLevel level)
         {
-            this.OnSendMessage(new TcpEventArgs
+            this.OnNotificationSent(new NotificationSentEventArgs
             {
                 Message = msg,
                 Level = level

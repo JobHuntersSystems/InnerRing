@@ -6,15 +6,17 @@ using System.Threading.Tasks;
 
 namespace PACS_Common
 {
-    public enum MessageType
+    public enum MessageProtocolType
     {
         ER,
         VK,
-        VR
+        VR,
+        Message
     }
     public enum ResultType
     {
         VP,
-        AD
+        AD,
+        UNK
     }
 }

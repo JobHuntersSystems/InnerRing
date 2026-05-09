@@ -18,16 +18,15 @@
 
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.panelHeader = new System.Windows.Forms.Panel();
             this.picLogo = new System.Windows.Forms.PictureBox();
             this.lblSubStatus = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.flowMenuLeft = new System.Windows.Forms.FlowLayoutPanel();
             this.obtnTCP = new PACS_CustomControls.OptionButton();
+            this.optionButton2 = new PACS_CustomControls.OptionButton();
             this.optionButton4 = new PACS_CustomControls.OptionButton();
             this.optionButton1 = new PACS_CustomControls.OptionButton();
-            this.optionButton2 = new PACS_CustomControls.OptionButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pcsConsoleMain = new PACS_CustomControls.PacsConsole();
             this.pnlMain = new System.Windows.Forms.Panel();
@@ -68,7 +67,7 @@
             this.lblSubStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
             this.lblSubStatus.Location = new System.Drawing.Point(2367, 10);
             this.lblSubStatus.Name = "lblSubStatus";
-            this.lblSubStatus.Size = new System.Drawing.Size(361, 24);
+            this.lblSubStatus.Size = new System.Drawing.Size(196, 14);
             this.lblSubStatus.TabIndex = 1;
             this.lblSubStatus.Text = "PLANETARY DEFENSE INTERFACE";
             // 
@@ -79,7 +78,7 @@
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(255)))), ((int)(((byte)(90)))));
             this.lblTitle.Location = new System.Drawing.Point(460, 18);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(1113, 60);
+            this.lblTitle.Size = new System.Drawing.Size(558, 31);
             this.lblTitle.TabIndex = 2;
             this.lblTitle.Text = "··· PACS PLANET CONTROL CENTER ···";
             // 
@@ -87,8 +86,6 @@
             // 
             this.flowMenuLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(18)))), ((int)(((byte)(16)))));
             this.flowMenuLeft.Controls.Add(this.obtnTCP);
-            this.flowMenuLeft.Controls.Add(this.btnKey);
-            this.flowMenuLeft.Controls.Add(this.btnCode);
             this.flowMenuLeft.Controls.Add(this.optionButton2);
             this.flowMenuLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.flowMenuLeft.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
@@ -111,14 +108,35 @@
             this.obtnTCP.FormName = "";
             this.obtnTCP.IsSelected = false;
             this.obtnTCP.Location = new System.Drawing.Point(16, 16);
-            this.obtnTCP.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.obtnTCP.Margin = new System.Windows.Forms.Padding(6);
             this.obtnTCP.Name = "obtnTCP";
-            this.obtnTCP.OptionIcon = ((System.Drawing.Image)(resources.GetObject("obtnTCP.OptionIcon")));
-            this.obtnTCP.OptionText = "TCP | IP";
+            this.obtnTCP.OptionIcon = null;
+            this.obtnTCP.OptionText = "TCP Server";
             this.obtnTCP.Size = new System.Drawing.Size(220, 62);
             this.obtnTCP.TabIndex = 0;
             this.obtnTCP.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(240)))), ((int)(((byte)(150)))));
             this.obtnTCP.Click += new System.EventHandler(this.obtnTCP_Click);
+            // 
+            // optionButton2
+            // 
+            this.optionButton2.AccentColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(230)))), ((int)(((byte)(120)))));
+            this.optionButton2.AccentHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
+            this.optionButton2.BackColor = System.Drawing.Color.Transparent;
+            this.optionButton2.BackgroundPanelColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(28)))), ((int)(((byte)(30)))));
+            this.optionButton2.BorderDarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
+            this.optionButton2.BorderLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(105)))), ((int)(((byte)(95)))));
+            this.optionButton2.ClassName = null;
+            this.optionButton2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.optionButton2.FormName = null;
+            this.optionButton2.IsSelected = false;
+            this.optionButton2.Location = new System.Drawing.Point(16, 90);
+            this.optionButton2.Margin = new System.Windows.Forms.Padding(6);
+            this.optionButton2.Name = "optionButton2";
+            this.optionButton2.OptionIcon = null;
+            this.optionButton2.OptionText = "PLACE HOLDER";
+            this.optionButton2.Size = new System.Drawing.Size(220, 62);
+            this.optionButton2.TabIndex = 3;
+            this.optionButton2.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(240)))), ((int)(((byte)(150)))));
             // 
             // optionButton4
             // 
@@ -133,7 +151,7 @@
             this.optionButton4.FormName = null;
             this.optionButton4.IsSelected = false;
             this.optionButton4.Location = new System.Drawing.Point(16, 90);
-            this.optionButton4.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.optionButton4.Margin = new System.Windows.Forms.Padding(6);
             this.optionButton4.Name = "optionButton4";
             this.optionButton4.OptionIcon = null;
             this.optionButton4.OptionText = "PLACE HOLDER";
@@ -154,34 +172,13 @@
             this.optionButton1.FormName = null;
             this.optionButton1.IsSelected = false;
             this.optionButton1.Location = new System.Drawing.Point(16, 164);
-            this.optionButton1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.optionButton1.Margin = new System.Windows.Forms.Padding(6);
             this.optionButton1.Name = "optionButton1";
             this.optionButton1.OptionIcon = null;
             this.optionButton1.OptionText = "PLACE HOLDER";
             this.optionButton1.Size = new System.Drawing.Size(220, 62);
             this.optionButton1.TabIndex = 2;
             this.optionButton1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(240)))), ((int)(((byte)(150)))));
-            // 
-            // optionButton2
-            // 
-            this.optionButton2.AccentColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(230)))), ((int)(((byte)(120)))));
-            this.optionButton2.AccentHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
-            this.optionButton2.BackColor = System.Drawing.Color.Transparent;
-            this.optionButton2.BackgroundPanelColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(28)))), ((int)(((byte)(30)))));
-            this.optionButton2.BorderDarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
-            this.optionButton2.BorderLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(105)))), ((int)(((byte)(95)))));
-            this.optionButton2.ClassName = null;
-            this.optionButton2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.optionButton2.FormName = null;
-            this.optionButton2.IsSelected = false;
-            this.optionButton2.Location = new System.Drawing.Point(16, 238);
-            this.optionButton2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.optionButton2.Name = "optionButton2";
-            this.optionButton2.OptionIcon = null;
-            this.optionButton2.OptionText = "PLACE HOLDER";
-            this.optionButton2.Size = new System.Drawing.Size(220, 62);
-            this.optionButton2.TabIndex = 3;
-            this.optionButton2.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(240)))), ((int)(((byte)(150)))));
             // 
             // panel1
             // 
@@ -200,7 +197,7 @@
             this.pcsConsoleMain.ConsoleTitle = "SYSTEM LOG CONSOLE";
             this.pcsConsoleMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pcsConsoleMain.Location = new System.Drawing.Point(0, 0);
-            this.pcsConsoleMain.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pcsConsoleMain.Margin = new System.Windows.Forms.Padding(6);
             this.pcsConsoleMain.Name = "pcsConsoleMain";
             this.pcsConsoleMain.Size = new System.Drawing.Size(1125, 200);
             this.pcsConsoleMain.TabIndex = 0;
@@ -214,78 +211,6 @@
             this.pnlMain.Padding = new System.Windows.Forms.Padding(12);
             this.pnlMain.Size = new System.Drawing.Size(1125, 620);
             this.pnlMain.TabIndex = 0;
-            // 
-            // obtnTCP
-            // 
-            this.obtnTCP.AccentColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(230)))), ((int)(((byte)(120)))));
-            this.obtnTCP.AccentHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
-            this.obtnTCP.BackColor = System.Drawing.Color.Transparent;
-            this.obtnTCP.BackgroundPanelColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(28)))), ((int)(((byte)(30)))));
-            this.obtnTCP.BorderDarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
-            this.obtnTCP.BorderLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(105)))), ((int)(((byte)(95)))));
-            this.obtnTCP.ClassName = "TcpServer.dll";
-            this.obtnTCP.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.obtnTCP.FormName = "TcpServer.frmTcpServerDashboard";
-            this.obtnTCP.IsSelected = false;
-            resources.ApplyResources(this.obtnTCP, "obtnTCP");
-            this.obtnTCP.Name = "obtnTCP";
-            this.obtnTCP.OptionIcon = null;
-            this.obtnTCP.OptionText = "TCP Server";
-            this.obtnTCP.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(240)))), ((int)(((byte)(150)))));
-            // 
-            // btnKey
-            // 
-            this.btnKey.AccentColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(230)))), ((int)(((byte)(120)))));
-            this.btnKey.AccentHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
-            this.btnKey.BackColor = System.Drawing.Color.Transparent;
-            this.btnKey.BackgroundPanelColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(28)))), ((int)(((byte)(30)))));
-            this.btnKey.BorderDarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
-            this.btnKey.BorderLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(105)))), ((int)(((byte)(95)))));
-            this.btnKey.ClassName = "PACS-Center.dll";
-            this.btnKey.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnKey.FormName = "PACS_Center.frmKeyManager";
-            this.btnKey.IsSelected = false;
-            resources.ApplyResources(this.btnKey, "btnKey");
-            this.btnKey.Name = "btnKey";
-            this.btnKey.OptionIcon = null;
-            this.btnKey.OptionText = "Key Generator";
-            this.btnKey.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(240)))), ((int)(((byte)(150)))));
-            // 
-            // btnCode
-            // 
-            this.btnCode.AccentColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(230)))), ((int)(((byte)(120)))));
-            this.btnCode.AccentHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
-            this.btnCode.BackColor = System.Drawing.Color.Transparent;
-            this.btnCode.BackgroundPanelColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(28)))), ((int)(((byte)(30)))));
-            this.btnCode.BorderDarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
-            this.btnCode.BorderLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(105)))), ((int)(((byte)(95)))));
-            this.btnCode.ClassName = "PACS-Center.dll";
-            this.btnCode.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCode.FormName = "PACS_Center.frmInnerEncryption";
-            this.btnCode.IsSelected = false;
-            resources.ApplyResources(this.btnCode, "btnCode");
-            this.btnCode.Name = "btnCode";
-            this.btnCode.OptionIcon = null;
-            this.btnCode.OptionText = "Inner Encryption";
-            this.btnCode.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(240)))), ((int)(((byte)(150)))));
-            // 
-            // optionButton2
-            // 
-            this.optionButton2.AccentColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(230)))), ((int)(((byte)(120)))));
-            this.optionButton2.AccentHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
-            this.optionButton2.BackColor = System.Drawing.Color.Transparent;
-            this.optionButton2.BackgroundPanelColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(28)))), ((int)(((byte)(30)))));
-            this.optionButton2.BorderDarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
-            this.optionButton2.BorderLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(105)))), ((int)(((byte)(95)))));
-            this.optionButton2.ClassName = null;
-            this.optionButton2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.optionButton2.FormName = null;
-            this.optionButton2.IsSelected = false;
-            resources.  (this.optionButton2, "optionButton2");
-            this.optionButton2.Name = "optionButton2";
-            this.optionButton2.OptionIcon = null;
-            this.optionButton2.OptionText = "SECURITY\nSETUP";
-            this.optionButton2.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(240)))), ((int)(((byte)(150)))));
             // 
             // frmMain
             // 

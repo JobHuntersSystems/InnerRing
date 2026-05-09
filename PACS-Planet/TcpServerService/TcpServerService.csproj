@@ -41,14 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TcpServer.cs" />
+    <Compile Include="DataTcpServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\PACS-Common\PACS-Common.csproj">
-      <Project>{ae2dfbfd-20fc-4225-9991-62edaad6b012}</Project>
-      <Name>PACS-Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

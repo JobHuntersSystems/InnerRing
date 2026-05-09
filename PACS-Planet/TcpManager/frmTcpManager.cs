@@ -11,8 +11,8 @@ using System.Threading;
 using TcpClientServices;
 using TcpServerServices;
 using PACS_Common;
-using Inner_DB_Access;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace TcpManager
 {
@@ -20,14 +20,16 @@ namespace TcpManager
     {
 
         private TcpClientService clientData;
-        private TcpServerService serverData;
+        private DataTcpServer dataServer;
 
-        private DB_CRUD dbManger;
+        private ProtocolsManager protocolManager = new ProtocolsManager();
+
+        public List<string> clientsIPList { get; private set; } = new List<string>();
         public frmTcpManager()
         {
             InitializeComponent();
             clientData = new TcpClientService();
-            this.clientData.SendMessage += new EventHandler(OnMessageReceived);
+            this.clientData.NotificationSent += new EventHandler(OnClientServiceNotifyReceived);
         }
         #region Helpers
         private void genericInvokeAction(Control ctr, Action act)
@@ -37,135 +39,105 @@ namespace TcpManager
             else
                 act();
         }
-        private List<string> decodeMessage(MessageType type, string message)
+        
+        private void updateClientData(string protocol, string last_message)
         {
-            List<string> code_parts = new List<string>();
-            if (type == MessageType.ER)
-            {
-                string spaceship_code = message.Substring(2, 12);
-                string delivery_code = message.Substring(14, 12);
-
-                code_parts.Add(spaceship_code);
-                code_parts.Add(delivery_code);
-            }
-
-            return code_parts;
+            genericInvokeAction(pctSpaceship, () => {
+                string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + @"Resources\Spaceships\Imagenes", Spaceship.imagePath);
+                pctSpaceship.ImageLocation = path;
+                pctSpaceship.Visible = true;
+                lblCurrentRequestValue.Text = protocol;
+                lblSpaceshipIpValue.Text = Spaceship.ip;
+                lblLastMessageValue.Text = last_message;
+            });
+            
         }
         #endregion
-        private ResultType validateDelivery(string spaceship_code, string delivery_code, string ip_spaceship)
+        
+        #region Events TCP Gestion
+        public void OnServerStatusChanged(object sender, EventArgs e)
         {
-            ResultType result = ResultType.AD;
-            DataSet db;
- 
-            //Creamos una instacia del manager
-            if (dbManger == null)
-                dbManger = new DB_CRUD();
+            var tcp = (DataTcpServer.ServerStatusEventArgs)e;
+            LogLevel logL = LogLevel.Info;
 
-            //Buscamos en la db la información de la nace
-            string query = "SELECT *" +
-                "FROM SpaceShips " +
-                $"WHERE CodeSpaceShip = '{spaceship_code}';";
-
-            db = dbManger.PortarPerConsulta(query);
-            //Agregamos todos los datos de la nave
-            if (db.Tables[0] != null)
+            if(tcp.Status == ServerStatus.Error)
             {
-                var table = db.Tables[0];
-                Spaceship.id = int.Parse(table.Rows[0]["idSpaceShip"].ToString());
-                Spaceship.code = table.Rows[0]["CodeSpaceShip"].ToString();
-                Spaceship.dataPort = int.Parse(table.Rows[0]["PortSpaceShip"].ToString());
-                Spaceship.filePort = int.Parse(table.Rows[0]["PortSpaceShip1"].ToString());
-                Spaceship.ip = ip_spaceship;
-                Spaceship.imagePath = table.Rows[0]["SpaceshipImage"].ToString();
+                logL = LogLevel.Error;
             }
-            //Buscamos en la db si hay alguna entrega agendada con el DeliveryCode y SpaceShipCode recibidos 
-            query = "SELECT *" +
-                "FROM DeliveryData " +
-                $"WHERE idPlanet = '{Spaceship.id}'" +
-                $"AND CodeDelivery = '{delivery_code}';";
-
-            db = dbManger.PortarPerConsulta(query);
-            //Si se encuentra algun registro, devolvemos una respuesta afirmativa
-            if (db.Tables[0] != null)
-                result = ResultType.VP;
-
-            return result;
+            else if (tcp.Status == ServerStatus.Starting)
+            {
+                logL = LogLevel.Info;
+            }
+            else if (tcp.Status == ServerStatus.Closing)
+            {
+                logL = LogLevel.Warn;
+            }
+            else
+            {
+                logL = LogLevel.Debug;
+            }
+            genericInvokeAction(pcsConsoleLog, () => pcsConsoleLog.AddLog(
+                    logL,
+                    tcp.Message
+            ));
+            
         }
-        #region Events Tcp
-        public void OnMessageReceived(object sender, EventArgs e)
+        public void OnDataReceived(object sender, EventArgs e)
         {
-            if(sender is TcpServerService)
-            {
-                if (e is TcpServerService.MessageEventArgs)
-                {
-                    var tcp = (TcpServerService.MessageEventArgs)e;
-                    genericInvokeAction(pcsConsoleLog, () =>
-                    {
-                        pcsConsoleLog.AddLog(
-                            tcp.Level,
-                            tcp.Message
-                        );
-                    });
-                }
-                else if (e is TcpServerService.InfoEventArgs)
-                {
-                    var tcp = (TcpServerService.InfoEventArgs)e;
-                    genericInvokeAction(pcsConsoleLog, () =>
-                    {
-                        pcsConsoleLog.AddLog(
-                            tcp.Level,
-                            tcp.Message
-                        );
-                    });
-                    SendManagerEvent(tcp.Level, tcp.Message);
-                }
-            }
-            else if(sender is TcpClientService)
-            {
-                var tcp = (TcpClientService.TcpEventArgs)e;
-                genericInvokeAction(pcsConsoleLog, () =>
-                {
-                    pcsConsoleLog.AddLog(
-                        tcp.Level,
-                        tcp.Message
-                    );
-                });
-            }
-        }
-        public void OnProtocolReceived(object sender, EventArgs e)
-        {
-            var tcp = (TcpServerService.ProtocolEventArgs)e;
-
-            MessageType type = tcp.MessageType;
-            string spaceship_code = "";
-            string delivery_code = "";
             try
             {
-                if (type == MessageType.ER)
+                var tcp = (DataTcpServer.DataReceivedEventArgs)e;
+                string client_ip = tcp.ClientIp;
+                string client_message = tcp.RawData;
+
+                if (!clientsIPList.Contains(client_ip))
                 {
-                    string message_response = "VR";
-                    string number_response = "1";
-
-
-                    var message_decoded = decodeMessage(type, tcp.RawData);
-                    spaceship_code = message_decoded[0];
-                    delivery_code = message_decoded[1];
-
-
-                    ResultType result = validateDelivery(spaceship_code, delivery_code, tcp.HostIp);
-
-                    //Construimos el mensaje para enviar ====>
-                    if (result == ResultType.VP)
-                    {
-                        message_response += number_response + spaceship_code + "VP";
-                    }
-                    else
-                    {
-                        message_response += number_response + spaceship_code + "AD";
-                    }
-
-                    clientData.sendMessage(Spaceship.ip, Spaceship.dataPort, message_response);
+                    clientsIPList.Add(client_ip);
+                    RaiseNotificationSent(LogLevel.Warn, client_ip);
                 }
+                  
+                ProtocolResponse response = null;
+                MessageProtocolType type = protocolManager.identifyProtocolType(client_message);
+                switch (type)
+                {
+                    case MessageProtocolType.ER:
+                        Spaceship.ip = client_ip;
+                        genericInvokeAction(pcsConsoleLog, () => pcsConsoleLog.AddLog(
+                               LogLevel.Info,
+                               "ER Protocol detected, starting validation..."
+                       ));
+                        response = protocolManager.excuteERProtocol(client_message);
+                        string console_message = "Delivery refused, starting destruction";
+                        if (response != null)
+                        {
+                            genericInvokeAction(pcsConsoleLog, () => {
+
+                                if (response.logLevel == LogLevel.Success)
+                                {
+                                    btnCheckConnection.Visible = true;
+                                    updateClientData("ER", client_message);
+                                    console_message = "Delivery confirmed, able to the next stage ✅";
+                                }
+                                pcsConsoleLog.AddLog(
+                                    response.logLevel,
+                                    console_message
+                                );
+                               
+                            }); 
+                        }
+                        clientData.sendMessage(Spaceship.ip, Spaceship.dataPort, response.protocolResponse);
+                        break;
+                    case MessageProtocolType.VR:
+                        break;
+                    case MessageProtocolType.Message:
+                        string message = client_ip + " | " + client_message;
+                        genericInvokeAction(pcsConsoleLog, () => pcsConsoleLog.AddLog(
+                               LogLevel.Info,
+                               message
+                       ));
+                        break;
+                }
+              
             }
             catch (SqlException ex)
             {
@@ -184,45 +156,29 @@ namespace TcpManager
                 );
             }
         }
-        #endregion
-        #region Event ManagerEvent
-        public event EventHandler SendMessage;
-        public class ManagerEventArgs : EventArgs
+        public void OnClientServiceNotifyReceived(object sender, EventArgs e)
         {
-            public string Message { get; set; }
-            public LogLevel Level { get; set; }
-        }
-        protected virtual void OnSendMessage(ManagerEventArgs e)
-        {
-            if (null != SendMessage)
-            {
-                SendMessage(this, e);
-            }
-        }
-        private void SendManagerEvent(LogLevel level, string msg)
-        {
-            this.OnSendMessage(new ManagerEventArgs
-            {
-                Message = msg,
-                Level = level
-            });
+            var tcp = (TcpClientService.NotificationSentEventArgs)e;
+            genericInvokeAction(pcsConsoleLog, () => pcsConsoleLog.AddLog(
+                  tcp.Level,
+                  tcp.Message
+          ));
         }
         #endregion
-        #region Form
+        #region Form Events
         private void btnStartServer_Click(object sender, EventArgs e)
         {
-            if (serverData == null)
+            if (dataServer == null)
             {
-                serverData = new TcpServerService();
-                this.serverData.SendMessage += new EventHandler(OnMessageReceived);
-                this.serverData.infoMessage += new EventHandler(OnMessageReceived);
-                this.serverData.ProtocolMessage += new EventHandler(OnProtocolReceived);
+                dataServer = new DataTcpServer();
+                this.dataServer.ServerStatusChanged += new EventHandler(OnServerStatusChanged);
+                this.dataServer.DataReceived += new EventHandler(OnDataReceived);
             }
 
-            if (!serverData.isRunning)
+            if (!dataServer.isRunning)
             {
                 int portData = int.Parse(txtDataPort.Text);
-                serverData.startServer(portData);
+                dataServer.startServer(portData);
 
                 lblServerStatusValue.Text = "● ONLINE";
                 lblServerStatusValue.ForeColor = Color.FromArgb(80, 255, 90);
@@ -231,9 +187,9 @@ namespace TcpManager
 
         private void btnStopServer_Click(object sender, EventArgs e)
         {
-            if (serverData.isRunning)
+            if (dataServer.isRunning)
             {
-                serverData.stopServer();
+                dataServer.stopServer();
 
                 lblServerStatusValue.Text = "● OFFLINE";
                 lblServerStatusValue.ForeColor = Color.FromArgb(255, 180, 40);
@@ -242,12 +198,50 @@ namespace TcpManager
 
         private void btnCheckConnection_Click(object sender, EventArgs e)
         {
-            string ip = txtPlanetIp.Text;
+            string ip = Spaceship.ip;
             if (!string.IsNullOrWhiteSpace(ip))
             {
                 clientData.checkConnection(ip);
             }
 
+        }
+        private void frmTcpManager_Load(object sender, EventArgs e)
+        {
+            txtPlanetIp.Text = Planet.IPPlanet;
+            txtDataPort.Text = Planet.PortPlanet;
+            txtFilePort.Text = Planet.PortPlanet1;
+
+            lblIPPlanetValue.Text = Planet.IPPlanet;
+            lblDataPortValue.Text = Planet.PortPlanet;
+            lblFilePortValue.Text = Planet.PortPlanet1;
+            lblPlanetName.Text = Planet.DescPlanet.ToUpper();
+
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + @"Resources\Planets", Planet.PlanetPicture);
+            pctPlanet.ImageLocation = path;
+        }
+        #endregion
+        #region Event NotificationSent
+        public event EventHandler NotificationSent;
+        public class NotificationSentEventArgs : EventArgs
+        {
+            public LogLevel Level { get; set; }
+            public string Message { get; set; }
+        }
+
+        protected virtual void OnNotificationSent(NotificationSentEventArgs e)
+        {
+            if (null != NotificationSent)
+            {
+                NotificationSent(this, e);
+            }
+        }
+        private void RaiseNotificationSent(LogLevel level,string message)
+        {
+            this.OnNotificationSent(new NotificationSentEventArgs
+            {
+                Message = message,
+                Level = level
+            });
         }
         #endregion
     }

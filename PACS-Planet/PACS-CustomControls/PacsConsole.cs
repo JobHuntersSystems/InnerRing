@@ -86,7 +86,14 @@ namespace PACS_CustomControls
         {
             rtbConsole.Clear();
         }
+        public void AddData(string data)
+        {
+            rtbConsole.SelectionColor = Color.White;
+            rtbConsole.AppendText(data);
 
+            rtbConsole.SelectionStart = rtbConsole.TextLength;
+            rtbConsole.ScrollToCaret();
+        }
         private void AddLine(string level, string message, Color color)
         {
             string timestamp = DateTime.Now.ToString("HH:mm:ss");
