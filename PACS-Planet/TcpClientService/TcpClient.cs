@@ -10,119 +10,138 @@ using System.Net.Sockets;
 using System.Net;
 using System.IO;
 using System.Net.NetworkInformation;
+using PACS_Common;
 
 namespace TcpClientServices
 {
     public class TcpClientService
     {
-        List<string> public_ips = new List<string>()
+        private List<string> public_ips = new List<string>()
         {
             "1.1.1.1",        // Cloudflare primary
             "1.0.0.1",        // Cloudflare secondary
             "8.8.8.8",        // Google DNS primary
             "8.8.4.4",        // Google DNS secondary
-            "9.9.9.9",        // Quad9 primary
-            "149.112.112.112", // Quad9 secondary
-            "208.67.222.222",  // OpenDNS primary
-            "208.67.220.220",  // OpenDNS secondary
-            "4.2.2.1",        // Level3 primary
-            "4.2.2.2"         // Level3 secondary
         };
-        Boolean networkAvaible;
-        string currentIP;
-        int currentPort;
-
-        TcpClient client;
-        NetworkStream ns;
-        public bool testConnection()
+        private Thread clientThread;
+        private void _checkConnection(string hostIp)
         {
-            networkAvaible = true;
-           
-            networkAvaible = NetworkInterface.GetIsNetworkAvailable();
-            if (networkAvaible)
-            {
-                Ping myPing = new Ping();
-                PingReply reply;
-                foreach (var ip in public_ips)
-                {
-                    try
-                    {
-                        reply = myPing.Send(ip, 1000);
-                        if (reply.Address != null)
-                        {
-                            string message = $"Ping to {ip} - OK";
-                           
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        string message = $"Ping to {ip} - NOK";
-                      
-                        throw new Exception($"Error Connection: Ping to {ip} not respond");
-                    }
-                }
-            }
-            return networkAvaible;
-        }
-      
-        public void verifyConnection()
-        {
-            bool networkStatus = false;
+            bool networkAvaible = true;
             try
             {
-                networkStatus = testConnection();
-
-
-                if (currentIP != null && currentPort != 0)
+                networkAvaible = NetworkInterface.GetIsNetworkAvailable();
+                if (networkAvaible)
                 {
-                    client = new TcpClient();
-                    client.SendTimeout = 5000;
-                    client.ReceiveTimeout = 5000;
-                    client.Connect(currentIP, currentPort);
-                    ns = client.GetStream();
+                    Ping myPing = new Ping();
+                    PingReply reply;
+                    foreach (var ip in public_ips)
+                    {
+                        try
+                        {
+                            reply = myPing.Send(ip, 1000);
+                            if (reply.Address != null)
+                            {
+                                string message = $"Ping to {ip} - OK";
+                                RaiseNotificationSent(
+                                    message,
+                                    LogLevel.Success
+                                );
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            string message = $"Ping to {ip} - NOK";
+                            RaiseNotificationSent(
+                                message,
+                                LogLevel.Error
+                            );
+                            networkAvaible = false;
+                            throw new Exception($"Error Connection: Ping to {ip} not respond");
+                        }
+                    }
+                    reply = myPing.Send(hostIp, 1000);
+                    if (reply.Address != null)
+                    {
+                        string message = $"Ping to Spaceship: {hostIp} - OK";
+                        RaiseNotificationSent(
+                            message,
+                            LogLevel.Success
+                        );
+                    }
                 }
-                else
-                {
-                    throw new Exception("Undefined IP addresse or port in xml setting file ✘");
-                }
-            }
-            catch (IOException ex)
-            {
-               
-            }
-            catch (SocketException ex)
-            {
-              
             }
             catch (Exception ex)
             {
-              
+                RaiseNotificationSent(
+                  ex.Message,
+                  LogLevel.Error
+              );
             }
-
         }
-        public void sendMessage(string message)
+        private void _sendMessage(string hostIp, int hostPort, string message)
         {
-            using (BinaryWriter writer = new BinaryWriter(ns, Encoding.UTF8, true))
+            try
             {
-                byte[] dades = Encoding.UTF8.GetBytes(message);
-
-                if (dades.Length > 1024 * 1024)
+                using (TcpClient client = new TcpClient(hostIp, hostPort))
                 {
-                    throw new Exception("Message overweight ✘");
+                    client.SendTimeout = 5000;
+                    client.ReceiveTimeout = 5000;
+                    using (NetworkStream ns = client.GetStream())
+                    using (BinaryWriter writer = new BinaryWriter(ns, Encoding.UTF8, true))
+                    {
+                        byte[] dades = Encoding.UTF8.GetBytes(message);
+
+                        if (dades.Length > 1024 * 1024)
+                        {
+                            throw new Exception("Message overweight ✘");
+                        }
+                        writer.Write(dades.Length);
+                        writer.Write(dades);
+                    }
                 }
-                writer.Write(dades.Length);
-                writer.Write(dades);
+            }
+            catch (Exception ex)
+            {
+                RaiseNotificationSent(
+                    ex.Message,
+                    LogLevel.Error
+                );
             }
         }
-        public void closeConexion()
-        {
-            if (ns != null)
-                ns.Close();
 
-            if (client != null)
-                client.Close();
+        public void sendMessage(string hostIp, int hostPort, string message)
+        {
+            clientThread = new Thread(() => _sendMessage(hostIp, hostPort, message));
+            clientThread.Start();
+        }
+        public void checkConnection(string hostIp)
+        {
+            clientThread = new Thread(() => _checkConnection(hostIp));
+            clientThread.Start();
         }
 
-
+        #region Event NotificationSent
+        public event EventHandler NotificationSent;
+        public class NotificationSentEventArgs : EventArgs
+        {
+            public string Message { get; set; }
+            public LogLevel Level { get; set; }
+        }
+        protected virtual void OnNotificationSent(NotificationSentEventArgs e)
+        {
+            if (null != NotificationSent)
+            {
+                NotificationSent(this, e);
+            }
+        }
+        private void RaiseNotificationSent(string msg, LogLevel level)
+        {
+            this.OnNotificationSent(new NotificationSentEventArgs
+            {
+                Message = msg,
+                Level = level
+            });
+        }
+        #endregion
     }
 }

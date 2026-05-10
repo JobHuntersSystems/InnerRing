@@ -60,9 +60,6 @@
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMain.ssy.resx">
-      <DependentUpon>frmMain.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -106,6 +103,10 @@
     <ProjectReference Include="..\PACS-UI\PACS-UI.csproj">
       <Project>{f553bf70-c670-4b47-a179-b027740872ee}</Project>
       <Name>PACS-UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TcpManager\TcpManager.csproj">
+      <Project>{6afa8f25-c3b0-4afe-b506-83c1cfb4d676}</Project>
+      <Name>TcpManager</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
