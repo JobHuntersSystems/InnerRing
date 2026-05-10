@@ -131,7 +131,7 @@
             this.pnlTopbarGlow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(72)))), ((int)(((byte)(136)))));
             this.pnlTopbarGlow.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTopbarGlow.Location = new System.Drawing.Point(0, 0);
-            this.pnlTopbarGlow.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlTopbarGlow.Margin = new System.Windows.Forms.Padding(2);
             this.pnlTopbarGlow.Name = "pnlTopbarGlow";
             this.pnlTopbarGlow.Size = new System.Drawing.Size(1240, 1);
             this.pnlTopbarGlow.TabIndex = 3;
@@ -141,7 +141,7 @@
             this.pnlNeonTopLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(237)))), ((int)(((byte)(255)))));
             this.pnlNeonTopLine.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlNeonTopLine.Location = new System.Drawing.Point(0, 52);
-            this.pnlNeonTopLine.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlNeonTopLine.Margin = new System.Windows.Forms.Padding(2);
             this.pnlNeonTopLine.Name = "pnlNeonTopLine";
             this.pnlNeonTopLine.Size = new System.Drawing.Size(1240, 2);
             this.pnlNeonTopLine.TabIndex = 0;
@@ -174,7 +174,7 @@
             this.btnWeapons.FormName = "WpnSystems.FrmWeapons";
             this.btnWeapons.IsSelected = false;
             this.btnWeapons.Location = new System.Drawing.Point(11, 151);
-            this.btnWeapons.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnWeapons.Margin = new System.Windows.Forms.Padding(4);
             this.btnWeapons.Name = "btnWeapons";
             this.btnWeapons.OptionIcon = null;
             this.btnWeapons.OptionText = "WEAPON SYSTEMS";
@@ -196,7 +196,7 @@
             this.btnAutentification.FormName = "PACS_ProcessForms.frmAuthentification";
             this.btnAutentification.IsSelected = false;
             this.btnAutentification.Location = new System.Drawing.Point(11, 73);
-            this.btnAutentification.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAutentification.Margin = new System.Windows.Forms.Padding(4);
             this.btnAutentification.Name = "btnAutentification";
             this.btnAutentification.OptionIcon = null;
             this.btnAutentification.OptionText = "AUTHENTIFICATION";
@@ -212,7 +212,7 @@
             this.pnlSidebarHeader.Controls.Add(this.pnlSidebarAccentLine);
             this.pnlSidebarHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlSidebarHeader.Location = new System.Drawing.Point(11, 15);
-            this.pnlSidebarHeader.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlSidebarHeader.Margin = new System.Windows.Forms.Padding(2);
             this.pnlSidebarHeader.Name = "pnlSidebarHeader";
             this.pnlSidebarHeader.Size = new System.Drawing.Size(297, 58);
             this.pnlSidebarHeader.TabIndex = 3;
@@ -234,7 +234,7 @@
             this.pnlSidebarAccentLine2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(78)))), ((int)(((byte)(120)))));
             this.pnlSidebarAccentLine2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlSidebarAccentLine2.Location = new System.Drawing.Point(0, 55);
-            this.pnlSidebarAccentLine2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlSidebarAccentLine2.Margin = new System.Windows.Forms.Padding(2);
             this.pnlSidebarAccentLine2.Name = "pnlSidebarAccentLine2";
             this.pnlSidebarAccentLine2.Size = new System.Drawing.Size(297, 1);
             this.pnlSidebarAccentLine2.TabIndex = 1;
@@ -244,7 +244,7 @@
             this.pnlSidebarAccentLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
             this.pnlSidebarAccentLine.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlSidebarAccentLine.Location = new System.Drawing.Point(0, 56);
-            this.pnlSidebarAccentLine.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlSidebarAccentLine.Margin = new System.Windows.Forms.Padding(2);
             this.pnlSidebarAccentLine.Name = "pnlSidebarAccentLine";
             this.pnlSidebarAccentLine.Size = new System.Drawing.Size(297, 2);
             this.pnlSidebarAccentLine.TabIndex = 0;
@@ -254,7 +254,7 @@
             this.pnlNeonSideLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
             this.pnlNeonSideLine.Dock = System.Windows.Forms.DockStyle.Right;
             this.pnlNeonSideLine.Location = new System.Drawing.Point(308, 15);
-            this.pnlNeonSideLine.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlNeonSideLine.Margin = new System.Windows.Forms.Padding(2);
             this.pnlNeonSideLine.Name = "pnlNeonSideLine";
             this.pnlNeonSideLine.Size = new System.Drawing.Size(1, 599);
             this.pnlNeonSideLine.TabIndex = 0;
@@ -295,7 +295,7 @@
             this.pnlMainScanLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(255)))), ((int)(((byte)(173)))));
             this.pnlMainScanLine.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlMainScanLine.Location = new System.Drawing.Point(15, 16);
-            this.pnlMainScanLine.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlMainScanLine.Margin = new System.Windows.Forms.Padding(2);
             this.pnlMainScanLine.Name = "pnlMainScanLine";
             this.pnlMainScanLine.Size = new System.Drawing.Size(890, 1);
             this.pnlMainScanLine.TabIndex = 5;
@@ -305,7 +305,7 @@
             this.pnlMainFrameBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(76)))), ((int)(((byte)(136)))));
             this.pnlMainFrameBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlMainFrameBottom.Location = new System.Drawing.Point(15, 610);
-            this.pnlMainFrameBottom.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlMainFrameBottom.Margin = new System.Windows.Forms.Padding(2);
             this.pnlMainFrameBottom.Name = "pnlMainFrameBottom";
             this.pnlMainFrameBottom.Size = new System.Drawing.Size(890, 1);
             this.pnlMainFrameBottom.TabIndex = 1;
@@ -315,7 +315,7 @@
             this.pnlMainFrameRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(76)))), ((int)(((byte)(136)))));
             this.pnlMainFrameRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.pnlMainFrameRight.Location = new System.Drawing.Point(905, 16);
-            this.pnlMainFrameRight.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlMainFrameRight.Margin = new System.Windows.Forms.Padding(2);
             this.pnlMainFrameRight.Name = "pnlMainFrameRight";
             this.pnlMainFrameRight.Size = new System.Drawing.Size(1, 595);
             this.pnlMainFrameRight.TabIndex = 2;
@@ -325,7 +325,7 @@
             this.pnlMainFrameLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
             this.pnlMainFrameLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlMainFrameLeft.Location = new System.Drawing.Point(14, 16);
-            this.pnlMainFrameLeft.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlMainFrameLeft.Margin = new System.Windows.Forms.Padding(2);
             this.pnlMainFrameLeft.Name = "pnlMainFrameLeft";
             this.pnlMainFrameLeft.Size = new System.Drawing.Size(1, 595);
             this.pnlMainFrameLeft.TabIndex = 3;
@@ -335,7 +335,7 @@
             this.pnlMainFrameTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
             this.pnlMainFrameTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlMainFrameTop.Location = new System.Drawing.Point(14, 15);
-            this.pnlMainFrameTop.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlMainFrameTop.Margin = new System.Windows.Forms.Padding(2);
             this.pnlMainFrameTop.Name = "pnlMainFrameTop";
             this.pnlMainFrameTop.Size = new System.Drawing.Size(892, 1);
             this.pnlMainFrameTop.TabIndex = 4;
@@ -345,7 +345,7 @@
             this.pnlMainCornerAccent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlMainCornerAccent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(76)))), ((int)(((byte)(136)))));
             this.pnlMainCornerAccent.Location = new System.Drawing.Point(890, 608);
-            this.pnlMainCornerAccent.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlMainCornerAccent.Margin = new System.Windows.Forms.Padding(2);
             this.pnlMainCornerAccent.Name = "pnlMainCornerAccent";
             this.pnlMainCornerAccent.Size = new System.Drawing.Size(16, 3);
             this.pnlMainCornerAccent.TabIndex = 0;
@@ -363,9 +363,9 @@
             this.Controls.Add(this.pnlTopbar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmMain";
-            this.Padding = new System.Windows.Forms.Padding(20, 20, 20, 20);
+            this.Padding = new System.Windows.Forms.Padding(20);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Spaceship Cockpit";
+            this.Text = " ";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.pnlTopbar.ResumeLayout(false);
             this.pnlTopbar.PerformLayout();
