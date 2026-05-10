@@ -12,7 +12,7 @@ using System.IO;
 
 namespace TcpServerServices
 {
-    public class DataTcpServer
+    public class FileTcpServer
     {
         private bool _isRunning;
         public bool isRunning
@@ -24,6 +24,7 @@ namespace TcpServerServices
         private TcpListener listener;
         static CancellationTokenSource cts;
 
+        private string rootStorageFIlePath;
         private void _startServer(int serverPort)
         {
             try
@@ -35,7 +36,7 @@ namespace TcpServerServices
 
                 RaiseServerStatusChanged(
                     ServerStatus.Starting,
-                    "Starting data server in port: " + serverPort
+                    "Starting file server in port: " + serverPort
                 );
                 while (!cts.IsCancellationRequested)
                 {
@@ -49,11 +50,23 @@ namespace TcpServerServices
                             string clientIp = ((IPEndPoint)client.Client.RemoteEndPoint).Address.ToString();
                             try
                             {
-                                int messageLength = reader.ReadInt32();
-                                byte[] RecData = reader.ReadBytes(messageLength);
-                                string data = Encoding.UTF8.GetString(RecData);
+                                rootStorageFIlePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Data\FilesRecived");
+                                if(!Directory.Exists(rootStorageFIlePath))
+                                    Directory.CreateDirectory(rootStorageFIlePath);
 
-                                RaiseDataReceived(data,clientIp);
+                                string filePath = Path.Combine(rootStorageFIlePath, $"{DateTime.Now:yyyyMMdd_HHmmss}.bin");
+                                using (FileStream fileStream = new FileStream(filePath, FileMode.Create))
+                                {
+                                    byte[] buffer = new byte[4096];
+                                    int bytesRead;
+                                    while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) > 0)
+                                    {
+                                        fileStream.Write(buffer, 0, bytesRead);
+                                    }
+                                }
+                                RaiseFileReceived(
+                                    filePath,
+                                    clientIp);
                             }
                             catch (Exception ex)
                             {
@@ -133,26 +146,26 @@ namespace TcpServerServices
             });
         }
         #endregion
-        #region Event DataReceived
-        public event EventHandler DataReceived;
+        #region Event FileReceived
+        public event EventHandler FileReceived;
         public class DataReceivedEventArgs : EventArgs
         {
-            public string RawData { get; set; }
+            public string FilePath { get; set; }
             public string ClientIp { get; set; }
         }
-        protected virtual void OnDataReceived(DataReceivedEventArgs e)
+        protected virtual void OnFileReceived(DataReceivedEventArgs e)
         {
-            if (null != DataReceived)
+            if (null != FileReceived)
             {
-                DataReceived(this, e);
+                FileReceived(this, e);
             }
         }
 
-        private void RaiseDataReceived(string rawData, string clientIp)
+        private void RaiseFileReceived(string rawData, string clientIp)
         {
-            this.OnDataReceived(new DataReceivedEventArgs
+            this.OnFileReceived(new DataReceivedEventArgs
             {
-                RawData = rawData,
+                FilePath = rawData,
                 ClientIp = clientIp
             });
         }

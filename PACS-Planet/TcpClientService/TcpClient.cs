@@ -78,6 +78,41 @@ namespace TcpClientServices
               );
             }
         }
+        private void _sendFile(string hostIp, int hostPort, string localFilePath)
+        {
+            try
+            {
+                if (!File.Exists(localFilePath))
+                    throw new Exception($"File not found: {localFilePath}");
+
+                using (TcpClient client = new TcpClient(hostIp, hostPort))
+                {
+                    client.SendTimeout = 5000;
+                    client.ReceiveTimeout = 5000;
+                    
+                    using (NetworkStream ns = client.GetStream())
+                    using (BinaryWriter writer = new BinaryWriter(ns, Encoding.UTF8, true))
+                    {
+                        using (FileStream fileStream = new FileStream(localFilePath, FileMode.Open, FileAccess.Read))
+                        {
+                            byte[] buffer = new byte[4096];
+                            int bytesRead;
+                            while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) > 0)
+                            {
+                                ns.Write(buffer, 0, bytesRead);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                RaiseNotificationSent(
+                    ex.Message,
+                    LogLevel.Error
+                );
+            }
+        }
         private void _sendMessage(string hostIp, int hostPort, string message)
         {
             try
@@ -107,6 +142,11 @@ namespace TcpClientServices
                     LogLevel.Error
                 );
             }
+        }
+        public void sendFile(string hostIp, int hostPort, string localFilePath)
+        {
+            clientThread = new Thread(() => _sendFile(hostIp, hostPort, localFilePath));
+            clientThread.Start();
         }
 
         public void sendMessage(string hostIp, int hostPort, string message)
