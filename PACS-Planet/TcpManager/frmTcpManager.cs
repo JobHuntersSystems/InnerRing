@@ -82,6 +82,8 @@ namespace TcpManager
             ));
             
         }
+        
+        bool isActiveVkProtocol = false;
         public void OnDataReceived(object sender, EventArgs e)
         {
             try
@@ -90,54 +92,70 @@ namespace TcpManager
                 string client_ip = tcp.ClientIp;
                 string client_message = tcp.RawData;
 
+                //Identificamos si el cliente es conocido o no
                 if (!clientsIPList.Contains(client_ip))
                 {
+                    string message = $"Spaceship no identified detected: {client_ip}";
                     clientsIPList.Add(client_ip);
-                    RaiseNotificationSent(LogLevel.Warn, client_ip);
+                    RaiseNotificationSent(LogLevel.Warn, message);
                 }
-                  
-                ProtocolResponse response = null;
-                MessageProtocolType type = protocolManager.identifyProtocolType(client_message);
-                switch (type)
-                {
-                    case MessageProtocolType.ER:
-                        Spaceship.ip = client_ip;
-                        genericInvokeAction(pcsConsoleLog, () => pcsConsoleLog.AddLog(
-                               LogLevel.Info,
-                               "ER Protocol detected, starting validation..."
-                       ));
-                        response = protocolManager.excuteERProtocol(client_message);
-                        string console_message = "Delivery refused, starting destruction";
-                        if (response != null)
-                        {
-                            genericInvokeAction(pcsConsoleLog, () => {
 
-                                if (response.logLevel == LogLevel.Success)
-                                {
-                                    btnCheckConnection.Visible = true;
-                                    updateClientData("ER", client_message);
-                                    console_message = "Delivery confirmed, able to the next stage ✅";
-                                }
-                                pcsConsoleLog.AddLog(
-                                    response.logLevel,
-                                    console_message
-                                );
-                               
-                            }); 
-                        }
-                        clientData.sendMessage(Spaceship.ip, Spaceship.dataPort, response.protocolResponse);
-                        break;
-                    case MessageProtocolType.VR:
-                        break;
-                    case MessageProtocolType.Message:
-                        string message = client_ip + " | " + client_message;
-                        genericInvokeAction(pcsConsoleLog, () => pcsConsoleLog.AddLog(
-                               LogLevel.Info,
-                               message
-                       ));
-                        break;
+                if (!isActiveVkProtocol)
+                {
+                    MessageProtocolType type = protocolManager.identifyProtocolType(client_message);
+                    switch (type)
+                    {
+                        case MessageProtocolType.ER:
+                            ProtocolResponse response;
+                            Spaceship.ip = client_ip;
+                            genericInvokeAction(pcsConsoleLog, () => pcsConsoleLog.AddLog(
+                                   LogLevel.Info,
+                                   "ER Protocol detected, starting validation..."
+                           ));
+                            response = protocolManager.excuteErProtocol(client_message);
+                            string console_message;
+                            if (response != null)
+                            {
+                                genericInvokeAction(pcsConsoleLog, () => {
+
+                                    if (response.logLevel == LogLevel.Success)
+                                    {
+                                        btnCheckConnection.Visible = true;
+                                        updateClientData("ER", client_message);
+                                        console_message = "Delivery confirmed, able to the next stage ✅";
+                                    }
+                                    else
+                                    {
+                                        console_message = "Delivery refused, starting destruction ----> 🚀💥";
+                                    }
+                                    pcsConsoleLog.AddLog(
+                                        response.logLevel,
+                                        console_message
+                                    );
+                                }); 
+                            }
+                            clientData.sendMessage(Spaceship.ip, Spaceship.dataPort, response.protocolResponse);
+                            break;
+                        case MessageProtocolType.VK:
+                            isActiveVkProtocol = true;
+                            genericInvokeAction(pcsConsoleLog, () => pcsConsoleLog.AddLog(
+                                  LogLevel.Info,
+                                  "VK Protocol detected, wating for the next message..."
+                            ));
+                            break;
+                        case MessageProtocolType.Message:
+                            string message = client_ip + " | " + client_message;
+                            genericInvokeAction(pcsConsoleLog, () => pcsConsoleLog.AddLog(
+                                   LogLevel.Info,
+                                   message
+                           ));
+                            break;
+                    }
                 }
-              
+                else
+                {
+                    protocolManager.excuteVkProtocol(client_message);
+                }
             }
             catch (SqlException ex)
             {
