@@ -15,9 +15,9 @@ namespace PACS_Center
 {
     public partial class frmKeyManager : Form
     {
-        public frmKeyManager(int idPlanet)
+        public frmKeyManager()
         {
-            _idPlanet = idPlanet;
+            _idPlanet = PACS_Common.Planet.idPlanet;
             InitializeComponent();
         }
 
@@ -27,12 +27,6 @@ namespace PACS_Center
         private void btnKeyGenerator_Click(object sender, EventArgs e)
         {
             string keyName = SearchCode();
-            if (string.IsNullOrEmpty(keyName))
-            {
-                MessageBox.Show("Rellene el nombre de la key para poder seguir con el proceso");
-                return;
-            }
-
             
             DialogResult validation = MessageBox.Show("Press confirm to generate the keys","Are you sure?", MessageBoxButtons.OKCancel) ;
             if (validation == DialogResult.OK)
@@ -40,7 +34,6 @@ namespace PACS_Center
                 try
                 {
                     CspParameters cspp = new CspParameters { KeyContainerName = keyName };
-
                     using (RSACryptoServiceProvider rsa = new RSACryptoServiceProvider(cspp))
                     {
                         rsa.PersistKeyInCsp = true;
@@ -51,7 +44,7 @@ namespace PACS_Center
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Ocurrió un error al generar o guardar la clave:\n\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    lblMessage.Text = $"An error occurred while generating or saving the key:\n\n{ ex.Message}";
                 }                
             }            
         }
@@ -74,9 +67,8 @@ namespace PACS_Center
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error de conexión al buscar el código del planeta:\n\n{ex.Message}", "Error de BBDD");
+                lblMessage.Text = $"Connection error while searching for the planet code:\n\n{ex.Message}";
             }
-
             return code;
         }
 
@@ -99,13 +91,13 @@ namespace PACS_Center
                     string queryInsert = $"INSERT INTO PlanetKeys (idPlanet, XMLKey) VALUES ({_idPlanet}, '{key}')";
                     db.Executa(queryInsert);
                 }
+
+                lblMessage.Text = "The key pair has already been generated";
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Fallo al guardar la clave en la tabla PlanetKeys:\n\n{ex.Message}", "Error de BBDD");
+                lblMessage.Text = $"Failed to save the key in the PlanetKeys table:\n\n{ex.Message}";                 
             }
-
         }
-
     }
 }

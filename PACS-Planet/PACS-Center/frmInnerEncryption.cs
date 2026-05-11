@@ -9,14 +9,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Inner_DB_Access;
+using PACS_Common;
 
 namespace PACS_Center
 {
     public partial class frmInnerEncryption : Form
     {
-        public frmInnerEncryption(int idPlanet)
+        public frmInnerEncryption()
         {
-            _idPlanet = idPlanet;
+            _idPlanet = PACS_Common.Planet.idPlanet;
             InitializeComponent();            
         }
 
@@ -82,16 +83,17 @@ namespace PACS_Center
 
                 if(dt.Rows.Count == 0)
                 {
-                    timerMsj.Stop();
-                    btnCode.Enabled = true;
-                    lstMsj.Items.Add("Error!! The encryption record for this planet was not found in the database.");
-                    return;
+                    string msj = "The planet wasn't in the database, now I register it. One moment...";
+                    lstMsj.AddLog(LogLevel.Info, msj);
+                    string queryInsert = $"INSERT INTO InnerEncryption (idPlanet, ValidationCode) " +
+                                         $"VALUES ({_idPlanet}, '{validationCode}')";
+                    db.Executa(queryInsert);
+                    dt = db.PortarDataTable(id);
                 }
                 int idInner = (int)dt.Rows[0]["idInnerEncryption"];
 
                 string queryCode = $"Update InnerEncryption SET ValidationCode = '{validationCode}' WHERE idPlanet = {_idPlanet}";
                 db.Executa(queryCode);
-
 
                 string queryDelete = $"DELETE FROM InnerEncryptionData WHERE idInnerEncryption = {idInner}";
                 db.Executa(queryDelete);
@@ -108,7 +110,8 @@ namespace PACS_Center
             {
                 timerMsj.Stop();
                 btnCode.Enabled = true;
-                lstMsj.Items.Add("Error uploading to database!");
+                string msj = "Error uploading to database!";
+                lstMsj.AddLog(LogLevel.Error, msj);
 
                 MessageBox.Show(ex.Message);
             }
@@ -119,8 +122,7 @@ namespace PACS_Center
             btnCode.Enabled = false;
             
             pass = 0;
-            lstMsj.Items.Clear();
-
+            timerMsj.Interval = 600;
             timerMsj.Start();     
         }
 
@@ -131,24 +133,32 @@ namespace PACS_Center
             switch (pass)
             {
                 case 0:
-                    lstMsj.Items.Add("Generating encoding...");
+                    string msj = "Generating encoding...";
+                    lstMsj.AddLog(LogLevel.Info, msj);
                     validationCode = RandomCode();
                     data = RandomValue();
                     break;
                 case 1:
-                    lstMsj.Items.Add("Validating encoding...");
-                    break;
-                case 2:
-                    lstMsj.Items.Add("Encoding validated.");
+                    msj = "Validating encoding...";
+                    lstMsj.AddLog(LogLevel.Info, msj);
                     timerMsj.Interval = 1000;
                     break;
+                case 2:
+                    msj = "Encoding validated.";
+                    lstMsj.AddLog(LogLevel.Success, msj);                    
+                    break;
                 case 3:
-                    lstMsj.Items.Add("Uploading encoding to the system...");
+                    msj = "Uploading encoding to the system...";
+                    lstMsj.AddLog(LogLevel.Info, msj);
+                    timerMsj.Interval = 1500;
+                    break;
+                case 4:
                     SaveCode();
                     timerMsj.Interval = 2000;
                     break;
-                case 4:
-                    lstMsj.Items.Add("Upload completed.");
+                case 5:
+                    msj = "Upload completed.";
+                    lstMsj.AddLog(LogLevel.Success, msj);
 
                     timerMsj.Stop();
                     btnCode.Enabled = true;

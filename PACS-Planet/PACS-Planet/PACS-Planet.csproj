@@ -66,12 +66,6 @@
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMain.ssy.resx">
-      <DependentUpon>frmMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmPlanetValidation.resx">
-      <DependentUpon>FrmPlanetValidation.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -96,6 +90,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PACS-Center\PACS-Center.csproj">
+      <Project>{da08766a-dbfb-465b-86cd-360fe7385368}</Project>
+      <Name>PACS-Center</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PACS-Common\PACS-Common.csproj">
+      <Project>{ae2dfbfd-20fc-4225-9991-62edaad6b012}</Project>
+      <Name>PACS-Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PACS-CustomControls\PACS-CustomControls.csproj">
       <Project>{5e69e566-0081-4b55-8486-8341a9e082a1}</Project>
       <Name>PACS-CustomControls</Name>
@@ -108,9 +110,9 @@
       <Project>{f553bf70-c670-4b47-a179-b027740872ee}</Project>
       <Name>PACS-UI</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TcpDashboard\TcpDashboard.csproj">
-      <Project>{6AFA8F25-C3B0-4AFE-B506-83C1CFB4D676}</Project>
-      <Name>TcpServer</Name>
+    <ProjectReference Include="..\TcpManager\TcpManager.csproj">
+      <Project>{6afa8f25-c3b0-4afe-b506-83c1cfb4d676}</Project>
+      <Name>TcpManager</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
