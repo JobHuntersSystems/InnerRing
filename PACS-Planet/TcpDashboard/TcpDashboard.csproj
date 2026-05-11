@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6AFA8F25-C3B0-4AFE-B506-83C1CFB4D676}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TcpDashboard</RootNamespace>
+    <AssemblyName>TcpDashboard</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\App\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="frmTcpDashboard.cs" />
+    <Compile Include="frmTcpDashboard.Designer.cs">
+      <DependentUpon>frmTcpDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="frmTcpDashboard.resx">
+      <DependentUpon>frmTcpDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EventsClass\EventsClass.csproj">
+      <Project>{41d7d944-e5f9-4fb6-84ff-4b07aaa49e81}</Project>
+      <Name>EventsClass</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PACS-Common\PACS-Common.csproj">
+      <Project>{ae2dfbfd-20fc-4225-9991-62edaad6b012}</Project>
+      <Name>PACS-Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PACS-CustomControls\PACS-CustomControls.csproj">
+      <Project>{5e69e566-0081-4b55-8486-8341a9e082a1}</Project>
+      <Name>PACS-CustomControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TcpClientService\TcpClientService.csproj">
+      <Project>{ac916f85-7d76-407b-90ec-97551c54d995}</Project>
+      <Name>TcpClientService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TcpServerService\TcpServerService.csproj">
+      <Project>{1eaca337-8b9d-40cd-86a7-657772375065}</Project>
+      <Name>TcpServerService</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
