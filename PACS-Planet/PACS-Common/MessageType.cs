@@ -8,9 +8,8 @@ namespace PACS_Common
 {
     public enum MessageProtocolType
     {
-        ER,
-        VK,
-        VR,
+        ER, //Entry Request
+        VK, //Validation Key
         Message
     }
     public enum ResultType

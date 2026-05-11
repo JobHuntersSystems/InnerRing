@@ -31,11 +31,9 @@ namespace PACS_Planet
         #endregion
         private Dictionary<int, string> protocol_stages = new Dictionary<int, string>()
         {
-            {1, "☑️ Stage 1: Delivery Code Validation"},
-            {2, " ⬜ Stage 2: RSA Validation"},
-            {3, " ⬜ Stage 3: Cryptogray validation"},
-            {4, " ⬜ Stage 4: ASDASD"},
-            {5, " ⬜ Stage 5: ASDASD"}
+            {1, "☑️ Stage 1: Delivery schedule"},
+            {2, " ⬜ Stage 2: Validation Code"},
+            {3, " ⬜ Stage 3: Check Sum"},
         };
 
         private void openForm(Form frm)
