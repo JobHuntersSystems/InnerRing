@@ -43,8 +43,9 @@
             this.lblCurrentRequest = new System.Windows.Forms.Label();
             this.lblConnectionTitle = new System.Windows.Forms.Label();
             this.pnlLog = new System.Windows.Forms.Panel();
-            this.pctPlanet = new System.Windows.Forms.PictureBox();
             this.pcsConsoleLog = new PACS_CustomControls.PacsConsole();
+            this.pctSpaceship = new System.Windows.Forms.PictureBox();
+            this.pctPlanet = new System.Windows.Forms.PictureBox();
             this.pctSpaceBackground = new System.Windows.Forms.PictureBox();
             this.tlpStatus = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -62,13 +63,13 @@
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.lblPlanetName = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.pctSpaceship = new System.Windows.Forms.PictureBox();
             this.pnlRoot.SuspendLayout();
             this.tlpCenter.SuspendLayout();
             this.pnlConfiguration.SuspendLayout();
             this.pnlControls.SuspendLayout();
             this.pnlConnection.SuspendLayout();
             this.pnlLog.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pctSpaceship)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pctPlanet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pctSpaceBackground)).BeginInit();
             this.tlpStatus.SuspendLayout();
@@ -77,7 +78,6 @@
             this.pnlDataPort.SuspendLayout();
             this.pnlFilePort.SuspendLayout();
             this.pnlHeader.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pctSpaceship)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlRoot
@@ -109,7 +109,7 @@
             this.tlpCenter.Padding = new System.Windows.Forms.Padding(0, 8, 0, 8);
             this.tlpCenter.RowCount = 1;
             this.tlpCenter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpCenter.Size = new System.Drawing.Size(1090, 255);
+            this.tlpCenter.Size = new System.Drawing.Size(1090, 200);
             this.tlpCenter.TabIndex = 2;
             // 
             // pnlConfiguration
@@ -128,7 +128,7 @@
             this.pnlConfiguration.Margin = new System.Windows.Forms.Padding(5);
             this.pnlConfiguration.Name = "pnlConfiguration";
             this.pnlConfiguration.Padding = new System.Windows.Forms.Padding(14);
-            this.pnlConfiguration.Size = new System.Drawing.Size(360, 228);
+            this.pnlConfiguration.Size = new System.Drawing.Size(360, 174);
             this.pnlConfiguration.TabIndex = 0;
             // 
             // txtFilePort
@@ -223,7 +223,7 @@
             this.pnlControls.Margin = new System.Windows.Forms.Padding(5);
             this.pnlControls.Name = "pnlControls";
             this.pnlControls.Padding = new System.Windows.Forms.Padding(14);
-            this.pnlControls.Size = new System.Drawing.Size(338, 228);
+            this.pnlControls.Size = new System.Drawing.Size(338, 174);
             this.pnlControls.TabIndex = 1;
             // 
             // btnCheckConnection
@@ -238,7 +238,7 @@
             this.btnCheckConnection.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
             this.btnCheckConnection.Location = new System.Drawing.Point(20, 126);
             this.btnCheckConnection.Name = "btnCheckConnection";
-            this.btnCheckConnection.Size = new System.Drawing.Size(291, 32);
+            this.btnCheckConnection.Size = new System.Drawing.Size(290, 32);
             this.btnCheckConnection.TabIndex = 3;
             this.btnCheckConnection.Text = "CHECK CONNECTION";
             this.btnCheckConnection.UseVisualStyleBackColor = false;
@@ -257,7 +257,7 @@
             this.btnStopServer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
             this.btnStopServer.Location = new System.Drawing.Point(20, 88);
             this.btnStopServer.Name = "btnStopServer";
-            this.btnStopServer.Size = new System.Drawing.Size(291, 32);
+            this.btnStopServer.Size = new System.Drawing.Size(290, 32);
             this.btnStopServer.TabIndex = 2;
             this.btnStopServer.Text = "STOP TCP SERVER";
             this.btnStopServer.UseVisualStyleBackColor = false;
@@ -275,7 +275,7 @@
             this.btnStartServer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(255)))), ((int)(((byte)(90)))));
             this.btnStartServer.Location = new System.Drawing.Point(20, 50);
             this.btnStartServer.Name = "btnStartServer";
-            this.btnStartServer.Size = new System.Drawing.Size(291, 32);
+            this.btnStartServer.Size = new System.Drawing.Size(290, 32);
             this.btnStartServer.TabIndex = 1;
             this.btnStartServer.Text = "START TCP SERVER";
             this.btnStartServer.UseVisualStyleBackColor = false;
@@ -308,7 +308,7 @@
             this.pnlConnection.Margin = new System.Windows.Forms.Padding(5);
             this.pnlConnection.Name = "pnlConnection";
             this.pnlConnection.Padding = new System.Windows.Forms.Padding(14);
-            this.pnlConnection.Size = new System.Drawing.Size(362, 228);
+            this.pnlConnection.Size = new System.Drawing.Size(362, 174);
             this.pnlConnection.TabIndex = 2;
             // 
             // lblLastMessageValue
@@ -394,33 +394,46 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlLog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(4)))), ((int)(((byte)(4)))));
             this.pnlLog.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlLog.Controls.Add(this.pcsConsoleLog);
             this.pnlLog.Controls.Add(this.pctSpaceship);
             this.pnlLog.Controls.Add(this.pctPlanet);
-            this.pnlLog.Controls.Add(this.pcsConsoleLog);
             this.pnlLog.Controls.Add(this.pctSpaceBackground);
-            this.pnlLog.Location = new System.Drawing.Point(12, 415);
+            this.pnlLog.Location = new System.Drawing.Point(12, 372);
             this.pnlLog.Name = "pnlLog";
-            this.pnlLog.Size = new System.Drawing.Size(1086, 190);
+            this.pnlLog.Size = new System.Drawing.Size(1086, 233);
             this.pnlLog.TabIndex = 3;
-            // 
-            // pctPlanet
-            // 
-            this.pctPlanet.Location = new System.Drawing.Point(598, 5);
-            this.pctPlanet.Name = "pctPlanet";
-            this.pctPlanet.Size = new System.Drawing.Size(188, 180);
-            this.pctPlanet.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pctPlanet.TabIndex = 1;
-            this.pctPlanet.TabStop = false;
             // 
             // pcsConsoleLog
             // 
             this.pcsConsoleLog.AccentColor = System.Drawing.Color.Yellow;
+            this.pcsConsoleLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.pcsConsoleLog.BackColor = System.Drawing.Color.Transparent;
             this.pcsConsoleLog.ConsoleTitle = "TCP LOG CONSOLE";
-            this.pcsConsoleLog.Location = new System.Drawing.Point(2, -1);
+            this.pcsConsoleLog.Location = new System.Drawing.Point(3, 3);
             this.pcsConsoleLog.Name = "pcsConsoleLog";
-            this.pcsConsoleLog.Size = new System.Drawing.Size(599, 187);
-            this.pcsConsoleLog.TabIndex = 0;
+            this.pcsConsoleLog.Size = new System.Drawing.Size(535, 225);
+            this.pcsConsoleLog.TabIndex = 4;
+            // 
+            // pctSpaceship
+            // 
+            this.pctSpaceship.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pctSpaceship.Location = new System.Drawing.Point(956, 7);
+            this.pctSpaceship.Name = "pctSpaceship";
+            this.pctSpaceship.Size = new System.Drawing.Size(121, 116);
+            this.pctSpaceship.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pctSpaceship.TabIndex = 3;
+            this.pctSpaceship.TabStop = false;
+            this.pctSpaceship.Visible = false;
+            // 
+            // pctPlanet
+            // 
+            this.pctPlanet.Location = new System.Drawing.Point(543, 8);
+            this.pctPlanet.Name = "pctPlanet";
+            this.pctPlanet.Size = new System.Drawing.Size(212, 214);
+            this.pctPlanet.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pctPlanet.TabIndex = 1;
+            this.pctPlanet.TabStop = false;
             // 
             // pctSpaceBackground
             // 
@@ -429,7 +442,7 @@
             this.pctSpaceBackground.Image = ((System.Drawing.Image)(resources.GetObject("pctSpaceBackground.Image")));
             this.pctSpaceBackground.Location = new System.Drawing.Point(655, 0);
             this.pctSpaceBackground.Name = "pctSpaceBackground";
-            this.pctSpaceBackground.Size = new System.Drawing.Size(429, 188);
+            this.pctSpaceBackground.Size = new System.Drawing.Size(429, 231);
             this.pctSpaceBackground.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pctSpaceBackground.TabIndex = 2;
             this.pctSpaceBackground.TabStop = false;
@@ -643,16 +656,6 @@
             this.lblTitle.Text = "TCP/IP SERVER CONTROL";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // pctSpaceship
-            // 
-            this.pctSpaceship.Location = new System.Drawing.Point(825, 5);
-            this.pctSpaceship.Name = "pctSpaceship";
-            this.pctSpaceship.Size = new System.Drawing.Size(121, 116);
-            this.pctSpaceship.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pctSpaceship.TabIndex = 3;
-            this.pctSpaceship.TabStop = false;
-            this.pctSpaceship.Visible = false;
-            // 
             // frmTcpManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -673,6 +676,7 @@
             this.pnlConnection.ResumeLayout(false);
             this.pnlConnection.PerformLayout();
             this.pnlLog.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pctSpaceship)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pctPlanet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pctSpaceBackground)).EndInit();
             this.tlpStatus.ResumeLayout(false);
@@ -681,7 +685,6 @@
             this.pnlDataPort.ResumeLayout(false);
             this.pnlFilePort.ResumeLayout(false);
             this.pnlHeader.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pctSpaceship)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -729,12 +732,12 @@
         private System.Windows.Forms.Label lblLastMessage;
         private System.Windows.Forms.Label lblLastMessageValue;
         private System.Windows.Forms.Panel pnlLog;
-        private PACS_CustomControls.PacsConsole pcsConsoleLog;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblFilePortValue;
         private System.Windows.Forms.Label lblFilePortTitle;
         private System.Windows.Forms.PictureBox pctPlanet;
         private System.Windows.Forms.PictureBox pctSpaceBackground;
         private System.Windows.Forms.PictureBox pctSpaceship;
+        private PACS_CustomControls.PacsConsole pcsConsoleLog;
     }
 }

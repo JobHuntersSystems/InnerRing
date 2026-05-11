@@ -15,6 +15,7 @@ namespace TcpManager
     public class ProtocolsManager
     {
         private DB_CRUD dbManger;
+        DataSet db;
         public MessageProtocolType identifyProtocolType(string message)
         {
             MessageProtocolType type;
@@ -23,9 +24,9 @@ namespace TcpManager
             {
                 type = MessageProtocolType.ER;
             }
-            else if (Regex.IsMatch(message, @"^VR.{24}$"))
+            else if (Regex.IsMatch(message, @"^VK"))
             {
-                type = MessageProtocolType.VR;
+                type = MessageProtocolType.VK;
             }
             else
             {
@@ -45,7 +46,7 @@ namespace TcpManager
                     code_parts.Add(spaceship_code);
                     code_parts.Add(delivery_code);
                     break;
-                case MessageProtocolType.VR:
+                case MessageProtocolType.VK:
                     break;
                 case MessageProtocolType.Message:
                     break;
@@ -53,16 +54,8 @@ namespace TcpManager
          
             return code_parts;
         }
-        #region ER Protocol
-        private ResultType validateDelivery(string spaceship_code, string delivery_code)
+        public void idenifySpaceship(string spaceship_code)
         {
-            ResultType result = ResultType.AD;
-            DataSet db;
-
-            //Creamos una instacia del manager
-            if (dbManger == null)
-                dbManger = new DB_CRUD();
-
             //Buscamos en la db la información de la nace
             string query = "SELECT *" +
                 "FROM SpaceShips " +
@@ -79,7 +72,28 @@ namespace TcpManager
                 Spaceship.dataPort = int.Parse(table.Rows[0]["PortSpaceShip"].ToString());
                 Spaceship.filePort = int.Parse(table.Rows[0]["PortSpaceShip1"].ToString());
                 Spaceship.imagePath = table.Rows[0]["SpaceshipImage"].ToString();
-            
+            }
+        }
+        #region ER Protocol
+        private ResultType validateDelivery(string spaceship_code, string delivery_code)
+        {
+            ResultType result = ResultType.AD;
+
+            //Creamos una instacia del manager
+            if (dbManger == null)
+                dbManger = new DB_CRUD();
+
+            idenifySpaceship(spaceship_code);
+
+            //Buscamos en la db la información de la nace
+            string query = "SELECT *" +
+                "FROM SpaceShips " +
+                $"WHERE CodeSpaceShip = '{spaceship_code}';";
+
+            db = dbManger.PortarPerConsulta(query);
+
+            if (Spaceship.id != 0)
+            {
                 //Buscamos en la db si hay alguna entrega agendada con el DeliveryCode y SpaceShipCode recibidos 
                 query = "SELECT *" +
                     "FROM DeliveryData " +
@@ -87,18 +101,21 @@ namespace TcpManager
                     $"AND CodeDelivery = '{delivery_code}';";
 
                 db = dbManger.PortarPerConsulta(query);
-                //Si se encuentra algun registro, devolvemos una respuesta afirmativa
+
+                //Si se encuentra algun registro, devolvemos una respuesta afirmativa y avanzamos en el estado del protocolo
                 if (db.Tables[0].Rows.Count > 0)
+                {
                     result = ResultType.VP;
+                    Spaceship.CurrentStage += 1;
+                }
             }
+
             return result;
         }
-        int protocol_stage = 0;
-        public ProtocolResponse excuteERProtocol(string code)
+        public ProtocolResponse excuteErProtocol(string code)
         {
             ProtocolResponse response = new ProtocolResponse();
             string message_response ="VR";
-            protocol_stage += 1;
 
             MessageProtocolType type = MessageProtocolType.ER;
             List<string> messageDecoded = decodeMessage(type, code);
@@ -108,7 +125,7 @@ namespace TcpManager
 
             ResultType validation = validateDelivery(delivery_code, spaceship_code);
 
-            message_response += protocol_stage
+            message_response += Spaceship.CurrentStage
                   + spaceship_code
                   + (validation == ResultType.VP ? "VP" : "AD");
 
@@ -118,10 +135,13 @@ namespace TcpManager
                 protocolResponse = message_response
             };
 
-            //En el caso de ser negativo, reiniciamos el numero de la fase del protocolo
-            if (validation == ResultType.AD)
-                protocol_stage = 0;
-
+            return response;
+        }
+        #endregion
+        #region VK Protocol
+        public ProtocolResponse excuteVkProtocol(string code)
+        {
+            ProtocolResponse response = new ProtocolResponse();
             return response;
         }
         #endregion
