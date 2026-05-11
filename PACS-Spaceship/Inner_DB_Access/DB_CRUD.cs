@@ -34,7 +34,7 @@ namespace Inner_DB_Access
         /// <remarks>Este método no se puede llamar y ejecuta cuadno se crea el objeto.</remarks>
         private void EncryptConnection()
         {
-            Configuration configuration = ConfigurationManager.OpenExeConfiguration("JobHuntersSystem.exe");
+            Configuration configuration = ConfigurationManager.OpenExeConfiguration("PACS-Spaceship.exe");
             ConnectionStringsSection section = configuration.GetSection("connectionStrings") as ConnectionStringsSection;
 
             if (!section.SectionInformation.IsProtected)

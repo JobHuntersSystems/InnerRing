@@ -4,15 +4,8 @@ namespace PACS_ProcessForms
 {
     partial class frmConnection
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -24,59 +17,56 @@ namespace PACS_ProcessForms
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             this.pnlBackGround = new PACS_CustomControls.CustomPanel();
+            this.pacsConsole2 = new PACS_CustomControls.PacsConsole();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pnlTopDown = new System.Windows.Forms.Panel();
             this.pnlTopRigh = new System.Windows.Forms.Panel();
             this.pnlTopFillLeft = new System.Windows.Forms.Panel();
             this.lblHeaderLeft = new System.Windows.Forms.Label();
             this.lblHeaderRight = new System.Windows.Forms.Label();
-            this.pacsConsole1 = new PACS_CustomControls.PacsConsole();
             this.pnlStatus = new PACS_CustomControls.CustomPanel();
             this.lblStatusTitle = new System.Windows.Forms.Label();
             this.lblStatusValue = new System.Windows.Forms.Label();
-            this.pnlFilePort = new PACS_CustomControls.CustomPanel();
-            this.lblFilePortTitle = new System.Windows.Forms.Label();
-            this.lblFilePortValue = new System.Windows.Forms.Label();
-            this.pnlDataPort = new PACS_CustomControls.CustomPanel();
-            this.lblDataPortTitle = new System.Windows.Forms.Label();
-            this.lblDataPortValue = new System.Windows.Forms.Label();
             this.pnlPlanetIP = new PACS_CustomControls.CustomPanel();
             this.lblPlanetIPTitle = new System.Windows.Forms.Label();
             this.lblPlanetIPValue = new System.Windows.Forms.Label();
+            this.pnlDataPort = new PACS_CustomControls.CustomPanel();
+            this.lblDataPortTitle = new System.Windows.Forms.Label();
+            this.lblDataPortValue = new System.Windows.Forms.Label();
+            this.pnlFilePort = new PACS_CustomControls.CustomPanel();
+            this.lblFilePortTitle = new System.Windows.Forms.Label();
+            this.lblFilePortValue = new System.Windows.Forms.Label();
+            this.pnlTarget = new PACS_CustomControls.CustomPanel();
+            this.lblTargetTitle = new System.Windows.Forms.Label();
+            this.cmbTargetIP = new System.Windows.Forms.ComboBox();
             this.pnlConfig = new PACS_CustomControls.CustomPanel();
             this.lblConfigTitle = new System.Windows.Forms.Label();
-            this.lblConfIP = new System.Windows.Forms.Label();
-            this.txtConfIP = new System.Windows.Forms.TextBox();
-            this.lblConfData = new System.Windows.Forms.Label();
-            this.txtConfData = new System.Windows.Forms.TextBox();
-            this.lblConfFile = new System.Windows.Forms.Label();
-            this.txtConfFile = new System.Windows.Forms.TextBox();
+            this.lblShipID = new System.Windows.Forms.Label();
+            this.txtShipID = new System.Windows.Forms.TextBox();
+            this.lblDeliveryID = new System.Windows.Forms.Label();
+            this.txtDeliveryID = new System.Windows.Forms.TextBox();
             this.pnlControls = new PACS_CustomControls.CustomPanel();
             this.lblControlsTitle = new System.Windows.Forms.Label();
-            this.btnStart = new PACS_CustomControls.ProcessButton();
-            this.btnStop = new PACS_CustomControls.ProcessButton();
-            this.btnCheck = new PACS_CustomControls.ProcessButton();
+            this.btnPing = new PACS_CustomControls.ProcessButton();
+            this.btnProceed = new PACS_CustomControls.ProcessButton();
             this.pnlConnection = new PACS_CustomControls.CustomPanel();
             this.lblConnTitle = new System.Windows.Forms.Label();
-            this.lblReqTitle = new System.Windows.Forms.Label();
-            this.lblReqValue = new System.Windows.Forms.Label();
-            this.lblClientTitle = new System.Windows.Forms.Label();
-            this.lblClientValue = new System.Windows.Forms.Label();
-            this.lblMsgTitle = new System.Windows.Forms.Label();
-            this.lblMsgValue = new System.Windows.Forms.Label();
+            this.lblLastRespTitle = new System.Windows.Forms.Label();
+            this.lblLastRespValue = new System.Windows.Forms.Label();
+            this.lblAuthStateTitle = new System.Windows.Forms.Label();
+            this.lblAuthStateValue = new System.Windows.Forms.Label();
+            this.lblSecureCoreTitle = new System.Windows.Forms.Label();
+            this.lblSecureCoreValue = new System.Windows.Forms.Label();
             this.pnlBackGround.SuspendLayout();
             this.panel1.SuspendLayout();
             this.pnlStatus.SuspendLayout();
-            this.pnlFilePort.SuspendLayout();
-            this.pnlDataPort.SuspendLayout();
             this.pnlPlanetIP.SuspendLayout();
+            this.pnlDataPort.SuspendLayout();
+            this.pnlFilePort.SuspendLayout();
+            this.pnlTarget.SuspendLayout();
             this.pnlConfig.SuspendLayout();
             this.pnlControls.SuspendLayout();
             this.pnlConnection.SuspendLayout();
@@ -89,12 +79,13 @@ namespace PACS_ProcessForms
             this.pnlBackGround.ColorAbajo = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(20)))));
             this.pnlBackGround.ColorArriba = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.pnlBackGround.ColorBordeNeon = System.Drawing.Color.Red;
+            this.pnlBackGround.Controls.Add(this.pacsConsole2);
             this.pnlBackGround.Controls.Add(this.panel1);
-            this.pnlBackGround.Controls.Add(this.pacsConsole1);
             this.pnlBackGround.Controls.Add(this.pnlStatus);
-            this.pnlBackGround.Controls.Add(this.pnlFilePort);
-            this.pnlBackGround.Controls.Add(this.pnlDataPort);
             this.pnlBackGround.Controls.Add(this.pnlPlanetIP);
+            this.pnlBackGround.Controls.Add(this.pnlDataPort);
+            this.pnlBackGround.Controls.Add(this.pnlFilePort);
+            this.pnlBackGround.Controls.Add(this.pnlTarget);
             this.pnlBackGround.Controls.Add(this.pnlConfig);
             this.pnlBackGround.Controls.Add(this.pnlControls);
             this.pnlBackGround.Controls.Add(this.pnlConnection);
@@ -104,6 +95,17 @@ namespace PACS_ProcessForms
             this.pnlBackGround.Name = "pnlBackGround";
             this.pnlBackGround.Size = new System.Drawing.Size(980, 600);
             this.pnlBackGround.TabIndex = 0;
+            // 
+            // pacsConsole2
+            // 
+            this.pacsConsole2.AccentColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.pacsConsole2.BackColor = System.Drawing.Color.Transparent;
+            this.pacsConsole2.ConsoleTitle = "SYSTEM LOG CONSOLE";
+            this.pacsConsole2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pacsConsole2.Location = new System.Drawing.Point(0, 393);
+            this.pacsConsole2.Name = "pacsConsole2";
+            this.pacsConsole2.Size = new System.Drawing.Size(980, 207);
+            this.pacsConsole2.TabIndex = 23;
             // 
             // panel1
             // 
@@ -152,29 +154,18 @@ namespace PACS_ProcessForms
             this.lblHeaderLeft.Name = "lblHeaderLeft";
             this.lblHeaderLeft.Size = new System.Drawing.Size(264, 26);
             this.lblHeaderLeft.TabIndex = 12;
-            this.lblHeaderLeft.Text = "TCP/IP SERVER CONTROL";
+            this.lblHeaderLeft.Text = "///SPACESHIP COMMLINK";
             // 
             // lblHeaderRight
             // 
             this.lblHeaderRight.AutoSize = true;
             this.lblHeaderRight.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold);
             this.lblHeaderRight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            this.lblHeaderRight.Location = new System.Drawing.Point(576, 17);
+            this.lblHeaderRight.Location = new System.Drawing.Point(586, 17);
             this.lblHeaderRight.Name = "lblHeaderRight";
-            this.lblHeaderRight.Size = new System.Drawing.Size(384, 17);
+            this.lblHeaderRight.Size = new System.Drawing.Size(320, 17);
             this.lblHeaderRight.TabIndex = 13;
-            this.lblHeaderRight.Text = "PLANET LISTENER MODULE  |  WAITING FOR OPERATOR";
-            // 
-            // pacsConsole1
-            // 
-            this.pacsConsole1.AccentColor = System.Drawing.Color.Empty;
-            this.pacsConsole1.BackColor = System.Drawing.Color.Transparent;
-            this.pacsConsole1.ConsoleTitle = "SYSTEM LOG CONSOLE";
-            this.pacsConsole1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.pacsConsole1.Location = new System.Drawing.Point(20, 394);
-            this.pacsConsole1.Name = "pacsConsole1";
-            this.pacsConsole1.Size = new System.Drawing.Size(940, 190);
-            this.pacsConsole1.TabIndex = 19;
+            this.lblHeaderRight.Text = "PACS CLIENT MODULE  |  AWAITING COMMAND";
             // 
             // pnlStatus
             // 
@@ -199,7 +190,7 @@ namespace PACS_ProcessForms
             this.lblStatusTitle.Name = "lblStatusTitle";
             this.lblStatusTitle.Size = new System.Drawing.Size(220, 20);
             this.lblStatusTitle.TabIndex = 0;
-            this.lblStatusTitle.Text = "SERVER STATUS";
+            this.lblStatusTitle.Text = "UPLINK STATUS";
             this.lblStatusTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblStatusValue
@@ -210,45 +201,45 @@ namespace PACS_ProcessForms
             this.lblStatusValue.Name = "lblStatusValue";
             this.lblStatusValue.Size = new System.Drawing.Size(220, 25);
             this.lblStatusValue.TabIndex = 1;
-            this.lblStatusValue.Text = "● OFFLINE";
+            this.lblStatusValue.Text = "● DISCONNECTED";
             this.lblStatusValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // pnlFilePort
+            // pnlPlanetIP
             // 
-            this.pnlFilePort.Angulo = 90F;
-            this.pnlFilePort.BackColor = System.Drawing.Color.Transparent;
-            this.pnlFilePort.ColorAbajo = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(0)))), ((int)(((byte)(50)))), ((int)(((byte)(80)))));
-            this.pnlFilePort.ColorArriba = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(10)))), ((int)(((byte)(25)))), ((int)(((byte)(40)))));
-            this.pnlFilePort.ColorBordeNeon = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(0)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            this.pnlFilePort.Controls.Add(this.lblFilePortTitle);
-            this.pnlFilePort.Controls.Add(this.lblFilePortValue);
-            this.pnlFilePort.GrosorBorde = 1;
-            this.pnlFilePort.Location = new System.Drawing.Point(260, 66);
-            this.pnlFilePort.Name = "pnlFilePort";
-            this.pnlFilePort.Size = new System.Drawing.Size(220, 70);
-            this.pnlFilePort.TabIndex = 13;
+            this.pnlPlanetIP.Angulo = 90F;
+            this.pnlPlanetIP.BackColor = System.Drawing.Color.Transparent;
+            this.pnlPlanetIP.ColorAbajo = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(0)))), ((int)(((byte)(50)))), ((int)(((byte)(80)))));
+            this.pnlPlanetIP.ColorArriba = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(10)))), ((int)(((byte)(25)))), ((int)(((byte)(40)))));
+            this.pnlPlanetIP.ColorBordeNeon = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(0)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            this.pnlPlanetIP.Controls.Add(this.lblPlanetIPTitle);
+            this.pnlPlanetIP.Controls.Add(this.lblPlanetIPValue);
+            this.pnlPlanetIP.GrosorBorde = 1;
+            this.pnlPlanetIP.Location = new System.Drawing.Point(260, 66);
+            this.pnlPlanetIP.Name = "pnlPlanetIP";
+            this.pnlPlanetIP.Size = new System.Drawing.Size(220, 70);
+            this.pnlPlanetIP.TabIndex = 15;
             // 
-            // lblFilePortTitle
+            // lblPlanetIPTitle
             // 
-            this.lblFilePortTitle.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold);
-            this.lblFilePortTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(190)))), ((int)(((byte)(200)))));
-            this.lblFilePortTitle.Location = new System.Drawing.Point(0, 10);
-            this.lblFilePortTitle.Name = "lblFilePortTitle";
-            this.lblFilePortTitle.Size = new System.Drawing.Size(220, 20);
-            this.lblFilePortTitle.TabIndex = 0;
-            this.lblFilePortTitle.Text = "FILE PORT";
-            this.lblFilePortTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblPlanetIPTitle.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold);
+            this.lblPlanetIPTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(190)))), ((int)(((byte)(200)))));
+            this.lblPlanetIPTitle.Location = new System.Drawing.Point(0, 10);
+            this.lblPlanetIPTitle.Name = "lblPlanetIPTitle";
+            this.lblPlanetIPTitle.Size = new System.Drawing.Size(220, 20);
+            this.lblPlanetIPTitle.TabIndex = 0;
+            this.lblPlanetIPTitle.Text = "TARGET PLANET IP";
+            this.lblPlanetIPTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblFilePortValue
+            // lblPlanetIPValue
             // 
-            this.lblFilePortValue.Font = new System.Drawing.Font("Consolas", 14F, System.Drawing.FontStyle.Bold);
-            this.lblFilePortValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            this.lblFilePortValue.Location = new System.Drawing.Point(0, 35);
-            this.lblFilePortValue.Name = "lblFilePortValue";
-            this.lblFilePortValue.Size = new System.Drawing.Size(220, 25);
-            this.lblFilePortValue.TabIndex = 1;
-            this.lblFilePortValue.Text = "5051";
-            this.lblFilePortValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblPlanetIPValue.Font = new System.Drawing.Font("Consolas", 14F, System.Drawing.FontStyle.Bold);
+            this.lblPlanetIPValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            this.lblPlanetIPValue.Location = new System.Drawing.Point(0, 35);
+            this.lblPlanetIPValue.Name = "lblPlanetIPValue";
+            this.lblPlanetIPValue.Size = new System.Drawing.Size(220, 25);
+            this.lblPlanetIPValue.TabIndex = 1;
+            this.lblPlanetIPValue.Text = "0.0.0.0";
+            this.lblPlanetIPValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pnlDataPort
             // 
@@ -284,45 +275,84 @@ namespace PACS_ProcessForms
             this.lblDataPortValue.Name = "lblDataPortValue";
             this.lblDataPortValue.Size = new System.Drawing.Size(220, 25);
             this.lblDataPortValue.TabIndex = 1;
-            this.lblDataPortValue.Text = "5050";
+            this.lblDataPortValue.Text = "--";
             this.lblDataPortValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // pnlPlanetIP
+            // pnlFilePort
             // 
-            this.pnlPlanetIP.Angulo = 90F;
-            this.pnlPlanetIP.BackColor = System.Drawing.Color.Transparent;
-            this.pnlPlanetIP.ColorAbajo = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(0)))), ((int)(((byte)(50)))), ((int)(((byte)(80)))));
-            this.pnlPlanetIP.ColorArriba = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(10)))), ((int)(((byte)(25)))), ((int)(((byte)(40)))));
-            this.pnlPlanetIP.ColorBordeNeon = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(0)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            this.pnlPlanetIP.Controls.Add(this.lblPlanetIPTitle);
-            this.pnlPlanetIP.Controls.Add(this.lblPlanetIPValue);
-            this.pnlPlanetIP.GrosorBorde = 1;
-            this.pnlPlanetIP.Location = new System.Drawing.Point(740, 66);
-            this.pnlPlanetIP.Name = "pnlPlanetIP";
-            this.pnlPlanetIP.Size = new System.Drawing.Size(220, 70);
-            this.pnlPlanetIP.TabIndex = 15;
+            this.pnlFilePort.Angulo = 90F;
+            this.pnlFilePort.BackColor = System.Drawing.Color.Transparent;
+            this.pnlFilePort.ColorAbajo = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(0)))), ((int)(((byte)(50)))), ((int)(((byte)(80)))));
+            this.pnlFilePort.ColorArriba = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(10)))), ((int)(((byte)(25)))), ((int)(((byte)(40)))));
+            this.pnlFilePort.ColorBordeNeon = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(0)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            this.pnlFilePort.Controls.Add(this.lblFilePortTitle);
+            this.pnlFilePort.Controls.Add(this.lblFilePortValue);
+            this.pnlFilePort.GrosorBorde = 1;
+            this.pnlFilePort.Location = new System.Drawing.Point(740, 66);
+            this.pnlFilePort.Name = "pnlFilePort";
+            this.pnlFilePort.Size = new System.Drawing.Size(220, 70);
+            this.pnlFilePort.TabIndex = 13;
             // 
-            // lblPlanetIPTitle
+            // lblFilePortTitle
             // 
-            this.lblPlanetIPTitle.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold);
-            this.lblPlanetIPTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(190)))), ((int)(((byte)(200)))));
-            this.lblPlanetIPTitle.Location = new System.Drawing.Point(0, 10);
-            this.lblPlanetIPTitle.Name = "lblPlanetIPTitle";
-            this.lblPlanetIPTitle.Size = new System.Drawing.Size(220, 20);
-            this.lblPlanetIPTitle.TabIndex = 0;
-            this.lblPlanetIPTitle.Text = "SPACESHIP IP";
-            this.lblPlanetIPTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblFilePortTitle.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold);
+            this.lblFilePortTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(190)))), ((int)(((byte)(200)))));
+            this.lblFilePortTitle.Location = new System.Drawing.Point(0, 10);
+            this.lblFilePortTitle.Name = "lblFilePortTitle";
+            this.lblFilePortTitle.Size = new System.Drawing.Size(220, 20);
+            this.lblFilePortTitle.TabIndex = 0;
+            this.lblFilePortTitle.Text = "FILE PORT";
+            this.lblFilePortTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblPlanetIPValue
+            // lblFilePortValue
             // 
-            this.lblPlanetIPValue.Font = new System.Drawing.Font("Consolas", 14F, System.Drawing.FontStyle.Bold);
-            this.lblPlanetIPValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            this.lblPlanetIPValue.Location = new System.Drawing.Point(0, 35);
-            this.lblPlanetIPValue.Name = "lblPlanetIPValue";
-            this.lblPlanetIPValue.Size = new System.Drawing.Size(220, 25);
-            this.lblPlanetIPValue.TabIndex = 1;
-            this.lblPlanetIPValue.Text = "127.0.0.1";
-            this.lblPlanetIPValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblFilePortValue.Font = new System.Drawing.Font("Consolas", 14F, System.Drawing.FontStyle.Bold);
+            this.lblFilePortValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            this.lblFilePortValue.Location = new System.Drawing.Point(0, 35);
+            this.lblFilePortValue.Name = "lblFilePortValue";
+            this.lblFilePortValue.Size = new System.Drawing.Size(220, 25);
+            this.lblFilePortValue.TabIndex = 1;
+            this.lblFilePortValue.Text = "--";
+            this.lblFilePortValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pnlTarget
+            // 
+            this.pnlTarget.Angulo = 90F;
+            this.pnlTarget.BackColor = System.Drawing.Color.Transparent;
+            this.pnlTarget.ColorAbajo = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(0)))), ((int)(((byte)(50)))), ((int)(((byte)(80)))));
+            this.pnlTarget.ColorArriba = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(10)))), ((int)(((byte)(25)))), ((int)(((byte)(40)))));
+            this.pnlTarget.ColorBordeNeon = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(0)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            this.pnlTarget.Controls.Add(this.lblTargetTitle);
+            this.pnlTarget.Controls.Add(this.cmbTargetIP);
+            this.pnlTarget.GrosorBorde = 1;
+            this.pnlTarget.Location = new System.Drawing.Point(20, 156);
+            this.pnlTarget.Name = "pnlTarget";
+            this.pnlTarget.Size = new System.Drawing.Size(300, 90);
+            this.pnlTarget.TabIndex = 16;
+            // 
+            // lblTargetTitle
+            // 
+            this.lblTargetTitle.AutoSize = true;
+            this.lblTargetTitle.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold);
+            this.lblTargetTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(214)))), ((int)(((byte)(75)))));
+            this.lblTargetTitle.Location = new System.Drawing.Point(20, 15);
+            this.lblTargetTitle.Name = "lblTargetTitle";
+            this.lblTargetTitle.Size = new System.Drawing.Size(136, 17);
+            this.lblTargetTitle.TabIndex = 0;
+            this.lblTargetTitle.Text = "///TARGET PLANET";
+            // 
+            // cmbTargetIP
+            // 
+            this.cmbTargetIP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
+            this.cmbTargetIP.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTargetIP.Font = new System.Drawing.Font("Consolas", 11F);
+            this.cmbTargetIP.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            this.cmbTargetIP.FormattingEnabled = true;
+            this.cmbTargetIP.Location = new System.Drawing.Point(20, 45);
+            this.cmbTargetIP.Name = "cmbTargetIP";
+            this.cmbTargetIP.Size = new System.Drawing.Size(250, 26);
+            this.cmbTargetIP.TabIndex = 1;
+            this.cmbTargetIP.SelectedIndexChanged += new System.EventHandler(this.cmbTargetIP_SelectedIndexChanged);
             // 
             // pnlConfig
             // 
@@ -332,17 +362,15 @@ namespace PACS_ProcessForms
             this.pnlConfig.ColorArriba = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(10)))), ((int)(((byte)(25)))), ((int)(((byte)(40)))));
             this.pnlConfig.ColorBordeNeon = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(0)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
             this.pnlConfig.Controls.Add(this.lblConfigTitle);
-            this.pnlConfig.Controls.Add(this.lblConfIP);
-            this.pnlConfig.Controls.Add(this.txtConfIP);
-            this.pnlConfig.Controls.Add(this.lblConfData);
-            this.pnlConfig.Controls.Add(this.txtConfData);
-            this.pnlConfig.Controls.Add(this.lblConfFile);
-            this.pnlConfig.Controls.Add(this.txtConfFile);
+            this.pnlConfig.Controls.Add(this.lblShipID);
+            this.pnlConfig.Controls.Add(this.txtShipID);
+            this.pnlConfig.Controls.Add(this.lblDeliveryID);
+            this.pnlConfig.Controls.Add(this.txtDeliveryID);
             this.pnlConfig.GrosorBorde = 1;
-            this.pnlConfig.Location = new System.Drawing.Point(20, 156);
+            this.pnlConfig.Location = new System.Drawing.Point(20, 256);
             this.pnlConfig.Name = "pnlConfig";
-            this.pnlConfig.Size = new System.Drawing.Size(300, 220);
-            this.pnlConfig.TabIndex = 16;
+            this.pnlConfig.Size = new System.Drawing.Size(300, 120);
+            this.pnlConfig.TabIndex = 21;
             // 
             // lblConfigTitle
             // 
@@ -351,78 +379,59 @@ namespace PACS_ProcessForms
             this.lblConfigTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(214)))), ((int)(((byte)(75)))));
             this.lblConfigTitle.Location = new System.Drawing.Point(20, 15);
             this.lblConfigTitle.Name = "lblConfigTitle";
-            this.lblConfigTitle.Size = new System.Drawing.Size(144, 17);
+            this.lblConfigTitle.Size = new System.Drawing.Size(160, 17);
             this.lblConfigTitle.TabIndex = 0;
-            this.lblConfigTitle.Text = "TCP CONFIGURATION";
+            this.lblConfigTitle.Text = "///SHIP CREDENTIALS";
             // 
-            // lblConfIP
+            // lblShipID
             // 
-            this.lblConfIP.AutoSize = true;
-            this.lblConfIP.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold);
-            this.lblConfIP.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(190)))), ((int)(((byte)(200)))));
-            this.lblConfIP.Location = new System.Drawing.Point(20, 60);
-            this.lblConfIP.Name = "lblConfIP";
-            this.lblConfIP.Size = new System.Drawing.Size(80, 17);
-            this.lblConfIP.TabIndex = 1;
-            this.lblConfIP.Text = "PLANET IP";
+            this.lblShipID.AutoSize = true;
+            this.lblShipID.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold);
+            this.lblShipID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(190)))), ((int)(((byte)(200)))));
+            this.lblShipID.Location = new System.Drawing.Point(20, 45);
+            this.lblShipID.Name = "lblShipID";
+            this.lblShipID.Size = new System.Drawing.Size(64, 17);
+            this.lblShipID.TabIndex = 1;
+            this.lblShipID.Text = "SHIP ID";
             // 
-            // txtConfIP
+            // txtShipID
             // 
-            this.txtConfIP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
-            this.txtConfIP.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtConfIP.Font = new System.Drawing.Font("Consolas", 11F);
-            this.txtConfIP.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            this.txtConfIP.Location = new System.Drawing.Point(120, 57);
-            this.txtConfIP.Name = "txtConfIP";
-            this.txtConfIP.Size = new System.Drawing.Size(150, 25);
-            this.txtConfIP.TabIndex = 2;
-            this.txtConfIP.Text = "127.0.0.1";
+            this.txtShipID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
+            this.txtShipID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtShipID.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtShipID.Font = new System.Drawing.Font("Consolas", 11F);
+            this.txtShipID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            this.txtShipID.Location = new System.Drawing.Point(130, 42);
+            this.txtShipID.MaxLength = 12;
+            this.txtShipID.Name = "txtShipID";
+            this.txtShipID.Size = new System.Drawing.Size(140, 25);
+            this.txtShipID.TabIndex = 2;
+            this.txtShipID.Text = "FALCON000001";
             // 
-            // lblConfData
+            // lblDeliveryID
             // 
-            this.lblConfData.AutoSize = true;
-            this.lblConfData.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold);
-            this.lblConfData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(190)))), ((int)(((byte)(200)))));
-            this.lblConfData.Location = new System.Drawing.Point(20, 110);
-            this.lblConfData.Name = "lblConfData";
-            this.lblConfData.Size = new System.Drawing.Size(80, 17);
-            this.lblConfData.TabIndex = 3;
-            this.lblConfData.Text = "DATA PORT";
+            this.lblDeliveryID.AutoSize = true;
+            this.lblDeliveryID.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold);
+            this.lblDeliveryID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(190)))), ((int)(((byte)(200)))));
+            this.lblDeliveryID.Location = new System.Drawing.Point(20, 85);
+            this.lblDeliveryID.Name = "lblDeliveryID";
+            this.lblDeliveryID.Size = new System.Drawing.Size(96, 17);
+            this.lblDeliveryID.TabIndex = 3;
+            this.lblDeliveryID.Text = "DELIVERY ID";
             // 
-            // txtConfData
+            // txtDeliveryID
             // 
-            this.txtConfData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
-            this.txtConfData.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtConfData.Font = new System.Drawing.Font("Consolas", 11F);
-            this.txtConfData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            this.txtConfData.Location = new System.Drawing.Point(120, 107);
-            this.txtConfData.Name = "txtConfData";
-            this.txtConfData.Size = new System.Drawing.Size(150, 25);
-            this.txtConfData.TabIndex = 4;
-            this.txtConfData.Text = "5050";
-            // 
-            // lblConfFile
-            // 
-            this.lblConfFile.AutoSize = true;
-            this.lblConfFile.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold);
-            this.lblConfFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(190)))), ((int)(((byte)(200)))));
-            this.lblConfFile.Location = new System.Drawing.Point(20, 160);
-            this.lblConfFile.Name = "lblConfFile";
-            this.lblConfFile.Size = new System.Drawing.Size(80, 17);
-            this.lblConfFile.TabIndex = 5;
-            this.lblConfFile.Text = "FILE PORT";
-            // 
-            // txtConfFile
-            // 
-            this.txtConfFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
-            this.txtConfFile.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtConfFile.Font = new System.Drawing.Font("Consolas", 11F);
-            this.txtConfFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            this.txtConfFile.Location = new System.Drawing.Point(120, 157);
-            this.txtConfFile.Name = "txtConfFile";
-            this.txtConfFile.Size = new System.Drawing.Size(150, 25);
-            this.txtConfFile.TabIndex = 6;
-            this.txtConfFile.Text = "5051";
+            this.txtDeliveryID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
+            this.txtDeliveryID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtDeliveryID.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtDeliveryID.Font = new System.Drawing.Font("Consolas", 11F);
+            this.txtDeliveryID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            this.txtDeliveryID.Location = new System.Drawing.Point(130, 82);
+            this.txtDeliveryID.MaxLength = 12;
+            this.txtDeliveryID.Name = "txtDeliveryID";
+            this.txtDeliveryID.Size = new System.Drawing.Size(140, 25);
+            this.txtDeliveryID.TabIndex = 4;
+            this.txtDeliveryID.Text = "DEL000000001";
             // 
             // pnlControls
             // 
@@ -432,9 +441,8 @@ namespace PACS_ProcessForms
             this.pnlControls.ColorArriba = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(10)))), ((int)(((byte)(25)))), ((int)(((byte)(40)))));
             this.pnlControls.ColorBordeNeon = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(0)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
             this.pnlControls.Controls.Add(this.lblControlsTitle);
-            this.pnlControls.Controls.Add(this.btnStart);
-            this.pnlControls.Controls.Add(this.btnStop);
-            this.pnlControls.Controls.Add(this.btnCheck);
+            this.pnlControls.Controls.Add(this.btnPing);
+            this.pnlControls.Controls.Add(this.btnProceed);
             this.pnlControls.GrosorBorde = 1;
             this.pnlControls.Location = new System.Drawing.Point(340, 156);
             this.pnlControls.Name = "pnlControls";
@@ -448,42 +456,33 @@ namespace PACS_ProcessForms
             this.lblControlsTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(214)))), ((int)(((byte)(75)))));
             this.lblControlsTitle.Location = new System.Drawing.Point(20, 15);
             this.lblControlsTitle.Name = "lblControlsTitle";
-            this.lblControlsTitle.Size = new System.Drawing.Size(128, 17);
+            this.lblControlsTitle.Size = new System.Drawing.Size(152, 17);
             this.lblControlsTitle.TabIndex = 0;
-            this.lblControlsTitle.Text = "SERVER CONTROLS";
+            this.lblControlsTitle.Text = "///UPLINK CONTROLS";
             // 
-            // btnStart
+            // btnPing
             // 
-            this.btnStart.BackColor = System.Drawing.Color.Transparent;
-            this.btnStart.ButtonText = "START TCP SERVER";
-            this.btnStart.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnStart.Location = new System.Drawing.Point(35, 50);
-            this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(250, 40);
-            this.btnStart.TabIndex = 1;
-            this.btnStart.ThemeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(100)))));
+            this.btnPing.BackColor = System.Drawing.Color.Transparent;
+            this.btnPing.ButtonText = "1. PING PLANET";
+            this.btnPing.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPing.Location = new System.Drawing.Point(23, 48);
+            this.btnPing.Name = "btnPing";
+            this.btnPing.Size = new System.Drawing.Size(270, 40);
+            this.btnPing.TabIndex = 1;
+            this.btnPing.ThemeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            this.btnPing.Click += new System.EventHandler(this.btnPing_Click);
             // 
-            // btnStop
+            // btnProceed
             // 
-            this.btnStop.BackColor = System.Drawing.Color.Transparent;
-            this.btnStop.ButtonText = "STOP TCP SERVER";
-            this.btnStop.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnStop.Location = new System.Drawing.Point(35, 105);
-            this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(250, 40);
-            this.btnStop.TabIndex = 2;
-            this.btnStop.ThemeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(45)))), ((int)(((byte)(85)))));
-            // 
-            // btnCheck
-            // 
-            this.btnCheck.BackColor = System.Drawing.Color.Transparent;
-            this.btnCheck.ButtonText = "CHECK CONNECTION";
-            this.btnCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCheck.Location = new System.Drawing.Point(35, 160);
-            this.btnCheck.Name = "btnCheck";
-            this.btnCheck.Size = new System.Drawing.Size(250, 40);
-            this.btnCheck.TabIndex = 3;
-            this.btnCheck.ThemeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            this.btnProceed.BackColor = System.Drawing.Color.Transparent;
+            this.btnProceed.ButtonText = "2. SEND REQ (ER)";
+            this.btnProceed.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnProceed.Location = new System.Drawing.Point(23, 100);
+            this.btnProceed.Name = "btnProceed";
+            this.btnProceed.Size = new System.Drawing.Size(270, 40);
+            this.btnProceed.TabIndex = 2;
+            this.btnProceed.ThemeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(214)))), ((int)(((byte)(75)))));
+            this.btnProceed.Click += new System.EventHandler(this.btnProceed_Click);
             // 
             // pnlConnection
             // 
@@ -493,12 +492,12 @@ namespace PACS_ProcessForms
             this.pnlConnection.ColorArriba = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(10)))), ((int)(((byte)(25)))), ((int)(((byte)(40)))));
             this.pnlConnection.ColorBordeNeon = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(0)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
             this.pnlConnection.Controls.Add(this.lblConnTitle);
-            this.pnlConnection.Controls.Add(this.lblReqTitle);
-            this.pnlConnection.Controls.Add(this.lblReqValue);
-            this.pnlConnection.Controls.Add(this.lblClientTitle);
-            this.pnlConnection.Controls.Add(this.lblClientValue);
-            this.pnlConnection.Controls.Add(this.lblMsgTitle);
-            this.pnlConnection.Controls.Add(this.lblMsgValue);
+            this.pnlConnection.Controls.Add(this.lblLastRespTitle);
+            this.pnlConnection.Controls.Add(this.lblLastRespValue);
+            this.pnlConnection.Controls.Add(this.lblAuthStateTitle);
+            this.pnlConnection.Controls.Add(this.lblAuthStateValue);
+            this.pnlConnection.Controls.Add(this.lblSecureCoreTitle);
+            this.pnlConnection.Controls.Add(this.lblSecureCoreValue);
             this.pnlConnection.GrosorBorde = 1;
             this.pnlConnection.Location = new System.Drawing.Point(680, 156);
             this.pnlConnection.Name = "pnlConnection";
@@ -512,75 +511,75 @@ namespace PACS_ProcessForms
             this.lblConnTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(214)))), ((int)(((byte)(75)))));
             this.lblConnTitle.Location = new System.Drawing.Point(20, 15);
             this.lblConnTitle.Name = "lblConnTitle";
-            this.lblConnTitle.Size = new System.Drawing.Size(152, 17);
+            this.lblConnTitle.Size = new System.Drawing.Size(168, 17);
             this.lblConnTitle.TabIndex = 0;
-            this.lblConnTitle.Text = "CURRENT CONNECTION";
+            this.lblConnTitle.Text = "///VALIDATION STATUS";
             // 
-            // lblReqTitle
+            // lblLastRespTitle
             // 
-            this.lblReqTitle.AutoSize = true;
-            this.lblReqTitle.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold);
-            this.lblReqTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(190)))), ((int)(((byte)(200)))));
-            this.lblReqTitle.Location = new System.Drawing.Point(20, 70);
-            this.lblReqTitle.Name = "lblReqTitle";
-            this.lblReqTitle.Size = new System.Drawing.Size(104, 17);
-            this.lblReqTitle.TabIndex = 1;
-            this.lblReqTitle.Text = "CURRENT REQ.";
+            this.lblLastRespTitle.AutoSize = true;
+            this.lblLastRespTitle.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold);
+            this.lblLastRespTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(190)))), ((int)(((byte)(200)))));
+            this.lblLastRespTitle.Location = new System.Drawing.Point(20, 70);
+            this.lblLastRespTitle.Name = "lblLastRespTitle";
+            this.lblLastRespTitle.Size = new System.Drawing.Size(112, 17);
+            this.lblLastRespTitle.TabIndex = 1;
+            this.lblLastRespTitle.Text = "LAST RESPONSE";
             // 
-            // lblReqValue
+            // lblLastRespValue
             // 
-            this.lblReqValue.AutoSize = true;
-            this.lblReqValue.Font = new System.Drawing.Font("Consolas", 11F);
-            this.lblReqValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(100)))));
-            this.lblReqValue.Location = new System.Drawing.Point(160, 70);
-            this.lblReqValue.Name = "lblReqValue";
-            this.lblReqValue.Size = new System.Drawing.Size(24, 18);
-            this.lblReqValue.TabIndex = 2;
-            this.lblReqValue.Text = "--";
+            this.lblLastRespValue.AutoSize = true;
+            this.lblLastRespValue.Font = new System.Drawing.Font("Consolas", 11F);
+            this.lblLastRespValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(100)))));
+            this.lblLastRespValue.Location = new System.Drawing.Point(160, 70);
+            this.lblLastRespValue.Name = "lblLastRespValue";
+            this.lblLastRespValue.Size = new System.Drawing.Size(24, 18);
+            this.lblLastRespValue.TabIndex = 2;
+            this.lblLastRespValue.Text = "--";
             // 
-            // lblClientTitle
+            // lblAuthStateTitle
             // 
-            this.lblClientTitle.AutoSize = true;
-            this.lblClientTitle.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold);
-            this.lblClientTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(190)))), ((int)(((byte)(200)))));
-            this.lblClientTitle.Location = new System.Drawing.Point(20, 120);
-            this.lblClientTitle.Name = "lblClientTitle";
-            this.lblClientTitle.Size = new System.Drawing.Size(80, 17);
-            this.lblClientTitle.TabIndex = 3;
-            this.lblClientTitle.Text = "CLIENT IP";
+            this.lblAuthStateTitle.AutoSize = true;
+            this.lblAuthStateTitle.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold);
+            this.lblAuthStateTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(190)))), ((int)(((byte)(200)))));
+            this.lblAuthStateTitle.Location = new System.Drawing.Point(20, 120);
+            this.lblAuthStateTitle.Name = "lblAuthStateTitle";
+            this.lblAuthStateTitle.Size = new System.Drawing.Size(88, 17);
+            this.lblAuthStateTitle.TabIndex = 3;
+            this.lblAuthStateTitle.Text = "AUTH STATE";
             // 
-            // lblClientValue
+            // lblAuthStateValue
             // 
-            this.lblClientValue.AutoSize = true;
-            this.lblClientValue.Font = new System.Drawing.Font("Consolas", 11F);
-            this.lblClientValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            this.lblClientValue.Location = new System.Drawing.Point(160, 120);
-            this.lblClientValue.Name = "lblClientValue";
-            this.lblClientValue.Size = new System.Drawing.Size(24, 18);
-            this.lblClientValue.TabIndex = 4;
-            this.lblClientValue.Text = "--";
+            this.lblAuthStateValue.AutoSize = true;
+            this.lblAuthStateValue.Font = new System.Drawing.Font("Consolas", 11F);
+            this.lblAuthStateValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            this.lblAuthStateValue.Location = new System.Drawing.Point(160, 120);
+            this.lblAuthStateValue.Name = "lblAuthStateValue";
+            this.lblAuthStateValue.Size = new System.Drawing.Size(24, 18);
+            this.lblAuthStateValue.TabIndex = 4;
+            this.lblAuthStateValue.Text = "--";
             // 
-            // lblMsgTitle
+            // lblSecureCoreTitle
             // 
-            this.lblMsgTitle.AutoSize = true;
-            this.lblMsgTitle.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold);
-            this.lblMsgTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(190)))), ((int)(((byte)(200)))));
-            this.lblMsgTitle.Location = new System.Drawing.Point(20, 170);
-            this.lblMsgTitle.Name = "lblMsgTitle";
-            this.lblMsgTitle.Size = new System.Drawing.Size(104, 17);
-            this.lblMsgTitle.TabIndex = 5;
-            this.lblMsgTitle.Text = "LAST MESSAGE";
+            this.lblSecureCoreTitle.AutoSize = true;
+            this.lblSecureCoreTitle.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold);
+            this.lblSecureCoreTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(190)))), ((int)(((byte)(200)))));
+            this.lblSecureCoreTitle.Location = new System.Drawing.Point(20, 170);
+            this.lblSecureCoreTitle.Name = "lblSecureCoreTitle";
+            this.lblSecureCoreTitle.Size = new System.Drawing.Size(96, 17);
+            this.lblSecureCoreTitle.TabIndex = 5;
+            this.lblSecureCoreTitle.Text = "SECURE CORE";
             // 
-            // lblMsgValue
+            // lblSecureCoreValue
             // 
-            this.lblMsgValue.AutoSize = true;
-            this.lblMsgValue.Font = new System.Drawing.Font("Consolas", 11F);
-            this.lblMsgValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(214)))), ((int)(((byte)(75)))));
-            this.lblMsgValue.Location = new System.Drawing.Point(160, 170);
-            this.lblMsgValue.Name = "lblMsgValue";
-            this.lblMsgValue.Size = new System.Drawing.Size(40, 18);
-            this.lblMsgValue.TabIndex = 6;
-            this.lblMsgValue.Text = "NONE";
+            this.lblSecureCoreValue.AutoSize = true;
+            this.lblSecureCoreValue.Font = new System.Drawing.Font("Consolas", 11F);
+            this.lblSecureCoreValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(214)))), ((int)(((byte)(75)))));
+            this.lblSecureCoreValue.Location = new System.Drawing.Point(160, 170);
+            this.lblSecureCoreValue.Name = "lblSecureCoreValue";
+            this.lblSecureCoreValue.Size = new System.Drawing.Size(40, 18);
+            this.lblSecureCoreValue.TabIndex = 6;
+            this.lblSecureCoreValue.Text = "SYNC";
             // 
             // frmConnection
             // 
@@ -592,14 +591,16 @@ namespace PACS_ProcessForms
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmConnection";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Planet Listener - Cyberpunk Interface";
+            this.Text = "SpaceShip Client - Cyberpunk Interface";
             this.pnlBackGround.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.pnlStatus.ResumeLayout(false);
-            this.pnlFilePort.ResumeLayout(false);
-            this.pnlDataPort.ResumeLayout(false);
             this.pnlPlanetIP.ResumeLayout(false);
+            this.pnlDataPort.ResumeLayout(false);
+            this.pnlFilePort.ResumeLayout(false);
+            this.pnlTarget.ResumeLayout(false);
+            this.pnlTarget.PerformLayout();
             this.pnlConfig.ResumeLayout(false);
             this.pnlConfig.PerformLayout();
             this.pnlControls.ResumeLayout(false);
@@ -614,44 +615,55 @@ namespace PACS_ProcessForms
 
         private PACS_CustomControls.CustomPanel pnlBackGround;
         private PACS_CustomControls.PacsConsole pacsConsole1;
-        private PACS_CustomControls.CustomPanel pnlStatus;
-        private System.Windows.Forms.Label lblStatusTitle;
-        private System.Windows.Forms.Label lblStatusValue;
-        private PACS_CustomControls.CustomPanel pnlFilePort;
-        private System.Windows.Forms.Label lblFilePortTitle;
-        private System.Windows.Forms.Label lblFilePortValue;
-        private PACS_CustomControls.CustomPanel pnlDataPort;
-        private System.Windows.Forms.Label lblDataPortTitle;
-        private System.Windows.Forms.Label lblDataPortValue;
-        private PACS_CustomControls.CustomPanel pnlPlanetIP;
-        private System.Windows.Forms.Label lblPlanetIPTitle;
-        private System.Windows.Forms.Label lblPlanetIPValue;
-        private PACS_CustomControls.CustomPanel pnlConfig;
-        private System.Windows.Forms.Label lblConfigTitle;
-        private System.Windows.Forms.Label lblConfIP;
-        private System.Windows.Forms.TextBox txtConfIP;
-        private System.Windows.Forms.Label lblConfData;
-        private System.Windows.Forms.TextBox txtConfData;
-        private System.Windows.Forms.Label lblConfFile;
-        private System.Windows.Forms.TextBox txtConfFile;
-        private PACS_CustomControls.CustomPanel pnlControls;
-        private System.Windows.Forms.Label lblControlsTitle;
-        private PACS_CustomControls.ProcessButton btnStart;
-        private PACS_CustomControls.ProcessButton btnStop;
-        private PACS_CustomControls.ProcessButton btnCheck;
-        private PACS_CustomControls.CustomPanel pnlConnection;
-        private System.Windows.Forms.Label lblConnTitle;
-        private System.Windows.Forms.Label lblReqTitle;
-        private System.Windows.Forms.Label lblReqValue;
-        private System.Windows.Forms.Label lblClientTitle;
-        private System.Windows.Forms.Label lblClientValue;
-        private System.Windows.Forms.Label lblMsgTitle;
-        private System.Windows.Forms.Label lblMsgValue;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel pnlTopDown;
         private System.Windows.Forms.Panel pnlTopRigh;
         private System.Windows.Forms.Panel pnlTopFillLeft;
         private System.Windows.Forms.Label lblHeaderLeft;
         private System.Windows.Forms.Label lblHeaderRight;
+
+        private PACS_CustomControls.CustomPanel pnlStatus;
+        private System.Windows.Forms.Label lblStatusTitle;
+        private System.Windows.Forms.Label lblStatusValue;
+
+        private PACS_CustomControls.CustomPanel pnlPlanetIP;
+        private System.Windows.Forms.Label lblPlanetIPTitle;
+        private System.Windows.Forms.Label lblPlanetIPValue;
+
+        private PACS_CustomControls.CustomPanel pnlDataPort;
+        private System.Windows.Forms.Label lblDataPortTitle;
+        private System.Windows.Forms.Label lblDataPortValue;
+
+        private PACS_CustomControls.CustomPanel pnlFilePort;
+        private System.Windows.Forms.Label lblFilePortTitle;
+        private System.Windows.Forms.Label lblFilePortValue;
+
+        // Panel de Selección de Planeta (NUEVO)
+        private PACS_CustomControls.CustomPanel pnlTarget;
+        private System.Windows.Forms.Label lblTargetTitle;
+        private System.Windows.Forms.ComboBox cmbTargetIP;
+
+        // Panel de Configuración/Credenciales de la Nave
+        private PACS_CustomControls.CustomPanel pnlConfig;
+        private System.Windows.Forms.Label lblConfigTitle;
+        private System.Windows.Forms.Label lblShipID;
+        private System.Windows.Forms.TextBox txtShipID;
+        private System.Windows.Forms.Label lblDeliveryID;
+        private System.Windows.Forms.TextBox txtDeliveryID;
+
+        private PACS_CustomControls.CustomPanel pnlControls;
+        private System.Windows.Forms.Label lblControlsTitle;
+        private PACS_CustomControls.ProcessButton btnPing;
+        private PACS_CustomControls.ProcessButton btnProceed;
+
+        private PACS_CustomControls.CustomPanel pnlConnection;
+        private System.Windows.Forms.Label lblConnTitle;
+        private System.Windows.Forms.Label lblLastRespTitle;
+        private System.Windows.Forms.Label lblLastRespValue;
+        private System.Windows.Forms.Label lblAuthStateTitle;
+        private System.Windows.Forms.Label lblAuthStateValue;
+        private System.Windows.Forms.Label lblSecureCoreTitle;
+        private System.Windows.Forms.Label lblSecureCoreValue;
+        private PACS_CustomControls.PacsConsole pacsConsole2;
     }
 }

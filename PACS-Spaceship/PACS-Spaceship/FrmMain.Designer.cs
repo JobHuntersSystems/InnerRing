@@ -36,8 +36,6 @@
             this.pnlTopbarGlow = new System.Windows.Forms.Panel();
             this.pnlNeonTopLine = new System.Windows.Forms.Panel();
             this.pnlSidebar = new System.Windows.Forms.Panel();
-            this.btnWeapons = new PACS_CustomControls.OptionButton();
-            this.btnAutentification = new PACS_CustomControls.OptionButton();
             this.pnlSidebarHeader = new System.Windows.Forms.Panel();
             this.lblSidebarCaption = new System.Windows.Forms.Label();
             this.pnlSidebarAccentLine2 = new System.Windows.Forms.Panel();
@@ -51,6 +49,11 @@
             this.pnlMainFrameLeft = new System.Windows.Forms.Panel();
             this.pnlMainFrameTop = new System.Windows.Forms.Panel();
             this.pnlMainCornerAccent = new System.Windows.Forms.Panel();
+            this.lblClose = new System.Windows.Forms.Label();
+            this.lblMinimize = new System.Windows.Forms.Label();
+            this.btnSummery = new PACS_CustomControls.OptionButton();
+            this.btnAuthentification = new PACS_CustomControls.OptionButton();
+            this.btnConnection = new PACS_CustomControls.OptionButton();
             this.pnlTopbar.SuspendLayout();
             this.pnlSidebar.SuspendLayout();
             this.pnlSidebarHeader.SuspendLayout();
@@ -60,6 +63,8 @@
             // pnlTopbar
             // 
             this.pnlTopbar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(10)))), ((int)(((byte)(14)))));
+            this.pnlTopbar.Controls.Add(this.lblMinimize);
+            this.pnlTopbar.Controls.Add(this.lblClose);
             this.pnlTopbar.Controls.Add(this.lblModeTag);
             this.pnlTopbar.Controls.Add(this.lblClockTag);
             this.pnlTopbar.Controls.Add(this.lblStatusIndicator);
@@ -79,12 +84,12 @@
             this.lblModeTag.AutoSize = true;
             this.lblModeTag.Font = new System.Drawing.Font("Consolas", 9.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblModeTag.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(72)))), ((int)(((byte)(136)))));
-            this.lblModeTag.Location = new System.Drawing.Point(415, 11);
+            this.lblModeTag.Location = new System.Drawing.Point(641, 13);
             this.lblModeTag.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblModeTag.Name = "lblModeTag";
-            this.lblModeTag.Size = new System.Drawing.Size(105, 15);
+            this.lblModeTag.Size = new System.Drawing.Size(133, 15);
             this.lblModeTag.TabIndex = 5;
-            this.lblModeTag.Text = "MODE // COMBAT";
+            this.lblModeTag.Text = "MODE // CONNECTION";
             // 
             // lblClockTag
             // 
@@ -93,7 +98,7 @@
             this.lblClockTag.AutoSize = true;
             this.lblClockTag.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblClockTag.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(201)))), ((int)(((byte)(255)))));
-            this.lblClockTag.Location = new System.Drawing.Point(520, 11);
+            this.lblClockTag.Location = new System.Drawing.Point(413, 14);
             this.lblClockTag.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblClockTag.Name = "lblClockTag";
             this.lblClockTag.Size = new System.Drawing.Size(224, 14);
@@ -110,9 +115,9 @@
             this.lblStatusIndicator.Location = new System.Drawing.Point(413, 28);
             this.lblStatusIndicator.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblStatusIndicator.Name = "lblStatusIndicator";
-            this.lblStatusIndicator.Size = new System.Drawing.Size(240, 17);
+            this.lblStatusIndicator.Size = new System.Drawing.Size(256, 17);
             this.lblStatusIndicator.TabIndex = 2;
-            this.lblStatusIndicator.Text = "[ UPLINK ESTABLISHED // 99% ]";
+            this.lblStatusIndicator.Text = "[ UPLINK STATE // ESTABLISHED ]";
             // 
             // lblSystemTitle
             // 
@@ -149,8 +154,9 @@
             // pnlSidebar
             // 
             this.pnlSidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(13)))), ((int)(((byte)(18)))));
-            this.pnlSidebar.Controls.Add(this.btnWeapons);
-            this.pnlSidebar.Controls.Add(this.btnAutentification);
+            this.pnlSidebar.Controls.Add(this.btnSummery);
+            this.pnlSidebar.Controls.Add(this.btnAuthentification);
+            this.pnlSidebar.Controls.Add(this.btnConnection);
             this.pnlSidebar.Controls.Add(this.pnlSidebarHeader);
             this.pnlSidebar.Controls.Add(this.pnlNeonSideLine);
             this.pnlSidebar.Dock = System.Windows.Forms.DockStyle.Left;
@@ -159,50 +165,6 @@
             this.pnlSidebar.Padding = new System.Windows.Forms.Padding(11, 15, 11, 12);
             this.pnlSidebar.Size = new System.Drawing.Size(320, 626);
             this.pnlSidebar.TabIndex = 1;
-            // 
-            // btnWeapons
-            // 
-            this.btnWeapons.AccentColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(70)))), ((int)(((byte)(130)))));
-            this.btnWeapons.AccentHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(145)))), ((int)(((byte)(190)))));
-            this.btnWeapons.BackColor = System.Drawing.Color.Transparent;
-            this.btnWeapons.BackgroundPanelColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(18)))), ((int)(((byte)(24)))));
-            this.btnWeapons.BorderDarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
-            this.btnWeapons.BorderLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(70)))), ((int)(((byte)(130)))));
-            this.btnWeapons.ClassName = "WpnSystems.dll";
-            this.btnWeapons.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnWeapons.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnWeapons.FormName = "WpnSystems.FrmWeapons";
-            this.btnWeapons.IsSelected = false;
-            this.btnWeapons.Location = new System.Drawing.Point(11, 151);
-            this.btnWeapons.Margin = new System.Windows.Forms.Padding(4);
-            this.btnWeapons.Name = "btnWeapons";
-            this.btnWeapons.OptionIcon = null;
-            this.btnWeapons.OptionText = "WEAPON SYSTEMS";
-            this.btnWeapons.Size = new System.Drawing.Size(297, 78);
-            this.btnWeapons.TabIndex = 2;
-            this.btnWeapons.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(178)))), ((int)(((byte)(212)))));
-            // 
-            // btnAutentification
-            // 
-            this.btnAutentification.AccentColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(234)))), ((int)(((byte)(255)))));
-            this.btnAutentification.AccentHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.btnAutentification.BackColor = System.Drawing.Color.Transparent;
-            this.btnAutentification.BackgroundPanelColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(18)))), ((int)(((byte)(24)))));
-            this.btnAutentification.BorderDarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
-            this.btnAutentification.BorderLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(214)))));
-            this.btnAutentification.ClassName = "PACS-ProcessForms.dll";
-            this.btnAutentification.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAutentification.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnAutentification.FormName = "PACS_ProcessForms.frmAuthentification";
-            this.btnAutentification.IsSelected = false;
-            this.btnAutentification.Location = new System.Drawing.Point(11, 73);
-            this.btnAutentification.Margin = new System.Windows.Forms.Padding(4);
-            this.btnAutentification.Name = "btnAutentification";
-            this.btnAutentification.OptionIcon = null;
-            this.btnAutentification.OptionText = "AUTHENTIFICATION";
-            this.btnAutentification.Size = new System.Drawing.Size(297, 78);
-            this.btnAutentification.TabIndex = 1;
-            this.btnAutentification.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
             // 
             // pnlSidebarHeader
             // 
@@ -350,6 +312,102 @@
             this.pnlMainCornerAccent.Size = new System.Drawing.Size(16, 3);
             this.pnlMainCornerAccent.TabIndex = 0;
             // 
+            // lblClose
+            // 
+            this.lblClose.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblClose.AutoSize = true;
+            this.lblClose.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(230)))), ((int)(((byte)(120)))));
+            this.lblClose.Location = new System.Drawing.Point(1194, 16);
+            this.lblClose.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblClose.Name = "lblClose";
+            this.lblClose.Size = new System.Drawing.Size(32, 17);
+            this.lblClose.TabIndex = 6;
+            this.lblClose.Text = "[X]";
+            this.lblClose.Click += new System.EventHandler(this.lblClose_Click);
+            // 
+            // lblMinimize
+            // 
+            this.lblMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblMinimize.AutoSize = true;
+            this.lblMinimize.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMinimize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(230)))), ((int)(((byte)(120)))));
+            this.lblMinimize.Location = new System.Drawing.Point(1158, 16);
+            this.lblMinimize.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblMinimize.Name = "lblMinimize";
+            this.lblMinimize.Size = new System.Drawing.Size(32, 17);
+            this.lblMinimize.TabIndex = 7;
+            this.lblMinimize.Text = "[-]";
+            this.lblMinimize.Click += new System.EventHandler(this.lblMinimize_Click);
+            // 
+            // btnSummery
+            // 
+            this.btnSummery.AccentColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(70)))), ((int)(((byte)(130)))));
+            this.btnSummery.AccentHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(145)))), ((int)(((byte)(190)))));
+            this.btnSummery.BackColor = System.Drawing.Color.Transparent;
+            this.btnSummery.BackgroundPanelColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(18)))), ((int)(((byte)(24)))));
+            this.btnSummery.BorderDarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.btnSummery.BorderLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(70)))), ((int)(((byte)(130)))));
+            this.btnSummery.ClassName = "PACS-ProcessForms.dll";
+            this.btnSummery.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSummery.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnSummery.FormName = "WpnSystems.FrmWeapons";
+            this.btnSummery.IsSelected = false;
+            this.btnSummery.Location = new System.Drawing.Point(11, 229);
+            this.btnSummery.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSummery.Name = "btnSummery";
+            this.btnSummery.OptionIcon = null;
+            this.btnSummery.OptionText = "SUMMARY";
+            this.btnSummery.Size = new System.Drawing.Size(297, 78);
+            this.btnSummery.TabIndex = 4;
+            this.btnSummery.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(178)))), ((int)(((byte)(212)))));
+            // 
+            // btnAuthentification
+            // 
+            this.btnAuthentification.AccentColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnAuthentification.AccentHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnAuthentification.BackColor = System.Drawing.Color.Transparent;
+            this.btnAuthentification.BackgroundPanelColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(18)))), ((int)(((byte)(24)))));
+            this.btnAuthentification.BorderDarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.btnAuthentification.BorderLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnAuthentification.ClassName = "PACS-ProcessForms.dll";
+            this.btnAuthentification.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAuthentification.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnAuthentification.FormName = "PACS_ProcessForms.frmAuthentification";
+            this.btnAuthentification.IsSelected = false;
+            this.btnAuthentification.Location = new System.Drawing.Point(11, 151);
+            this.btnAuthentification.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAuthentification.Name = "btnAuthentification";
+            this.btnAuthentification.OptionIcon = null;
+            this.btnAuthentification.OptionText = "AUTHENTIFICATION";
+            this.btnAuthentification.Size = new System.Drawing.Size(297, 78);
+            this.btnAuthentification.TabIndex = 2;
+            this.btnAuthentification.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            // 
+            // btnConnection
+            // 
+            this.btnConnection.AccentColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(234)))), ((int)(((byte)(255)))));
+            this.btnConnection.AccentHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnConnection.BackColor = System.Drawing.Color.Transparent;
+            this.btnConnection.BackgroundPanelColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(18)))), ((int)(((byte)(24)))));
+            this.btnConnection.BorderDarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.btnConnection.BorderLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(214)))));
+            this.btnConnection.ClassName = "PACS-ProcessForms.dll";
+            this.btnConnection.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnConnection.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnConnection.FormName = "PACS_ProcessForms.frmConnection";
+            this.btnConnection.IsSelected = false;
+            this.btnConnection.Location = new System.Drawing.Point(11, 73);
+            this.btnConnection.Margin = new System.Windows.Forms.Padding(4);
+            this.btnConnection.Name = "btnConnection";
+            this.btnConnection.OptionIcon = null;
+            this.btnConnection.OptionText = "CONNECTION";
+            this.btnConnection.Size = new System.Drawing.Size(297, 78);
+            this.btnConnection.TabIndex = 1;
+            this.btnConnection.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -384,8 +442,9 @@
         private System.Windows.Forms.Panel pnlSidebar;
         private System.Windows.Forms.Panel pnlMain; // OBLIGATORIO LLAMARSE ASÍ
 
-        private PACS_CustomControls.OptionButton btnAutentification;
-        private PACS_CustomControls.OptionButton btnWeapons;
+        private PACS_CustomControls.OptionButton btnSummery;
+        private PACS_CustomControls.OptionButton btnConnection;
+        private PACS_CustomControls.OptionButton btnAuthentification;
 
         private System.Windows.Forms.Panel pnlTopbarGlow;
         private System.Windows.Forms.Panel pnlNeonTopLine;
@@ -405,5 +464,7 @@
         private System.Windows.Forms.Panel pnlMainScanLine;
         private System.Windows.Forms.Label lblMainGhostTitle;
         private System.Windows.Forms.Panel pnlMainCornerAccent;
+        private System.Windows.Forms.Label lblMinimize;
+        private System.Windows.Forms.Label lblClose;
     }
 }

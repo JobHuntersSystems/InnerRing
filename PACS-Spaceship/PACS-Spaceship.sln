@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PACS-Common", "..\PACS-Plan
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PACS-ProcessForms", "PACS-ProcessForms\PACS-ProcessForms.csproj", "{A0DD05F4-F6AE-45E5-B796-8D7E2D50693C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PACS-SpaceShips-Common", "PACS-SpaceShips-Common\PACS-SpaceShips-Common.csproj", "{514C3193-185A-4DB7-8E22-ABD2614C76B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcpServerService", "..\PACS-Planet\TcpServerService\TcpServerService.csproj", "{1EACA337-8B9D-40CD-86A7-657772375065}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{A0DD05F4-F6AE-45E5-B796-8D7E2D50693C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0DD05F4-F6AE-45E5-B796-8D7E2D50693C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0DD05F4-F6AE-45E5-B796-8D7E2D50693C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{514C3193-185A-4DB7-8E22-ABD2614C76B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{514C3193-185A-4DB7-8E22-ABD2614C76B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{514C3193-185A-4DB7-8E22-ABD2614C76B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{514C3193-185A-4DB7-8E22-ABD2614C76B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EACA337-8B9D-40CD-86A7-657772375065}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EACA337-8B9D-40CD-86A7-657772375065}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EACA337-8B9D-40CD-86A7-657772375065}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EACA337-8B9D-40CD-86A7-657772375065}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

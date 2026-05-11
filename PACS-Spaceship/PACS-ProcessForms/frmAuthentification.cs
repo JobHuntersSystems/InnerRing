@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using PACS_SpaceShips_Common;
+
 namespace PACS_ProcessForms
 {
     public partial class frmAuthentification : Form
