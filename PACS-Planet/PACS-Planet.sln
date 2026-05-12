@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inner_DB_Access", "Inner_DB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PACS-Common", "PACS-Common\PACS-Common.csproj", "{AE2DFBFD-20FC-4225-9991-62EDAAD6B012}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtocolsManager", "ProtocolsManager\ProtocolsManager.csproj", "{18EA2953-01AD-42AE-B58D-054429969674}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -153,6 +155,18 @@ Global
 		{AE2DFBFD-20FC-4225-9991-62EDAAD6B012}.Release|x64.Build.0 = Release|Any CPU
 		{AE2DFBFD-20FC-4225-9991-62EDAAD6B012}.Release|x86.ActiveCfg = Release|Any CPU
 		{AE2DFBFD-20FC-4225-9991-62EDAAD6B012}.Release|x86.Build.0 = Release|Any CPU
+		{18EA2953-01AD-42AE-B58D-054429969674}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18EA2953-01AD-42AE-B58D-054429969674}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18EA2953-01AD-42AE-B58D-054429969674}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{18EA2953-01AD-42AE-B58D-054429969674}.Debug|x64.Build.0 = Debug|Any CPU
+		{18EA2953-01AD-42AE-B58D-054429969674}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{18EA2953-01AD-42AE-B58D-054429969674}.Debug|x86.Build.0 = Debug|Any CPU
+		{18EA2953-01AD-42AE-B58D-054429969674}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18EA2953-01AD-42AE-B58D-054429969674}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18EA2953-01AD-42AE-B58D-054429969674}.Release|x64.ActiveCfg = Release|Any CPU
+		{18EA2953-01AD-42AE-B58D-054429969674}.Release|x64.Build.0 = Release|Any CPU
+		{18EA2953-01AD-42AE-B58D-054429969674}.Release|x86.ActiveCfg = Release|Any CPU
+		{18EA2953-01AD-42AE-B58D-054429969674}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

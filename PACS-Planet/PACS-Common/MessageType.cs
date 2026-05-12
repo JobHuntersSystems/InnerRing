@@ -15,6 +15,7 @@ namespace PACS_Common
     public enum ResultType
     {
         VP,
+        AG,
         AD,
         UNK
     }

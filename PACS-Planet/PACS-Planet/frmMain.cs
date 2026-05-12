@@ -11,6 +11,7 @@ using System.IO;
 using PACS_UI;
 using PACS_Common;
 using TcpManager;
+using PACS_Center;
 
 namespace PACS_Planet
 {
@@ -82,6 +83,7 @@ namespace PACS_Planet
                 {
                     formOpened = true;
                     form.BringToFront();
+                    form.WindowState = FormWindowState.Maximized;
                     break;
                 }
             }
@@ -98,6 +100,62 @@ namespace PACS_Planet
             Application.Exit();
         }
 
+        private void obtnValidationCode_Click(object sender, EventArgs e)
+        {
+            bool formOpened = false;
+            frmInnerEncryption formManager;
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is frmInnerEncryption)
+                {
+                    formOpened = true;
+                    form.BringToFront();
+                    form.WindowState = FormWindowState.Maximized;
+                    break;
+                }
+            }
+            if (!formOpened)
+            {
+                formManager = new frmInnerEncryption();
+                openForm(formManager);
+            }
+        }
 
+        private void obtnRsa_Click(object sender, EventArgs e)
+        {
+            bool formOpened = false;
+            frmKeyManager formManager;
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is frmKeyManager)
+                {
+                    formOpened = true;
+                    form.BringToFront();
+                    form.WindowState = FormWindowState.Maximized;
+                    break;
+                }
+            }
+            if (!formOpened)
+            {
+                formManager = new frmKeyManager();
+                openForm(formManager);
+            }
+        }
+
+        private void pctConfiguration_Click(object sender, EventArgs e)
+        {
+            frmPlanetConfig frm = new frmPlanetConfig();
+            frm.ShowDialog();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void lblTitle_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
