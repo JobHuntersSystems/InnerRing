@@ -103,6 +103,10 @@
       <Project>{5e69e566-0081-4b55-8486-8341a9e082a1}</Project>
       <Name>PACS-CustomControls</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PACS-InheratedControls\PACS-InheratedControls.csproj">
+      <Project>{f81b6a02-65c6-47cc-8792-693510674d9d}</Project>
+      <Name>PACS-InheratedControls</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

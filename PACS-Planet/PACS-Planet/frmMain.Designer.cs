@@ -18,46 +18,96 @@
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.panelHeader = new System.Windows.Forms.Panel();
-            this.picLogo = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.pacsMinimizeButton1 = new PACS_InheratedControls.PacsMinimizeButton();
+            this.btnClose = new PACS_InheratedControls.PacsCloseButton();
+            this.pctConfiguration = new System.Windows.Forms.PictureBox();
             this.lblSubStatus = new System.Windows.Forms.Label();
-            this.lblTitle = new System.Windows.Forms.Label();
             this.flowMenuLeft = new System.Windows.Forms.FlowLayoutPanel();
+            this.obtnRsa = new PACS_CustomControls.OptionButton();
+            this.obtnValidationCode = new PACS_CustomControls.OptionButton();
             this.obtnTCP = new PACS_CustomControls.OptionButton();
-            this.optionButton2 = new PACS_CustomControls.OptionButton();
             this.optionButton4 = new PACS_CustomControls.OptionButton();
             this.optionButton1 = new PACS_CustomControls.OptionButton();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.pcsConsoleMain = new PACS_CustomControls.PacsConsole();
+            this.pnlLeft = new System.Windows.Forms.Panel();
+            this.pctBackground = new System.Windows.Forms.PictureBox();
+            this.pnlButton = new System.Windows.Forms.Panel();
             this.pnlMain = new System.Windows.Forms.Panel();
+            this.pcsConsoleMain = new PACS_CustomControls.PacsConsole();
             this.panelHeader.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pctConfiguration)).BeginInit();
             this.flowMenuLeft.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.pnlLeft.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pctBackground)).BeginInit();
+            this.pnlButton.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelHeader
             // 
-            this.panelHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(9)))), ((int)(((byte)(14)))));
-            this.panelHeader.Controls.Add(this.picLogo);
+            this.panelHeader.BackColor = System.Drawing.Color.Black;
+            this.panelHeader.Controls.Add(this.panel1);
+            this.panelHeader.Controls.Add(this.pacsMinimizeButton1);
+            this.panelHeader.Controls.Add(this.btnClose);
+            this.panelHeader.Controls.Add(this.pctConfiguration);
             this.panelHeader.Controls.Add(this.lblSubStatus);
-            this.panelHeader.Controls.Add(this.lblTitle);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(1367, 65);
+            this.panelHeader.Size = new System.Drawing.Size(1367, 39);
             this.panelHeader.TabIndex = 3;
             // 
-            // picLogo
+            // panel1
             // 
-            this.picLogo.BackColor = System.Drawing.Color.DarkRed;
-            this.picLogo.Location = new System.Drawing.Point(21, 8);
-            this.picLogo.Name = "picLogo";
-            this.picLogo.Size = new System.Drawing.Size(50, 50);
-            this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picLogo.TabIndex = 0;
-            this.picLogo.TabStop = false;
-            this.picLogo.Click += new System.EventHandler(this.picLogo_Click);
+            this.panel1.Location = new System.Drawing.Point(0, 63);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1366, 821);
+            this.panel1.TabIndex = 6;
+            // 
+            // pacsMinimizeButton1
+            // 
+            this.pacsMinimizeButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(24)))), ((int)(((byte)(32)))));
+            this.pacsMinimizeButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pacsMinimizeButton1.DefaultClickEvent = true;
+            this.pacsMinimizeButton1.FlatAppearance.BorderSize = 0;
+            this.pacsMinimizeButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.pacsMinimizeButton1.Font = new System.Drawing.Font("Courier New", 10F, System.Drawing.FontStyle.Bold);
+            this.pacsMinimizeButton1.Location = new System.Drawing.Point(9, 9);
+            this.pacsMinimizeButton1.Name = "pacsMinimizeButton1";
+            this.pacsMinimizeButton1.Size = new System.Drawing.Size(41, 22);
+            this.pacsMinimizeButton1.TabIndex = 5;
+            this.pacsMinimizeButton1.Text = "-";
+            this.pacsMinimizeButton1.UseVisualStyleBackColor = false;
+            // 
+            // btnClose
+            // 
+            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(8)))), ((int)(((byte)(8)))));
+            this.btnClose.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnClose.DefaultClickEvent = false;
+            this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Font = new System.Drawing.Font("Courier New", 10F, System.Drawing.FontStyle.Bold);
+            this.btnClose.Location = new System.Drawing.Point(60, 9);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(41, 22);
+            this.btnClose.TabIndex = 5;
+            this.btnClose.Text = "X";
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // pctConfiguration
+            // 
+            this.pctConfiguration.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pctConfiguration.BackColor = System.Drawing.Color.Transparent;
+            this.pctConfiguration.Image = ((System.Drawing.Image)(resources.GetObject("pctConfiguration.Image")));
+            this.pctConfiguration.Location = new System.Drawing.Point(1320, 0);
+            this.pctConfiguration.Name = "pctConfiguration";
+            this.pctConfiguration.Size = new System.Drawing.Size(41, 39);
+            this.pctConfiguration.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pctConfiguration.TabIndex = 3;
+            this.pctConfiguration.TabStop = false;
+            this.pctConfiguration.Click += new System.EventHandler(this.pctConfiguration_Click);
             // 
             // lblSubStatus
             // 
@@ -71,34 +121,69 @@
             this.lblSubStatus.TabIndex = 1;
             this.lblSubStatus.Text = "PLANETARY DEFENSE INTERFACE";
             // 
-            // lblTitle
-            // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Courier New", 20F, System.Drawing.FontStyle.Bold);
-            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(255)))), ((int)(((byte)(90)))));
-            this.lblTitle.Location = new System.Drawing.Point(460, 18);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(558, 31);
-            this.lblTitle.TabIndex = 2;
-            this.lblTitle.Text = "··· PACS PLANET CONTROL CENTER ···";
-            // 
             // flowMenuLeft
             // 
-            this.flowMenuLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(18)))), ((int)(((byte)(16)))));
+            this.flowMenuLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(19)))), ((int)(((byte)(32)))));
+            this.flowMenuLeft.Controls.Add(this.obtnRsa);
+            this.flowMenuLeft.Controls.Add(this.obtnValidationCode);
             this.flowMenuLeft.Controls.Add(this.obtnTCP);
-            this.flowMenuLeft.Controls.Add(this.optionButton2);
-            this.flowMenuLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.flowMenuLeft.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowMenuLeft.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowMenuLeft.Location = new System.Drawing.Point(0, 65);
+            this.flowMenuLeft.Location = new System.Drawing.Point(0, 0);
+            this.flowMenuLeft.Margin = new System.Windows.Forms.Padding(0);
             this.flowMenuLeft.Name = "flowMenuLeft";
-            this.flowMenuLeft.Padding = new System.Windows.Forms.Padding(10);
-            this.flowMenuLeft.Size = new System.Drawing.Size(242, 820);
+            this.flowMenuLeft.Padding = new System.Windows.Forms.Padding(4);
+            this.flowMenuLeft.Size = new System.Drawing.Size(249, 717);
             this.flowMenuLeft.TabIndex = 2;
+            // 
+            // obtnRsa
+            // 
+            this.obtnRsa.AccentColor = System.Drawing.Color.Lavender;
+            this.obtnRsa.AccentHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.obtnRsa.BackColor = System.Drawing.Color.Transparent;
+            this.obtnRsa.BackgroundPanelColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(30)))), ((int)(((byte)(22)))));
+            this.obtnRsa.BorderDarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
+            this.obtnRsa.BorderLightColor = System.Drawing.Color.Gold;
+            this.obtnRsa.ClassName = null;
+            this.obtnRsa.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.obtnRsa.FormName = null;
+            this.obtnRsa.IsSelected = false;
+            this.obtnRsa.Location = new System.Drawing.Point(10, 10);
+            this.obtnRsa.Margin = new System.Windows.Forms.Padding(6);
+            this.obtnRsa.Name = "obtnRsa";
+            this.obtnRsa.OptionIcon = ((System.Drawing.Image)(resources.GetObject("obtnRsa.OptionIcon")));
+            this.obtnRsa.OptionText = "RSA Generation";
+            this.obtnRsa.Size = new System.Drawing.Size(220, 62);
+            this.obtnRsa.TabIndex = 4;
+            this.obtnRsa.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(201)))), ((int)(((byte)(107)))));
+            this.obtnRsa.Click += new System.EventHandler(this.obtnRsa_Click);
+            // 
+            // obtnValidationCode
+            // 
+            this.obtnValidationCode.AccentColor = System.Drawing.Color.Lavender;
+            this.obtnValidationCode.AccentHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
+            this.obtnValidationCode.BackColor = System.Drawing.Color.Transparent;
+            this.obtnValidationCode.BackgroundPanelColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(34)))), ((int)(((byte)(47)))));
+            this.obtnValidationCode.BorderDarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
+            this.obtnValidationCode.BorderLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(78)))), ((int)(((byte)(138)))));
+            this.obtnValidationCode.ClassName = null;
+            this.obtnValidationCode.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.obtnValidationCode.FormName = null;
+            this.obtnValidationCode.IsSelected = false;
+            this.obtnValidationCode.Location = new System.Drawing.Point(10, 84);
+            this.obtnValidationCode.Margin = new System.Windows.Forms.Padding(6);
+            this.obtnValidationCode.Name = "obtnValidationCode";
+            this.obtnValidationCode.OptionIcon = null;
+            this.obtnValidationCode.OptionText = "Validation Code ⭐ ";
+            this.obtnValidationCode.Size = new System.Drawing.Size(220, 62);
+            this.obtnValidationCode.TabIndex = 3;
+            this.obtnValidationCode.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(174)))), ((int)(((byte)(249)))));
+            this.obtnValidationCode.Click += new System.EventHandler(this.obtnValidationCode_Click);
             // 
             // obtnTCP
             // 
-            this.obtnTCP.AccentColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(230)))), ((int)(((byte)(120)))));
-            this.obtnTCP.AccentHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
+            this.obtnTCP.AccentColor = System.Drawing.Color.FromArgb(((int)(((byte)(126)))), ((int)(((byte)(249)))), ((int)(((byte)(85)))));
+            this.obtnTCP.AccentHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(251)))), ((int)(((byte)(185)))));
             this.obtnTCP.BackColor = System.Drawing.Color.Transparent;
             this.obtnTCP.BackgroundPanelColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(28)))), ((int)(((byte)(30)))));
             this.obtnTCP.BorderDarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
@@ -107,36 +192,15 @@
             this.obtnTCP.Cursor = System.Windows.Forms.Cursors.Hand;
             this.obtnTCP.FormName = "";
             this.obtnTCP.IsSelected = false;
-            this.obtnTCP.Location = new System.Drawing.Point(16, 16);
+            this.obtnTCP.Location = new System.Drawing.Point(10, 158);
             this.obtnTCP.Margin = new System.Windows.Forms.Padding(6);
             this.obtnTCP.Name = "obtnTCP";
-            this.obtnTCP.OptionIcon = null;
+            this.obtnTCP.OptionIcon = ((System.Drawing.Image)(resources.GetObject("obtnTCP.OptionIcon")));
             this.obtnTCP.OptionText = "TCP Server";
             this.obtnTCP.Size = new System.Drawing.Size(220, 62);
             this.obtnTCP.TabIndex = 0;
             this.obtnTCP.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(240)))), ((int)(((byte)(150)))));
             this.obtnTCP.Click += new System.EventHandler(this.obtnTCP_Click);
-            // 
-            // optionButton2
-            // 
-            this.optionButton2.AccentColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(230)))), ((int)(((byte)(120)))));
-            this.optionButton2.AccentHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
-            this.optionButton2.BackColor = System.Drawing.Color.Transparent;
-            this.optionButton2.BackgroundPanelColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(28)))), ((int)(((byte)(30)))));
-            this.optionButton2.BorderDarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
-            this.optionButton2.BorderLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(105)))), ((int)(((byte)(95)))));
-            this.optionButton2.ClassName = null;
-            this.optionButton2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.optionButton2.FormName = null;
-            this.optionButton2.IsSelected = false;
-            this.optionButton2.Location = new System.Drawing.Point(16, 90);
-            this.optionButton2.Margin = new System.Windows.Forms.Padding(6);
-            this.optionButton2.Name = "optionButton2";
-            this.optionButton2.OptionIcon = null;
-            this.optionButton2.OptionText = "PLACE HOLDER";
-            this.optionButton2.Size = new System.Drawing.Size(220, 62);
-            this.optionButton2.TabIndex = 3;
-            this.optionButton2.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(240)))), ((int)(((byte)(150)))));
             // 
             // optionButton4
             // 
@@ -180,45 +244,70 @@
             this.optionButton1.TabIndex = 2;
             this.optionButton1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(240)))), ((int)(((byte)(150)))));
             // 
-            // panel1
+            // pnlLeft
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
-            this.panel1.Controls.Add(this.pcsConsoleMain);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(242, 685);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1125, 200);
-            this.panel1.TabIndex = 1;
+            this.pnlLeft.BackColor = System.Drawing.Color.Black;
+            this.pnlLeft.Controls.Add(this.pctBackground);
+            this.pnlLeft.Controls.Add(this.flowMenuLeft);
+            this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlLeft.Location = new System.Drawing.Point(0, 39);
+            this.pnlLeft.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlLeft.Name = "pnlLeft";
+            this.pnlLeft.Size = new System.Drawing.Size(249, 846);
+            this.pnlLeft.TabIndex = 6;
+            // 
+            // pctBackground
+            // 
+            this.pctBackground.BackColor = System.Drawing.Color.Transparent;
+            this.pctBackground.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pctBackground.Image = ((System.Drawing.Image)(resources.GetObject("pctBackground.Image")));
+            this.pctBackground.Location = new System.Drawing.Point(0, 646);
+            this.pctBackground.Margin = new System.Windows.Forms.Padding(0);
+            this.pctBackground.Name = "pctBackground";
+            this.pctBackground.Size = new System.Drawing.Size(249, 200);
+            this.pctBackground.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pctBackground.TabIndex = 5;
+            this.pctBackground.TabStop = false;
+            // 
+            // pnlButton
+            // 
+            this.pnlButton.Controls.Add(this.pcsConsoleMain);
+            this.pnlButton.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlButton.Location = new System.Drawing.Point(249, 685);
+            this.pnlButton.Name = "pnlButton";
+            this.pnlButton.Size = new System.Drawing.Size(1118, 200);
+            this.pnlButton.TabIndex = 7;
+            // 
+            // pnlMain
+            // 
+            this.pnlMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(14)))), ((int)(((byte)(19)))));
+            this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlMain.Location = new System.Drawing.Point(249, 39);
+            this.pnlMain.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlMain.Name = "pnlMain";
+            this.pnlMain.Size = new System.Drawing.Size(1118, 646);
+            this.pnlMain.TabIndex = 8;
             // 
             // pcsConsoleMain
             // 
             this.pcsConsoleMain.AccentColor = System.Drawing.Color.Aqua;
+            this.pcsConsoleMain.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.pcsConsoleMain.BackColor = System.Drawing.Color.Transparent;
             this.pcsConsoleMain.ConsoleTitle = "SYSTEM LOG CONSOLE";
             this.pcsConsoleMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pcsConsoleMain.Location = new System.Drawing.Point(0, 0);
             this.pcsConsoleMain.Margin = new System.Windows.Forms.Padding(6);
             this.pcsConsoleMain.Name = "pcsConsoleMain";
-            this.pcsConsoleMain.Size = new System.Drawing.Size(1125, 200);
-            this.pcsConsoleMain.TabIndex = 0;
-            // 
-            // pnlMain
-            // 
-            this.pnlMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(12)))), ((int)(((byte)(12)))));
-            this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlMain.Location = new System.Drawing.Point(242, 65);
-            this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Padding = new System.Windows.Forms.Padding(12);
-            this.pnlMain.Size = new System.Drawing.Size(1125, 620);
-            this.pnlMain.TabIndex = 0;
+            this.pcsConsoleMain.Size = new System.Drawing.Size(1118, 200);
+            this.pcsConsoleMain.TabIndex = 1;
             // 
             // frmMain
             // 
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1367, 885);
             this.Controls.Add(this.pnlMain);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.flowMenuLeft);
+            this.Controls.Add(this.pnlButton);
+            this.Controls.Add(this.pnlLeft);
             this.Controls.Add(this.panelHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmMain";
@@ -226,26 +315,33 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pctConfiguration)).EndInit();
             this.flowMenuLeft.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
+            this.pnlLeft.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pctBackground)).EndInit();
+            this.pnlButton.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
         #endregion
 
         private System.Windows.Forms.Panel panelHeader;
-        private System.Windows.Forms.PictureBox picLogo;
-        private System.Windows.Forms.Label lblTitle;
 
         private System.Windows.Forms.FlowLayoutPanel flowMenuLeft;
         private PACS_CustomControls.OptionButton optionButton4;
         private PACS_CustomControls.OptionButton optionButton1;
-        private PACS_CustomControls.OptionButton optionButton2;
+        private PACS_CustomControls.OptionButton obtnValidationCode;
         private System.Windows.Forms.Label lblSubStatus;
+        private PACS_CustomControls.OptionButton obtnTCP;
+        private PACS_CustomControls.OptionButton obtnRsa;
+        private System.Windows.Forms.PictureBox pctConfiguration;
+        private PACS_InheratedControls.PacsCloseButton btnClose;
+        private PACS_InheratedControls.PacsMinimizeButton pacsMinimizeButton1;
+        private System.Windows.Forms.Panel pnlLeft;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox pctBackground;
+        private System.Windows.Forms.Panel pnlButton;
         private System.Windows.Forms.Panel pnlMain;
         private PACS_CustomControls.PacsConsole pcsConsoleMain;
-        private PACS_CustomControls.OptionButton obtnTCP;
     }
 }
