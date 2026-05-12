@@ -19,6 +19,9 @@ namespace PACS_ProcessForms
         {
             InitializeComponent();
             InitializeRadar();
+
+            txtShipID.Text = "IS-789456789";
+            txtDeliveryID.Text = "123456123456";
         }
 
         private void InitializeRadar()
@@ -29,6 +32,7 @@ namespace PACS_ProcessForms
             txtDeliveryID.Text = ConnectionInfo.DeliveryID;
 
             LogToConsole("RADAR SYSTEM INITIALIZED. AWAITING TARGET SELECTION.");
+
         }
 
         private void CargarPlanetas()

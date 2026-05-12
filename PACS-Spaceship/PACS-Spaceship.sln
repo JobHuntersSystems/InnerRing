@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PACS-SpaceShips-Common", "P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcpServerService", "..\PACS-Planet\TcpServerService\TcpServerService.csproj", "{1EACA337-8B9D-40CD-86A7-657772375065}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcpClientService", "..\PACS-Planet\TcpClientService\TcpClientService.csproj", "{AC916F85-7D76-407B-90EC-97551C54D995}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{1EACA337-8B9D-40CD-86A7-657772375065}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EACA337-8B9D-40CD-86A7-657772375065}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1EACA337-8B9D-40CD-86A7-657772375065}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC916F85-7D76-407B-90EC-97551C54D995}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC916F85-7D76-407B-90EC-97551C54D995}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC916F85-7D76-407B-90EC-97551C54D995}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC916F85-7D76-407B-90EC-97551C54D995}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

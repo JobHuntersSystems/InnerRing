@@ -89,6 +89,10 @@
       <Project>{5e69e566-0081-4b55-8486-8341a9e082a1}</Project>
       <Name>PACS-CustomControls</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\PACS-Planet\TcpClientService\TcpClientService.csproj">
+      <Project>{ac916f85-7d76-407b-90ec-97551c54d995}</Project>
+      <Name>TcpClientService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Inner_DB_Access\Inner_DB_Access.csproj">
       <Project>{886fe758-4c70-4699-b614-f2287dcc7e48}</Project>
       <Name>Inner_DB_Access</Name>

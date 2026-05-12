@@ -218,6 +218,8 @@ namespace PACS_ProcessForms
             this.Name = "frmAuthentification";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Planet Validation";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmAuthentification_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmAuthentification_FormClosed);
             this.pnlBackGround.ResumeLayout(false);
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();

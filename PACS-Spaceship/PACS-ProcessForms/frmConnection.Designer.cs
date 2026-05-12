@@ -44,9 +44,9 @@ namespace PACS_ProcessForms
             this.cmbTargetIP = new System.Windows.Forms.ComboBox();
             this.pnlConfig = new PACS_CustomControls.CustomPanel();
             this.lblConfigTitle = new System.Windows.Forms.Label();
-            this.lblShipID = new System.Windows.Forms.Label();
+            this.lblShipCode = new System.Windows.Forms.Label();
             this.txtShipID = new System.Windows.Forms.TextBox();
-            this.lblDeliveryID = new System.Windows.Forms.Label();
+            this.lblDeliveryCode = new System.Windows.Forms.Label();
             this.txtDeliveryID = new System.Windows.Forms.TextBox();
             this.pnlControls = new PACS_CustomControls.CustomPanel();
             this.lblControlsTitle = new System.Windows.Forms.Label();
@@ -362,9 +362,9 @@ namespace PACS_ProcessForms
             this.pnlConfig.ColorArriba = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(10)))), ((int)(((byte)(25)))), ((int)(((byte)(40)))));
             this.pnlConfig.ColorBordeNeon = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(0)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
             this.pnlConfig.Controls.Add(this.lblConfigTitle);
-            this.pnlConfig.Controls.Add(this.lblShipID);
+            this.pnlConfig.Controls.Add(this.lblShipCode);
             this.pnlConfig.Controls.Add(this.txtShipID);
-            this.pnlConfig.Controls.Add(this.lblDeliveryID);
+            this.pnlConfig.Controls.Add(this.lblDeliveryCode);
             this.pnlConfig.Controls.Add(this.txtDeliveryID);
             this.pnlConfig.GrosorBorde = 1;
             this.pnlConfig.Location = new System.Drawing.Point(20, 256);
@@ -383,16 +383,16 @@ namespace PACS_ProcessForms
             this.lblConfigTitle.TabIndex = 0;
             this.lblConfigTitle.Text = "///SHIP CREDENTIALS";
             // 
-            // lblShipID
+            // lblShipCode
             // 
-            this.lblShipID.AutoSize = true;
-            this.lblShipID.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold);
-            this.lblShipID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(190)))), ((int)(((byte)(200)))));
-            this.lblShipID.Location = new System.Drawing.Point(20, 45);
-            this.lblShipID.Name = "lblShipID";
-            this.lblShipID.Size = new System.Drawing.Size(64, 17);
-            this.lblShipID.TabIndex = 1;
-            this.lblShipID.Text = "SHIP ID";
+            this.lblShipCode.AutoSize = true;
+            this.lblShipCode.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold);
+            this.lblShipCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(190)))), ((int)(((byte)(200)))));
+            this.lblShipCode.Location = new System.Drawing.Point(20, 45);
+            this.lblShipCode.Name = "lblShipCode";
+            this.lblShipCode.Size = new System.Drawing.Size(80, 17);
+            this.lblShipCode.TabIndex = 1;
+            this.lblShipCode.Text = "SPACESHIP";
             // 
             // txtShipID
             // 
@@ -408,16 +408,16 @@ namespace PACS_ProcessForms
             this.txtShipID.TabIndex = 2;
             this.txtShipID.Text = "FALCON000001";
             // 
-            // lblDeliveryID
+            // lblDeliveryCode
             // 
-            this.lblDeliveryID.AutoSize = true;
-            this.lblDeliveryID.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold);
-            this.lblDeliveryID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(190)))), ((int)(((byte)(200)))));
-            this.lblDeliveryID.Location = new System.Drawing.Point(20, 85);
-            this.lblDeliveryID.Name = "lblDeliveryID";
-            this.lblDeliveryID.Size = new System.Drawing.Size(96, 17);
-            this.lblDeliveryID.TabIndex = 3;
-            this.lblDeliveryID.Text = "DELIVERY ID";
+            this.lblDeliveryCode.AutoSize = true;
+            this.lblDeliveryCode.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold);
+            this.lblDeliveryCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(190)))), ((int)(((byte)(200)))));
+            this.lblDeliveryCode.Location = new System.Drawing.Point(20, 85);
+            this.lblDeliveryCode.Name = "lblDeliveryCode";
+            this.lblDeliveryCode.Size = new System.Drawing.Size(96, 17);
+            this.lblDeliveryCode.TabIndex = 3;
+            this.lblDeliveryCode.Text = "DELIVERY ID";
             // 
             // txtDeliveryID
             // 
@@ -646,9 +646,9 @@ namespace PACS_ProcessForms
         // Panel de Configuración/Credenciales de la Nave
         private PACS_CustomControls.CustomPanel pnlConfig;
         private System.Windows.Forms.Label lblConfigTitle;
-        private System.Windows.Forms.Label lblShipID;
+        private System.Windows.Forms.Label lblShipCode;
         private System.Windows.Forms.TextBox txtShipID;
-        private System.Windows.Forms.Label lblDeliveryID;
+        private System.Windows.Forms.Label lblDeliveryCode;
         private System.Windows.Forms.TextBox txtDeliveryID;
 
         private PACS_CustomControls.CustomPanel pnlControls;
