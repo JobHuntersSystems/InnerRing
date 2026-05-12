@@ -630,53 +630,59 @@ namespace PACS_Planet
 				return;
 			}
 
-			AddLog("Reading XML configuration...");
-			lblXmlStatus.Text = "XML Config: Loaded";
-
-			AddLog("Generating PACS files...");
-			lblFilesStatus.Text = "Generated Files: OK";
-
-			AddLog("Creating PACS.zip...");
-			zipGenerated = true;
-			lblZipStatus.Text = "PACS.zip: Generated";
-
-			if (!zipGenerated)
+			try
 			{
-				MessageBox.Show(
-					"Cannot send PACS.zip because it has not been generated.",
-					"ZIP error",
-					MessageBoxButtons.OK,
-					MessageBoxIcon.Warning
-				);
+				AddLog("Preparing PACS.zip challenge...");
 
-				return;
+				PacsZipService zipService = new PacsZipService();
+
+				PacsZipService.PacsZipResult result =
+					zipService.GeneratePacsZip(Application.StartupPath);
+
+				lblXmlStatus.Text = "XML Config: Loaded";
+				lblFilesStatus.Text = "Generated Files: " + result.GeneratedFiles;
+				lblZipStatus.Text = "PACS.zip: Generated";
+
+				AddLog("XML config loaded: " + result.ConfigPath, "OK");
+				AddLog("Work folder: " + result.WorkFolder);
+				AddLog("Generated files folder: " + result.FilesFolder);
+				AddLog("Files generated: " + result.GeneratedFiles);
+				AddLog("Letters per file: " + result.LettersPerFile);
+				AddLog("PACS.zip created: " + result.ZipPath, "OK");
+				AddLog("PACS.zip size: " + result.ZipSizeBytes + " bytes");
+
+				zipGenerated = true;
+
+				AddLog("Simulating PACS.zip transfer...", "SEND");
+				AddLog("TCP/IP file transfer is not connected yet.");
+				AddLog("PACS.zip marked as sent for protocol testing.", "OK");
+
+				zipSent = true;
+				lblZipStatus.Text = "PACS.zip: Simulated Sent";
+
+				AddLog("Calculating planet checksum...");
+
+				planetChecksum = CalculatePlanetChecksum();
+
+				planetChecksumCalculated = true;
+
+				lblPlanetChecksum.Text = "Planet Checksum: " + planetChecksum;
+				lblPlanetChecksumFinal.Text = "Planet Checksum: " + planetChecksum;
+
+				AddLog("Planet checksum calculated: " + planetChecksum, "OK");
+				AddLog("Waiting for spaceship checksum.");
 			}
+			catch (Exception ex)
+			{
+				AddLog("PACS.zip generation error: " + ex.Message, "ERROR");
 
-			AddLog("Sending PACS.zip...", "SEND");
-
-			/*
-			 * TEMPORARY PLACEHOLDER.
-			 *
-			 * Later:
-			 * - Send the real PACS.zip using TCP/IP.
-			 */
-
-			zipSent = true;
-			lblZipStatus.Text = "PACS.zip: Sent";
-
-			AddLog("PACS.zip sent successfully.", "OK");
-
-			AddLog("Calculating planet checksum...");
-
-			planetChecksum = CalculatePlanetChecksum();
-
-			planetChecksumCalculated = true;
-
-			lblPlanetChecksum.Text = "Planet Checksum: " + planetChecksum;
-			lblPlanetChecksumFinal.Text = "Planet Checksum: " + planetChecksum;
-
-			AddLog("Planet checksum calculated: " + planetChecksum, "OK");
-			AddLog("Waiting for spaceship checksum.");
+				MessageBox.Show(
+					"PACS.zip generation failed:\n\n" + ex.Message,
+					"PACS.zip error",
+					MessageBoxButtons.OK,
+					MessageBoxIcon.Error
+				);
+			}
 		}
 
 		private int CalculatePlanetChecksum()

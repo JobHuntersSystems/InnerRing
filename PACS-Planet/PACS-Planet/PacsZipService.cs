@@ -9,8 +9,11 @@ namespace PACS_Planet
 {
 	public class PacsZipService
 	{
-		public class ChallengeConfig
+		public class XMLConfig
 		{
+			public string WorkFolder { get; set; }
+			public string GeneratedFilesFolder { get; set; }
+			public string ZipFileName { get; set; }
 			public int FileCount { get; set; }
 			public int LettersPerFile { get; set; }
 		}
@@ -22,21 +25,31 @@ namespace PACS_Planet
 			public string FilesFolder { get; set; }
 			public string ZipPath { get; set; }
 			public int GeneratedFiles { get; set; }
+			public int LettersPerFile { get; set; }
 			public long ZipSizeBytes { get; set; }
 		}
 
 		public PacsZipResult GeneratePacsZip(string baseFolder)
 		{
-			string workFolder = Path.Combine(baseFolder, "PACS_Work");
-			string filesFolder = Path.Combine(workFolder, "GeneratedFiles");
-			string zipPath = Path.Combine(workFolder, "PACS.zip");
+			if (string.IsNullOrWhiteSpace(baseFolder))
+			{
+				throw new Exception("Base folder cannot be empty.");
+			}
+
+			if (!Directory.Exists(baseFolder))
+			{
+				throw new Exception("Base folder does not exist: " + baseFolder);
+			}
+
 			string configPath = Path.Combine(baseFolder, "PACS_Config.xml");
 
-			EnsureChallengeConfigExists(configPath);
+			XMLConfig config = ReadXMLConfig(configPath);
 
-			ChallengeConfig config = ReadChallengeConfig(configPath);
+			string workFolder = BuildPath(baseFolder, config.WorkFolder);
+			string filesFolder = BuildPath(workFolder, config.GeneratedFilesFolder);
+			string zipPath = BuildPath(workFolder, config.ZipFileName);
 
-			GenerateChallengeFiles(filesFolder, config.FileCount, config.LettersPerFile);
+			GenerateFiles(filesFolder, config.FileCount, config.LettersPerFile);
 
 			CreatePacsZip(filesFolder, zipPath);
 
@@ -49,29 +62,35 @@ namespace PACS_Planet
 				FilesFolder = filesFolder,
 				ZipPath = zipPath,
 				GeneratedFiles = config.FileCount,
+				LettersPerFile = config.LettersPerFile,
 				ZipSizeBytes = zipInfo.Length
 			};
 		}
 
-		private void EnsureChallengeConfigExists(string configPath)
+		public XMLConfig LoadXMLConfig(string baseFolder)
 		{
-			if (File.Exists(configPath))
+			if (string.IsNullOrWhiteSpace(baseFolder))
 			{
-				return;
+				throw new Exception("Base folder cannot be empty.");
 			}
 
-			XDocument document = new XDocument(
-				new XElement("PACSConfig",
-					new XElement("FileCount", 3),
-					new XElement("LettersPerFile", 50)
-				)
-			);
+			if (!Directory.Exists(baseFolder))
+			{
+				throw new Exception("Base folder does not exist: " + baseFolder);
+			}
 
-			document.Save(configPath);
+			string configPath = Path.Combine(baseFolder, "PACS_Config.xml");
+
+			return ReadXMLConfig(configPath);
 		}
 
-		private ChallengeConfig ReadChallengeConfig(string configPath)
+		private XMLConfig ReadXMLConfig(string configPath)
 		{
+			if (!File.Exists(configPath))
+			{
+				throw new Exception("PACS_Config.xml was not found at: " + configPath);
+			}
+
 			XDocument document = XDocument.Load(configPath);
 
 			if (document.Root == null)
@@ -79,21 +98,12 @@ namespace PACS_Planet
 				throw new Exception("PACS_Config.xml has no root element.");
 			}
 
-			XElement fileCountElement = document.Root.Element("FileCount");
-			XElement lettersPerFileElement = document.Root.Element("LettersPerFile");
+			string workFolder = ReadRequiredString(document, "WorkFolder");
+			string generatedFilesFolder = ReadRequiredString(document, "GeneratedFilesFolder");
+			string zipFileName = ReadRequiredString(document, "ZipFileName");
 
-			if (fileCountElement == null)
-			{
-				throw new Exception("PACS_Config.xml is missing FileCount.");
-			}
-
-			if (lettersPerFileElement == null)
-			{
-				throw new Exception("PACS_Config.xml is missing LettersPerFile.");
-			}
-
-			int fileCount = int.Parse(fileCountElement.Value);
-			int lettersPerFile = int.Parse(lettersPerFileElement.Value);
+			int fileCount = ReadRequiredInt(document, "FileCount");
+			int lettersPerFile = ReadRequiredInt(document, "LettersPerFile");
 
 			if (fileCount <= 0)
 			{
@@ -105,14 +115,65 @@ namespace PACS_Planet
 				throw new Exception("LettersPerFile must be greater than 0.");
 			}
 
-			return new ChallengeConfig
+			if (!zipFileName.EndsWith(".zip", StringComparison.OrdinalIgnoreCase))
 			{
+				throw new Exception("ZipFileName must end with .zip.");
+			}
+
+			return new XMLConfig
+			{
+				WorkFolder = workFolder,
+				GeneratedFilesFolder = generatedFilesFolder,
+				ZipFileName = zipFileName,
 				FileCount = fileCount,
 				LettersPerFile = lettersPerFile
 			};
 		}
 
-		private void GenerateChallengeFiles(string folderPath, int fileCount, int lettersPerFile)
+		private string ReadRequiredString(XDocument document, string elementName)
+		{
+			XElement element = document.Root.Element(elementName);
+
+			if (element == null)
+			{
+				throw new Exception("PACS_Config.xml is missing " + elementName + ".");
+			}
+
+			string value = element.Value.Trim();
+
+			if (string.IsNullOrWhiteSpace(value))
+			{
+				throw new Exception(elementName + " cannot be empty.");
+			}
+
+			return value;
+		}
+
+		private int ReadRequiredInt(XDocument document, string elementName)
+		{
+			string value = ReadRequiredString(document, elementName);
+
+			int number;
+
+			if (!int.TryParse(value, out number))
+			{
+				throw new Exception(elementName + " must be a valid number.");
+			}
+
+			return number;
+		}
+
+		private string BuildPath(string basePath, string childPath)
+		{
+			if (Path.IsPathRooted(childPath))
+			{
+				return childPath;
+			}
+
+			return Path.Combine(basePath, childPath);
+		}
+
+		private void GenerateFiles(string folderPath, int fileCount, int lettersPerFile)
 		{
 			if (Directory.Exists(folderPath))
 			{
@@ -155,6 +216,11 @@ namespace PACS_Planet
 
 		private void CreatePacsZip(string sourceFolder, string zipPath)
 		{
+			if (!Directory.Exists(sourceFolder))
+			{
+				throw new Exception("Source folder does not exist: " + sourceFolder);
+			}
+
 			string zipFolder = Path.GetDirectoryName(zipPath);
 
 			if (!Directory.Exists(zipFolder))

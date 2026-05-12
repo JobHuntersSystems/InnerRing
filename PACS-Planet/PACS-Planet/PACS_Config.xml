@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<PACSConfig>
+	<WorkFolder>PACS_Files</WorkFolder>
+	<GeneratedFilesFolder>GeneratedFiles</GeneratedFilesFolder>
+	<ZipFileName>PACS.zip</ZipFileName>
+	<FileCount>3</FileCount>
+	<LettersPerFile>50</LettersPerFile>
+</PACSConfig>
