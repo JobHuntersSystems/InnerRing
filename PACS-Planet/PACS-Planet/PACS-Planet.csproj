@@ -68,7 +68,8 @@
     <Compile Include="FrmPlanetValidation.Designer.cs">
       <DependentUpon>FrmPlanetValidation.cs</DependentUpon>
     </Compile>
-    <Compile Include="PacsZipService.cs" />
+    <Compile Include="PACS_ChecksumService.cs" />
+    <Compile Include="PACS_ZipService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmPlanetConfig.resx">
@@ -101,6 +102,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Inner_DB_Access\Inner_DB_Access.csproj">
+      <Project>{886fe758-4c70-4699-b614-f2287dcc7e48}</Project>
+      <Name>Inner_DB_Access</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PACS-Center\PACS-Center.csproj">
       <Project>{da08766a-dbfb-465b-86cd-360fe7385368}</Project>
       <Name>PACS-Center</Name>

@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Collections.Generic;
+using System.Data;
+using System.IO;
+using Inner_DB_Access;
 
 namespace PACS_Planet
 {
@@ -634,9 +638,9 @@ namespace PACS_Planet
 			{
 				AddLog("Preparing PACS.zip challenge...");
 
-				PacsZipService zipService = new PacsZipService();
+				PACS_ZipService zipService = new PACS_ZipService();
 
-				PacsZipService.PacsZipResult result =
+				PACS_ZipService.PacsZipResult result =
 					zipService.GeneratePacsZip(Application.StartupPath);
 
 				lblXmlStatus.Text = "XML Config: Loaded";
@@ -685,20 +689,96 @@ namespace PACS_Planet
 			}
 		}
 
+		private Dictionary<char, string> GetCodificationDictionaryFromDatabase()
+		{
+			Dictionary<char, string> codification = new Dictionary<char, string>();
+
+			DB_CRUD db = new DB_CRUD();
+
+			/*
+			 * TEMPORARY:
+			 * Replace idPlanet = 1 with the real planet ID later.
+			 *
+			 * This query gets the 26 letter-number pairs for the current planet.
+			 */
+			string query =
+				"SELECT d.Word, d.Numbers " +
+				"FROM InnerEncryptionData d " +
+				"INNER JOIN InnerEncryption e " +
+				"ON d.idInnerEncryption = e.idInnerEncryption " +
+				"WHERE e.idPlanet = 1";
+
+			DataTable dt = db.PortarDataTable(query);
+
+			if (dt.Rows.Count == 0)
+			{
+				throw new Exception("No codification data found for this planet.");
+			}
+
+			foreach (DataRow row in dt.Rows)
+			{
+				string wordValue = row["Word"].ToString();
+				string numberValue = row["Numbers"].ToString();
+
+				if (string.IsNullOrWhiteSpace(wordValue))
+				{
+					throw new Exception("A codification row has an empty Word value.");
+				}
+
+				if (string.IsNullOrWhiteSpace(numberValue))
+				{
+					throw new Exception("A codification row has an empty Numbers value.");
+				}
+
+				char letter = char.ToUpper(wordValue[0]);
+
+				if (numberValue.Length != 3)
+				{
+					throw new Exception("Invalid number code for letter '" + letter + "'. Expected 3 digits.");
+				}
+
+				foreach (char digit in numberValue)
+				{
+					if (!char.IsDigit(digit))
+					{
+						throw new Exception("Invalid number code for letter '" + letter + "'. Only digits are allowed.");
+					}
+				}
+
+				if (codification.ContainsKey(letter))
+				{
+					throw new Exception("Duplicated codification letter found: " + letter);
+				}
+
+				codification.Add(letter, numberValue);
+			}
+
+			if (codification.Count != 26)
+			{
+				throw new Exception("Codification dictionary must contain 26 letters. Current count: " + codification.Count);
+			}
+
+			AddLog("Codification dictionary loaded from database. Letters: " + codification.Count, "OK");
+
+			return codification;
+		}
+
 		private int CalculatePlanetChecksum()
 		{
-			/*
-			 * TEMPORARY PLACEHOLDER.
-			 *
-			 * Later:
-			 * - Read generated files.
-			 * - Use InnerEncryptionData dictionary.
-			 * - Use TPL/Parallel processing.
-			 * - Sum digits.
-			 * - 0 counts as 10.
-			 */
+			Dictionary<char, string> codification = GetCodificationDictionaryFromDatabase();
 
-			return 45231;
+			PacsChecksumService checksumService = new PacsChecksumService();
+
+			string generatedFilesFolder = Path.Combine(
+				Application.StartupPath,
+				"PACS_Files",
+				"GeneratedFiles"
+			);
+
+			return checksumService.CalculateGlobalChecksum(
+				generatedFilesFolder,
+				codification
+			);
 		}
 
 		// =========================================================

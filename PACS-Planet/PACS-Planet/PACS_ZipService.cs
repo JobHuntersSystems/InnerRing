@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 namespace PACS_Planet
 {
-	public class PacsZipService
+	public class PACS_ZipService
 	{
 		public class XMLConfig
 		{
