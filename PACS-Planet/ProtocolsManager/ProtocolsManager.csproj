@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6AFA8F25-C3B0-4AFE-B506-83C1CFB4D676}</ProjectGuid>
+    <ProjectGuid>{18EA2953-01AD-42AE-B58D-054429969674}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TcpManager</RootNamespace>
-    <AssemblyName>TcpManager</AssemblyName>
+    <RootNamespace>ProtocolsManager</RootNamespace>
+    <AssemblyName>ProtocolsManager</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\App\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -33,8 +33,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,56 +41,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmTcpManager.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmTcpManager.Designer.cs">
-      <DependentUpon>frmTcpManager.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="frmTcpManager.resx">
-      <DependentUpon>frmTcpManager.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <Compile Include="ProtocolManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Inner_DB_Access\Inner_DB_Access.csproj">
       <Project>{886fe758-4c70-4699-b614-f2287dcc7e48}</Project>
       <Name>Inner_DB_Access</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PACS-Center\PACS-Center.csproj">
+      <Project>{da08766a-dbfb-465b-86cd-360fe7385368}</Project>
+      <Name>PACS-Center</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PACS-Common\PACS-Common.csproj">
       <Project>{ae2dfbfd-20fc-4225-9991-62edaad6b012}</Project>
       <Name>PACS-Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PACS-CustomControls\PACS-CustomControls.csproj">
-      <Project>{5e69e566-0081-4b55-8486-8341a9e082a1}</Project>
-      <Name>PACS-CustomControls</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PACS-InheratedControls\PACS-InheratedControls.csproj">
-      <Project>{f81b6a02-65c6-47cc-8792-693510674d9d}</Project>
-      <Name>PACS-InheratedControls</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ProtocolsManager\ProtocolsManager.csproj">
-      <Project>{18ea2953-01ad-42ae-b58d-054429969674}</Project>
-      <Name>ProtocolsManager</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TcpClientService\TcpClientService.csproj">
-      <Project>{ac916f85-7d76-407b-90ec-97551c54d995}</Project>
-      <Name>TcpClientService</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TcpServerService\TcpServerService.csproj">
-      <Project>{1eaca337-8b9d-40cd-86a7-657772375065}</Project>
-      <Name>TcpServerService</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

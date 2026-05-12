@@ -110,13 +110,14 @@ namespace TcpServerServices
         {
             cts = new CancellationTokenSource();
             serverThread = new Thread(() => _startServer(serverPort));
+            serverThread.IsBackground = true;
             serverThread.Start();
         }
         public void stopServer()
         {
             _isRunning = false;
             cts?.Cancel();
-
+            serverThread.Join(2000);
             RaiseServerStatusChanged(
                 ServerStatus.Closing,
                 "Closing server"

@@ -19,6 +19,12 @@ namespace PACS_Common
 
         public static void Reset()
         {
+            id = 0;
+            code = null;
+            ip = null;
+            dataPort = 0;
+            filePort = 0;
+            imagePath = null;
             CurrentStage = 0;
             Status = ProcessStatus.InProgress;
         }
