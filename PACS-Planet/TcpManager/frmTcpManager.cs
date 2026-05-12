@@ -13,6 +13,9 @@ using TcpServerServices;
 using PACS_Common;
 using System.Data.SqlClient;
 using System.IO;
+using System.Net.Sockets;
+using System.Net;
+using ProtocolsManager;
 
 namespace TcpManager
 {
@@ -21,8 +24,9 @@ namespace TcpManager
 
         private TcpClientService clientData;
         private DataTcpServer dataServer;
+        //private FileTcpServer fileServer;
 
-        private ProtocolsManager protocolManager = new ProtocolsManager();
+        private ProtocolManager protocolManager = new ProtocolManager();
 
         public List<string> clientsIPList { get; private set; } = new List<string>();
         public frmTcpManager()
@@ -32,6 +36,20 @@ namespace TcpManager
             this.clientData.NotificationSent += new EventHandler(OnClientServiceNotifyReceived);
         }
         #region Helpers
+        private string GetLocalIp()
+        {
+            string local_ip = "";
+            string hostName = Dns.GetHostName();
+            IPHostEntry localhost = Dns.GetHostEntry(hostName);
+
+            IPAddress localIp = localhost.AddressList
+                .FirstOrDefault(ip => ip.AddressFamily == AddressFamily.InterNetwork);
+            if(localIp != null)
+            {
+                local_ip  = localIp.ToString();
+            }
+            return local_ip;
+        }
         private void genericInvokeAction(Control ctr, Action act)
         {
             if (ctr.InvokeRequired)
@@ -40,17 +58,23 @@ namespace TcpManager
                 act();
         }
         
-        private void updateClientData(string protocol, string last_message)
+        private void updateClientData(ResultType result, string protocol, string last_message)
         {
-            genericInvokeAction(pctSpaceship, () => {
-                string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + @"Resources\Spaceships\Imagenes", Spaceship.imagePath);
-                pctSpaceship.ImageLocation = path;
-                pctSpaceship.Visible = true;
-                lblCurrentRequestValue.Text = protocol;
-                lblSpaceshipIpValue.Text = Spaceship.ip;
-                lblLastMessageValue.Text = last_message;
-            });
-            
+            if(result == ResultType.VP)
+            {
+                genericInvokeAction(pctSpaceship, () => {
+                    string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + @"Resources\Spaceships\Imagenes", Spaceship.imagePath);
+                    pctSpaceship.ImageLocation = path;
+                    pctSpaceship.Visible = true;
+                    lblCurrentRequestValue.Text = protocol;
+                    lblSpaceshipIpValue.Text = Spaceship.ip;
+                    lblLastMessageValue.Text = last_message;
+                });
+            }
+            else if(result == ResultType.AD) 
+            {
+                Spaceship.Reset();
+            }   
         }
         #endregion
         
@@ -95,7 +119,7 @@ namespace TcpManager
                 //Identificamos si el cliente es conocido o no
                 if (!clientsIPList.Contains(client_ip))
                 {
-                    string message = $"Spaceship no identified detected: {client_ip}";
+                    string message = $"Unidentified spaceship detected: {client_ip}";
                     clientsIPList.Add(client_ip);
                     RaiseNotificationSent(LogLevel.Warn, message);
                 }
@@ -114,27 +138,29 @@ namespace TcpManager
                            ));
                             response = protocolManager.excuteErProtocol(client_message);
                             string console_message;
-                            if (response != null)
+                            if (response.result == ResultType.VP)
                             {
                                 genericInvokeAction(pcsConsoleLog, () => {
-
-                                    if (response.logLevel == LogLevel.Success)
-                                    {
-                                        btnCheckConnection.Visible = true;
-                                        updateClientData("ER", client_message);
-                                        console_message = "Delivery confirmed, able to the next stage ✅";
-                                    }
-                                    else
-                                    {
-                                        console_message = "Delivery refused, starting destruction ----> 🚀💥";
-                                    }
+                                    btnCheckConnection.Visible = true;
+                                    console_message = "Delivery confirmed, able to the next stage ✅";
                                     pcsConsoleLog.AddLog(
-                                        response.logLevel,
+                                        LogLevel.Success,
+                                        console_message);
+                                });
+                            }
+                            else
+                            {
+                                genericInvokeAction(pcsConsoleLog, () =>
+                                {
+                                    console_message = "Delivery refused, starting destruction ----> 🚀💥";
+                                    pcsConsoleLog.AddLog(
+                                        LogLevel.Warn,
                                         console_message
                                     );
-                                }); 
+                                });
                             }
                             clientData.sendMessage(Spaceship.ip, Spaceship.dataPort, response.protocolResponse);
+                            updateClientData(response.result, "ER", client_message);
                             break;
                         case MessageProtocolType.VK:
                             isActiveVkProtocol = true;
@@ -144,7 +170,7 @@ namespace TcpManager
                             ));
                             break;
                         case MessageProtocolType.Message:
-                            string message = client_ip + " | " + client_message;
+                            string message = client_ip + "| " + client_message;
                             genericInvokeAction(pcsConsoleLog, () => pcsConsoleLog.AddLog(
                                    LogLevel.Info,
                                    message
@@ -154,7 +180,40 @@ namespace TcpManager
                 }
                 else
                 {
-                    protocolManager.excuteVkProtocol(client_message);
+                    ProtocolResponse response;
+                    Spaceship.ip = client_ip;
+                    genericInvokeAction(pcsConsoleLog, () => pcsConsoleLog.AddLog(
+                           LogLevel.Info,
+                           "VK Protocol detected, starting validation..."
+                    ));
+                    response = protocolManager.excuteVkProtocol(client_message);
+                    string console_message;
+                    if (response.result == ResultType.VP)
+                    {
+                        genericInvokeAction(pcsConsoleLog, () => {
+                            btnCheckConnection.Visible = true;
+                            
+                            console_message = "Delivery confirmed, able to the next stage ✅";
+
+                            pcsConsoleLog.AddLog(
+                                LogLevel.Success,
+                                console_message);
+                        });
+                    }
+                    else
+                    {
+                        genericInvokeAction(pcsConsoleLog, () =>
+                        {
+                            console_message = "Delivery refused, starting destruction ----> 🚀💥";
+                            Spaceship.Reset();
+                            pcsConsoleLog.AddLog(
+                                LogLevel.Warn,
+                                console_message
+                            );
+                        });
+                    }
+                    clientData.sendMessage(Spaceship.ip, Spaceship.dataPort, response.protocolResponse);
+                    updateClientData(response.result ,"ER", client_message);
                 }
             }
             catch (SqlException ex)
@@ -225,6 +284,10 @@ namespace TcpManager
         }
         private void frmTcpManager_Load(object sender, EventArgs e)
         {
+            string current_Ip = GetLocalIp();
+            if(!string.IsNullOrWhiteSpace(current_Ip))
+                Planet.IPPlanet = current_Ip;
+
             txtPlanetIp.Text = Planet.IPPlanet;
             txtDataPort.Text = Planet.PortPlanet;
             txtFilePort.Text = Planet.PortPlanet1;
@@ -262,5 +325,13 @@ namespace TcpManager
             });
         }
         #endregion
+
+        private void frmTcpManager_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (dataServer != null && dataServer.isRunning)
+            {
+                dataServer.stopServer();
+            }
+        }
     }
 }
