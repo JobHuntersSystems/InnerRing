@@ -3,6 +3,6 @@
 	<WorkFolder>PACS_Files</WorkFolder>
 	<GeneratedFilesFolder>GeneratedFiles</GeneratedFilesFolder>
 	<ZipFileName>PACS.zip</ZipFileName>
-	<FileCount>3</FileCount>
-	<LettersPerFile>50</LettersPerFile>
+	<FileCount>1000</FileCount>
+	<LettersPerFile>100</LettersPerFile>
 </PACSConfig>
