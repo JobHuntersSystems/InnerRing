@@ -8,8 +8,8 @@ using System.Data;
 using Inner_DB_Access;
 
 namespace PACS_Center
-{
-    public class clsDecrypt
+{  
+    public class RSADecrypt
     {
         DB_CRUD db = new DB_CRUD();
         private string GetContainerName(int idPlanet)

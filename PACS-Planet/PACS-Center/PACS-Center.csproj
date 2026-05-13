@@ -49,9 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="clsDecrypt.cs" />
-    <Compile Include="clsInnerEncryption.cs" />
-    <Compile Include="clsKeyManager.cs" />
+    <Compile Include="RSADecrypt.cs" />
+    <Compile Include="InnerEncryption.cs" />
+    <Compile Include="KeyManager.cs" />
     <Compile Include="frmInnerEncryption.cs">
       <SubType>Form</SubType>
     </Compile>

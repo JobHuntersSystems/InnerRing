@@ -9,7 +9,7 @@ using Inner_DB_Access;
 
 namespace PACS_Center
 {
-    public class clsInnerEncryption
+    public class InnerEncryption
     {
         Random rng = new Random();
         DB_CRUD db = new DB_CRUD();

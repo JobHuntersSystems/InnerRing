@@ -9,7 +9,7 @@ using System.Security.Cryptography;
 
 namespace PACS_Center
 {
-    public class clsKeyManager
+    public class KeyManager
     {
         private DB_CRUD db = new DB_CRUD();
         public string SearchCode(int idPlanet)
