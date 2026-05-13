@@ -3,10 +3,44 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace PACS_Planet
+namespace PACS_ChecksumCalculator
 {
 	public class PacsChecksumService
 	{
+		// =========================================================
+		// EVENT: CHECKSUM CALCULATED
+		// This event notifies the form when the global checksum
+		// has been calculated.
+		// It sends one thing: GlobalChecksum.
+		// =========================================================
+
+		public event EventHandler ChecksumCalculated;
+
+		public class ChecksumCalculatedEventArgs : EventArgs
+		{
+			public int GlobalChecksum { get; set; }
+		}
+
+		protected virtual void OnChecksumCalculated(ChecksumCalculatedEventArgs e)
+		{
+			if (ChecksumCalculated != null)
+			{
+				ChecksumCalculated(this, e);
+			}
+		}
+
+		private void RaiseChecksumCalculated(int globalChecksum)
+		{
+			OnChecksumCalculated(new ChecksumCalculatedEventArgs
+			{
+				GlobalChecksum = globalChecksum
+			});
+		}
+
+		// =========================================================
+		// MAIN CHECKSUM METHOD
+		// =========================================================
+
 		public int CalculateGlobalChecksum(string folderPath, Dictionary<char, string> codification)
 		{
 			if (string.IsNullOrWhiteSpace(folderPath))
@@ -43,6 +77,8 @@ namespace PACS_Planet
 					globalTotal += fileTotal;
 				}
 			});
+
+			RaiseChecksumCalculated(globalTotal);
 
 			return globalTotal;
 		}

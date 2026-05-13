@@ -62,14 +62,6 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmPlanetValidation.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmPlanetValidation.Designer.cs">
-      <DependentUpon>FrmPlanetValidation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PACS_ChecksumService.cs" />
-    <Compile Include="PACS_ZipService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmPlanetConfig.resx">
@@ -133,9 +125,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="PACS_logo.ico" />
-    <Content Include="PACS_Config.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

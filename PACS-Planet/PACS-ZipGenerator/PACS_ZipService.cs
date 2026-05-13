@@ -5,9 +5,9 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Xml.Linq;
 
-namespace PACS_Planet
+namespace PACS_ZipGenerator
 {
-	public class PACS_ZipService
+	public class PacsZipService
 	{
 		public class XMLConfig
 		{
@@ -28,6 +28,39 @@ namespace PACS_Planet
 			public int LettersPerFile { get; set; }
 			public long ZipSizeBytes { get; set; }
 		}
+
+		// =========================================================
+		// EVENT: ZIP GENERATED
+		// This event notifies the form when PACS.zip has been created.
+		// It sends one object: PacsZipResult.
+		// =========================================================
+
+		public event EventHandler ZipGenerated;
+
+		public class ZipGeneratedEventArgs : EventArgs
+		{
+			public PacsZipResult Result { get; set; }
+		}
+
+		protected virtual void OnZipGenerated(ZipGeneratedEventArgs e)
+		{
+			if (ZipGenerated != null)
+			{
+				ZipGenerated(this, e);
+			}
+		}
+
+		private void RaiseZipGenerated(PacsZipResult result)
+		{
+			OnZipGenerated(new ZipGeneratedEventArgs
+			{
+				Result = result
+			});
+		}
+
+		// =========================================================
+		// MAIN ZIP GENERATION METHOD
+		// =========================================================
 
 		public PacsZipResult GeneratePacsZip(string baseFolder)
 		{
@@ -55,7 +88,7 @@ namespace PACS_Planet
 
 			FileInfo zipInfo = new FileInfo(zipPath);
 
-			return new PacsZipResult
+			PacsZipResult result = new PacsZipResult
 			{
 				ConfigPath = configPath,
 				WorkFolder = workFolder,
@@ -65,6 +98,10 @@ namespace PACS_Planet
 				LettersPerFile = config.LettersPerFile,
 				ZipSizeBytes = zipInfo.Length
 			};
+
+			RaiseZipGenerated(result);
+
+			return result;
 		}
 
 		public XMLConfig LoadXMLConfig(string baseFolder)
