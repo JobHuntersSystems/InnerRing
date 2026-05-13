@@ -34,8 +34,8 @@
             this.pnlLeft = new System.Windows.Forms.Panel();
             this.pctBackground = new System.Windows.Forms.PictureBox();
             this.pnlButton = new System.Windows.Forms.Panel();
-            this.pnlMain = new System.Windows.Forms.Panel();
             this.pcsConsoleMain = new PACS_CustomControls.PacsConsole();
+            this.pnlMain = new System.Windows.Forms.Panel();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctConfiguration)).BeginInit();
             this.flowMenuLeft.SuspendLayout();
@@ -271,12 +271,27 @@
             // 
             // pnlButton
             // 
+            this.pnlButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(19)))), ((int)(((byte)(32)))));
             this.pnlButton.Controls.Add(this.pcsConsoleMain);
             this.pnlButton.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(19)))), ((int)(((byte)(32)))));
             this.pnlButton.Location = new System.Drawing.Point(249, 685);
             this.pnlButton.Name = "pnlButton";
             this.pnlButton.Size = new System.Drawing.Size(1118, 200);
             this.pnlButton.TabIndex = 7;
+            // 
+            // pcsConsoleMain
+            // 
+            this.pcsConsoleMain.AccentColor = System.Drawing.Color.Aqua;
+            this.pcsConsoleMain.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.pcsConsoleMain.BackColor = System.Drawing.Color.Transparent;
+            this.pcsConsoleMain.ConsoleTitle = "SYSTEM LOG CONSOLE";
+            this.pcsConsoleMain.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pcsConsoleMain.Location = new System.Drawing.Point(0, 0);
+            this.pcsConsoleMain.Margin = new System.Windows.Forms.Padding(6);
+            this.pcsConsoleMain.Name = "pcsConsoleMain";
+            this.pcsConsoleMain.Size = new System.Drawing.Size(745, 200);
+            this.pcsConsoleMain.TabIndex = 1;
             // 
             // pnlMain
             // 
@@ -287,19 +302,6 @@
             this.pnlMain.Name = "pnlMain";
             this.pnlMain.Size = new System.Drawing.Size(1118, 646);
             this.pnlMain.TabIndex = 8;
-            // 
-            // pcsConsoleMain
-            // 
-            this.pcsConsoleMain.AccentColor = System.Drawing.Color.Aqua;
-            this.pcsConsoleMain.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.pcsConsoleMain.BackColor = System.Drawing.Color.Transparent;
-            this.pcsConsoleMain.ConsoleTitle = "SYSTEM LOG CONSOLE";
-            this.pcsConsoleMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pcsConsoleMain.Location = new System.Drawing.Point(0, 0);
-            this.pcsConsoleMain.Margin = new System.Windows.Forms.Padding(6);
-            this.pcsConsoleMain.Name = "pcsConsoleMain";
-            this.pcsConsoleMain.Size = new System.Drawing.Size(1118, 200);
-            this.pcsConsoleMain.TabIndex = 1;
             // 
             // frmMain
             // 

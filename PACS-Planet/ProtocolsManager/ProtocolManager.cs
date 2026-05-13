@@ -85,7 +85,7 @@ namespace ProtocolsManager
                 if (db.Tables[0].Rows.Count > 0)
                 {
                     result = ResultType.VP;
-                    Spaceship.CurrentStage += 1;
+                    
                 }
             }
 
@@ -95,7 +95,7 @@ namespace ProtocolsManager
         {
             ProtocolResponse response;
             string message_response = "VR";
-
+            Spaceship.CurrentStage += 1;
             List<string> messageDecoded = decodeMessage(code);
             string delivery_code = messageDecoded[0];
             string spaceship_code = messageDecoded[1];
@@ -137,7 +137,7 @@ namespace ProtocolsManager
             if (db.Tables[0].Rows.Count > 0)
             {
                 result = ResultType.VP;
-                Spaceship.CurrentStage += 1;
+
             }
             return result;
         }
@@ -145,6 +145,7 @@ namespace ProtocolsManager
         {
             ProtocolResponse response;
             string message_response = "VR";
+            Spaceship.CurrentStage += 1;
             string code_decrypted = decryptCode(message);
             ResultType validation = validateEncryptedCode(code_decrypted);
 
