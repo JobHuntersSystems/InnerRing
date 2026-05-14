@@ -4,27 +4,25 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DA08766A-DBFB-465B-86CD-360FE7385368}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>PACS_Center</RootNamespace>
-    <AssemblyName>PACS-Center</AssemblyName>
+    <ProjectGuid>{40162ADA-E23A-4C5F-8B14-4D71C5634255}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PACS_ChecksumCalculator</RootNamespace>
+    <AssemblyName>PACS-ChecksumCalculator</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\App\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -38,77 +36,49 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="RSADecrypt.cs" />
-    <Compile Include="InnerEncryption.cs" />
-    <Compile Include="KeyManager.cs" />
-    <Compile Include="frmInnerEncryption.cs">
+    <Compile Include="FrmPacsChecksumCalculator.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmInnerEncryption.Designer.cs">
-      <DependentUpon>frmInnerEncryption.cs</DependentUpon>
+    <Compile Include="FrmPacsChecksumCalculator.Designer.cs">
+      <DependentUpon>FrmPacsChecksumCalculator.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmKeyManager.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmKeyManager.Designer.cs">
-      <DependentUpon>frmKeyManager.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmInnerEncryption.resx">
-      <DependentUpon>frmInnerEncryption.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmKeyManager.resx">
-      <DependentUpon>frmKeyManager.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <EmbeddedResource Include="FrmPacsChecksumCalculator.resx">
+      <DependentUpon>FrmPacsChecksumCalculator.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+	  <ProjectReference Include="..\PACS-Common\PACS-Common.csproj">
+		  <Name>PACS-Common</Name>
+	  </ProjectReference>
     <ProjectReference Include="..\Inner_DB_Access\Inner_DB_Access.csproj">
       <Project>{886fe758-4c70-4699-b614-f2287dcc7e48}</Project>
       <Name>Inner_DB_Access</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PACS-Common\PACS-Common.csproj">
-      <Project>{AE2DFBFD-20FC-4225-9991-62EDAAD6B012}</Project>
-      <Name>PACS-Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PACS-CustomControls\PACS-CustomControls.csproj">
-      <Project>{5e69e566-0081-4b55-8486-8341a9e082a1}</Project>
+      <Project>{5E69E566-0081-4B55-8486-8341A9E082A1}</Project>
       <Name>PACS-CustomControls</Name>
     </ProjectReference>
     <ProjectReference Include="..\PACS-InheratedControls\PACS-InheratedControls.csproj">
-      <Project>{f81b6a02-65c6-47cc-8792-693510674d9d}</Project>
+      <Project>{F81B6A02-65C6-47CC-8792-693510674D9D}</Project>
       <Name>PACS-InheratedControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PACS-Services\PACS-Services.csproj">
+      <Project>{7b388d0b-119f-4423-9955-c24aaadb5998}</Project>
+      <Name>PACS-Services</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

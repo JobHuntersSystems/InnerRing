@@ -16,6 +16,7 @@ using System.IO;
 using System.Net.Sockets;
 using System.Net;
 using ProtocolsManager;
+using Inner_DB_Access;
 
 namespace TcpManager
 {
@@ -24,11 +25,11 @@ namespace TcpManager
 
         private TcpClientService clientData;
         private DataTcpServer dataServer;
-        //private FileTcpServer fileServer;
+        private FileTcpServer fileServer;
 
         private ProtocolManager protocolManager = new ProtocolManager();
 
-        public List<string> clientsIPList { get; private set; } = new List<string>();
+        private string currentClientIP = "";
         public frmTcpManager()
         {
             InitializeComponent();
@@ -63,7 +64,7 @@ namespace TcpManager
             if(result == ResultType.VP)
             {
                 genericInvokeAction(pctSpaceship, () => {
-                    string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + @"Resources\Spaceships\Imagenes", Spaceship.imagePath);
+                    string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory , @"Resources\Spaceships\Imagenes\Caza_Tie.png");
                     pctSpaceship.ImageLocation = path;
                     pctSpaceship.Visible = true;
                     lblCurrentRequestValue.Text = protocol;
@@ -117,62 +118,77 @@ namespace TcpManager
                 string client_message = tcp.RawData;
 
                 //Identificamos si el cliente es conocido o no
-                if (!clientsIPList.Contains(client_ip))
+                if (string.IsNullOrWhiteSpace(currentClientIP))
                 {
-                    string message = $"Unidentified spaceship detected: {client_ip}";
-                    clientsIPList.Add(client_ip);
+                    string message = $"new Spaceship requesting to enter: {client_ip}";
+                    currentClientIP = client_ip;
                     RaiseNotificationSent(LogLevel.Warn, message);
                 }
-
+                
                 if (!isActiveVkProtocol)
                 {
                     MessageProtocolType type = protocolManager.identifyProtocolType(client_message);
                     switch (type)
                     {
                         case MessageProtocolType.ER:
-                            ProtocolResponse response;
-                            Spaceship.ip = client_ip;
-                            genericInvokeAction(pcsConsoleLog, () => pcsConsoleLog.AddLog(
-                                   LogLevel.Info,
-                                   "ER Protocol detected, starting validation..."
-                           ));
-                            response = protocolManager.excuteErProtocol(client_message);
-                            string console_message;
-                            if (response.result == ResultType.VP)
+                            
+                            if(Spaceship.CurrentStage == 0)
                             {
-                                genericInvokeAction(pcsConsoleLog, () => {
-                                    btnCheckConnection.Visible = true;
-                                    console_message = "Delivery confirmed, able to the next stage ✅";
-                                    pcsConsoleLog.AddLog(
-                                        LogLevel.Success,
-                                        console_message);
-                                });
-                            }
-                            else
-                            {
-                                genericInvokeAction(pcsConsoleLog, () =>
+                                ProtocolResponse response;
+                                Spaceship.ip = client_ip;
+                                genericInvokeAction(pcsConsoleLog, () => pcsConsoleLog.AddLog(
+                                   LogLevel.Message,
+                                   $"{client_ip} | {client_message}"
+                               ));
+                                genericInvokeAction(pcsConsoleLog, () => pcsConsoleLog.AddLog(
+                                       LogLevel.Info,
+                                       "ER Protocol detected, starting validation..."
+                                ));
+                                response = protocolManager.excuteErProtocol(client_message);
+                                string console_message;
+                                if (response.result == ResultType.VP)
                                 {
-                                    console_message = "Delivery refused, starting destruction ----> 🚀💥";
-                                    pcsConsoleLog.AddLog(
-                                        LogLevel.Warn,
-                                        console_message
-                                    );
-                                });
+                                    genericInvokeAction(pcsConsoleLog, () => {
+                                        btnCheckConnection.Visible = true;
+                                        console_message = "Delivery confirmed, able to the next stage ✅";
+                                        pcsConsoleLog.AddLog(
+                                            LogLevel.Success,
+                                            console_message);
+                                    });
+                                }
+                                else
+                                {
+                                    genericInvokeAction(pcsConsoleLog, () =>
+                                    {
+                                        console_message = "Delivery refused, starting destruction ----> 🚀💥";
+                                        pcsConsoleLog.AddLog(
+                                            LogLevel.Warn,
+                                            console_message
+                                        );
+                                    });
+                                }
+                                genericInvokeAction(pcsConsoleLog, () => pcsConsoleLog.AddLog(
+                                    LogLevel.Info,
+                                    $"Sending: {response.protocolResponse}"
+                                ));
+                                clientData.sendMessage(Spaceship.ip, Spaceship.dataPort, response.protocolResponse);
+                                updateClientData(response.result, "ER", client_message);
                             }
-                            clientData.sendMessage(Spaceship.ip, Spaceship.dataPort, response.protocolResponse);
-                            updateClientData(response.result, "ER", client_message);
                             break;
                         case MessageProtocolType.VK:
-                            isActiveVkProtocol = true;
-                            genericInvokeAction(pcsConsoleLog, () => pcsConsoleLog.AddLog(
-                                  LogLevel.Info,
-                                  "VK Protocol detected, wating for the next message..."
-                            ));
+                            if (Spaceship.CurrentStage == 1)
+                            {
+                                isActiveVkProtocol = true;
+                                genericInvokeAction(pcsConsoleLog, () => pcsConsoleLog.AddLog(
+                                      LogLevel.Info,
+                                      "VK Protocol detected, wating for the next message..."
+                                ));
+                            }
                             break;
                         case MessageProtocolType.Message:
                             string message = client_ip + "| " + client_message;
                             genericInvokeAction(pcsConsoleLog, () => pcsConsoleLog.AddLog(
-                                   LogLevel.Info,
+                                   LogLevel.Message,
                                    message
                            ));
                             break;
@@ -183,8 +199,8 @@ namespace TcpManager
                     ProtocolResponse response;
                     Spaceship.ip = client_ip;
                     genericInvokeAction(pcsConsoleLog, () => pcsConsoleLog.AddLog(
-                           LogLevel.Info,
-                           "VK Protocol detected, starting validation..."
+                        LogLevel.Message,
+                        $"{client_ip} | {client_message}"
                     ));
                     response = protocolManager.excuteVkProtocol(client_message);
                     string console_message;
@@ -193,7 +209,7 @@ namespace TcpManager
                         genericInvokeAction(pcsConsoleLog, () => {
                             btnCheckConnection.Visible = true;
                             
-                            console_message = "Delivery confirmed, able to the next stage ✅";
+                            console_message = "Validation code confirmed, able to the next stage ✅";
 
                             pcsConsoleLog.AddLog(
                                 LogLevel.Success,
@@ -205,15 +221,20 @@ namespace TcpManager
                         genericInvokeAction(pcsConsoleLog, () =>
                         {
                             console_message = "Delivery refused, starting destruction ----> 🚀💥";
-                            Spaceship.Reset();
+                          
                             pcsConsoleLog.AddLog(
                                 LogLevel.Warn,
                                 console_message
                             );
                         });
                     }
+                    genericInvokeAction(pcsConsoleLog, () => pcsConsoleLog.AddLog(
+                        LogLevel.Info,
+                        $"Sending: {response.protocolResponse}"
+                    ));
                     clientData.sendMessage(Spaceship.ip, Spaceship.dataPort, response.protocolResponse);
-                    updateClientData(response.result ,"ER", client_message);
+                    updateClientData(response.result ,"VK", client_message);
+                    Spaceship.Reset();
                 }
             }
             catch (SqlException ex)
@@ -331,7 +352,37 @@ namespace TcpManager
             if (dataServer != null && dataServer.isRunning)
             {
                 dataServer.stopServer();
+                Spaceship.Reset();
             }
+        }
+
+        private void btnBrowseImage_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DB_CRUD dbManager = new DB_CRUD();
+                string sql = "UPDATE Planets " +
+                      $"SET IPPlanet = '{Planet.IPPlanet}' " +
+                      $"WHERE idPlanet = {Planet.idPlanet}";
+
+                dbManager.Executa(sql);
+                pcsConsoleLog.AddLog(LogLevel.Success, "Ip Planet Updated !!");
+            
+            }
+            catch (SqlException ex)
+            {
+                pcsConsoleLog.AddLog(LogLevel.Error, ex.Message);
+            } 
+            catch (Exception ex)
+            {
+                pcsConsoleLog.AddLog(LogLevel.Error, ex.Message);
+            }
+           
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

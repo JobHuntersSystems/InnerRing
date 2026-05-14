@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+	<ProjectGuid>{482374F2-C9CE-4727-8395-4989BCE82BDB}</ProjectGuid>
+	<OutputType>WinExe</OutputType>
+	<AppDesignerFolder>Properties</AppDesignerFolder>
+	<RootNamespace>PACS_ZipGenerator</RootNamespace>
+	<AssemblyName>PACS-ZipGenerator</AssemblyName>
+	<TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+	<FileAlignment>512</FileAlignment>
+	<Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+	<DebugSymbols>true</DebugSymbols>
+	<DebugType>full</DebugType>
+	<Optimize>false</Optimize>
+	<OutputPath>bin\Debug\</OutputPath>
+	<DefineConstants>DEBUG;TRACE</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+	<DebugType>pdbonly</DebugType>
+	<Optimize>true</Optimize>
+	<OutputPath>bin\Release\</OutputPath>
+	<DefineConstants>TRACE</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+	<StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+	<Reference Include="System" />
+	<Reference Include="System.Core" />
+	<Reference Include="System.Drawing" />
+	<Reference Include="System.IO.Compression.FileSystem" />
+	<Reference Include="System.Windows.Forms" />
+	<Reference Include="System.Xml.Linq" />
+	<Reference Include="System.Data.DataSetExtensions" />
+	<Reference Include="Microsoft.CSharp" />
+	<Reference Include="System.Data" />
+	<Reference Include="System.Net.Http" />
+	<Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+	<Compile Include="FrmPacsZipGenerator.cs">
+	  <SubType>Form</SubType>
+	</Compile>
+	<Compile Include="FrmPacsZipGenerator.Designer.cs">
+	  <DependentUpon>FrmPacsZipGenerator.cs</DependentUpon>
+	</Compile>
+	<Compile Include="Program.cs" />
+	<Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+	<EmbeddedResource Include="FrmPacsZipGenerator.resx">
+	  <DependentUpon>FrmPacsZipGenerator.cs</DependentUpon>
+	</EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+	<ProjectReference Include="..\PACS-Common\PACS-Common.csproj">
+		<Name>PACS-Common</Name>
+	</ProjectReference>
+	<ProjectReference Include="..\PACS-CustomControls\PACS-CustomControls.csproj">
+	  <Project>{5E69E566-0081-4B55-8486-8341A9E082A1}</Project>
+	  <Name>PACS-CustomControls</Name>
+	</ProjectReference>
+	<ProjectReference Include="..\PACS-InheratedControls\PACS-InheratedControls.csproj">
+	  <Project>{F81B6A02-65C6-47CC-8792-693510674D9D}</Project>
+	  <Name>PACS-InheratedControls</Name>
+	</ProjectReference>
+	<ProjectReference Include="..\PACS-Services\PACS-Services.csproj">
+	  <Project>{7b388d0b-119f-4423-9955-c24aaadb5998}</Project>
+	  <Name>PACS-Services</Name>
+	</ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

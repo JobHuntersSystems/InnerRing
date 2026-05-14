@@ -69,12 +69,11 @@ namespace PACS_CustomControls
         private Dictionary<LogLevel, (string Label, Color Color)> _logConfig { get; } =
             new Dictionary<LogLevel, (string, Color)>
             {
-                { LogLevel.Info, ("INFO", Color.FromArgb(130, 220, 105)) },
-                { LogLevel.Debug, ("DEBUG", Color.FromArgb(0, 220, 255)) },
-                { LogLevel.Warn, ("WARN", Color.FromArgb(255, 180, 40)) },
-                { LogLevel.Error, ("ERROR", Color.FromArgb(255, 60, 60)) },
-                { LogLevel.Success, ("SUCCESS", Color.FromArgb(255, 255, 255)) },
-
+                { LogLevel.Info,    ("INFO",  Color.FromArgb(166, 255,   0)) }, // Verde lima
+                { LogLevel.Warn,    ("WARN",  Color.FromArgb(255, 208,   0)) }, // Amarillo fuerte
+                { LogLevel.Error,   ("ERRO",  Color.FromArgb(255,  48,  48)) }, // Rojo intenso
+                { LogLevel.Success, ("SUCC",  Color.FromArgb(  0, 255, 136)) }, // Verde esmeralda
+                { LogLevel.Message, ("MESS",  Color.FromArgb(102, 175, 255)) }  // Azul claro
             };
         public void AddLog(LogLevel type, string message)
         {
@@ -105,7 +104,7 @@ namespace PACS_CustomControls
             rtbConsole.AppendText($"[{timestamp}] ");
 
             rtbConsole.SelectionColor = color;
-            rtbConsole.AppendText($"[{level.PadRight(7)}] {message}\n");
+            rtbConsole.AppendText($"[{level.PadRight(4)}] {message}\n");
 
 
             rtbConsole.SelectionStart = rtbConsole.TextLength;

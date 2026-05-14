@@ -8,14 +8,16 @@ using PACS_Common;
 using Inner_DB_Access;
 using System.Data;
 using System.Data.SqlClient;
-using System.IO;
+using PACS_Center;
+
 
 namespace ProtocolsManager
 {
     public class ProtocolManager
     {
         private DB_CRUD dbManger = new DB_CRUD();
-        DataSet db;
+        private RSADecrypt rsaManager = new RSADecrypt();
+        private DataSet db;
         public MessageProtocolType identifyProtocolType(string message)
         {
             MessageProtocolType type;
@@ -85,7 +87,7 @@ namespace ProtocolsManager
                 if (db.Tables[0].Rows.Count > 0)
                 {
                     result = ResultType.VP;
-                    Spaceship.CurrentStage += 1;
+                    
                 }
             }
 
@@ -95,7 +97,7 @@ namespace ProtocolsManager
         {
             ProtocolResponse response;
             string message_response = "VR";
-
+            Spaceship.CurrentStage += 1;
             List<string> messageDecoded = decodeMessage(code);
             string delivery_code = messageDecoded[0];
             string spaceship_code = messageDecoded[1];
@@ -117,12 +119,6 @@ namespace ProtocolsManager
         }
         #endregion
         #region VK Protocol
-        private string decryptCode(string code)
-        {
-            string code_decrypted = "";
-
-            return code_decrypted;
-        }
         private ResultType validateEncryptedCode(string code)
         {
             ResultType result = ResultType.AD;
@@ -137,15 +133,16 @@ namespace ProtocolsManager
             if (db.Tables[0].Rows.Count > 0)
             {
                 result = ResultType.VP;
-                Spaceship.CurrentStage += 1;
+
             }
             return result;
         }
-        public ProtocolResponse excuteVkProtocol(string message)
+        public ProtocolResponse excuteVkProtocol(string code)
         {
             ProtocolResponse response;
             string message_response = "VR";
-            string code_decrypted = decryptCode(message);
+            Spaceship.CurrentStage += 1;
+            string code_decrypted = rsaManager.DecryptMessage(Planet.idPlanet, code);
             ResultType validation = validateEncryptedCode(code_decrypted);
 
             message_response += Spaceship.CurrentStage
