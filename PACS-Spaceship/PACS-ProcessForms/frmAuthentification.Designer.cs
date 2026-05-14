@@ -61,8 +61,9 @@ namespace PACS_ProcessForms
             this.pnlBackGround.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlBackGround.GrosorBorde = 1;
             this.pnlBackGround.Location = new System.Drawing.Point(0, 0);
+            this.pnlBackGround.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlBackGround.Name = "pnlBackGround";
-            this.pnlBackGround.Size = new System.Drawing.Size(980, 600);
+            this.pnlBackGround.Size = new System.Drawing.Size(1307, 738);
             this.pnlBackGround.TabIndex = 0;
             // 
             // panelHeader
@@ -73,25 +74,28 @@ namespace PACS_ProcessForms
             this.panelHeader.Controls.Add(this.lblHeaderRight);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
+            this.panelHeader.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(980, 46);
+            this.panelHeader.Size = new System.Drawing.Size(1307, 57);
             this.panelHeader.TabIndex = 1;
             // 
             // pnlTopDown
             // 
             this.pnlTopDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
             this.pnlTopDown.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlTopDown.Location = new System.Drawing.Point(20, 44);
+            this.pnlTopDown.Location = new System.Drawing.Point(27, 55);
+            this.pnlTopDown.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlTopDown.Name = "pnlTopDown";
-            this.pnlTopDown.Size = new System.Drawing.Size(960, 2);
+            this.pnlTopDown.Size = new System.Drawing.Size(1280, 2);
             this.pnlTopDown.TabIndex = 2;
             // 
             // pnlTopFillLeft
             // 
             this.pnlTopFillLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlTopFillLeft.Location = new System.Drawing.Point(0, 0);
+            this.pnlTopFillLeft.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlTopFillLeft.Name = "pnlTopFillLeft";
-            this.pnlTopFillLeft.Size = new System.Drawing.Size(20, 46);
+            this.pnlTopFillLeft.Size = new System.Drawing.Size(27, 57);
             this.pnlTopFillLeft.TabIndex = 3;
             // 
             // lblHeaderLeft
@@ -99,9 +103,10 @@ namespace PACS_ProcessForms
             this.lblHeaderLeft.AutoSize = true;
             this.lblHeaderLeft.Font = new System.Drawing.Font("Consolas", 16F, System.Drawing.FontStyle.Bold);
             this.lblHeaderLeft.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            this.lblHeaderLeft.Location = new System.Drawing.Point(20, 10);
+            this.lblHeaderLeft.Location = new System.Drawing.Point(27, 12);
+            this.lblHeaderLeft.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblHeaderLeft.Name = "lblHeaderLeft";
-            this.lblHeaderLeft.Size = new System.Drawing.Size(276, 26);
+            this.lblHeaderLeft.Size = new System.Drawing.Size(345, 32);
             this.lblHeaderLeft.TabIndex = 4;
             this.lblHeaderLeft.Text = "ORBITAL AUTHENTICATION";
             // 
@@ -110,9 +115,10 @@ namespace PACS_ProcessForms
             this.lblHeaderRight.AutoSize = true;
             this.lblHeaderRight.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold);
             this.lblHeaderRight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            this.lblHeaderRight.Location = new System.Drawing.Point(620, 17);
+            this.lblHeaderRight.Location = new System.Drawing.Point(827, 21);
+            this.lblHeaderRight.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblHeaderRight.Name = "lblHeaderRight";
-            this.lblHeaderRight.Size = new System.Drawing.Size(280, 17);
+            this.lblHeaderRight.Size = new System.Drawing.Size(315, 20);
             this.lblHeaderRight.TabIndex = 5;
             this.lblHeaderRight.Text = "PACS VALIDATION PROTOCOL | STANDBY";
             // 
@@ -129,9 +135,10 @@ namespace PACS_ProcessForms
             this.pnlControls.Controls.Add(this.btnPhase3);
             this.pnlControls.Controls.Add(this.btnPhase4);
             this.pnlControls.GrosorBorde = 1;
-            this.pnlControls.Location = new System.Drawing.Point(25, 61);
+            this.pnlControls.Location = new System.Drawing.Point(33, 75);
+            this.pnlControls.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlControls.Name = "pnlControls";
-            this.pnlControls.Size = new System.Drawing.Size(400, 310);
+            this.pnlControls.Size = new System.Drawing.Size(533, 382);
             this.pnlControls.TabIndex = 6;
             // 
             // lblTarget
@@ -139,9 +146,10 @@ namespace PACS_ProcessForms
             this.lblTarget.AutoSize = true;
             this.lblTarget.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold);
             this.lblTarget.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
-            this.lblTarget.Location = new System.Drawing.Point(20, 20);
+            this.lblTarget.Location = new System.Drawing.Point(27, 25);
+            this.lblTarget.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTarget.Name = "lblTarget";
-            this.lblTarget.Size = new System.Drawing.Size(324, 19);
+            this.lblTarget.Size = new System.Drawing.Size(395, 23);
             this.lblTarget.TabIndex = 7;
             this.lblTarget.Text = "/// TARGET: SECTOR 4 - PLANET ORBIT";
             this.lblTarget.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -151,9 +159,10 @@ namespace PACS_ProcessForms
             this.btnPhase1.BackColor = System.Drawing.Color.Transparent;
             this.btnPhase1.ButtonText = "PHASE 1: REQUEST VERIFICATION";
             this.btnPhase1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPhase1.Location = new System.Drawing.Point(24, 56);
+            this.btnPhase1.Location = new System.Drawing.Point(32, 69);
+            this.btnPhase1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnPhase1.Name = "btnPhase1";
-            this.btnPhase1.Size = new System.Drawing.Size(280, 45);
+            this.btnPhase1.Size = new System.Drawing.Size(373, 55);
             this.btnPhase1.TabIndex = 8;
             this.btnPhase1.ThemeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
             this.btnPhase1.Click += new System.EventHandler(this.btnPhase1_Click);
@@ -161,12 +170,13 @@ namespace PACS_ProcessForms
             // btnPhase2
             // 
             this.btnPhase2.BackColor = System.Drawing.Color.Transparent;
-            this.btnPhase2.ButtonText = "PHASE 2: DELIVERY DOCUMENT";
+            this.btnPhase2.ButtonText = "PHASE 2: VALIDATION KEY";
             this.btnPhase2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPhase2.Enabled = false;
-            this.btnPhase2.Location = new System.Drawing.Point(24, 116);
+            this.btnPhase2.Location = new System.Drawing.Point(32, 143);
+            this.btnPhase2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnPhase2.Name = "btnPhase2";
-            this.btnPhase2.Size = new System.Drawing.Size(280, 45);
+            this.btnPhase2.Size = new System.Drawing.Size(373, 55);
             this.btnPhase2.TabIndex = 9;
             this.btnPhase2.ThemeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(180)))), ((int)(((byte)(40)))));
             this.btnPhase2.Click += new System.EventHandler(this.btnPhase2_Click);
@@ -177,9 +187,10 @@ namespace PACS_ProcessForms
             this.btnPhase3.ButtonText = "PHASE 3: ENCODED FILES";
             this.btnPhase3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPhase3.Enabled = false;
-            this.btnPhase3.Location = new System.Drawing.Point(24, 176);
+            this.btnPhase3.Location = new System.Drawing.Point(32, 217);
+            this.btnPhase3.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnPhase3.Name = "btnPhase3";
-            this.btnPhase3.Size = new System.Drawing.Size(280, 45);
+            this.btnPhase3.Size = new System.Drawing.Size(373, 55);
             this.btnPhase3.TabIndex = 10;
             this.btnPhase3.ThemeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(220)))), ((int)(((byte)(105)))));
             this.btnPhase3.Click += new System.EventHandler(this.btnPhase3_Click);
@@ -190,9 +201,10 @@ namespace PACS_ProcessForms
             this.btnPhase4.ButtonText = "PHASE 4: CHECKSUM";
             this.btnPhase4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPhase4.Enabled = false;
-            this.btnPhase4.Location = new System.Drawing.Point(24, 236);
+            this.btnPhase4.Location = new System.Drawing.Point(32, 290);
+            this.btnPhase4.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnPhase4.Name = "btnPhase4";
-            this.btnPhase4.Size = new System.Drawing.Size(280, 45);
+            this.btnPhase4.Size = new System.Drawing.Size(373, 55);
             this.btnPhase4.TabIndex = 11;
             this.btnPhase4.ThemeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             // 
@@ -202,19 +214,21 @@ namespace PACS_ProcessForms
             this.protocolConsole.BackColor = System.Drawing.Color.Transparent;
             this.protocolConsole.ConsoleTitle = "TCP/IP ORBITAL LINK PROTOCOL";
             this.protocolConsole.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.protocolConsole.Location = new System.Drawing.Point(20, 390);
+            this.protocolConsole.Location = new System.Drawing.Point(27, 480);
+            this.protocolConsole.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.protocolConsole.Name = "protocolConsole";
-            this.protocolConsole.Size = new System.Drawing.Size(940, 190);
+            this.protocolConsole.Size = new System.Drawing.Size(1253, 234);
             this.protocolConsole.TabIndex = 12;
             // 
             // frmAuthentification
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(980, 600);
+            this.ClientSize = new System.Drawing.Size(1307, 738);
             this.Controls.Add(this.pnlBackGround);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmAuthentification";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Planet Validation";

@@ -13,7 +13,7 @@ namespace PACS_ProcessForms
 {
     public partial class frmConnection : Form
     {
-        public string SelectedTargetIP { get; private set; }
+        #region Initialization
 
         public frmConnection()
         {
@@ -22,11 +22,12 @@ namespace PACS_ProcessForms
 
             txtShipID.Text = "IS-789456789";
             txtDeliveryID.Text = "123456123456";
+
         }
 
         private void InitializeRadar()
         {
-            CargarPlanetas();
+            GetPlanetsInfo();
             btnProceed.Enabled = false;
             txtShipID.Text = ConnectionInfo.ShipID;
             txtDeliveryID.Text = ConnectionInfo.DeliveryID;
@@ -35,12 +36,55 @@ namespace PACS_ProcessForms
 
         }
 
-        private void CargarPlanetas()
+        #endregion
+
+        #region UI Events
+
+        private void btnPing_Click(object sender, EventArgs e)
+        {
+             ExecutePing(ConnectionInfo.TargetPlanetIP);
+        }
+
+        private void btnProceed_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtShipID.Text) || string.IsNullOrWhiteSpace(txtDeliveryID.Text))
+            {
+                MessageBox.Show("Please enter valid Ship ID and Delivery ID to proceed.", "Authorization Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(ConnectionInfo.TargetPlanetIP))
+            {
+                MessageBox.Show("Please ping a valid target before proceeding.", "Target Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            ConnectionInfo.ShipID = txtShipID.Text.Trim();
+            ConnectionInfo.DeliveryID = txtDeliveryID.Text.Trim();
+
+            LogToConsole("CREDENTIALS SAVED. INITIATING PROTOCOL TRANSFER...");
+
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private void txtShipID_Validated(object sender, EventArgs e)
+        {
+            GetSpaceShipInfo();
+        }
+
+        #endregion
+
+        #region Data Access
+
+        private void GetPlanetsInfo()
         {
             try
             {
                 DB_CRUD db = new DB_CRUD();
-                string consulta = "SELECT idPlanet, CodePlanet, IPPlanet, PortPlanet, PortPlanet1 FROM Planets";
+                string consulta = "SELECT p.idPlanet, CodePlanet, IPPlanet, PortPlanet, PortPlanet1, k.XMLKey, i.ValidationCode " +
+                                  "FROM Planets p, PlanetKeys k, InnerEncryption i " +
+                                  "where p.idPlanet = k.idPlanet and i.idPlanet = p.idPlanet";
                 DataTable dtPlanetas = db.PortarDataTable(consulta);
 
                 if (dtPlanetas.Rows.Count > 0)
@@ -48,6 +92,10 @@ namespace PACS_ProcessForms
                     cmbTargetIP.DataSource = dtPlanetas;
                     cmbTargetIP.DisplayMember = "CodePlanet";
                     cmbTargetIP.ValueMember = "IPPlanet";
+
+                    SaveSelectedPlanetInfo();
+                    btnProceed.Enabled = false;
+                    UpdateStatus("● STANDBY / AWAITING PING", Color.FromArgb(100, 100, 100));
                 }
             }
             catch (Exception ex)
@@ -56,61 +104,52 @@ namespace PACS_ProcessForms
             }
         }
 
-        private void cmbTargetIP_SelectedIndexChanged(object sender, EventArgs e)
+        private void GetSpaceShipInfo()
         {
-            if (cmbTargetIP.SelectedItem is DataRowView filaSeleccionada)
+            try
             {
-                lblPlanetIPValue.Text = filaSeleccionada["IPPlanet"].ToString();
-                lblDataPortValue.Text = filaSeleccionada["PortPlanet"].ToString();
-                lblFilePortValue.Text = filaSeleccionada["PortPlanet1"].ToString();
+                DB_CRUD db = new DB_CRUD();
+                string consulta = "Select PortSpaceShip, PortSpaceShip1 " +
+                                  "from SpaceShips " +
+                                  $"where CodeSpaceShip = '{txtShipID.Text.ToString()}'";
 
-                btnProceed.Enabled = false;
-                UpdateStatus("● STANDBY / AWAITING PING", Color.FromArgb(100, 100, 100));
+                DataTable dtSpaceShip = db.PortarDataTable(consulta);
+
+                if (dtSpaceShip.Rows.Count > 0)
+                {
+                    int portDataSpaceShip = Convert.ToInt32(dtSpaceShip.Rows[0]["PortSpaceShip"]);
+                    int portFileSpaceShip = Convert.ToInt32(dtSpaceShip.Rows[0]["PortSpaceShip1"]);
+
+                    ConnectionInfo.SpaceShipPort = portDataSpaceShip;
+                    ConnectionInfo.SpaceShipPort1 = portFileSpaceShip;
+                }
+                else
+                {
+                    LogToConsole("DB Connection Error: Not valid SpaceShip code");
+                }
+            }
+            catch (Exception ex)
+            {
+                LogToConsole($"DB Connection Error: {ex.Message}");
             }
         }
 
-        private async void btnPing_Click(object sender, EventArgs e)
+        #endregion
+
+        #region Ping Workflow
+
+        private void ExecutePing(string ipAddress)
         {
-            string ipAddress = lblPlanetIPValue.Text.Trim();
-
-            if (string.IsNullOrWhiteSpace(ipAddress) || ipAddress == "0.0.0.0" || ipAddress == "--")
-            {
-                LogToConsole("ERROR: TARGET IP CANNOT BE EMPTY.");
-                return;
-            }
-
-            btnPing.Enabled = false;
-            btnProceed.Enabled = false;
-            UpdateStatus("● PINGING TARGET...", Color.FromArgb(242, 214, 75));
+            GetSpaceShipInfo();
+            SetPingInProgressState();
             LogToConsole($"Sending ICMP Echo Request to {ipAddress}...");
 
             try
             {
                 using (Ping pingSender = new Ping())
                 {
-                    PingReply reply = await pingSender.SendPingAsync(ipAddress, 3000);
-
-                    if (reply.Status == IPStatus.Success)
-                    {
-                        UpdateStatus("● UPLINK ESTABLISHED", Color.FromArgb(0, 255, 100));
-                        LogToConsole($"Reply from {reply.Address}: time={reply.RoundtripTime}ms");
-                        LogToConsole("TARGET ACQUIRED. COMMLINK READY.");
-
-                        SelectedTargetIP = ipAddress;
-
-                        if (cmbTargetIP.SelectedItem is DataRowView row)
-                        {
-                            ConnectionInfo.PlanetDataPort = Convert.ToInt32(row["PortPlanet"]);
-                            ConnectionInfo.PlanetFilePort = Convert.ToInt32(row["PortPlanet1"]);
-                        }
-
-                        btnProceed.Enabled = true;
-                    }
-                    else
-                    {
-                        UpdateStatus("● TARGET UNREACHABLE", Color.FromArgb(255, 45, 85));
-                        LogToConsole($"Ping failed: {reply.Status}");
-                    }
+                    PingReply reply = pingSender.Send(ipAddress, 3000);
+                    ProcessPingReply(reply);
                 }
             }
             catch (Exception ex)
@@ -124,25 +163,70 @@ namespace PACS_ProcessForms
             }
         }
 
-        private void btnProceed_Click(object sender, EventArgs e)
+        private void ProcessPingReply(PingReply reply)
         {
-            if (string.IsNullOrWhiteSpace(txtShipID.Text) || string.IsNullOrWhiteSpace(txtDeliveryID.Text))
+            if (reply.Status != IPStatus.Success)
             {
-                MessageBox.Show("Please enter valid Ship ID and Delivery ID to proceed.", "Authorization Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                UpdateStatus("● TARGET UNREACHABLE", Color.FromArgb(255, 45, 85));
+                LogToConsole($"Ping failed: {reply.Status}");
                 return;
             }
 
-            ConnectionInfo.TargetPlanetIP = SelectedTargetIP;
-            ConnectionInfo.ShipID = txtShipID.Text.Trim();
-            ConnectionInfo.DeliveryID = txtDeliveryID.Text.Trim();
-
-            LogToConsole("CREDENTIALS SAVED. INITIATING PROTOCOL TRANSFER...");
-
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            UpdateStatus("● UPLINK ESTABLISHED", Color.FromArgb(0, 255, 100));
+            LogToConsole($"Reply from {reply.Address}: time={reply.RoundtripTime}ms");
+            LogToConsole("TARGET ACQUIRED. COMMLINK READY.");
+            btnProceed.Enabled = true;
         }
 
-        #region Utilidades Visuales y Log
+        private void SetPingInProgressState()
+        {
+            btnPing.Enabled = false;
+            btnProceed.Enabled = false;
+            UpdateStatus("● PINGING TARGET...", Color.FromArgb(242, 214, 75));
+        }
+
+        private void UpdatePlanetLabels(string ipAddress, int dataPort, int filePort)
+        {
+            lblPlanetIPValue.Text = ipAddress;
+            lblDataPortValue.Text = dataPort.ToString();
+            lblFilePortValue.Text = filePort.ToString();
+        }
+
+        private void SaveSelectedPlanetInfo()
+        {
+            string ipAddress;
+            string planetKey;
+            int dataPort;
+            int filePort;
+            string validationCode;
+
+            if (!(cmbTargetIP.SelectedItem is DataRowView row))
+            {
+                return;
+            }
+
+            ipAddress = row["IPPlanet"].ToString().Trim();
+
+            if (!int.TryParse(row["PortPlanet"].ToString(), out dataPort)
+                || !int.TryParse(row["PortPlanet1"].ToString(), out filePort))
+            {
+                LogToConsole("DB Connection Error: Invalid target ports in selected planet row.");
+                return;
+            }
+
+            planetKey = row["XMLKey"] == DBNull.Value ? string.Empty : row["XMLKey"].ToString();
+            validationCode = row["ValidationCode"] == DBNull.Value ? string.Empty : row["ValidationCode"].ToString();
+
+            ConnectionInfo.TargetPlanetIP = ipAddress;
+            ConnectionInfo.PlanetDataPort = dataPort;
+            ConnectionInfo.PlanetFilePort = filePort;
+            ConnectionInfo.PlanetKey = planetKey;
+            ConnectionInfo.EncryptedValidationCode = validationCode;
+            UpdatePlanetLabels(ipAddress, dataPort, filePort);
+        }
+        #endregion
+
+        #region Visual and Logs
 
         private void UpdateStatus(string message, Color color)
         {
@@ -157,10 +241,14 @@ namespace PACS_ProcessForms
 
             if (pacsConsole2 != null)
             {
-                pacsConsole2.AddLog(LogLevel.Info, logLine); 
+                pacsConsole2.AddLog(LogLevel.Info, logLine);
             }
         }
 
         #endregion
+        private void cmbTargetIP_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            SaveSelectedPlanetInfo();
+        }
     }
 }

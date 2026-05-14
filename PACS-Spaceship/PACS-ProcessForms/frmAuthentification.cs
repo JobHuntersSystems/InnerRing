@@ -12,9 +12,8 @@ using PACS_Common;
 using PACS_SpaceShips_Common;
 using TcpClientServices;
 using TcpServerServices;
-
-using System.Security.Cryptography;
-
+using SpaceShip_Encryption;
+using System.Threading;
 
 namespace PACS_ProcessForms
 {
@@ -22,30 +21,32 @@ namespace PACS_ProcessForms
     {
         TcpClientService tcpClient;
         DataTcpServer tcpServer;
+        FileTcpServer tcpFileServer;
 
         public frmAuthentification()
         {
             InitializeComponent();
             tcpClient = new TcpClientService();
             tcpServer = new DataTcpServer();
+            tcpFileServer = new FileTcpServer();
 
             tcpServer.DataReceived += OnServerDataReceived;
             tcpServer.ServerStatusChanged += OnServerStatusChanged; 
         }
+
         #region botones proceso
         private void btnPhase1_Click(object sender, EventArgs e)
         {
             btnPhase1.Enabled = false;
-            btnPhase2.Enabled = true;
-
-            tcpServer.startServer(ConnectionInfo.PlanetDataPort);
+            tcpServer.startServer(ConnectionInfo.SpaceShipPort);
             SendER();
         }
 
         private void btnPhase2_Click(object sender, EventArgs e)
         {
             btnPhase2.Enabled = false;
-            btnPhase3.Enabled = true;
+            tcpFileServer.startServer(ConnectionInfo.SpaceShipPort1);
+            SendVK();
         }
 
         private void btnPhase3_Click(object sender, EventArgs e)
@@ -55,52 +56,95 @@ namespace PACS_ProcessForms
         }
         #endregion
 
-
         private void  SendER()
         {
             string erMessage = ConnectionInfo.GetERMessage();
 
-            LogToConsole($"INICIANDO PROTOCOLO HANDSHAKE...");
-            LogToConsole($"Generando ER: {erMessage}");
+            LogToConsole($"INICIANDO PROTOCOLO HANDSHAKE...", LogLevel.Info);
+            LogToConsole($"Generando ER: {erMessage}", LogLevel.Info);
 
             tcpClient.sendMessage(ConnectionInfo.TargetPlanetIP,ConnectionInfo.PlanetDataPort, erMessage);
         }     
-
-
-
-        private void LogToConsole(string message)
+        private void SendVK()
         {
-            string timeStamp = DateTime.Now.ToString("HH:mm:ss.fff");
-            string logLine = $"[{timeStamp}] {message}";
-
-            if (protocolConsole != null)
-            {
-                protocolConsole.AddLog(LogLevel.Info, logLine);
-            }
+            tcpClient.sendMessage(ConnectionInfo.TargetPlanetIP, ConnectionInfo.PlanetDataPort, "VK");
+            string Message = ShipCryptoManager.EncryptWithPublicKey(ConnectionInfo.EncryptedValidationCode, ConnectionInfo.PlanetKey);
+            tcpClient.sendMessage(ConnectionInfo.TargetPlanetIP, ConnectionInfo.PlanetDataPort, Message);
         }
 
+        private void ExtractFile()
+        {
+            //
+            //ZipFile.ExtractToDirectory()
+        }
 
-        #region eventos de notificación
+        #region Message Data
         private void OnServerDataReceived(object sender, EventArgs e)
         {
-            // Extraemos tu clase personalizada DataReceivedEventArgs
             DataTcpServer.DataReceivedEventArgs mensaje = (DataTcpServer.DataReceivedEventArgs)e;
 
             this.Invoke((MethodInvoker)delegate {
-                LogToConsole($"Message from {mensaje.ClientIp}: {mensaje.RawData}");
+                LogToConsole($"Message from {mensaje.ClientIp}: {mensaje.RawData}", LogLevel.Info);
 
-                // Aquí haces tu lógica de validación
-                if (mensaje.RawData.EndsWith("VP"))
+                string msgString = mensaje.RawData;
+                string typeMsg = mensaje.RawData.Substring(0, 3);
+
+
+                switch (typeMsg)
                 {
-                    LogToConsole("Validation Request Succes");
-                    btnPhase2.Enabled = true;
-                }
-                else
-                {
-                    LogToConsole("Validation Request Denied");
-                    btnPhase1.Enabled = true;
+                    case "VR1":
+                        VR1(msgString);
+                        break;
+                    case "VR2":
+                        VR2(msgString);
+                        break;
+                    case "VR3":
+                        VR3(msgString);
+                        break;
+                    default:
+                        break;
                 }
             });
+        }
+
+        private void VR1(string msg)
+        {
+            if (msg.EndsWith("VP"))
+            {
+                LogToConsole("VR1: Handshake successful. Credentials verified in Secure Core. Validation in progress (VP).", LogLevel.Success);
+                btnPhase2.Enabled = true;
+            }
+            else if(msg.EndsWith("AD"))
+            {
+                LogToConsole("VR1: ACCESS DENIED. Invalid Ship ID or Delivery Code. Connection aborted (AD).", LogLevel.Warn);
+                btnPhase1.Enabled = true;
+            }
+        }
+        private void VR2(string msg)
+        {
+            if (msg.EndsWith("VP"))
+            {
+                LogToConsole("VR2: RSA payload decrypted. Validation code match. Validation in progress (VP).", LogLevel.Success);
+                btnPhase3.Enabled = true;
+            }
+            else if (msg.EndsWith("AD"))
+            {
+                LogToConsole("VR2: ACCESS DENIED. RSA decryption failed or invalid validation code (AD).", LogLevel.Warn);
+                btnPhase2.Enabled = true;
+            }
+        }
+        private void VR3(string msg)
+        {
+            if (msg.EndsWith("AG"))
+            {
+                LogToConsole("VR3: Hash verification successful. ACCESS GRANTED. Opening planetary shields (AG).", LogLevel.Success);
+                btnPhase4.Enabled = true;
+            }
+            else if (msg.EndsWith("AD"))
+            {
+                LogToConsole("VR3: ACCESS DENIED. Hash mismatch or file corruption detected (AD).", LogLevel.Warn);
+                btnPhase3.Enabled = true;
+            }
         }
 
         private void OnServerStatusChanged(object sender, EventArgs e)
@@ -111,16 +155,19 @@ namespace PACS_ProcessForms
             this.Invoke((MethodInvoker)delegate {
                 if (args.Status == ServerStatus.Error)
                 {
-                    LogToConsole($"FALLO TCP: {args.Message}");
+                    LogToConsole($"TCP FAILURE: {args.Message}", LogLevel.Warn);
                 }
                 else
                 {
-                    LogToConsole($"SERVER STATUS: {args.Message}");
+                    LogToConsole($"SERVER STATUS: {args.Message}", LogLevel.Info);
                 }
             });
         }
         #endregion
+        #region  Message File 
 
+        #endregion
+        #region FormClosing 
         private void frmAuthentification_FormClosing(object sender, FormClosingEventArgs e)
         {
             tcpServer.stopServer();
@@ -129,6 +176,15 @@ namespace PACS_ProcessForms
         private void frmAuthentification_FormClosed(object sender, FormClosedEventArgs e)
         {
             tcpServer.stopServer();
+        }
+
+        #endregion
+
+
+
+        private void LogToConsole(string message, LogLevel log)
+        {
+                protocolConsole.AddLog(log, message);
         }
     }
 }

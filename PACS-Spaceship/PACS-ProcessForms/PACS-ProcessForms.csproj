@@ -112,6 +112,10 @@
       <Project>{514c3193-185a-4db7-8e22-abd2614c76b4}</Project>
       <Name>PACS-SpaceShips-Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SpaceShip_Encryption\SpaceShip_Encryption.csproj">
+      <Project>{89440957-6f2f-4a1e-9c53-42f5f189fc0b}</Project>
+      <Name>SpaceShip_Encryption</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

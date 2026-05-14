@@ -4,23 +4,20 @@ namespace PACS_SpaceShips_Common
 {
     public static class ConnectionInfo
     {
-        // --- CREDENCIALES DE LA NAVE ---
+        //CREDENCIALES DE LA NAVE
         public static string ShipID { get; set; } = string.Empty;
         public static string DeliveryID { get; set; } = string.Empty;
+        public static int SpaceShipPort { get; set; }
+        public static int SpaceShipPort1 { get; set; }
 
-        // --- DATOS DEL PLANETA DESTINO ---
+        // DATOS DEL PLANETA
         public static string TargetPlanetIP { get; set; } = "127.0.0.1";
+        public static int PlanetDataPort { get; set; } = 5050; 
+        public static int PlanetFilePort { get; set; } = 5051;
+        public static string EncryptedValidationCode { get; set; } = string.Empty;
+        public static string PlanetKey { get; set; } = string.Empty;
 
-        // Según tu diseño anterior, sabemos que hay dos puertos separados
-        public static int PlanetDataPort { get; set; } = 5050; // Puerto para mensajes TCP
-        public static int PlanetFilePort { get; set; } = 5051; // Puerto para el ZIP
 
-        // --- MÉTODOS DE UTILIDAD DEL PROTOCOLO ---
-
-        /// <summary>
-        /// Genera la cadena del mensaje inicial ER respetando la norma:
-        /// ER + 12 caracteres de Ship + 12 caracteres de Delivery
-        /// </summary>
         public static string GetERMessage()
         {
             // Nos aseguramos de que tengan exactamente 12 caracteres (rellenando con '0' si faltan)
