@@ -37,8 +37,10 @@ namespace PACS_Services
 		}
 
 		// =========================================================
-		// EVENT: ZIP GENERATED
+		// EVENTO: ZIP GENERADO
 		// =========================================================
+		// Este evento avisa a cualquier formulario/clase suscrita
+		// cuando PACS.zip ya ha sido creado correctamente.
 
 		public event EventHandler ZipGenerated;
 
@@ -64,8 +66,9 @@ namespace PACS_Services
 		}
 
 		// =========================================================
-		// EVENT: ZIP EXTRACTED
+		// EVENTO: ZIP EXTRAÍDO
 		// =========================================================
+		// Este evento avisa cuando el ZIP ha sido extraído/descomprimido.
 
 		public event EventHandler ZipExtracted;
 
@@ -91,8 +94,11 @@ namespace PACS_Services
 		}
 
 		// =========================================================
-		// GENERATE ZIP
+		// GENERAR ARCHIVOS Y ZIP
 		// =========================================================
+		// Método principal de esta clase.
+		// Recibe una carpeta base, busca PACS_Config.xml, genera los archivos
+		// de letras aleatorias y luego los comprime en PACS.zip.
 
 		public PacsZipResult GeneratePacsZip(string baseFolder)
 		{
@@ -137,8 +143,9 @@ namespace PACS_Services
 		}
 
 		// =========================================================
-		// EXTRACT / "DECRYPT" ZIP
+		// EXTRAER ZIP
 		// =========================================================
+		// Este método extrae el contenido de un ZIP a una carpeta.
 
 		public PacsZipExtractResult ExtractPacsZip(string zipPath, string extractFolder)
 		{
@@ -183,7 +190,11 @@ namespace PACS_Services
 
 			return result;
 		}
-
+		// =========================================================
+		// EXTRAER ZIP USANDO LA CARPETA BASE
+		// =========================================================
+		// Este método busca la configuración XML, localiza el ZIP según
+		// esa configuración y lo extrae a una carpeta llamada ExtractedFiles.
 		public PacsZipExtractResult ExtractPacsZipFromBaseFolder(string baseFolder)
 		{
 			if (string.IsNullOrWhiteSpace(baseFolder))
@@ -206,8 +217,9 @@ namespace PACS_Services
 		}
 
 		// =========================================================
-		// XML CONFIG
+		// CARGAR CONFIGURACIÓN XML
 		// =========================================================
+		// Método público para leer PACS_Config.xml desde una carpeta base.
 
 		public XMLConfig LoadXMLConfig(string baseFolder)
 		{
@@ -225,7 +237,7 @@ namespace PACS_Services
 
 			return ReadXMLConfig(configPath);
 		}
-
+		// Lee y valida el contenido de PACS_Config.xml.
 		private XMLConfig ReadXMLConfig(string configPath)
 		{
 			if (!File.Exists(configPath))
@@ -271,7 +283,7 @@ namespace PACS_Services
 				LettersPerFile = lettersPerFile
 			};
 		}
-
+		// Lee un valor de texto obligatorio desde el XML.
 		private string ReadRequiredString(XDocument document, string elementName)
 		{
 			XElement element = document.Root.Element(elementName);
@@ -290,7 +302,7 @@ namespace PACS_Services
 
 			return value;
 		}
-
+		// Lee un número entero obligatorio desde el XML.
 		private int ReadRequiredInt(XDocument document, string elementName)
 		{
 			string value = ReadRequiredString(document, elementName);
@@ -316,8 +328,9 @@ namespace PACS_Services
 		}
 
 		// =========================================================
-		// FILE GENERATION
+		// GENERACIÓN DE ARCHIVOS
 		// =========================================================
+		// Genera los archivos .txt que luego se meterán dentro del ZIP.
 
 		private void GenerateFiles(string folderPath, int fileCount, int lettersPerFile)
 		{
@@ -339,6 +352,8 @@ namespace PACS_Services
 			}
 		}
 
+		// Genera una cadena de letras aleatorias usando RNGCryptoServiceProvider.
+		// Se usa para que el contenido de los archivos no sea siempre igual.
 		private string GenerateRandomLetters(int length)
 		{
 			const string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -359,7 +374,7 @@ namespace PACS_Services
 
 			return result.ToString();
 		}
-
+		// Crea el archivo ZIP a partir de la carpeta de archivos generados.
 		private void CreatePacsZip(string sourceFolder, string zipPath)
 		{
 			if (!Directory.Exists(sourceFolder))

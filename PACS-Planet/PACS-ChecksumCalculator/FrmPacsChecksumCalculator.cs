@@ -25,6 +25,7 @@ namespace PACS_ChecksumCalculator
 		{
 			checksumService = new PacsChecksumService();
 
+			// Nos suscribimos al evento que avisa cuando el checksum está calculado.
 			checksumService.ChecksumCalculated += ChecksumService_ChecksumCalculated;
 
 			lstCalculator.AddLog(LogLevel.Info, "PACS checksum calculator loaded.");
@@ -40,6 +41,7 @@ namespace PACS_ChecksumCalculator
 				lstCalculator.AddLog(LogLevel.Info, "Starting checksum calculation...");
 				lstCalculator.AddLog(LogLevel.Info, "Loading codification dictionary from database...");
 
+				// Cargamos el diccionario letra -> número desde la base de datos.
 				Dictionary<char, string> codification = GetCodificationDictionaryFromDatabase();
 
 				lstCalculator.AddLog(LogLevel.Success, "Codification dictionary loaded.");
@@ -102,6 +104,9 @@ namespace PACS_ChecksumCalculator
 				throw new Exception("No valid planet selected. Planet.idPlanet is empty or invalid.");
 			}
 
+			// Consulta que obtiene el diccionario de codificación:
+			// Word = letra
+			// Numbers = código numérico de 3 dígitos.
 			string query =
 				"SELECT d.Word, d.Numbers " +
 				"FROM InnerEncryptionData d " +

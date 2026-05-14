@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{40162ADA-E23A-4C5F-8B14-4D71C5634255}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PACS_ChecksumCalculator</RootNamespace>
     <AssemblyName>PACS-ChecksumCalculator</AssemblyName>
@@ -30,6 +30,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="PACS-Common">
       <HintPath>..\PACS-Common\bin\Debug\PACS-Common.dll</HintPath>
@@ -52,6 +55,7 @@
     <Compile Include="FrmPacsChecksumCalculator.Designer.cs">
       <DependentUpon>FrmPacsChecksumCalculator.cs</DependentUpon>
     </Compile>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

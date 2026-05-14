@@ -29,6 +29,7 @@ namespace PACS_ZipGenerator
 		{
 			zipService = new PacsZipService();
 
+			// Nos suscribimos al evento para recibir aviso cuando el ZIP esté listo.
 			zipService.ZipGenerated += ZipService_ZipGenerated;
 
 			lstGenerator.AddLog(LogLevel.Info, "PACS ZIP generator loaded.");
@@ -44,6 +45,8 @@ namespace PACS_ZipGenerator
 				lstGenerator.AddLog(LogLevel.Info, "Generating PACS files...");
 				lstGenerator.AddLog(LogLevel.Info, "Creating PACS.zip...");
 
+				// Application.StartupPath apunta a la carpeta donde se ejecuta la aplicación.
+				// Ahí debe estar PACS_Config.xml.
 				lastZipResult = zipService.GeneratePacsZip(Application.StartupPath);
 
 				lstGenerator.AddLog(LogLevel.Success, "ZIP generation process completed.");

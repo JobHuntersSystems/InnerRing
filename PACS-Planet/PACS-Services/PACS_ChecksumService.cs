@@ -14,6 +14,12 @@ namespace PACS_Services
 			public int GlobalChecksum { get; set; }
 		}
 
+		// =========================================================
+		// EVENTO: CHECKSUM CALCULADO
+		// =========================================================
+		// Este evento avisa al formulario o a cualquier clase suscrita
+		// cuando el checksum global ya ha sido calculado.
+
 		protected virtual void OnChecksumCalculated(ChecksumCalculatedEventArgs e)
 		{
 			if (ChecksumCalculated != null)
@@ -29,6 +35,15 @@ namespace PACS_Services
 				GlobalChecksum = globalChecksum
 			});
 		}
+
+		// =========================================================
+		// CALCULAR CHECKSUM GLOBAL
+		// =========================================================
+		// Este método recibe:
+		// - La carpeta donde están los archivos generados.
+		// - El diccionario de codificación letra -> número.
+		//
+		// Luego calcula la suma total de todos los archivos.
 
 		public int CalculateGlobalChecksum(string folderPath, Dictionary<char, string> codification)
 		{
@@ -46,7 +61,7 @@ namespace PACS_Services
 			{
 				throw new Exception("Codification dictionary cannot be empty.");
 			}
-
+			// Buscamos todos los archivos .txt dentro de la carpeta.
 			string[] files = Directory.GetFiles(folderPath, "*.txt");
 
 			if (files.Length == 0)
@@ -57,21 +72,25 @@ namespace PACS_Services
 			object lockObject = new object();
 			int globalTotal = 0;
 
-			Parallel.ForEach(files, filePath =>
+			foreach (string filePath in files)
 			{
 				int fileTotal = CalculateFileChecksum(filePath, codification);
-
-				lock (lockObject)
-				{
-					globalTotal += fileTotal;
-				}
-			});
+				globalTotal += fileTotal;
+			}
 
 			RaiseChecksumCalculated(globalTotal);
 
 			return globalTotal;
 		}
 
+		// =========================================================
+		// CALCULAR CHECKSUM DE UN ARCHIVO
+		// =========================================================
+		// Este método lee un archivo, transforma cada letra usando el diccionario
+		// y suma los dígitos de cada código numérico.
+		//
+		// Regla importante:
+		// Si un dígito es 0, cuenta como 10.
 		public int CalculateFileChecksum(string filePath, Dictionary<char, string> codification)
 		{
 			if (string.IsNullOrWhiteSpace(filePath))

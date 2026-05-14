@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{482374F2-C9CE-4727-8395-4989BCE82BDB}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PACS_ZipGenerator</RootNamespace>
     <AssemblyName>PACS-ZipGenerator</AssemblyName>
@@ -30,6 +30,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="PACS-Common">
       <HintPath>..\PACS-Common\bin\Debug\PACS-Common.dll</HintPath>
@@ -53,6 +56,7 @@
     <Compile Include="FrmPacsZipGenerator.Designer.cs">
       <DependentUpon>FrmPacsZipGenerator.cs</DependentUpon>
     </Compile>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
