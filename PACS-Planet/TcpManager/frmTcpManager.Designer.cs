@@ -49,16 +49,19 @@
             this.pctSpaceBackground = new System.Windows.Forms.PictureBox();
             this.tlpStatus = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pctDataPort = new System.Windows.Forms.PictureBox();
             this.lblFilePortValue = new System.Windows.Forms.Label();
             this.lblFilePortTitle = new System.Windows.Forms.Label();
             this.pnlServerStatus = new System.Windows.Forms.Panel();
+            this.pctServerStatus = new System.Windows.Forms.PictureBox();
             this.lblServerStatusValue = new System.Windows.Forms.Label();
             this.lblServerStatusTitle = new System.Windows.Forms.Label();
             this.pnlDataPort = new System.Windows.Forms.Panel();
             this.lblDataPortValue = new System.Windows.Forms.Label();
             this.lblDataPortTitle = new System.Windows.Forms.Label();
             this.pnlFilePort = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnBrowseImage = new System.Windows.Forms.Button();
             this.lblIPPlanetValue = new System.Windows.Forms.Label();
             this.lblIPPlanetTitle = new System.Windows.Forms.Label();
             this.pnlHeader = new System.Windows.Forms.Panel();
@@ -66,6 +69,7 @@
             this.btnClose = new PACS_InheratedControls.PacsCloseButton();
             this.lblPlanetName = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pnlRoot.SuspendLayout();
             this.tlpCenter.SuspendLayout();
             this.pnlConfiguration.SuspendLayout();
@@ -77,11 +81,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.pctSpaceBackground)).BeginInit();
             this.tlpStatus.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pctDataPort)).BeginInit();
             this.pnlServerStatus.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pctServerStatus)).BeginInit();
             this.pnlDataPort.SuspendLayout();
             this.pnlFilePort.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnlHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlRoot
@@ -342,7 +349,7 @@
             // 
             this.lblSpaceshipIpValue.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold);
             this.lblSpaceshipIpValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
-            this.lblSpaceshipIpValue.Location = new System.Drawing.Point(145, 89);
+            this.lblSpaceshipIpValue.Location = new System.Drawing.Point(145, 50);
             this.lblSpaceshipIpValue.Name = "lblSpaceshipIpValue";
             this.lblSpaceshipIpValue.Size = new System.Drawing.Size(150, 20);
             this.lblSpaceshipIpValue.TabIndex = 4;
@@ -354,7 +361,7 @@
             this.lblSpaceshipIp.AutoSize = true;
             this.lblSpaceshipIp.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
             this.lblSpaceshipIp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(245)))));
-            this.lblSpaceshipIp.Location = new System.Drawing.Point(17, 92);
+            this.lblSpaceshipIp.Location = new System.Drawing.Point(17, 53);
             this.lblSpaceshipIp.Name = "lblSpaceshipIp";
             this.lblSpaceshipIp.Size = new System.Drawing.Size(91, 14);
             this.lblSpaceshipIp.TabIndex = 3;
@@ -364,7 +371,7 @@
             // 
             this.lblCurrentRequestValue.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold);
             this.lblCurrentRequestValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(255)))), ((int)(((byte)(90)))));
-            this.lblCurrentRequestValue.Location = new System.Drawing.Point(145, 52);
+            this.lblCurrentRequestValue.Location = new System.Drawing.Point(145, 87);
             this.lblCurrentRequestValue.Name = "lblCurrentRequestValue";
             this.lblCurrentRequestValue.Size = new System.Drawing.Size(150, 20);
             this.lblCurrentRequestValue.TabIndex = 2;
@@ -376,7 +383,7 @@
             this.lblCurrentRequest.AutoSize = true;
             this.lblCurrentRequest.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
             this.lblCurrentRequest.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(245)))));
-            this.lblCurrentRequest.Location = new System.Drawing.Point(17, 55);
+            this.lblCurrentRequest.Location = new System.Drawing.Point(17, 90);
             this.lblCurrentRequest.Name = "lblCurrentRequest";
             this.lblCurrentRequest.Size = new System.Drawing.Size(91, 14);
             this.lblCurrentRequest.TabIndex = 1;
@@ -476,7 +483,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(15)))), ((int)(((byte)(22)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.pctDataPort);
             this.panel1.Controls.Add(this.lblFilePortValue);
             this.panel1.Controls.Add(this.lblFilePortTitle);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -487,46 +494,44 @@
             this.panel1.Size = new System.Drawing.Size(262, 70);
             this.panel1.TabIndex = 3;
             // 
-            // pictureBox1
+            // pctDataPort
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 7);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(58, 55);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Visible = false;
+            this.pctDataPort.BackColor = System.Drawing.Color.Transparent;
+            this.pctDataPort.Image = ((System.Drawing.Image)(resources.GetObject("pctDataPort.Image")));
+            this.pctDataPort.Location = new System.Drawing.Point(17, 12);
+            this.pctDataPort.Name = "pctDataPort";
+            this.pctDataPort.Size = new System.Drawing.Size(58, 45);
+            this.pctDataPort.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pctDataPort.TabIndex = 4;
+            this.pctDataPort.TabStop = false;
             // 
             // lblFilePortValue
             // 
-            this.lblFilePortValue.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblFilePortValue.Font = new System.Drawing.Font("Consolas", 13F, System.Drawing.FontStyle.Bold);
             this.lblFilePortValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
-            this.lblFilePortValue.Location = new System.Drawing.Point(8, 30);
+            this.lblFilePortValue.Location = new System.Drawing.Point(97, 30);
             this.lblFilePortValue.Name = "lblFilePortValue";
-            this.lblFilePortValue.Size = new System.Drawing.Size(244, 30);
+            this.lblFilePortValue.Size = new System.Drawing.Size(155, 30);
             this.lblFilePortValue.TabIndex = 1;
             this.lblFilePortValue.Text = "-";
-            this.lblFilePortValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblFilePortValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblFilePortTitle
             // 
-            this.lblFilePortTitle.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblFilePortTitle.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
             this.lblFilePortTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(245)))));
-            this.lblFilePortTitle.Location = new System.Drawing.Point(8, 8);
+            this.lblFilePortTitle.Location = new System.Drawing.Point(97, 8);
             this.lblFilePortTitle.Name = "lblFilePortTitle";
-            this.lblFilePortTitle.Size = new System.Drawing.Size(244, 22);
+            this.lblFilePortTitle.Size = new System.Drawing.Size(155, 22);
             this.lblFilePortTitle.TabIndex = 0;
             this.lblFilePortTitle.Text = "FILE PORT";
-            this.lblFilePortTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblFilePortTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pnlServerStatus
             // 
             this.pnlServerStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(15)))), ((int)(((byte)(22)))));
             this.pnlServerStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlServerStatus.Controls.Add(this.pctServerStatus);
             this.pnlServerStatus.Controls.Add(this.lblServerStatusValue);
             this.pnlServerStatus.Controls.Add(this.lblServerStatusTitle);
             this.pnlServerStatus.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -537,34 +542,44 @@
             this.pnlServerStatus.Size = new System.Drawing.Size(262, 70);
             this.pnlServerStatus.TabIndex = 0;
             // 
+            // pctServerStatus
+            // 
+            this.pctServerStatus.BackColor = System.Drawing.Color.Transparent;
+            this.pctServerStatus.Image = ((System.Drawing.Image)(resources.GetObject("pctServerStatus.Image")));
+            this.pctServerStatus.Location = new System.Drawing.Point(9, 10);
+            this.pctServerStatus.Name = "pctServerStatus";
+            this.pctServerStatus.Size = new System.Drawing.Size(53, 46);
+            this.pctServerStatus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pctServerStatus.TabIndex = 5;
+            this.pctServerStatus.TabStop = false;
+            // 
             // lblServerStatusValue
             // 
-            this.lblServerStatusValue.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblServerStatusValue.Font = new System.Drawing.Font("Consolas", 13F, System.Drawing.FontStyle.Bold);
             this.lblServerStatusValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(180)))), ((int)(((byte)(40)))));
-            this.lblServerStatusValue.Location = new System.Drawing.Point(8, 30);
+            this.lblServerStatusValue.Location = new System.Drawing.Point(75, 30);
             this.lblServerStatusValue.Name = "lblServerStatusValue";
-            this.lblServerStatusValue.Size = new System.Drawing.Size(244, 30);
+            this.lblServerStatusValue.Size = new System.Drawing.Size(153, 30);
             this.lblServerStatusValue.TabIndex = 1;
             this.lblServerStatusValue.Text = "● OFFLINE";
-            this.lblServerStatusValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblServerStatusValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblServerStatusTitle
             // 
-            this.lblServerStatusTitle.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblServerStatusTitle.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
             this.lblServerStatusTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(245)))));
-            this.lblServerStatusTitle.Location = new System.Drawing.Point(8, 8);
+            this.lblServerStatusTitle.Location = new System.Drawing.Point(75, 8);
             this.lblServerStatusTitle.Name = "lblServerStatusTitle";
-            this.lblServerStatusTitle.Size = new System.Drawing.Size(244, 22);
+            this.lblServerStatusTitle.Size = new System.Drawing.Size(153, 22);
             this.lblServerStatusTitle.TabIndex = 0;
             this.lblServerStatusTitle.Text = "SERVER STATUS";
-            this.lblServerStatusTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblServerStatusTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pnlDataPort
             // 
             this.pnlDataPort.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(15)))), ((int)(((byte)(22)))));
             this.pnlDataPort.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlDataPort.Controls.Add(this.pictureBox2);
             this.pnlDataPort.Controls.Add(this.lblDataPortValue);
             this.pnlDataPort.Controls.Add(this.lblDataPortTitle);
             this.pnlDataPort.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -577,32 +592,32 @@
             // 
             // lblDataPortValue
             // 
-            this.lblDataPortValue.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblDataPortValue.Font = new System.Drawing.Font("Consolas", 13F, System.Drawing.FontStyle.Bold);
             this.lblDataPortValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
-            this.lblDataPortValue.Location = new System.Drawing.Point(8, 30);
+            this.lblDataPortValue.Location = new System.Drawing.Point(98, 30);
             this.lblDataPortValue.Name = "lblDataPortValue";
-            this.lblDataPortValue.Size = new System.Drawing.Size(237, 30);
+            this.lblDataPortValue.Size = new System.Drawing.Size(151, 30);
             this.lblDataPortValue.TabIndex = 1;
             this.lblDataPortValue.Text = "-";
-            this.lblDataPortValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblDataPortValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblDataPortTitle
             // 
-            this.lblDataPortTitle.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblDataPortTitle.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
             this.lblDataPortTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(245)))));
-            this.lblDataPortTitle.Location = new System.Drawing.Point(8, 8);
+            this.lblDataPortTitle.Location = new System.Drawing.Point(98, 8);
             this.lblDataPortTitle.Name = "lblDataPortTitle";
-            this.lblDataPortTitle.Size = new System.Drawing.Size(237, 22);
+            this.lblDataPortTitle.Size = new System.Drawing.Size(154, 22);
             this.lblDataPortTitle.TabIndex = 0;
             this.lblDataPortTitle.Text = "DATA PORT";
-            this.lblDataPortTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblDataPortTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pnlFilePort
             // 
             this.pnlFilePort.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(15)))), ((int)(((byte)(22)))));
             this.pnlFilePort.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlFilePort.Controls.Add(this.pictureBox1);
+            this.pnlFilePort.Controls.Add(this.btnBrowseImage);
             this.pnlFilePort.Controls.Add(this.lblIPPlanetValue);
             this.pnlFilePort.Controls.Add(this.lblIPPlanetTitle);
             this.pnlFilePort.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -613,29 +628,56 @@
             this.pnlFilePort.Size = new System.Drawing.Size(271, 70);
             this.pnlFilePort.TabIndex = 2;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(15, 6);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(58, 55);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 11;
+            this.pictureBox1.TabStop = false;
+            // 
+            // btnBrowseImage
+            // 
+            this.btnBrowseImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBrowseImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(22)))), ((int)(((byte)(30)))));
+            this.btnBrowseImage.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
+            this.btnBrowseImage.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(40)))), ((int)(((byte)(50)))));
+            this.btnBrowseImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBrowseImage.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
+            this.btnBrowseImage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
+            this.btnBrowseImage.Location = new System.Drawing.Point(227, 4);
+            this.btnBrowseImage.Margin = new System.Windows.Forms.Padding(2);
+            this.btnBrowseImage.Name = "btnBrowseImage";
+            this.btnBrowseImage.Size = new System.Drawing.Size(38, 21);
+            this.btnBrowseImage.TabIndex = 10;
+            this.btnBrowseImage.Text = "☁︎↑";
+            this.btnBrowseImage.UseVisualStyleBackColor = false;
+            this.btnBrowseImage.Click += new System.EventHandler(this.btnBrowseImage_Click);
+            // 
             // lblIPPlanetValue
             // 
-            this.lblIPPlanetValue.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblIPPlanetValue.Font = new System.Drawing.Font("Consolas", 13F, System.Drawing.FontStyle.Bold);
             this.lblIPPlanetValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
-            this.lblIPPlanetValue.Location = new System.Drawing.Point(8, 30);
+            this.lblIPPlanetValue.Location = new System.Drawing.Point(95, 30);
             this.lblIPPlanetValue.Name = "lblIPPlanetValue";
-            this.lblIPPlanetValue.Size = new System.Drawing.Size(253, 30);
+            this.lblIPPlanetValue.Size = new System.Drawing.Size(174, 30);
             this.lblIPPlanetValue.TabIndex = 1;
             this.lblIPPlanetValue.Text = "-";
-            this.lblIPPlanetValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblIPPlanetValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblIPPlanetTitle
             // 
-            this.lblIPPlanetTitle.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblIPPlanetTitle.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
             this.lblIPPlanetTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(245)))));
-            this.lblIPPlanetTitle.Location = new System.Drawing.Point(8, 8);
+            this.lblIPPlanetTitle.Location = new System.Drawing.Point(92, 8);
             this.lblIPPlanetTitle.Name = "lblIPPlanetTitle";
-            this.lblIPPlanetTitle.Size = new System.Drawing.Size(253, 22);
+            this.lblIPPlanetTitle.Size = new System.Drawing.Size(177, 22);
             this.lblIPPlanetTitle.TabIndex = 0;
             this.lblIPPlanetTitle.Text = "CURRENT PLANET IP";
-            this.lblIPPlanetTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblIPPlanetTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pnlHeader
             // 
@@ -702,13 +744,24 @@
             // 
             this.lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblTitle.Font = new System.Drawing.Font("Consolas", 16F, System.Drawing.FontStyle.Bold);
-            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(255)))), ((int)(((byte)(90)))));
+            this.lblTitle.ForeColor = System.Drawing.Color.Violet;
             this.lblTitle.Location = new System.Drawing.Point(6, 18);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(289, 27);
             this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "TCP/IP MANAGER ||";
+            this.lblTitle.Text = "TCP/IP MANAGER |";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(17, 12);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(58, 45);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 5;
+            this.pictureBox2.TabStop = false;
             // 
             // frmTcpManager
             // 
@@ -736,11 +789,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.pctSpaceBackground)).EndInit();
             this.tlpStatus.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pctDataPort)).EndInit();
             this.pnlServerStatus.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pctServerStatus)).EndInit();
             this.pnlDataPort.ResumeLayout(false);
             this.pnlFilePort.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pnlHeader.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -797,6 +853,10 @@
         private PACS_CustomControls.PacsConsole pcsConsoleLog;
         private PACS_InheratedControls.PacsMinimizeButton pacsMinimizeButton1;
         private PACS_InheratedControls.PacsCloseButton btnClose;
+        private System.Windows.Forms.PictureBox pctDataPort;
+        private System.Windows.Forms.Button btnBrowseImage;
+        private System.Windows.Forms.PictureBox pctServerStatus;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }

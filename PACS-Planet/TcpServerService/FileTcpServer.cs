@@ -54,7 +54,7 @@ namespace TcpServerServices
                                 if(!Directory.Exists(rootStorageFIlePath))
                                     Directory.CreateDirectory(rootStorageFIlePath);
 
-                                string filePath = Path.Combine(rootStorageFIlePath, $"{DateTime.Now:yyyyMMdd_HHmmss}.bin");
+                                string filePath = Path.Combine(rootStorageFIlePath, $"{DateTime.Now:yyyyMMdd_HHmmss}.zip");
                                 using (FileStream fileStream = new FileStream(filePath, FileMode.Create))
                                 {
                                     byte[] buffer = new byte[4096];

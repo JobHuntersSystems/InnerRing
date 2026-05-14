@@ -12,6 +12,7 @@ namespace PACS_Common
         Info,
         Success,
         Warn,
-        Error
+        Error,
+        Message
     }
 }
