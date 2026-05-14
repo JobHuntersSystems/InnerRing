@@ -53,13 +53,7 @@
     <Compile Include="FrmPacsZipGenerator.Designer.cs">
       <DependentUpon>FrmPacsZipGenerator.cs</DependentUpon>
     </Compile>
-    <Compile Include="PACS_ZipService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="PACS_Config.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FrmPacsZipGenerator.resx">
@@ -74,6 +68,10 @@
     <ProjectReference Include="..\PACS-InheratedControls\PACS-InheratedControls.csproj">
       <Project>{F81B6A02-65C6-47CC-8792-693510674D9D}</Project>
       <Name>PACS-InheratedControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PACS-Services\PACS-Services.csproj">
+      <Project>{7b388d0b-119f-4423-9955-c24aaadb5998}</Project>
+      <Name>PACS-Services</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

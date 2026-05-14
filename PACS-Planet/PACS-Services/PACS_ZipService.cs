@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Xml.Linq;
 
-namespace PACS_ZipGenerator
+namespace PACS_Services
 {
 	public class PacsZipService
 	{
@@ -29,10 +29,15 @@ namespace PACS_ZipGenerator
 			public long ZipSizeBytes { get; set; }
 		}
 
+		public class PacsZipExtractResult
+		{
+			public string ZipPath { get; set; }
+			public string ExtractFolder { get; set; }
+			public int ExtractedFiles { get; set; }
+		}
+
 		// =========================================================
 		// EVENT: ZIP GENERATED
-		// This event notifies the form when PACS.zip has been created.
-		// It sends one object: PacsZipResult.
 		// =========================================================
 
 		public event EventHandler ZipGenerated;
@@ -59,7 +64,34 @@ namespace PACS_ZipGenerator
 		}
 
 		// =========================================================
-		// MAIN ZIP GENERATION METHOD
+		// EVENT: ZIP EXTRACTED
+		// =========================================================
+
+		public event EventHandler ZipExtracted;
+
+		public class ZipExtractedEventArgs : EventArgs
+		{
+			public PacsZipExtractResult Result { get; set; }
+		}
+
+		protected virtual void OnZipExtracted(ZipExtractedEventArgs e)
+		{
+			if (ZipExtracted != null)
+			{
+				ZipExtracted(this, e);
+			}
+		}
+
+		private void RaiseZipExtracted(PacsZipExtractResult result)
+		{
+			OnZipExtracted(new ZipExtractedEventArgs
+			{
+				Result = result
+			});
+		}
+
+		// =========================================================
+		// GENERATE ZIP
 		// =========================================================
 
 		public PacsZipResult GeneratePacsZip(string baseFolder)
@@ -103,6 +135,79 @@ namespace PACS_ZipGenerator
 
 			return result;
 		}
+
+		// =========================================================
+		// EXTRACT / "DECRYPT" ZIP
+		// =========================================================
+
+		public PacsZipExtractResult ExtractPacsZip(string zipPath, string extractFolder)
+		{
+			if (string.IsNullOrWhiteSpace(zipPath))
+			{
+				throw new Exception("ZIP path cannot be empty.");
+			}
+
+			if (!File.Exists(zipPath))
+			{
+				throw new Exception("ZIP file does not exist: " + zipPath);
+			}
+
+			if (string.IsNullOrWhiteSpace(extractFolder))
+			{
+				throw new Exception("Extract folder cannot be empty.");
+			}
+
+			if (Directory.Exists(extractFolder))
+			{
+				Directory.Delete(extractFolder, true);
+			}
+
+			Directory.CreateDirectory(extractFolder);
+
+			ZipFile.ExtractToDirectory(zipPath, extractFolder);
+
+			int extractedFiles = Directory.GetFiles(
+				extractFolder,
+				"*.*",
+				SearchOption.AllDirectories
+			).Length;
+
+			PacsZipExtractResult result = new PacsZipExtractResult
+			{
+				ZipPath = zipPath,
+				ExtractFolder = extractFolder,
+				ExtractedFiles = extractedFiles
+			};
+
+			RaiseZipExtracted(result);
+
+			return result;
+		}
+
+		public PacsZipExtractResult ExtractPacsZipFromBaseFolder(string baseFolder)
+		{
+			if (string.IsNullOrWhiteSpace(baseFolder))
+			{
+				throw new Exception("Base folder cannot be empty.");
+			}
+
+			if (!Directory.Exists(baseFolder))
+			{
+				throw new Exception("Base folder does not exist: " + baseFolder);
+			}
+
+			XMLConfig config = LoadXMLConfig(baseFolder);
+
+			string workFolder = BuildPath(baseFolder, config.WorkFolder);
+			string zipPath = BuildPath(workFolder, config.ZipFileName);
+			string extractFolder = Path.Combine(workFolder, "ExtractedFiles");
+
+			return ExtractPacsZip(zipPath, extractFolder);
+		}
+
+		// =========================================================
+		// XML CONFIG
+		// =========================================================
 
 		public XMLConfig LoadXMLConfig(string baseFolder)
 		{
@@ -209,6 +314,10 @@ namespace PACS_ZipGenerator
 
 			return Path.Combine(basePath, childPath);
 		}
+
+		// =========================================================
+		// FILE GENERATION
+		// =========================================================
 
 		private void GenerateFiles(string folderPath, int fileCount, int lettersPerFile)
 		{

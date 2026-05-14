@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PACS-ZipGenerator", "PACS-Z
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PACS-ChecksumCalculator", "PACS-ChecksumCalculator\PACS-ChecksumCalculator.csproj", "{40162ADA-E23A-4C5F-8B14-4D71C5634255}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PACS-Services", "PACS-Services\PACS-Services.csproj", "{7B388D0B-119F-4423-9955-C24AAADB5998}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -195,6 +197,18 @@ Global
 		{40162ADA-E23A-4C5F-8B14-4D71C5634255}.Release|x64.Build.0 = Release|Any CPU
 		{40162ADA-E23A-4C5F-8B14-4D71C5634255}.Release|x86.ActiveCfg = Release|Any CPU
 		{40162ADA-E23A-4C5F-8B14-4D71C5634255}.Release|x86.Build.0 = Release|Any CPU
+		{7B388D0B-119F-4423-9955-C24AAADB5998}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B388D0B-119F-4423-9955-C24AAADB5998}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B388D0B-119F-4423-9955-C24AAADB5998}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7B388D0B-119F-4423-9955-C24AAADB5998}.Debug|x64.Build.0 = Debug|Any CPU
+		{7B388D0B-119F-4423-9955-C24AAADB5998}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7B388D0B-119F-4423-9955-C24AAADB5998}.Debug|x86.Build.0 = Debug|Any CPU
+		{7B388D0B-119F-4423-9955-C24AAADB5998}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B388D0B-119F-4423-9955-C24AAADB5998}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B388D0B-119F-4423-9955-C24AAADB5998}.Release|x64.ActiveCfg = Release|Any CPU
+		{7B388D0B-119F-4423-9955-C24AAADB5998}.Release|x64.Build.0 = Release|Any CPU
+		{7B388D0B-119F-4423-9955-C24AAADB5998}.Release|x86.ActiveCfg = Release|Any CPU
+		{7B388D0B-119F-4423-9955-C24AAADB5998}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

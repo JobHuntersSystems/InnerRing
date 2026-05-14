@@ -3,17 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace PACS_ChecksumCalculator
+namespace PACS_Services
 {
 	public class PacsChecksumService
 	{
-		// =========================================================
-		// EVENT: CHECKSUM CALCULATED
-		// This event notifies the form when the global checksum
-		// has been calculated.
-		// It sends one thing: GlobalChecksum.
-		// =========================================================
-
 		public event EventHandler ChecksumCalculated;
 
 		public class ChecksumCalculatedEventArgs : EventArgs
@@ -36,10 +29,6 @@ namespace PACS_ChecksumCalculator
 				GlobalChecksum = globalChecksum
 			});
 		}
-
-		// =========================================================
-		// MAIN CHECKSUM METHOD
-		// =========================================================
 
 		public int CalculateGlobalChecksum(string folderPath, Dictionary<char, string> codification)
 		{
@@ -95,11 +84,6 @@ namespace PACS_ChecksumCalculator
 				throw new Exception("File does not exist: " + filePath);
 			}
 
-			if (codification == null || codification.Count == 0)
-			{
-				throw new Exception("Codification dictionary cannot be empty.");
-			}
-
 			string content = File.ReadAllText(filePath).ToUpper();
 
 			int fileTotal = 0;
@@ -118,21 +102,16 @@ namespace PACS_ChecksumCalculator
 
 				string numberCode = codification[letter];
 
-				if (string.IsNullOrWhiteSpace(numberCode))
-				{
-					throw new Exception("Number code for letter '" + letter + "' is empty.");
-				}
-
 				if (numberCode.Length != 3)
 				{
-					throw new Exception("Invalid number code for letter '" + letter + "'. Expected exactly 3 digits.");
+					throw new Exception("Invalid code for letter '" + letter + "'. Expected 3 digits.");
 				}
 
 				foreach (char digitChar in numberCode)
 				{
 					if (!char.IsDigit(digitChar))
 					{
-						throw new Exception("Invalid digit in code '" + numberCode + "' for letter '" + letter + "'.");
+						throw new Exception("Invalid digit in code '" + numberCode + "'.");
 					}
 
 					int digit = int.Parse(digitChar.ToString());

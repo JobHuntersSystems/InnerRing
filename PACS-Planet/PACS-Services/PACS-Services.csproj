@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{40162ADA-E23A-4C5F-8B14-4D71C5634255}</ProjectGuid>
+    <ProjectGuid>{7B388D0B-119F-4423-9955-C24AAADB5998}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PACS_ChecksumCalculator</RootNamespace>
-    <AssemblyName>PACS-ChecksumCalculator</AssemblyName>
+    <RootNamespace>PACS_Services</RootNamespace>
+    <AssemblyName>PACS-Services</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,13 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PACS-Common">
-      <HintPath>..\PACS-Common\bin\Debug\PACS-Common.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,35 +42,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FrmPacsChecksumCalculator.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmPacsChecksumCalculator.Designer.cs">
-      <DependentUpon>FrmPacsChecksumCalculator.cs</DependentUpon>
-    </Compile>
+    <Compile Include="PACS_ChecksumService.cs" />
+    <Compile Include="PACS_ZipService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="FrmPacsChecksumCalculator.resx">
-      <DependentUpon>FrmPacsChecksumCalculator.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Inner_DB_Access\Inner_DB_Access.csproj">
-      <Project>{886fe758-4c70-4699-b614-f2287dcc7e48}</Project>
-      <Name>Inner_DB_Access</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PACS-CustomControls\PACS-CustomControls.csproj">
-      <Project>{5E69E566-0081-4B55-8486-8341A9E082A1}</Project>
-      <Name>PACS-CustomControls</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PACS-InheratedControls\PACS-InheratedControls.csproj">
-      <Project>{F81B6A02-65C6-47CC-8792-693510674D9D}</Project>
-      <Name>PACS-InheratedControls</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PACS-Services\PACS-Services.csproj">
-      <Project>{7b388d0b-119f-4423-9955-c24aaadb5998}</Project>
-      <Name>PACS-Services</Name>
+    <ProjectReference Include="..\PACS-Planet\PACS-Planet.csproj">
+      <Project>{68107f4c-0312-4422-9b36-4e941a5a30a1}</Project>
+      <Name>PACS-Planet</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
