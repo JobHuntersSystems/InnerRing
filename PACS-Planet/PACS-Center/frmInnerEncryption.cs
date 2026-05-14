@@ -75,7 +75,7 @@ namespace PACS_Center
                     timerMsj.Interval = 1500;
                     break;
                 case 4:
-                    cls.SaveCode(_idPlanet, validationCode, data);
+                    Code();
                     timerMsj.Interval = 2000;
                     break;
                 case 5:
