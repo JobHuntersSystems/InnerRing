@@ -30,7 +30,7 @@ namespace PACS_ZipGenerator
 		private void InitializeComponent()
 		{
 			this.btnGenerator = new System.Windows.Forms.Button();
-			this.Close = new PACS_InheratedControls.PacsCloseButton();
+			this.btnClose = new PACS_InheratedControls.PacsCloseButton();
 			this.Minimize = new PACS_InheratedControls.PacsMinimizeButton();
 			this.lstGenerator = new PACS_CustomControls.PacsConsole();
 			this.SuspendLayout();
@@ -48,20 +48,20 @@ namespace PACS_ZipGenerator
 			this.btnGenerator.UseVisualStyleBackColor = false;
 			this.btnGenerator.Click += new System.EventHandler(this.btnGenerator_Click);
 			// 
-			// Close
+			// btnClose
 			// 
-			this.Close.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(8)))), ((int)(((byte)(8)))));
-			this.Close.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.Close.DefaultClickEvent = true;
-			this.Close.FlatAppearance.BorderSize = 0;
-			this.Close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.Close.Font = new System.Drawing.Font("Courier New", 10F, System.Drawing.FontStyle.Bold);
-			this.Close.Location = new System.Drawing.Point(777, 12);
-			this.Close.Name = "Close";
-			this.Close.Size = new System.Drawing.Size(50, 22);
-			this.Close.TabIndex = 3;
-			this.Close.Text = "X";
-			this.Close.UseVisualStyleBackColor = false;
+			this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(8)))), ((int)(((byte)(8)))));
+			this.btnClose.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.btnClose.DefaultClickEvent = true;
+			this.btnClose.FlatAppearance.BorderSize = 0;
+			this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnClose.Font = new System.Drawing.Font("Courier New", 10F, System.Drawing.FontStyle.Bold);
+			this.btnClose.Location = new System.Drawing.Point(777, 12);
+			this.btnClose.Name = "btnClose";
+			this.btnClose.Size = new System.Drawing.Size(50, 22);
+			this.btnClose.TabIndex = 3;
+			this.btnClose.Text = "X";
+			this.btnClose.UseVisualStyleBackColor = false;
 			// 
 			// Minimize
 			// 
@@ -98,7 +98,7 @@ namespace PACS_ZipGenerator
 			this.ClientSize = new System.Drawing.Size(857, 760);
 			this.ControlBox = false;
 			this.Controls.Add(this.lstGenerator);
-			this.Controls.Add(this.Close);
+			this.Controls.Add(this.btnClose);
 			this.Controls.Add(this.Minimize);
 			this.Controls.Add(this.btnGenerator);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -112,7 +112,7 @@ namespace PACS_ZipGenerator
 		private System.Windows.Forms.Button btnGenerator;
 		private PACS_CustomControls.PacsConsole lstGeneration;
 		private PACS_InheratedControls.PacsMinimizeButton Minimize;
-		private PACS_InheratedControls.PacsCloseButton Close;
+		private PACS_InheratedControls.PacsCloseButton btnClose;
 		private PACS_CustomControls.PacsConsole lstGenerator;
 	}
 }

@@ -46,11 +46,5 @@
     <Compile Include="PACS_ZipService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\PACS-Planet\PACS-Planet.csproj">
-      <Project>{68107f4c-0312-4422-9b36-4e941a5a30a1}</Project>
-      <Name>PACS-Planet</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
