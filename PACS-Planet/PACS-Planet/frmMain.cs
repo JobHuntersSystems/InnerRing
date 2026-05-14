@@ -1,22 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
-using System.IO;
 using PACS_UI;
 using PACS_Common;
 using TcpManager;
+using System.Collections.Generic;
 using PACS_Center;
 
 namespace PACS_Planet
 {
     public partial class frmMain : Form
     {
+        private Thread serverThread;
+
         public frmMain()
         {
             InitializeComponent();
