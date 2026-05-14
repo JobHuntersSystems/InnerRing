@@ -33,8 +33,7 @@ namespace PACS_Center
             {
                 byte[] decryptData = RSA.Decrypt(encryptedBytes, false);
 
-                UnicodeEncoding ByCo = new UnicodeEncoding();
-                return ByCo.GetString(decryptData);
+                return Encoding.UTF8.GetString(decryptData);
             }
         }
     }

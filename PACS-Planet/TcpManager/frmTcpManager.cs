@@ -25,7 +25,7 @@ namespace TcpManager
 
         private TcpClientService clientData;
         private DataTcpServer dataServer;
-        //private FileTcpServer fileServer;
+        private FileTcpServer fileServer;
 
         private ProtocolManager protocolManager = new ProtocolManager();
 
@@ -64,7 +64,7 @@ namespace TcpManager
             if(result == ResultType.VP)
             {
                 genericInvokeAction(pctSpaceship, () => {
-                    string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + @"Resources\Spaceships\Imagenes", Spaceship.imagePath);
+                    string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory , @"Resources\Spaceships\Imagenes\Caza_Tie.png");
                     pctSpaceship.ImageLocation = path;
                     pctSpaceship.Visible = true;
                     lblCurrentRequestValue.Text = protocol;
@@ -131,10 +131,15 @@ namespace TcpManager
                     switch (type)
                     {
                         case MessageProtocolType.ER:
+                            
                             if(Spaceship.CurrentStage == 0)
                             {
                                 ProtocolResponse response;
                                 Spaceship.ip = client_ip;
+                                genericInvokeAction(pcsConsoleLog, () => pcsConsoleLog.AddLog(
+                                   LogLevel.Message,
+                                   $"{client_ip} | {client_message}"
+                               ));
                                 genericInvokeAction(pcsConsoleLog, () => pcsConsoleLog.AddLog(
                                        LogLevel.Info,
                                        "ER Protocol detected, starting validation..."
@@ -183,7 +188,7 @@ namespace TcpManager
                         case MessageProtocolType.Message:
                             string message = client_ip + "| " + client_message;
                             genericInvokeAction(pcsConsoleLog, () => pcsConsoleLog.AddLog(
-                                   LogLevel.Info,
+                                   LogLevel.Message,
                                    message
                            ));
                             break;
@@ -194,7 +199,7 @@ namespace TcpManager
                     ProtocolResponse response;
                     Spaceship.ip = client_ip;
                     genericInvokeAction(pcsConsoleLog, () => pcsConsoleLog.AddLog(
-                        LogLevel.Info,
+                        LogLevel.Message,
                         $"{client_ip} | {client_message}"
                     ));
                     response = protocolManager.excuteVkProtocol(client_message);
@@ -204,7 +209,7 @@ namespace TcpManager
                         genericInvokeAction(pcsConsoleLog, () => {
                             btnCheckConnection.Visible = true;
                             
-                            console_message = "Delivery confirmed, able to the next stage ✅";
+                            console_message = "Validation code confirmed, able to the next stage ✅";
 
                             pcsConsoleLog.AddLog(
                                 LogLevel.Success,
@@ -347,6 +352,7 @@ namespace TcpManager
             if (dataServer != null && dataServer.isRunning)
             {
                 dataServer.stopServer();
+                Spaceship.Reset();
             }
         }
 

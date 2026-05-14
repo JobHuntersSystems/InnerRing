@@ -8,14 +8,16 @@ using PACS_Common;
 using Inner_DB_Access;
 using System.Data;
 using System.Data.SqlClient;
-using System.IO;
+using PACS_Center;
+
 
 namespace ProtocolsManager
 {
     public class ProtocolManager
     {
         private DB_CRUD dbManger = new DB_CRUD();
-        DataSet db;
+        private RSADecrypt rsaManager = new RSADecrypt();
+        private DataSet db;
         public MessageProtocolType identifyProtocolType(string message)
         {
             MessageProtocolType type;
@@ -117,12 +119,6 @@ namespace ProtocolsManager
         }
         #endregion
         #region VK Protocol
-        private string decryptCode(string code)
-        {
-            string code_decrypted = "";
-
-            return code_decrypted;
-        }
         private ResultType validateEncryptedCode(string code)
         {
             ResultType result = ResultType.AD;
@@ -141,12 +137,12 @@ namespace ProtocolsManager
             }
             return result;
         }
-        public ProtocolResponse excuteVkProtocol(string message)
+        public ProtocolResponse excuteVkProtocol(string code)
         {
             ProtocolResponse response;
             string message_response = "VR";
             Spaceship.CurrentStage += 1;
-            string code_decrypted = decryptCode(message);
+            string code_decrypted = rsaManager.DecryptMessage(Planet.idPlanet, code);
             ResultType validation = validateEncryptedCode(code_decrypted);
 
             message_response += Spaceship.CurrentStage
