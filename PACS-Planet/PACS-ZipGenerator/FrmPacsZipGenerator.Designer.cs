@@ -33,6 +33,7 @@ namespace PACS_ZipGenerator
 			this.btnClose = new PACS_InheratedControls.PacsCloseButton();
 			this.Minimize = new PACS_InheratedControls.PacsMinimizeButton();
 			this.lstGenerator = new PACS_CustomControls.PacsConsole();
+			this.btnSend = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// btnGenerator
@@ -90,6 +91,19 @@ namespace PACS_ZipGenerator
 			this.lstGenerator.Size = new System.Drawing.Size(527, 705);
 			this.lstGenerator.TabIndex = 4;
 			// 
+			// btnSend
+			// 
+			this.btnSend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnSend.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold);
+			this.btnSend.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
+			this.btnSend.Location = new System.Drawing.Point(30, 203);
+			this.btnSend.Name = "btnSend";
+			this.btnSend.Size = new System.Drawing.Size(267, 113);
+			this.btnSend.TabIndex = 5;
+			this.btnSend.Text = "Send ZIP File";
+			this.btnSend.UseVisualStyleBackColor = false;
+			this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
+			// 
 			// FrmPacsZipGenerator
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -97,6 +111,7 @@ namespace PACS_ZipGenerator
 			this.BackColor = System.Drawing.Color.Black;
 			this.ClientSize = new System.Drawing.Size(857, 760);
 			this.ControlBox = false;
+			this.Controls.Add(this.btnSend);
 			this.Controls.Add(this.lstGenerator);
 			this.Controls.Add(this.btnClose);
 			this.Controls.Add(this.Minimize);
@@ -114,5 +129,6 @@ namespace PACS_ZipGenerator
 		private PACS_InheratedControls.PacsMinimizeButton Minimize;
 		private PACS_InheratedControls.PacsCloseButton btnClose;
 		private PACS_CustomControls.PacsConsole lstGenerator;
+		private System.Windows.Forms.Button btnSend;
 	}
 }

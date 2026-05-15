@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Threading.Tasks;
 
 namespace PACS_Services
 {
@@ -69,7 +68,6 @@ namespace PACS_Services
 				throw new Exception("No .txt files found in folder: " + folderPath);
 			}
 
-			object lockObject = new object();
 			int globalTotal = 0;
 
 			foreach (string filePath in files)
