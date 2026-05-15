@@ -3,17 +3,17 @@ using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 using PACS_UI;
-using PACS_Common;
 using TcpManager;
 using System.Collections.Generic;
 using PACS_Center;
+using PACS_ZipGenerator;
+using PACS_ChecksumCalculator;
 
 namespace PACS_Planet
 {
     public partial class frmMain : Form
     {
-        private Thread serverThread;
-
+        frmTcpManager formManager;
         public frmMain()
         {
             InitializeComponent();
@@ -26,14 +26,6 @@ namespace PACS_Planet
             else
                 act();
         }
-        #endregion
-        private Dictionary<int, string> protocol_stages = new Dictionary<int, string>()
-        {
-            {1, "☑️ Stage 1: Delivery schedule"},
-            {2, " ⬜ Stage 2: Validation Code"},
-            {3, " ⬜ Stage 3: Check Sum"},
-        };
-
         private void openForm(Form frm)
         {
             frm.TopLevel = false;
@@ -45,35 +37,56 @@ namespace PACS_Planet
             frm.BringToFront();
             frm.Show();
         }
-        private void OnNewClientDetected(object sender, EventArgs e)
+        #endregion
+        private Dictionary<int, string> protocol_stages = new Dictionary<int, string>()
+        {
+            {1, "☑️ Stage 1: Delivery schedule"},
+            {2, " ⬜ Stage 2: Validation Code"},
+            {3, " ⬜ Stage 3: Check Sum"},
+        };
+
+        private void showNewProtocolStage()
         {
 
-            var tpc = (frmTcpManager.NotificationSentEventArgs)e;
-            string result = $"=== {tpc.Message} ===\n";
-
-            foreach (var stage in protocol_stages)
-            {
-                result += stage.Value + "\n";
-            }
-
-            genericInvokeAction(pcsConsoleMain, () =>
-                pcsConsoleMain.AddData(
-                    result
-            ));
         }
-        private void OnNotificationReceived(object sender, EventArgs e)
+        private void OnZipIsGenerated(object sender, EventArgs e)
         {
-            var tpc_manager = (frmTcpManager.NotificationSentEventArgs)e;
-            genericInvokeAction(pcsConsoleMain, () =>
-                pcsConsoleMain.AddLog(
-                    tpc_manager.Level,
-                    tpc_manager.Message
-            ));
+            if(formManager != null)
+            {
+                
+            }
+        }
+        private void OnCheckSumIsDone(object sender, EventArgs e)
+        {
+            if (formManager != null)
+            {
+
+            }
+        }
+        private void OnNotificationRecived(object sender, EventArgs e)
+        {
+            var tcp = (frmTcpManager.NotificationSentEventArgs)e;
+            int stage = tcp.Stage;
+            bool able = tcp.Able;
+            switch (stage)
+            {
+                case 0:
+                    showNewProtocolStage();
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    if (able)
+                    {
+                        genericInvokeAction(obtnGenerateZip, () => obtnGenerateZip.Visible = true);
+                    }
+                    break;
+            }
         }
         private void obtnTCP_Click(object sender, EventArgs e)
         {
             bool formOpened = false;
-            frmTcpManager formManager;
+          
             foreach (Form form in Application.OpenForms)
             {
                 if (form is frmTcpManager)
@@ -87,7 +100,7 @@ namespace PACS_Planet
             if (!formOpened)
             {
                 formManager = new frmTcpManager();
-                formManager.NotificationSent += new EventHandler(OnNewClientDetected);
+                formManager.NotificationSent += new EventHandler(OnNotificationRecived);
 
                 openForm(formManager);
             }
@@ -138,7 +151,47 @@ namespace PACS_Planet
                 openForm(formManager);
             }
         }
+        private void obtnGenerateZip_Click(object sender, EventArgs e)
+        {
+            bool formOpened = false;
+            FrmPacsZipGenerator formManager;
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is FrmPacsZipGenerator)
+                {
+                    formOpened = true;
+                    form.BringToFront();
+                    form.WindowState = FormWindowState.Maximized;
+                    break;
+                }
+            }
+            if (!formOpened)
+            {
+                formManager = new FrmPacsZipGenerator();
+                openForm(formManager);
+            }
+        }
 
+        private void obtnCheckSum_Click(object sender, EventArgs e)
+        {
+            bool formOpened = false;
+            FrmPacsChecksumCalculator formManager;
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is FrmPacsChecksumCalculator)
+                {
+                    formOpened = true;
+                    form.BringToFront();
+                    form.WindowState = FormWindowState.Maximized;
+                    break;
+                }
+            }
+            if (!formOpened)
+            {
+                formManager = new FrmPacsChecksumCalculator();
+                openForm(formManager);
+            }
+        }
         private void pctConfiguration_Click(object sender, EventArgs e)
         {
             frmPlanetConfig frm = new frmPlanetConfig();
@@ -150,9 +203,5 @@ namespace PACS_Planet
             Application.Exit();
         }
 
-        private void lblTitle_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
