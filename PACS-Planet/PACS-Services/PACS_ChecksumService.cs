@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace PACS_Services
 {
@@ -41,8 +42,6 @@ namespace PACS_Services
 		// Este método recibe:
 		// - La carpeta donde están los archivos generados.
 		// - El diccionario de codificación letra -> número.
-		//
-		// Luego calcula la suma total de todos los archivos.
 
 		public int CalculateGlobalChecksum(string folderPath, Dictionary<char, string> codification)
 		{
@@ -60,6 +59,7 @@ namespace PACS_Services
 			{
 				throw new Exception("Codification dictionary cannot be empty.");
 			}
+
 			// Buscamos todos los archivos .txt dentro de la carpeta.
 			string[] files = Directory.GetFiles(folderPath, "*.txt");
 
@@ -69,12 +69,24 @@ namespace PACS_Services
 			}
 
 			int globalTotal = 0;
+			object lockObject = new object();
 
-			foreach (string filePath in files)
+			// =====================================================
+			// CÁLCULO PARALELO
+			// =====================================================
+			// Cada archivo se procesa de forma paralela.
+			// Cada hilo calcula el total de su archivo.
+			// Después se usa lock para sumar de forma segura al total global.
+
+			Parallel.ForEach(files, filePath =>
 			{
 				int fileTotal = CalculateFileChecksum(filePath, codification);
-				globalTotal += fileTotal;
-			}
+
+				lock (lockObject)
+				{
+					globalTotal += fileTotal;
+				}
+			});
 
 			RaiseChecksumCalculated(globalTotal);
 
@@ -89,6 +101,7 @@ namespace PACS_Services
 		//
 		// Regla importante:
 		// Si un dígito es 0, cuenta como 10.
+
 		public int CalculateFileChecksum(string filePath, Dictionary<char, string> codification)
 		{
 			if (string.IsNullOrWhiteSpace(filePath))
