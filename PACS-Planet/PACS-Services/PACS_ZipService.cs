@@ -36,6 +36,15 @@ namespace PACS_Services
 			public int ExtractedFiles { get; set; }
 		}
 
+		public class PacsZipSendResult
+		{
+			public string ZipPath { get; set; }
+			public long ZipSizeBytes { get; set; }
+			public string DestinationIp { get; set; }
+			public bool Sent { get; set; }
+			public string Message { get; set; }
+		}
+
 		// =========================================================
 		// EVENTO: ZIP GENERADO
 		// =========================================================
@@ -94,6 +103,35 @@ namespace PACS_Services
 		}
 
 		// =========================================================
+		// EVENTO: ZIP ENVIADO
+		// =========================================================
+		// Este evento avisa cuando el ZIP ha sido "enviado".
+		// Por ahora el envío es simulado porque TCP/IP todavía no está conectado.
+
+		public event EventHandler ZipSent;
+
+		public class ZipSentEventArgs : EventArgs
+		{
+			public PacsZipSendResult Result { get; set; }
+		}
+
+		protected virtual void OnZipSent(ZipSentEventArgs e)
+		{
+			if (ZipSent != null)
+			{
+				ZipSent(this, e);
+			}
+		}
+
+		private void RaiseZipSent(PacsZipSendResult result)
+		{
+			OnZipSent(new ZipSentEventArgs
+			{
+				Result = result
+			});
+		}
+
+		// =========================================================
 		// GENERAR ARCHIVOS Y ZIP
 		// =========================================================
 		// Método principal de esta clase.
@@ -140,6 +178,74 @@ namespace PACS_Services
 			RaiseZipGenerated(result);
 
 			return result;
+		}
+
+		// =========================================================
+		// ENVIAR ZIP
+		// =========================================================
+		// Por ahora este método NO envía por TCP/IP realmente.
+		// Solo valida que el ZIP existe y simula el envío.
+		// Más adelante aquí se conectará el módulo TCP/file transfer.
+
+		public PacsZipSendResult SendPacsZip(string zipPath, string destinationIp)
+		{
+			if (string.IsNullOrWhiteSpace(zipPath))
+			{
+				throw new Exception("ZIP path cannot be empty.");
+			}
+
+			if (!File.Exists(zipPath))
+			{
+				throw new Exception("ZIP file does not exist: " + zipPath);
+			}
+
+			if (string.IsNullOrWhiteSpace(destinationIp))
+			{
+				destinationIp = "TCP_NOT_CONNECTED";
+			}
+
+			FileInfo zipInfo = new FileInfo(zipPath);
+
+			/*
+			 * TEMPORARY PLACEHOLDER.
+			 *
+			 * Later:
+			 * - Connect this method to the TCP/file transfer module.
+			 * - Send the real PACS.zip to the spaceship.
+			 */
+
+			PacsZipSendResult result = new PacsZipSendResult
+			{
+				ZipPath = zipPath,
+				ZipSizeBytes = zipInfo.Length,
+				DestinationIp = destinationIp,
+				Sent = true,
+				Message = "PACS.zip send simulated successfully. TCP/IP is not connected yet."
+			};
+
+			RaiseZipSent(result);
+
+			return result;
+		}
+
+		public PacsZipSendResult SendPacsZipFromBaseFolder(string baseFolder, string destinationIp)
+		{
+			if (string.IsNullOrWhiteSpace(baseFolder))
+			{
+				throw new Exception("Base folder cannot be empty.");
+			}
+
+			if (!Directory.Exists(baseFolder))
+			{
+				throw new Exception("Base folder does not exist: " + baseFolder);
+			}
+
+			XMLConfig config = LoadXMLConfig(baseFolder);
+
+			string workFolder = BuildPath(baseFolder, config.WorkFolder);
+			string zipPath = BuildPath(workFolder, config.ZipFileName);
+
+			return SendPacsZip(zipPath, destinationIp);
 		}
 
 		// =========================================================
@@ -190,11 +296,13 @@ namespace PACS_Services
 
 			return result;
 		}
+
 		// =========================================================
 		// EXTRAER ZIP USANDO LA CARPETA BASE
 		// =========================================================
 		// Este método busca la configuración XML, localiza el ZIP según
 		// esa configuración y lo extrae a una carpeta llamada ExtractedFiles.
+
 		public PacsZipExtractResult ExtractPacsZipFromBaseFolder(string baseFolder)
 		{
 			if (string.IsNullOrWhiteSpace(baseFolder))
@@ -237,6 +345,7 @@ namespace PACS_Services
 
 			return ReadXMLConfig(configPath);
 		}
+
 		// Lee y valida el contenido de PACS_Config.xml.
 		private XMLConfig ReadXMLConfig(string configPath)
 		{
@@ -283,6 +392,7 @@ namespace PACS_Services
 				LettersPerFile = lettersPerFile
 			};
 		}
+
 		// Lee un valor de texto obligatorio desde el XML.
 		private string ReadRequiredString(XDocument document, string elementName)
 		{
@@ -302,6 +412,7 @@ namespace PACS_Services
 
 			return value;
 		}
+
 		// Lee un número entero obligatorio desde el XML.
 		private int ReadRequiredInt(XDocument document, string elementName)
 		{
@@ -374,6 +485,7 @@ namespace PACS_Services
 
 			return result.ToString();
 		}
+
 		// Crea el archivo ZIP a partir de la carpeta de archivos generados.
 		private void CreatePacsZip(string sourceFolder, string zipPath)
 		{
