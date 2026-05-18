@@ -218,7 +218,6 @@ namespace TcpManager
                     currentProtcoltype = protocolManager.identifyProtocolType(client_message);
                     if(currentProtcoltype == MessageProtocolType.VK && Spaceship.CurrentStage == 1)
                     {
-                        isActiveVkProtocol = true;
                         genericInvokeAction(pcsConsoleLog, () => pcsConsoleLog.AddLog(
                                 LogLevel.Info,
                                 "VK Protocol detected, wating for the next message..."
@@ -231,7 +230,15 @@ namespace TcpManager
                         raiseErProtocol(client_ip,client_message);
                         break;
                     case MessageProtocolType.VK:
-                        raiseVkProtocol(client_ip, client_message);                           
+                        if (isActiveVkProtocol)
+                        {
+                            raiseVkProtocol(client_ip, client_message);
+                            isActiveVkProtocol = false;
+                        }
+                        else
+                        {
+                            isActiveVkProtocol = true;
+                        }
                         break;
                     case MessageProtocolType.Message:
                         string message = client_ip + "| " + client_message;
