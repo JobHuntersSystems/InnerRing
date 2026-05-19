@@ -270,12 +270,13 @@ namespace PACS_Services
 				throw new Exception("Extract folder cannot be empty.");
 			}
 
-			if (Directory.Exists(extractFolder))
-			{
-				Directory.Delete(extractFolder, true);
-			}
+			zipPath = Path.GetFullPath(zipPath);
+			extractFolder = Path.GetFullPath(extractFolder);
 
-			Directory.CreateDirectory(extractFolder);
+			if (!Directory.Exists(extractFolder))
+			{
+				Directory.CreateDirectory(extractFolder);
+			}
 
 			ZipFile.ExtractToDirectory(zipPath, extractFolder);
 
@@ -291,8 +292,6 @@ namespace PACS_Services
 				ExtractFolder = extractFolder,
 				ExtractedFiles = extractedFiles
 			};
-
-			RaiseZipExtracted(result);
 
 			return result;
 		}
@@ -315,11 +314,19 @@ namespace PACS_Services
 				throw new Exception("Base folder does not exist: " + baseFolder);
 			}
 
+			baseFolder = Path.GetFullPath(baseFolder);
+
 			XMLConfig config = LoadXMLConfig(baseFolder);
 
 			string workFolder = BuildPath(baseFolder, config.WorkFolder);
 			string zipPath = BuildPath(workFolder, config.ZipFileName);
-			string extractFolder = Path.Combine(workFolder, "ExtractedFiles");
+
+			string extractFolder = Path.Combine(
+				workFolder,
+				"ExtractedFiles"
+			);
+
+			extractFolder = Path.GetFullPath(extractFolder);
 
 			return ExtractPacsZip(zipPath, extractFolder);
 		}
