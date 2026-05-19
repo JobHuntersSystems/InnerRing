@@ -16,6 +16,7 @@ namespace PACS_Common
         public static string imagePath { get; set; }
         public static int CurrentStage { get; set; } = 0;
         public static ProcessStatus Status { get; set; } = ProcessStatus.InProgress;
+        public static int CheckSum { get; set; }
 
         public static void Reset()
         {

@@ -25,7 +25,6 @@ namespace TcpManager
 
         private TcpClientService clientData;
         private DataTcpServer dataServer;
-        private FileTcpServer fileServer;
 
         private ProtocolManager protocolManager = new ProtocolManager();
 
@@ -113,6 +112,7 @@ namespace TcpManager
                             LogLevel.Success,
                             console_message);
                     });
+                    RaiseNotificationSent(Spaceship.CurrentStage, true);
                 }
                 else
                 {
@@ -125,6 +125,7 @@ namespace TcpManager
                         );
                     });
                     response = protocolManager.getDefaultDenegationResponse();
+                    RaiseNotificationSent(Spaceship.CurrentStage, false);
                 }
                 clientData.sendMessage(Spaceship.ip, Spaceship.dataPort, response.protocolResponse);
                 updateCurrentSpaceshipData(response.result, "ER", client_message);
@@ -149,6 +150,7 @@ namespace TcpManager
                         LogLevel.Success,
                         console_message);
                 });
+                RaiseNotificationSent(Spaceship.CurrentStage, true);
             }
             else
             {
@@ -162,6 +164,7 @@ namespace TcpManager
                     );
                 });
                 response = protocolManager.getDefaultDenegationResponse();
+                RaiseNotificationSent(Spaceship.CurrentStage, false);
             }
             clientData.sendMessage(Spaceship.ip, Spaceship.dataPort, response.protocolResponse);
             updateCurrentSpaceshipData(response.result, "VK", client_message);
@@ -196,6 +199,7 @@ namespace TcpManager
         }
         
         bool isActiveVkProtocol = false;
+        bool isActiveCheckSumProtocol = false;
         MessageProtocolType currentProtcoltype = MessageProtocolType.VK;
         private void OnDataReceived(object sender, EventArgs e)
         {
@@ -224,6 +228,7 @@ namespace TcpManager
                         ));
                     }
                 }
+
                 switch (currentProtcoltype)
                 {
                     case MessageProtocolType.ER:
@@ -248,7 +253,11 @@ namespace TcpManager
                         ));
                         break;
                 }
-            
+                if (isActiveCheckSumProtocol)
+                {
+                    Spaceship.CheckSum = int.Parse(client_message);
+                    RaiseNotificationSent(Spaceship.CurrentStage, true);
+                }
             }
             catch (SqlException ex)
             {
@@ -273,7 +282,7 @@ namespace TcpManager
             genericInvokeAction(pcsConsoleLog, () => pcsConsoleLog.AddLog(
                   tcp.Level,
                   tcp.Message
-          ));
+            ));
         }
         #endregion
         #region Public Methods
@@ -282,7 +291,11 @@ namespace TcpManager
             try
             {
                 clientData.sendFile(host_ip, file_port, zip_path);
+                int port = int.Parse(txtFilePort.Text);
                 genericInvokeAction(pcsConsoleLog, () => pcsConsoleLog.AddLog(LogLevel.Info, $"Wating for the Spaceship sum..."));
+                //isActiveVkProtocol = false;
+                isActiveCheckSumProtocol = true;
+                Spaceship.CurrentStage += 1;
             }
             catch(Exception ex)
             {
@@ -296,7 +309,30 @@ namespace TcpManager
         }
         public void sendFinalValidation(string host_ip, int file_port, bool validation)
         {
+            try
+            {
+                string message = "";
+                if (validation)
+                {
+                    message = "AG";
+                }
+                else
+                {
+                    message = "AD";
+                }
+                clientData.sendMessage(host_ip, file_port, message);
+                genericInvokeAction(pcsConsoleLog, () => pcsConsoleLog.AddLog(LogLevel.Info, $"Wating for the Spaceship sum..."));
 
+                Spaceship.CurrentStage = 0;
+            }
+            catch (Exception ex)
+            {
+                genericInvokeAction(pcsConsoleLog, () =>
+                {
+                    pcsConsoleLog.AddLog(LogLevel.Error, ex.Message);
+                }
+                );
+            }
         }
         #endregion
         #region Form Events

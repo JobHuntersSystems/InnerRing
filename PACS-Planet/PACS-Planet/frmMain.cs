@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using PACS_Center;
 using PACS_ZipGenerator;
 using PACS_ChecksumCalculator;
-
+using PACS_Common;
 namespace PACS_Planet
 {
     public partial class frmMain : Form
@@ -51,16 +51,20 @@ namespace PACS_Planet
         }
         private void OnZipIsGenerated(object sender, EventArgs e)
         {
+            var zip = (FrmPacsZipGenerator.ZipSentToMainEventArgs)e;
             if(formManager != null)
             {
-                
+                formManager.sendZip(Spaceship.ip,Spaceship.filePort, zip.Path);
             }
         }
         private void OnCheckSumIsDone(object sender, EventArgs e)
         {
+
+            var check = (FrmPacsChecksumCalculator.ChecksumCalculatedToMainEventArgs)e;
+
             if (formManager != null)
             {
-
+                formManager.sendFinalValidation(Spaceship.ip, Spaceship.dataPort, check.GlobalChecksum);
             }
         }
         private void OnNotificationRecived(object sender, EventArgs e)
@@ -79,6 +83,12 @@ namespace PACS_Planet
                     if (able)
                     {
                         genericInvokeAction(obtnGenerateZip, () => obtnGenerateZip.Visible = true);
+                    }
+                    break;
+                case 3:
+                    if (able)
+                    {
+                        genericInvokeAction(obtnCheckSum, () => obtnCheckSum.Visible = true);
                     }
                     break;
             }
@@ -168,6 +178,7 @@ namespace PACS_Planet
             if (!formOpened)
             {
                 formManager = new FrmPacsZipGenerator();
+                formManager.ZipSentToMain += new EventHandler(OnZipIsGenerated);
                 openForm(formManager);
             }
         }
@@ -189,6 +200,7 @@ namespace PACS_Planet
             if (!formOpened)
             {
                 formManager = new FrmPacsChecksumCalculator();
+                formManager.ChecksumCalculatedToMain += new EventHandler(OnCheckSumIsDone);
                 openForm(formManager);
             }
         }

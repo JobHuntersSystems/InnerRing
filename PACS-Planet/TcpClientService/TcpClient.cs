@@ -93,11 +93,12 @@ namespace TcpClientServices
                         {
                             byte[] buffer = new byte[4096];
                             int bytesRead;
-                            RaiseNotificationSent(LogLevel.Info, $"Sending zip: {localFilePath}");
+                            RaiseNotificationSent(LogLevel.Warn, $"Sending zip: {localFilePath}");
                             while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) > 0)
                             {
                                 ns.Write(buffer, 0, bytesRead);
                             }
+                            RaiseNotificationSent(LogLevel.Success, $"File Sent");
                         }
                     }
                 }
