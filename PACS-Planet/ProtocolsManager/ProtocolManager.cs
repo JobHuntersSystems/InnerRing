@@ -67,6 +67,21 @@ namespace ProtocolsManager
                 Spaceship.imagePath = table.Rows[0]["SpaceshipImage"].ToString();
             }
         }
+        public ProtocolResponse getDefaultDenegationResponse()
+        {
+            ProtocolResponse response;
+            string message_response = "VR";
+            message_response += Spaceship.CurrentStage
+                + Spaceship.code
+                + "AD";
+
+            response = new ProtocolResponse()
+            {
+                result = ResultType.AD,
+                protocolResponse = message_response
+            };
+            return response;
+        }
         #region ER Protocol
         private ResultType validateDelivery(string spaceship_code, string delivery_code)
         {

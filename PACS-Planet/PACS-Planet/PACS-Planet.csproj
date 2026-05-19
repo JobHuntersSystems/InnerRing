@@ -102,6 +102,10 @@
       <Project>{da08766a-dbfb-465b-86cd-360fe7385368}</Project>
       <Name>PACS-Center</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PACS-ChecksumCalculator\PACS-ChecksumCalculator.csproj">
+      <Project>{40162ada-e23a-4c5f-8b14-4d71c5634255}</Project>
+      <Name>PACS-ChecksumCalculator</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PACS-Common\PACS-Common.csproj">
       <Project>{ae2dfbfd-20fc-4225-9991-62edaad6b012}</Project>
       <Name>PACS-Common</Name>
@@ -117,6 +121,10 @@
     <ProjectReference Include="..\PACS-UI\PACS-UI.csproj">
       <Project>{f553bf70-c670-4b47-a179-b027740872ee}</Project>
       <Name>PACS-UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PACS-ZipGenerator\PACS-ZipGenerator.csproj">
+      <Project>{482374f2-c9ce-4727-8395-4989bce82bdb}</Project>
+      <Name>PACS-ZipGenerator</Name>
     </ProjectReference>
     <ProjectReference Include="..\TcpManager\TcpManager.csproj">
       <Project>{6afa8f25-c3b0-4afe-b506-83c1cfb4d676}</Project>
