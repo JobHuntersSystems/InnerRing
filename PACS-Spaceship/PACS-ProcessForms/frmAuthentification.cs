@@ -74,7 +74,7 @@ namespace PACS_ProcessForms
         private void btnPhase4_Click(object sender, EventArgs e)
         {
             btnPhase4.Enabled = false;
-
+            SendChecksum();
         }
         #endregion
 
@@ -112,7 +112,7 @@ namespace PACS_ProcessForms
             PacsZipService zipService = new PacsZipService();
             PacsChecksumService checksumService = new PacsChecksumService();
 
-            PacsZipService.PacsZipExtractResult resultadoExtraccion = zipService.ExtractPacsZip(filePath, "./");
+            PacsZipService.PacsZipExtractResult resultadoExtraccion = zipService.ExtractPacsZip(filePath);
 
             string[] archivosExtraidos = Directory.GetFiles(resultadoExtraccion.ExtractFolder, "*.txt", SearchOption.AllDirectories);
             int totalGlobalChecksum = 0;
@@ -290,7 +290,7 @@ namespace PACS_ProcessForms
             if (msg.EndsWith("VP"))
             {
                 LogToConsole("VR2: RSA payload decrypted. Validation code match. Validation in progress (VP).", LogLevel.Success);
-                btnPhase3.Enabled = true;
+                LogToConsole("Wating for zip...", LogLevel.Info);
             }
             else if (msg.EndsWith("AD"))
             {
@@ -340,6 +340,7 @@ namespace PACS_ProcessForms
             this.Invoke((MethodInvoker)delegate
             {
                 filePath = data.FilePath;
+                btnPhase3.Enabled = true;
             });
 
         }

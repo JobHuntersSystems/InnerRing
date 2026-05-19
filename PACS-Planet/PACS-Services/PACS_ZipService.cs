@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.IO.Compression;
 using System.Security.Cryptography;
@@ -253,8 +253,15 @@ namespace PACS_Services
 		// =========================================================
 		// Este método extrae el contenido de un ZIP a una carpeta.
 
-		public PacsZipExtractResult ExtractPacsZip(string zipPath, string extractFolder)
+		public PacsZipExtractResult ExtractPacsZip(string path)
 		{
+			// El zipPath DEBE ser la ruta completa que has recibido
+			string zipPath = path;
+			
+			// Creamos una carpeta de extracción que sea una subcarpeta con el nombre del ZIP
+			// (es decir: CarpetaPadre + NombreDelZipSinExtension)
+			string extractFolder = Path.Combine(Path.GetDirectoryName(path), Path.GetFileNameWithoutExtension(path));
+
 			if (string.IsNullOrWhiteSpace(zipPath))
 			{
 				throw new Exception("ZIP path cannot be empty.");
@@ -294,41 +301,6 @@ namespace PACS_Services
 			};
 
 			return result;
-		}
-
-		// =========================================================
-		// EXTRAER ZIP USANDO LA CARPETA BASE
-		// =========================================================
-		// Este método busca la configuración XML, localiza el ZIP según
-		// esa configuración y lo extrae a una carpeta llamada ExtractedFiles.
-
-		public PacsZipExtractResult ExtractPacsZipFromBaseFolder(string baseFolder)
-		{
-			if (string.IsNullOrWhiteSpace(baseFolder))
-			{
-				throw new Exception("Base folder cannot be empty.");
-			}
-
-			if (!Directory.Exists(baseFolder))
-			{
-				throw new Exception("Base folder does not exist: " + baseFolder);
-			}
-
-			baseFolder = Path.GetFullPath(baseFolder);
-
-			XMLConfig config = LoadXMLConfig(baseFolder);
-
-			string workFolder = BuildPath(baseFolder, config.WorkFolder);
-			string zipPath = BuildPath(workFolder, config.ZipFileName);
-
-			string extractFolder = Path.Combine(
-				workFolder,
-				"ExtractedFiles"
-			);
-
-			extractFolder = Path.GetFullPath(extractFolder);
-
-			return ExtractPacsZip(zipPath, extractFolder);
 		}
 
 		// =========================================================
