@@ -14,6 +14,29 @@ namespace PACS_ChecksumCalculator
 		private PacsChecksumService checksumService;
 		private int lastChecksum;
 
+		public event EventHandler ChecksumCalculatedToMain;
+
+		public class ChecksumCalculatedToMainEventArgs : EventArgs
+		{
+			public int GlobalChecksum { get; set; }
+		}
+
+		protected virtual void OnChecksumCalculatedToMain(ChecksumCalculatedToMainEventArgs e)
+		{
+			if (ChecksumCalculatedToMain != null)
+			{
+				ChecksumCalculatedToMain(this, e);
+			}
+		}
+
+		private void RaiseChecksumCalculatedToMain(int globalChecksum)
+		{
+			OnChecksumCalculatedToMain(new ChecksumCalculatedToMainEventArgs
+			{
+				GlobalChecksum = globalChecksum
+			});
+		}
+
 		public FrmPacsChecksumCalculator()
 		{
 			InitializeComponent();
@@ -25,7 +48,9 @@ namespace PACS_ChecksumCalculator
 		{
 			checksumService = new PacsChecksumService();
 
-			// Nos suscribimos al evento que avisa cuando el checksum está calculado.
+			// Nos suscribimos al evento interno del servicio.
+			// Cuando el servicio termine el cálculo, se ejecutará
+			// ChecksumService_ChecksumCalculated.
 			checksumService.ChecksumCalculated += ChecksumService_ChecksumCalculated;
 
 			lstCalculator.AddLog(LogLevel.Info, "PACS checksum calculator loaded.");
@@ -47,6 +72,7 @@ namespace PACS_ChecksumCalculator
 				lstCalculator.AddLog(LogLevel.Success, "Codification dictionary loaded.");
 				lstCalculator.AddLog(LogLevel.Info, "Letters loaded: " + codification.Count);
 
+				// Carpeta donde el generador ZIP dejó los archivos .txt.
 				string generatedFilesFolder = Path.Combine(
 					Application.StartupPath,
 					"PACS_Files",
@@ -56,6 +82,7 @@ namespace PACS_ChecksumCalculator
 				lstCalculator.AddLog(LogLevel.Info, "Generated files folder:");
 				lstCalculator.AddLog(LogLevel.Info, generatedFilesFolder);
 
+				// Calcula el checksum total usando los archivos y el diccionario.
 				lastChecksum = checksumService.CalculateGlobalChecksum(
 					generatedFilesFolder,
 					codification
@@ -89,6 +116,7 @@ namespace PACS_ChecksumCalculator
 
 			lstCalculator.AddLog(LogLevel.Success, "Planet checksum calculated.");
 			lstCalculator.AddLog(LogLevel.Info, "Global checksum: " + args.GlobalChecksum);
+			RaiseChecksumCalculatedToMain(args.GlobalChecksum);
 		}
 
 		private Dictionary<char, string> GetCodificationDictionaryFromDatabase()
@@ -104,7 +132,6 @@ namespace PACS_ChecksumCalculator
 				throw new Exception("No valid planet selected. Planet.idPlanet is empty or invalid.");
 			}
 
-			// Consulta que obtiene el diccionario de codificación:
 			// Word = letra
 			// Numbers = código numérico de 3 dígitos.
 			string query =
@@ -163,6 +190,7 @@ namespace PACS_ChecksumCalculator
 				codification.Add(letter, numberValue);
 			}
 
+			// El diccionario correcto debe contener las 26 letras del alfabeto.
 			if (codification.Count != 26)
 			{
 				throw new Exception(
@@ -173,6 +201,7 @@ namespace PACS_ChecksumCalculator
 			return codification;
 		}
 
+		// Permite que otro formulario/clase consulte el último checksum calculado.
 		public int GetLastChecksum()
 		{
 			return lastChecksum;
