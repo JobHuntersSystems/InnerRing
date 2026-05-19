@@ -273,11 +273,17 @@ namespace PACS_Services
 			zipPath = Path.GetFullPath(zipPath);
 			extractFolder = Path.GetFullPath(extractFolder);
 
-			if (!Directory.Exists(extractFolder))
+			// Si la carpeta de extracción ya existe, se borra entera
+			// para que no queden restos de extracciones anteriores.
+			if (Directory.Exists(extractFolder))
 			{
-				Directory.CreateDirectory(extractFolder);
+				Directory.Delete(extractFolder, true);
 			}
 
+			// Se vuelve a crear vacía
+			Directory.CreateDirectory(extractFolder);
+
+			// Se extrae el ZIP
 			ZipFile.ExtractToDirectory(zipPath, extractFolder);
 
 			int extractedFiles = Directory.GetFiles(
