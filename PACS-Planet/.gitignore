@@ -101,3 +101,5 @@ App/*
 !App/**/
 ### Permitir archivos en subcarpetas de "App"
 !App/*/**
+
+App/PACS_Files/

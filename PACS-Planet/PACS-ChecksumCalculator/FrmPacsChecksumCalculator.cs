@@ -18,7 +18,7 @@ namespace PACS_ChecksumCalculator
 
 		public class ChecksumCalculatedToMainEventArgs : EventArgs
 		{
-			public int GlobalChecksum { get; set; }
+			public bool GlobalChecksum { get; set; }
 		}
 
 		protected virtual void OnChecksumCalculatedToMain(ChecksumCalculatedToMainEventArgs e)
@@ -29,7 +29,7 @@ namespace PACS_ChecksumCalculator
 			}
 		}
 
-		private void RaiseChecksumCalculatedToMain(int globalChecksum)
+		private void RaiseChecksumCalculatedToMain(bool globalChecksum)
 		{
 			OnChecksumCalculatedToMain(new ChecksumCalculatedToMainEventArgs
 			{
@@ -116,7 +116,8 @@ namespace PACS_ChecksumCalculator
 
 			lstCalculator.AddLog(LogLevel.Success, "Planet checksum calculated.");
 			lstCalculator.AddLog(LogLevel.Info, "Global checksum: " + args.GlobalChecksum);
-			RaiseChecksumCalculatedToMain(args.GlobalChecksum);
+			bool equal = args.GlobalChecksum == Spaceship.CheckSum;
+			RaiseChecksumCalculatedToMain(equal);
 		}
 
 		private Dictionary<char, string> GetCodificationDictionaryFromDatabase()

@@ -36,6 +36,8 @@
             this.pnlButton = new System.Windows.Forms.Panel();
             this.pcsConsoleMain = new PACS_CustomControls.PacsConsole();
             this.pnlMain = new System.Windows.Forms.Panel();
+            this.obtnGenerateZip = new PACS_CustomControls.OptionButton();
+            this.obtnCheckSum = new PACS_CustomControls.OptionButton();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctConfiguration)).BeginInit();
             this.flowMenuLeft.SuspendLayout();
@@ -127,6 +129,8 @@
             this.flowMenuLeft.Controls.Add(this.obtnRsa);
             this.flowMenuLeft.Controls.Add(this.obtnValidationCode);
             this.flowMenuLeft.Controls.Add(this.obtnTCP);
+            this.flowMenuLeft.Controls.Add(this.obtnGenerateZip);
+            this.flowMenuLeft.Controls.Add(this.obtnCheckSum);
             this.flowMenuLeft.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowMenuLeft.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowMenuLeft.Location = new System.Drawing.Point(0, 0);
@@ -303,6 +307,52 @@
             this.pnlMain.Size = new System.Drawing.Size(1118, 646);
             this.pnlMain.TabIndex = 8;
             // 
+            // obtnGenerateZip
+            // 
+            this.obtnGenerateZip.AccentColor = System.Drawing.Color.Lavender;
+            this.obtnGenerateZip.AccentHoverColor = System.Drawing.Color.Red;
+            this.obtnGenerateZip.BackColor = System.Drawing.Color.Transparent;
+            this.obtnGenerateZip.BackgroundPanelColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(34)))), ((int)(((byte)(47)))));
+            this.obtnGenerateZip.BorderDarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
+            this.obtnGenerateZip.BorderLightColor = System.Drawing.Color.Maroon;
+            this.obtnGenerateZip.ClassName = null;
+            this.obtnGenerateZip.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.obtnGenerateZip.FormName = null;
+            this.obtnGenerateZip.IsSelected = false;
+            this.obtnGenerateZip.Location = new System.Drawing.Point(10, 232);
+            this.obtnGenerateZip.Margin = new System.Windows.Forms.Padding(6);
+            this.obtnGenerateZip.Name = "obtnGenerateZip";
+            this.obtnGenerateZip.OptionIcon = null;
+            this.obtnGenerateZip.OptionText = "Zip    Generation";
+            this.obtnGenerateZip.Size = new System.Drawing.Size(220, 62);
+            this.obtnGenerateZip.TabIndex = 5;
+            this.obtnGenerateZip.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.obtnGenerateZip.Visible = false;
+            this.obtnGenerateZip.Click += new System.EventHandler(this.obtnGenerateZip_Click);
+            // 
+            // obtnCheckSum
+            // 
+            this.obtnCheckSum.AccentColor = System.Drawing.Color.Fuchsia;
+            this.obtnCheckSum.AccentHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.obtnCheckSum.BackColor = System.Drawing.Color.Transparent;
+            this.obtnCheckSum.BackgroundPanelColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(28)))), ((int)(((byte)(30)))));
+            this.obtnCheckSum.BorderDarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
+            this.obtnCheckSum.BorderLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(105)))), ((int)(((byte)(95)))));
+            this.obtnCheckSum.ClassName = "";
+            this.obtnCheckSum.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.obtnCheckSum.FormName = "";
+            this.obtnCheckSum.IsSelected = false;
+            this.obtnCheckSum.Location = new System.Drawing.Point(10, 306);
+            this.obtnCheckSum.Margin = new System.Windows.Forms.Padding(6);
+            this.obtnCheckSum.Name = "obtnCheckSum";
+            this.obtnCheckSum.OptionIcon = null;
+            this.obtnCheckSum.OptionText = "Check Sum";
+            this.obtnCheckSum.Size = new System.Drawing.Size(220, 62);
+            this.obtnCheckSum.TabIndex = 6;
+            this.obtnCheckSum.TextColor = System.Drawing.Color.Plum;
+            this.obtnCheckSum.Visible = false;
+            this.obtnCheckSum.Click += new System.EventHandler(this.obtnCheckSum_Click);
+            // 
             // frmMain
             // 
             this.BackColor = System.Drawing.Color.Black;
@@ -345,5 +395,7 @@
         private System.Windows.Forms.Panel pnlButton;
         private System.Windows.Forms.Panel pnlMain;
         private PACS_CustomControls.PacsConsole pcsConsoleMain;
+        private PACS_CustomControls.OptionButton obtnGenerateZip;
+        private PACS_CustomControls.OptionButton obtnCheckSum;
     }
 }
