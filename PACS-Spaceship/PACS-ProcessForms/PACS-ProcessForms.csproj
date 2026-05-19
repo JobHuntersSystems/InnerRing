@@ -96,6 +96,10 @@
       <Project>{5E69E566-0081-4B55-8486-8341A9E082A1}</Project>
       <Name>PACS-CustomControls</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\PACS-Planet\PACS-Services\PACS-Services.csproj">
+      <Project>{7b388d0b-119f-4423-9955-c24aaadb5998}</Project>
+      <Name>PACS-Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\PACS-Planet\TcpClientService\TcpClientService.csproj">
       <Project>{ac916f85-7d76-407b-90ec-97551c54d995}</Project>
       <Name>TcpClientService</Name>

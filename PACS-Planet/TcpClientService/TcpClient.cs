@@ -140,6 +140,7 @@ namespace TcpClientServices
                 RaiseNotificationSent(
                     ex.Message,
                     LogLevel.Error
+
                 );
             }
         }
