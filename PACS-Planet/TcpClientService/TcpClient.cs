@@ -43,8 +43,7 @@ namespace TcpClientServices
                             {
                                 string message = $"Ping to {ip} - OK";
                                 RaiseNotificationSent(
-                                    message,
-                                    LogLevel.Success
+                                     LogLevel.Success, message
                                 );
                             }
                         }
@@ -52,8 +51,7 @@ namespace TcpClientServices
                         {
                             string message = $"Ping to {ip} - NOK";
                             RaiseNotificationSent(
-                                message,
-                                LogLevel.Error
+                                LogLevel.Success, message
                             );
                             networkAvaible = false;
                             throw new Exception($"Error Connection: Ping to {ip} not respond");
@@ -64,8 +62,7 @@ namespace TcpClientServices
                     {
                         string message = $"Ping to Spaceship: {hostIp} - OK";
                         RaiseNotificationSent(
-                            message,
-                            LogLevel.Success
+                            LogLevel.Success, message
                         );
                     }
                 }
@@ -73,8 +70,7 @@ namespace TcpClientServices
             catch (Exception ex)
             {
                 RaiseNotificationSent(
-                  ex.Message,
-                  LogLevel.Error
+                  LogLevel.Error, ex.Message
               );
             }
         }
@@ -97,10 +93,12 @@ namespace TcpClientServices
                         {
                             byte[] buffer = new byte[4096];
                             int bytesRead;
+                            RaiseNotificationSent(LogLevel.Warn, $"Sending zip: {localFilePath}");
                             while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) > 0)
                             {
                                 ns.Write(buffer, 0, bytesRead);
                             }
+                            RaiseNotificationSent(LogLevel.Success, $"File Sent");
                         }
                     }
                 }
@@ -108,8 +106,7 @@ namespace TcpClientServices
             catch (Exception ex)
             {
                 RaiseNotificationSent(
-                    ex.Message,
-                    LogLevel.Error
+                  LogLevel.Error, ex.Message
                 );
             }
         }
@@ -130,6 +127,7 @@ namespace TcpClientServices
                         {
                             throw new Exception("Message overweight ✘");
                         }
+                        RaiseNotificationSent(LogLevel.Info, $"Sending: {message}");
                         writer.Write(dades.Length);
                         writer.Write(dades);
                     }
@@ -138,8 +136,7 @@ namespace TcpClientServices
             catch (Exception ex)
             {
                 RaiseNotificationSent(
-                    ex.Message,
-                    LogLevel.Error
+                    LogLevel.Error, ex.Message
                 );
             }
         }
@@ -174,7 +171,7 @@ namespace TcpClientServices
                 NotificationSent(this, e);
             }
         }
-        private void RaiseNotificationSent(string msg, LogLevel level)
+        private void RaiseNotificationSent(LogLevel level, string msg)
         {
             this.OnNotificationSent(new NotificationSentEventArgs
             {

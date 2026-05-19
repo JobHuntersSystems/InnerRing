@@ -10,6 +10,7 @@ namespace PACS_Common
     {
         ER, //Entry Request
         VK, //Validation Key
+        CheckSum,
         Message
     }
     public enum ResultType

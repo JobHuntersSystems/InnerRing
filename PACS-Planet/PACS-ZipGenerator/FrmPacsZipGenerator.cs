@@ -18,11 +18,12 @@ namespace PACS_ZipGenerator
 		public event EventHandler ZipSentToMain;
 
 		public class ZipSentToMainEventArgs : EventArgs
-		{
-			public PacsZipService.PacsZipSendResult Result { get; set; }
+        {
+            public PacsZipService.PacsZipSendResult Result { get; set; }
+			public string Path { get; set; }
 		}
 
-		protected virtual void OnZipSentToMain(ZipSentToMainEventArgs e)
+        protected virtual void OnZipSentToMain(ZipSentToMainEventArgs e)
 		{
 			if (ZipSentToMain != null)
 			{
@@ -30,11 +31,12 @@ namespace PACS_ZipGenerator
 			}
 		}
 
-		private void RaiseZipSentToMain(PacsZipService.PacsZipSendResult result)
+		private void RaiseZipSentToMain(PacsZipService.PacsZipSendResult result, string path)
 		{
 			OnZipSentToMain(new ZipSentToMainEventArgs
 			{
-				Result = result
+				Result = result,
+				Path = path
 			});
 		}
 
@@ -186,7 +188,7 @@ namespace PACS_ZipGenerator
 				lstGenerator.AddLog(LogLevel.Error, args.Result.Message);
 			}
 
-			RaiseZipSentToMain(args.Result);
+			RaiseZipSentToMain(args.Result, args.Result.ZipPath);
 		}
 
 		public PacsZipService.PacsZipResult GetLastZipResult()
