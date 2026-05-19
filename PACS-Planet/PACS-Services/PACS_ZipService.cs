@@ -273,17 +273,8 @@ namespace PACS_Services
 			zipPath = Path.GetFullPath(zipPath);
 			extractFolder = Path.GetFullPath(extractFolder);
 
-			// Si la carpeta de extracción ya existe, se borra entera
-			// para que no queden restos de extracciones anteriores.
-			if (Directory.Exists(extractFolder))
-			{
-				Directory.Delete(extractFolder, true);
-			}
+			ClearFolderContent(extractFolder);
 
-			// Se vuelve a crear vacía
-			Directory.CreateDirectory(extractFolder);
-
-			// Se extrae el ZIP
 			ZipFile.ExtractToDirectory(zipPath, extractFolder);
 
 			int extractedFiles = Directory.GetFiles(
@@ -300,6 +291,29 @@ namespace PACS_Services
 			};
 
 			return result;
+		}
+
+		private void ClearFolderContent(string folderPath)
+		{
+			if (!Directory.Exists(folderPath))
+			{
+				Directory.CreateDirectory(folderPath);
+				return;
+			}
+
+			string[] files = Directory.GetFiles(folderPath);
+
+			foreach (string file in files)
+			{
+				File.Delete(file);
+			}
+
+			string[] directories = Directory.GetDirectories(folderPath);
+
+			foreach (string directory in directories)
+			{
+				Directory.Delete(directory, true);
+			}
 		}
 
 		// =========================================================
