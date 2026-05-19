@@ -255,12 +255,8 @@ namespace PACS_Services
 
 		public PacsZipExtractResult ExtractPacsZip(string path)
 		{
-			// El zipPath DEBE ser la ruta completa que has recibido
-			string zipPath = path;
-			
-			// Creamos una carpeta de extracción que sea una subcarpeta con el nombre del ZIP
-			// (es decir: CarpetaPadre + NombreDelZipSinExtension)
-			string extractFolder = Path.Combine(Path.GetDirectoryName(path), Path.GetFileNameWithoutExtension(path));
+			string zipPath = Path.GetFileNameWithoutExtension(path);
+			string extractFolder = Path.GetDirectoryName(path);
 
 			if (string.IsNullOrWhiteSpace(zipPath))
 			{
