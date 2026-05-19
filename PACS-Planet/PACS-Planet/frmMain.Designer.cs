@@ -29,15 +29,15 @@
             this.obtnRsa = new PACS_CustomControls.OptionButton();
             this.obtnValidationCode = new PACS_CustomControls.OptionButton();
             this.obtnTCP = new PACS_CustomControls.OptionButton();
-            this.optionButton4 = new PACS_CustomControls.OptionButton();
-            this.optionButton1 = new PACS_CustomControls.OptionButton();
+            this.obtnGenerateZip = new PACS_CustomControls.OptionButton();
+            this.obtnCheckSum = new PACS_CustomControls.OptionButton();
             this.pnlLeft = new System.Windows.Forms.Panel();
             this.pctBackground = new System.Windows.Forms.PictureBox();
             this.pnlButton = new System.Windows.Forms.Panel();
-            this.pcsConsoleMain = new PACS_CustomControls.PacsConsole();
+            this.pcsStageIndicator = new PACS_CustomControls.PacsStageIndicator();
             this.pnlMain = new System.Windows.Forms.Panel();
-            this.obtnGenerateZip = new PACS_CustomControls.OptionButton();
-            this.obtnCheckSum = new PACS_CustomControls.OptionButton();
+            this.optionButton4 = new PACS_CustomControls.OptionButton();
+            this.optionButton1 = new PACS_CustomControls.OptionButton();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctConfiguration)).BeginInit();
             this.flowMenuLeft.SuspendLayout();
@@ -206,107 +206,6 @@
             this.obtnTCP.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(240)))), ((int)(((byte)(150)))));
             this.obtnTCP.Click += new System.EventHandler(this.obtnTCP_Click);
             // 
-            // optionButton4
-            // 
-            this.optionButton4.AccentColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(230)))), ((int)(((byte)(120)))));
-            this.optionButton4.AccentHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
-            this.optionButton4.BackColor = System.Drawing.Color.Transparent;
-            this.optionButton4.BackgroundPanelColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(28)))), ((int)(((byte)(30)))));
-            this.optionButton4.BorderDarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
-            this.optionButton4.BorderLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(105)))), ((int)(((byte)(95)))));
-            this.optionButton4.ClassName = null;
-            this.optionButton4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.optionButton4.FormName = null;
-            this.optionButton4.IsSelected = false;
-            this.optionButton4.Location = new System.Drawing.Point(16, 90);
-            this.optionButton4.Margin = new System.Windows.Forms.Padding(6);
-            this.optionButton4.Name = "optionButton4";
-            this.optionButton4.OptionIcon = null;
-            this.optionButton4.OptionText = "PLACE HOLDER";
-            this.optionButton4.Size = new System.Drawing.Size(220, 62);
-            this.optionButton4.TabIndex = 1;
-            this.optionButton4.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(240)))), ((int)(((byte)(150)))));
-            // 
-            // optionButton1
-            // 
-            this.optionButton1.AccentColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(230)))), ((int)(((byte)(120)))));
-            this.optionButton1.AccentHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
-            this.optionButton1.BackColor = System.Drawing.Color.Transparent;
-            this.optionButton1.BackgroundPanelColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(28)))), ((int)(((byte)(30)))));
-            this.optionButton1.BorderDarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
-            this.optionButton1.BorderLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(105)))), ((int)(((byte)(95)))));
-            this.optionButton1.ClassName = null;
-            this.optionButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.optionButton1.FormName = null;
-            this.optionButton1.IsSelected = false;
-            this.optionButton1.Location = new System.Drawing.Point(16, 164);
-            this.optionButton1.Margin = new System.Windows.Forms.Padding(6);
-            this.optionButton1.Name = "optionButton1";
-            this.optionButton1.OptionIcon = null;
-            this.optionButton1.OptionText = "PLACE HOLDER";
-            this.optionButton1.Size = new System.Drawing.Size(220, 62);
-            this.optionButton1.TabIndex = 2;
-            this.optionButton1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(240)))), ((int)(((byte)(150)))));
-            // 
-            // pnlLeft
-            // 
-            this.pnlLeft.BackColor = System.Drawing.Color.Black;
-            this.pnlLeft.Controls.Add(this.pctBackground);
-            this.pnlLeft.Controls.Add(this.flowMenuLeft);
-            this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlLeft.Location = new System.Drawing.Point(0, 39);
-            this.pnlLeft.Margin = new System.Windows.Forms.Padding(0);
-            this.pnlLeft.Name = "pnlLeft";
-            this.pnlLeft.Size = new System.Drawing.Size(249, 846);
-            this.pnlLeft.TabIndex = 6;
-            // 
-            // pctBackground
-            // 
-            this.pctBackground.BackColor = System.Drawing.Color.Transparent;
-            this.pctBackground.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pctBackground.Image = ((System.Drawing.Image)(resources.GetObject("pctBackground.Image")));
-            this.pctBackground.Location = new System.Drawing.Point(0, 646);
-            this.pctBackground.Margin = new System.Windows.Forms.Padding(0);
-            this.pctBackground.Name = "pctBackground";
-            this.pctBackground.Size = new System.Drawing.Size(249, 200);
-            this.pctBackground.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pctBackground.TabIndex = 5;
-            this.pctBackground.TabStop = false;
-            // 
-            // pnlButton
-            // 
-            this.pnlButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(19)))), ((int)(((byte)(32)))));
-            this.pnlButton.Controls.Add(this.pcsConsoleMain);
-            this.pnlButton.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(19)))), ((int)(((byte)(32)))));
-            this.pnlButton.Location = new System.Drawing.Point(249, 685);
-            this.pnlButton.Name = "pnlButton";
-            this.pnlButton.Size = new System.Drawing.Size(1118, 200);
-            this.pnlButton.TabIndex = 7;
-            // 
-            // pcsConsoleMain
-            // 
-            this.pcsConsoleMain.AccentColor = System.Drawing.Color.Aqua;
-            this.pcsConsoleMain.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.pcsConsoleMain.BackColor = System.Drawing.Color.Transparent;
-            this.pcsConsoleMain.ConsoleTitle = "SYSTEM LOG CONSOLE";
-            this.pcsConsoleMain.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pcsConsoleMain.Location = new System.Drawing.Point(0, 0);
-            this.pcsConsoleMain.Margin = new System.Windows.Forms.Padding(6);
-            this.pcsConsoleMain.Name = "pcsConsoleMain";
-            this.pcsConsoleMain.Size = new System.Drawing.Size(745, 200);
-            this.pcsConsoleMain.TabIndex = 1;
-            // 
-            // pnlMain
-            // 
-            this.pnlMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(14)))), ((int)(((byte)(19)))));
-            this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlMain.Location = new System.Drawing.Point(249, 39);
-            this.pnlMain.Margin = new System.Windows.Forms.Padding(0);
-            this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(1118, 646);
-            this.pnlMain.TabIndex = 8;
-            // 
             // obtnGenerateZip
             // 
             this.obtnGenerateZip.AccentColor = System.Drawing.Color.Lavender;
@@ -353,6 +252,103 @@
             this.obtnCheckSum.Visible = false;
             this.obtnCheckSum.Click += new System.EventHandler(this.obtnCheckSum_Click);
             // 
+            // pnlLeft
+            // 
+            this.pnlLeft.BackColor = System.Drawing.Color.Black;
+            this.pnlLeft.Controls.Add(this.pctBackground);
+            this.pnlLeft.Controls.Add(this.flowMenuLeft);
+            this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlLeft.Location = new System.Drawing.Point(0, 39);
+            this.pnlLeft.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlLeft.Name = "pnlLeft";
+            this.pnlLeft.Size = new System.Drawing.Size(249, 846);
+            this.pnlLeft.TabIndex = 6;
+            // 
+            // pctBackground
+            // 
+            this.pctBackground.BackColor = System.Drawing.Color.Transparent;
+            this.pctBackground.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pctBackground.Image = ((System.Drawing.Image)(resources.GetObject("pctBackground.Image")));
+            this.pctBackground.Location = new System.Drawing.Point(0, 646);
+            this.pctBackground.Margin = new System.Windows.Forms.Padding(0);
+            this.pctBackground.Name = "pctBackground";
+            this.pctBackground.Size = new System.Drawing.Size(249, 200);
+            this.pctBackground.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pctBackground.TabIndex = 5;
+            this.pctBackground.TabStop = false;
+            // 
+            // pnlButton
+            // 
+            this.pnlButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(19)))), ((int)(((byte)(32)))));
+            this.pnlButton.Controls.Add(this.pcsStageIndicator);
+            this.pnlButton.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(19)))), ((int)(((byte)(32)))));
+            this.pnlButton.Location = new System.Drawing.Point(249, 685);
+            this.pnlButton.Name = "pnlButton";
+            this.pnlButton.Size = new System.Drawing.Size(1118, 200);
+            this.pnlButton.TabIndex = 7;
+            // 
+            // pcsStageIndicator
+            // 
+            this.pcsStageIndicator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(12)))), ((int)(((byte)(16)))));
+            this.pcsStageIndicator.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pcsStageIndicator.Location = new System.Drawing.Point(0, 0);
+            this.pcsStageIndicator.Name = "pcsStageIndicator";
+            this.pcsStageIndicator.Size = new System.Drawing.Size(1118, 200);
+            this.pcsStageIndicator.TabIndex = 2;
+            // 
+            // pnlMain
+            // 
+            this.pnlMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(14)))), ((int)(((byte)(19)))));
+            this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlMain.Location = new System.Drawing.Point(249, 39);
+            this.pnlMain.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlMain.Name = "pnlMain";
+            this.pnlMain.Size = new System.Drawing.Size(1118, 646);
+            this.pnlMain.TabIndex = 8;
+            // 
+            // optionButton4
+            // 
+            this.optionButton4.AccentColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(230)))), ((int)(((byte)(120)))));
+            this.optionButton4.AccentHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
+            this.optionButton4.BackColor = System.Drawing.Color.Transparent;
+            this.optionButton4.BackgroundPanelColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(28)))), ((int)(((byte)(30)))));
+            this.optionButton4.BorderDarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
+            this.optionButton4.BorderLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(105)))), ((int)(((byte)(95)))));
+            this.optionButton4.ClassName = null;
+            this.optionButton4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.optionButton4.FormName = null;
+            this.optionButton4.IsSelected = false;
+            this.optionButton4.Location = new System.Drawing.Point(16, 90);
+            this.optionButton4.Margin = new System.Windows.Forms.Padding(6);
+            this.optionButton4.Name = "optionButton4";
+            this.optionButton4.OptionIcon = null;
+            this.optionButton4.OptionText = "PLACE HOLDER";
+            this.optionButton4.Size = new System.Drawing.Size(220, 62);
+            this.optionButton4.TabIndex = 1;
+            this.optionButton4.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(240)))), ((int)(((byte)(150)))));
+            // 
+            // optionButton1
+            // 
+            this.optionButton1.AccentColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(230)))), ((int)(((byte)(120)))));
+            this.optionButton1.AccentHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
+            this.optionButton1.BackColor = System.Drawing.Color.Transparent;
+            this.optionButton1.BackgroundPanelColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(28)))), ((int)(((byte)(30)))));
+            this.optionButton1.BorderDarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
+            this.optionButton1.BorderLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(105)))), ((int)(((byte)(95)))));
+            this.optionButton1.ClassName = null;
+            this.optionButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.optionButton1.FormName = null;
+            this.optionButton1.IsSelected = false;
+            this.optionButton1.Location = new System.Drawing.Point(16, 164);
+            this.optionButton1.Margin = new System.Windows.Forms.Padding(6);
+            this.optionButton1.Name = "optionButton1";
+            this.optionButton1.OptionIcon = null;
+            this.optionButton1.OptionText = "PLACE HOLDER";
+            this.optionButton1.Size = new System.Drawing.Size(220, 62);
+            this.optionButton1.TabIndex = 2;
+            this.optionButton1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(240)))), ((int)(((byte)(150)))));
+            // 
             // frmMain
             // 
             this.BackColor = System.Drawing.Color.Black;
@@ -394,8 +390,8 @@
         private System.Windows.Forms.PictureBox pctBackground;
         private System.Windows.Forms.Panel pnlButton;
         private System.Windows.Forms.Panel pnlMain;
-        private PACS_CustomControls.PacsConsole pcsConsoleMain;
         private PACS_CustomControls.OptionButton obtnGenerateZip;
         private PACS_CustomControls.OptionButton obtnCheckSum;
+        private PACS_CustomControls.PacsStageIndicator pcsStageIndicator;
     }
 }

@@ -67,9 +67,7 @@ namespace TcpManager
                     string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory , @"Resources\Spaceships\Imagenes\Caza_Tie.png");
                     pctSpaceship.ImageLocation = path;
                     pctSpaceship.Visible = true;
-                    lblCurrentRequestValue.Text = protocol;
                     lblSpaceshipIpValue.Text = Spaceship.ip;
-                    lblLastMessageValue.Text = last_message;
                 });
             }
             else if(result == ResultType.AD) 
@@ -77,10 +75,16 @@ namespace TcpManager
                 Spaceship.Reset();
                 pctSpaceship.ImageLocation = null;
                 pctSpaceship.Visible = false;
-                lblCurrentRequestValue.Text = "-";
                 lblSpaceshipIpValue.Text = "-";
-                lblLastMessageValue.Text = "NONE";
             }   
+        }
+        private void abortProtocol()
+        {
+            Spaceship.Reset();
+            btnAbortProtocol.Visible = false;
+            isActiveCheckSumProtocol = false;
+            isActiveVkProtocol = false;
+            pctSpaceship.Visible = false;
         }
         #endregion
         #region Events TCP Gestion
@@ -107,6 +111,7 @@ namespace TcpManager
                 {
                     genericInvokeAction(pcsConsoleLog, () => {
                         btnCheckConnection.Visible = true;
+                        btnAbortProtocol.Visible = true;
                         console_message = "Delivery confirmed, able to the next stage ✅";
                         pcsConsoleLog.AddLog(
                             LogLevel.Success,
@@ -448,8 +453,44 @@ namespace TcpManager
                 Able = able,
             });
         }
+
         #endregion
 
-       
+        private void btnAbortProtocol_Click(object sender, EventArgs e)
+        {
+            abortProtocol();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+                "Are you sure you want to close this window?",
+                "Confirm Close",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
+
+            if (result == DialogResult.Yes)
+            {
+                abortProtocol();
+                RaiseNotificationSent(-1, false);
+                this.Close();
+            }
+        }
+
+        private void pnlConnection_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void lblSpaceshipIp_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblSpaceshipIpValue_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

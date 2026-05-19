@@ -28,7 +28,6 @@ namespace TcpServerServices
         {
             try
             {
-                
                 listener = new TcpListener(IPAddress.Any, serverPort);
                 listener.Start();
                 _isRunning = true;
