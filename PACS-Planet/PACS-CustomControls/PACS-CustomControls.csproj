@@ -56,6 +56,12 @@
     <Compile Include="OptionButton.Designer.cs">
       <DependentUpon>OptionButton.cs</DependentUpon>
     </Compile>
+    <Compile Include="PacsStageIndicator.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PacsStageIndicator.Designer.cs">
+      <DependentUpon>PacsStageIndicator.cs</DependentUpon>
+    </Compile>
     <Compile Include="PacsConsole.cs">
       <SubType>UserControl</SubType>
     </Compile>

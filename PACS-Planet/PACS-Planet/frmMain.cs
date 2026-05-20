@@ -38,22 +38,14 @@ namespace PACS_Planet
             frm.Show();
         }
         #endregion
-        private Dictionary<int, string> protocol_stages = new Dictionary<int, string>()
-        {
-            {1, "☑️ Stage 1: Delivery schedule"},
-            {2, " ⬜ Stage 2: Validation Code"},
-            {3, " ⬜ Stage 3: Check Sum"},
-        };
-
-        private void showNewProtocolStage()
-        {
-
-        }
         private void OnZipIsGenerated(object sender, EventArgs e)
         {
             var zip = (FrmPacsZipGenerator.ZipSentToMainEventArgs)e;
             if(formManager != null)
             {
+                formManager.BringToFront();
+                formManager.WindowState = FormWindowState.Maximized;
+               
                 formManager.sendZip(Spaceship.ip,Spaceship.filePort, zip.Path);
             }
         }
@@ -64,7 +56,20 @@ namespace PACS_Planet
 
             if (formManager != null)
             {
+                formManager.BringToFront();
+                formManager.WindowState = FormWindowState.Maximized;
+
+                if (check.GlobalChecksum)
+                {
+                    pcsStageIndicator.CompleteStage(3);
+
+                }
+                else
+                {
+                    pcsStageIndicator.FailStage(3);
+                }
                 formManager.sendFinalValidation(Spaceship.ip, Spaceship.dataPort, check.GlobalChecksum);
+                
             }
         }
         private void OnNotificationRecived(object sender, EventArgs e)
@@ -74,15 +79,25 @@ namespace PACS_Planet
             bool able = tcp.Able;
             switch (stage)
             {
-                case 0:
-                    showNewProtocolStage();
-                    break;
                 case 1:
+                    if (able)
+                    {
+                        pcsStageIndicator.CompleteStage(stage);
+                    }
+                    else
+                    {
+                        pcsStageIndicator.FailStage(stage);
+                    }
                     break;
                 case 2:
                     if (able)
                     {
+                        pcsStageIndicator.CompleteStage(stage);
                         genericInvokeAction(obtnGenerateZip, () => obtnGenerateZip.Visible = true);
+                    }
+                    else
+                    {
+                        pcsStageIndicator.FailStage(stage);
                     }
                     break;
                 case 3:
@@ -90,6 +105,11 @@ namespace PACS_Planet
                     {
                         genericInvokeAction(obtnCheckSum, () => obtnCheckSum.Visible = true);
                     }
+                    break;
+                case -1:
+                    pcsStageIndicator.ResetStages();
+                    obtnCheckSum.Visible = false;
+                    obtnGenerateZip.Visible = false;
                     break;
             }
         }

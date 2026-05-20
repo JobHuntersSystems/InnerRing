@@ -28,7 +28,8 @@ namespace PACS_Common
             imagePath = null;
             CurrentStage = 0;
             Status = ProcessStatus.InProgress;
-        }
+            CheckSum = 0;
+    }
     }
 
     public enum ProcessStatus
