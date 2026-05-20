@@ -18,6 +18,7 @@
 
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTcpManager));
             this.pnlRoot = new System.Windows.Forms.Panel();
             this.tlpCenter = new System.Windows.Forms.TableLayoutPanel();
@@ -36,11 +37,11 @@
             this.lblControlsTitle = new System.Windows.Forms.Label();
             this.pnlConnection = new System.Windows.Forms.Panel();
             this.lblSpaceshipIpValue = new System.Windows.Forms.Label();
+            this.btnAbortProtocol = new System.Windows.Forms.Button();
             this.lblSpaceshipIp = new System.Windows.Forms.Label();
             this.lblConnectionTitle = new System.Windows.Forms.Label();
             this.pnlLog = new System.Windows.Forms.Panel();
             this.pcsConsoleLog = new PACS_CustomControls.PacsConsole();
-            this.btnAbortProtocol = new System.Windows.Forms.Button();
             this.pctSpaceship = new System.Windows.Forms.PictureBox();
             this.pctPlanet = new System.Windows.Forms.PictureBox();
             this.pctSpaceBackground = new System.Windows.Forms.PictureBox();
@@ -67,6 +68,7 @@
             this.btnClose = new PACS_InheratedControls.PacsCloseButton();
             this.lblPlanetName = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.Animation = new System.Windows.Forms.Timer(this.components);
             this.pnlRoot.SuspendLayout();
             this.tlpCenter.SuspendLayout();
             this.pnlConfiguration.SuspendLayout();
@@ -316,7 +318,6 @@
             this.pnlConnection.Padding = new System.Windows.Forms.Padding(14);
             this.pnlConnection.Size = new System.Drawing.Size(358, 174);
             this.pnlConnection.TabIndex = 2;
-            this.pnlConnection.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlConnection_Paint);
             // 
             // lblSpaceshipIpValue
             // 
@@ -328,7 +329,24 @@
             this.lblSpaceshipIpValue.TabIndex = 4;
             this.lblSpaceshipIpValue.Text = "--";
             this.lblSpaceshipIpValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblSpaceshipIpValue.Click += new System.EventHandler(this.lblSpaceshipIpValue_Click);
+            // 
+            // btnAbortProtocol
+            // 
+            this.btnAbortProtocol.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAbortProtocol.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(18)))), ((int)(((byte)(28)))));
+            this.btnAbortProtocol.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.btnAbortProtocol.FlatAppearance.BorderSize = 2;
+            this.btnAbortProtocol.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAbortProtocol.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
+            this.btnAbortProtocol.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.btnAbortProtocol.Location = new System.Drawing.Point(17, 110);
+            this.btnAbortProtocol.Name = "btnAbortProtocol";
+            this.btnAbortProtocol.Size = new System.Drawing.Size(319, 45);
+            this.btnAbortProtocol.TabIndex = 5;
+            this.btnAbortProtocol.Text = "⚠️ ABORT PROTOCOL";
+            this.btnAbortProtocol.UseVisualStyleBackColor = false;
+            this.btnAbortProtocol.Visible = false;
+            this.btnAbortProtocol.Click += new System.EventHandler(this.btnAbortProtocol_Click);
             // 
             // lblSpaceshipIp
             // 
@@ -340,7 +358,6 @@
             this.lblSpaceshipIp.Size = new System.Drawing.Size(91, 14);
             this.lblSpaceshipIp.TabIndex = 3;
             this.lblSpaceshipIp.Text = "SPACESHIP IP";
-            this.lblSpaceshipIp.Click += new System.EventHandler(this.lblSpaceshipIp_Click);
             // 
             // lblConnectionTitle
             // 
@@ -377,24 +394,6 @@
             this.pcsConsoleLog.Name = "pcsConsoleLog";
             this.pcsConsoleLog.Size = new System.Drawing.Size(604, 245);
             this.pcsConsoleLog.TabIndex = 6;
-            // 
-            // btnAbortProtocol
-            // 
-            this.btnAbortProtocol.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAbortProtocol.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(18)))), ((int)(((byte)(28)))));
-            this.btnAbortProtocol.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.btnAbortProtocol.FlatAppearance.BorderSize = 2;
-            this.btnAbortProtocol.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAbortProtocol.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
-            this.btnAbortProtocol.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.btnAbortProtocol.Location = new System.Drawing.Point(17, 110);
-            this.btnAbortProtocol.Name = "btnAbortProtocol";
-            this.btnAbortProtocol.Size = new System.Drawing.Size(319, 45);
-            this.btnAbortProtocol.TabIndex = 5;
-            this.btnAbortProtocol.Text = "⚠️ ABORT PROTOCOL";
-            this.btnAbortProtocol.UseVisualStyleBackColor = false;
-            this.btnAbortProtocol.Visible = false;
-            this.btnAbortProtocol.Click += new System.EventHandler(this.btnAbortProtocol_Click);
             // 
             // pctSpaceship
             // 
@@ -733,6 +732,11 @@
             this.lblTitle.Text = "TCP/IP MANAGER |";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // Animation
+            // 
+            this.Animation.Interval = 3000;
+            this.Animation.Tick += new System.EventHandler(this.Animation_Tick);
+            // 
             // frmTcpManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -825,5 +829,6 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button btnAbortProtocol;
         private PACS_CustomControls.PacsConsole pcsConsoleLog;
+        private System.Windows.Forms.Timer Animation;
     }
 }

@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Threading;
 using TcpClientServices;
 using TcpServerServices;
 using PACS_Common;
@@ -78,14 +73,6 @@ namespace TcpManager
                 lblSpaceshipIpValue.Text = "-";
             }   
         }
-        private void abortProtocol()
-        {
-            Spaceship.Reset();
-            btnAbortProtocol.Visible = false;
-            isActiveCheckSumProtocol = false;
-            isActiveVkProtocol = false;
-            pctSpaceship.Visible = false;
-        }
         #endregion
         #region Events TCP Gestion
         #region Protocols
@@ -93,7 +80,7 @@ namespace TcpManager
         {
             ProtocolResponse response;
             if (Spaceship.CurrentStage == 0)
-            {            
+            {
                 Spaceship.ip = client_ip;
                 genericInvokeAction(pcsConsoleLog, () =>
                     {
@@ -109,7 +96,8 @@ namespace TcpManager
                 string console_message;
                 if (response.result == ResultType.VP)
                 {
-                    genericInvokeAction(pcsConsoleLog, () => {
+                    genericInvokeAction(pcsConsoleLog, () =>
+                    {
                         btnCheckConnection.Visible = true;
                         btnAbortProtocol.Visible = true;
                         console_message = "Delivery confirmed, able to the next stage ✅";
@@ -121,19 +109,13 @@ namespace TcpManager
                 }
                 else
                 {
-                    genericInvokeAction(pcsConsoleLog, () =>
-                    {
-                        console_message = "Delivery refused, starting destruction ----> 🚀💥";
-                        pcsConsoleLog.AddLog(
-                            LogLevel.Warn,
-                            console_message
-                        );
-                    });
                     response = protocolManager.getDefaultDenegationResponse();
                     RaiseNotificationSent(Spaceship.CurrentStage, false);
                 }
                 clientData.sendMessage(Spaceship.ip, Spaceship.dataPort, response.protocolResponse);
                 updateCurrentSpaceshipData(response.result, "ER", client_message);
+                if (response.result != ResultType.VP)
+                    finishingProtocol(false);
             }
         }
         private void raiseVkProtocol(string client_ip, string client_message)
@@ -159,20 +141,14 @@ namespace TcpManager
             }
             else
             {
-                genericInvokeAction(pcsConsoleLog, () =>
-                {
-                    console_message = "Delivery refused, starting destruction ----> 🚀💥";
-
-                    pcsConsoleLog.AddLog(
-                        LogLevel.Warn,
-                        console_message
-                    );
-                });
+               
                 response = protocolManager.getDefaultDenegationResponse();
                 RaiseNotificationSent(Spaceship.CurrentStage, false);
             }
             clientData.sendMessage(Spaceship.ip, Spaceship.dataPort, response.protocolResponse);
             updateCurrentSpaceshipData(response.result, "VK", client_message);
+            if (response.result != ResultType.VP)
+                finishingProtocol(false);
         }
         #endregion
         private void OnServerStatusChanged(object sender, EventArgs e)
@@ -291,6 +267,36 @@ namespace TcpManager
         }
         #endregion
         #region Public Methods
+        public void finishingProtocol(bool validated)
+        {
+            genericInvokeAction(pcsConsoleLog, () =>
+            {
+                if (!validated)
+                {
+                    string explosionPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Resources\gifs\explosion.gif");
+                    pctSpaceship.ImageLocation = explosionPath;
+                    Animation.Start();
+                    clientData.sendMessage(Spaceship.ip, Spaceship.dataPort, "AD");
+                    pcsConsoleLog.AddLog(
+                       LogLevel.Warn,
+                       "Spaceship refused, starting destruction---- > 🚀💥"
+                    );
+                }
+                else
+                {
+                    pcsConsoleLog.AddLog(
+                        LogLevel.Success,
+                        $"The Spaceship {Spaceship.code} fullfil succesfully with all requirements. Open gates ✅✅✅"
+                    );
+                }
+                Spaceship.Reset();
+                btnAbortProtocol.Visible = false;
+                btnCheckConnection.Visible = false;
+                isActiveCheckSumProtocol = false;
+                isActiveVkProtocol = false;
+                lblSpaceshipIpValue.Text = "-";
+            });
+        }
         public void sendZip(string host_ip, int file_port,string zip_path )
         {
             try
@@ -298,7 +304,6 @@ namespace TcpManager
                 clientData.sendFile(host_ip, file_port, zip_path);
                 int port = int.Parse(txtFilePort.Text);
                 genericInvokeAction(pcsConsoleLog, () => pcsConsoleLog.AddLog(LogLevel.Info, $"Wating for the Spaceship sum..."));
-                //isActiveVkProtocol = false;
                 isActiveCheckSumProtocol = true;
                 Spaceship.CurrentStage += 1;
             }
@@ -320,15 +325,15 @@ namespace TcpManager
                 if (validation)
                 {
                     message = "AG";
+                    clientData.sendMessage(host_ip, file_port, message);
+                    finishingProtocol(true);    
                 }
                 else
                 {
                     message = "AD";
+                    clientData.sendMessage(host_ip, file_port, message);
+                    finishingProtocol(false);
                 }
-                clientData.sendMessage(host_ip, file_port, message);
-                genericInvokeAction(pcsConsoleLog, () => pcsConsoleLog.AddLog(LogLevel.Info, $"Wating for the Spaceship sum..."));
-
-                Spaceship.CurrentStage = 0;
             }
             catch (Exception ex)
             {
@@ -458,39 +463,60 @@ namespace TcpManager
 
         private void btnAbortProtocol_Click(object sender, EventArgs e)
         {
-            abortProtocol();
+            DialogResult result = MessageBox.Show(
+               "Are you sure you cancel the protocol?",
+               "Confirm Close",
+               MessageBoxButtons.YesNo,
+               MessageBoxIcon.Warning
+           );
+
+            if (result == DialogResult.Yes)
+            {
+                finishingProtocol(false);
+                RaiseNotificationSent(-1, false);
+            }
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show(
-                "Are you sure you want to close this window?",
-                "Confirm Close",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning
-            );
-
-            if (result == DialogResult.Yes)
+            try
             {
-                abortProtocol();
-                RaiseNotificationSent(-1, false);
-                this.Close();
+                DialogResult result = MessageBox.Show(
+                    "Are you sure you want to close this window? The protocols opened will be canceled",
+                    "Confirm Close",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
+
+                if (result == DialogResult.Yes)
+                {
+                    if(!string.IsNullOrWhiteSpace(Spaceship.ip) && Spaceship.dataPort != 0)
+                        clientData.sendMessage(Spaceship.ip, Spaceship.dataPort, "AD");
+                        Spaceship.Reset();
+
+                    RaiseNotificationSent(-1, false);
+                    this.Close();
+                }
+            }catch(Exception ex)
+            {
+
             }
+        
         }
 
-        private void pnlConnection_Paint(object sender, PaintEventArgs e)
+        private void Animation_Tick(object sender, EventArgs e)
         {
+            try
+            {
+                Animation.Stop();
+                Animation.Dispose();
+                pctSpaceship.Visible = false;
+            }
+            catch (Exception ex)
+            {
 
-        }
-
-        private void lblSpaceshipIp_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblSpaceshipIpValue_Click(object sender, EventArgs e)
-        {
-
+            }
+           
         }
     }
 }

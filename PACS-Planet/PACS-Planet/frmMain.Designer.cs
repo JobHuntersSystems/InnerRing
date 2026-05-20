@@ -38,6 +38,11 @@
             this.pnlMain = new System.Windows.Forms.Panel();
             this.optionButton4 = new PACS_CustomControls.OptionButton();
             this.optionButton1 = new PACS_CustomControls.OptionButton();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.lblTools = new System.Windows.Forms.Label();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctConfiguration)).BeginInit();
             this.flowMenuLeft.SuspendLayout();
@@ -126,9 +131,14 @@
             // flowMenuLeft
             // 
             this.flowMenuLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(19)))), ((int)(((byte)(32)))));
+            this.flowMenuLeft.Controls.Add(this.lblTitle);
+            this.flowMenuLeft.Controls.Add(this.panel3);
             this.flowMenuLeft.Controls.Add(this.obtnRsa);
             this.flowMenuLeft.Controls.Add(this.obtnValidationCode);
             this.flowMenuLeft.Controls.Add(this.obtnTCP);
+            this.flowMenuLeft.Controls.Add(this.panel2);
+            this.flowMenuLeft.Controls.Add(this.lblTools);
+            this.flowMenuLeft.Controls.Add(this.panel4);
             this.flowMenuLeft.Controls.Add(this.obtnGenerateZip);
             this.flowMenuLeft.Controls.Add(this.obtnCheckSum);
             this.flowMenuLeft.Dock = System.Windows.Forms.DockStyle.Top;
@@ -152,7 +162,7 @@
             this.obtnRsa.Cursor = System.Windows.Forms.Cursors.Hand;
             this.obtnRsa.FormName = null;
             this.obtnRsa.IsSelected = false;
-            this.obtnRsa.Location = new System.Drawing.Point(10, 10);
+            this.obtnRsa.Location = new System.Drawing.Point(10, 41);
             this.obtnRsa.Margin = new System.Windows.Forms.Padding(6);
             this.obtnRsa.Name = "obtnRsa";
             this.obtnRsa.OptionIcon = ((System.Drawing.Image)(resources.GetObject("obtnRsa.OptionIcon")));
@@ -174,7 +184,7 @@
             this.obtnValidationCode.Cursor = System.Windows.Forms.Cursors.Hand;
             this.obtnValidationCode.FormName = null;
             this.obtnValidationCode.IsSelected = false;
-            this.obtnValidationCode.Location = new System.Drawing.Point(10, 84);
+            this.obtnValidationCode.Location = new System.Drawing.Point(10, 115);
             this.obtnValidationCode.Margin = new System.Windows.Forms.Padding(6);
             this.obtnValidationCode.Name = "obtnValidationCode";
             this.obtnValidationCode.OptionIcon = null;
@@ -196,7 +206,7 @@
             this.obtnTCP.Cursor = System.Windows.Forms.Cursors.Hand;
             this.obtnTCP.FormName = "";
             this.obtnTCP.IsSelected = false;
-            this.obtnTCP.Location = new System.Drawing.Point(10, 158);
+            this.obtnTCP.Location = new System.Drawing.Point(10, 189);
             this.obtnTCP.Margin = new System.Windows.Forms.Padding(6);
             this.obtnTCP.Name = "obtnTCP";
             this.obtnTCP.OptionIcon = ((System.Drawing.Image)(resources.GetObject("obtnTCP.OptionIcon")));
@@ -218,7 +228,7 @@
             this.obtnGenerateZip.Cursor = System.Windows.Forms.Cursors.Hand;
             this.obtnGenerateZip.FormName = null;
             this.obtnGenerateZip.IsSelected = false;
-            this.obtnGenerateZip.Location = new System.Drawing.Point(10, 232);
+            this.obtnGenerateZip.Location = new System.Drawing.Point(10, 302);
             this.obtnGenerateZip.Margin = new System.Windows.Forms.Padding(6);
             this.obtnGenerateZip.Name = "obtnGenerateZip";
             this.obtnGenerateZip.OptionIcon = null;
@@ -241,7 +251,7 @@
             this.obtnCheckSum.Cursor = System.Windows.Forms.Cursors.Hand;
             this.obtnCheckSum.FormName = "";
             this.obtnCheckSum.IsSelected = false;
-            this.obtnCheckSum.Location = new System.Drawing.Point(10, 306);
+            this.obtnCheckSum.Location = new System.Drawing.Point(10, 376);
             this.obtnCheckSum.Margin = new System.Windows.Forms.Padding(6);
             this.obtnCheckSum.Name = "obtnCheckSum";
             this.obtnCheckSum.OptionIcon = null;
@@ -349,6 +359,52 @@
             this.optionButton1.TabIndex = 2;
             this.optionButton1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(240)))), ((int)(((byte)(150)))));
             // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.SteelBlue;
+            this.panel2.Location = new System.Drawing.Point(7, 260);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(225, 2);
+            this.panel2.TabIndex = 0;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.SteelBlue;
+            this.panel3.Location = new System.Drawing.Point(7, 30);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(225, 2);
+            this.panel3.TabIndex = 7;
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblTitle.Location = new System.Drawing.Point(7, 4);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(223, 23);
+            this.lblTitle.TabIndex = 0;
+            this.lblTitle.Text = "S E T  U P";
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.SteelBlue;
+            this.panel4.Location = new System.Drawing.Point(7, 291);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(225, 2);
+            this.panel4.TabIndex = 1;
+            // 
+            // lblTools
+            // 
+            this.lblTools.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTools.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblTools.Location = new System.Drawing.Point(7, 265);
+            this.lblTools.Name = "lblTools";
+            this.lblTools.Size = new System.Drawing.Size(223, 23);
+            this.lblTools.TabIndex = 8;
+            this.lblTools.Text = "T O O L S";
+            this.lblTools.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // frmMain
             // 
             this.BackColor = System.Drawing.Color.Black;
@@ -393,5 +449,10 @@
         private PACS_CustomControls.OptionButton obtnGenerateZip;
         private PACS_CustomControls.OptionButton obtnCheckSum;
         private PACS_CustomControls.PacsStageIndicator pcsStageIndicator;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label lblTools;
+        private System.Windows.Forms.Panel panel4;
     }
 }
