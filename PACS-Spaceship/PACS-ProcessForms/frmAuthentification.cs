@@ -123,7 +123,6 @@ namespace PACS_ProcessForms
                 Interlocked.Add(ref totalGlobalChecksum, checksumIndividual);
                 this.Invoke((MethodInvoker)delegate {
                     LogToConsole($"{filePath} has been completed. Result: {checksumIndividual}", LogLevel.Success);
-                    btnPhase4.Enabled = true;
                 });
             });
             
@@ -132,6 +131,13 @@ namespace PACS_ProcessForms
                 finalChecksum = totalGlobalChecksum.ToString();
                 btnPhase4.Enabled = true;
             });
+            
+
+			string extractFolder = Path.GetDirectoryName(filePath);
+            if (Directory.Exists(extractFolder))
+            {
+                Directory.Delete(extractFolder, true);
+            }
         }
         
         private Dictionary<char, string> GetCodificationDictionaryFromDatabase()

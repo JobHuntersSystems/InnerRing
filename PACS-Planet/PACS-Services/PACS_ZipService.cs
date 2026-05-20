@@ -258,12 +258,12 @@ namespace PACS_Services
 			string zipPath = Path.GetFileNameWithoutExtension(path);
 			string extractFolder = Path.GetDirectoryName(path);
 
-			if (string.IsNullOrWhiteSpace(zipPath))
+			if (string.IsNullOrWhiteSpace(path))
 			{
 				throw new Exception("ZIP path cannot be empty.");
 			}
 
-			if (!File.Exists(zipPath))
+			if (!File.Exists(path))
 			{
 				throw new Exception("ZIP file does not exist: " + zipPath);
 			}
@@ -273,15 +273,8 @@ namespace PACS_Services
 				throw new Exception("Extract folder cannot be empty.");
 			}
 
-			zipPath = Path.GetFullPath(zipPath);
+			zipPath = Path.GetFullPath(path);
 			extractFolder = Path.GetFullPath(extractFolder);
-
-			// Si la carpeta de extracción ya existe, se borra entera
-			// para que no queden restos de extracciones anteriores.
-			if (Directory.Exists(extractFolder))
-			{
-				Directory.Delete(extractFolder, true);
-			}
 
 			// Se vuelve a crear vacía
 			Directory.CreateDirectory(extractFolder);
@@ -302,6 +295,8 @@ namespace PACS_Services
 				ExtractedFiles = extractedFiles
 			};
 
+			// Si la carpeta de extracción ya existe, se borra entera
+			// para que no queden restos de extracciones anteriores.
 			return result;
 		}
 
