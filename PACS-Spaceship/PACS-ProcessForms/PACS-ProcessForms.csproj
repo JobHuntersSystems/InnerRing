@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A21066D2-F342-40C6-A6FA-39B437DD5DAF}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <RootNamespace>PACS_Spaceship</RootNamespace>
-    <AssemblyName>PACS-Spaceship</AssemblyName>
+    <ProjectGuid>{A0DD05F4-F6AE-45E5-B796-8D7E2D50693C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>PACS_ProcessForms</RootNamespace>
+    <AssemblyName>PACS-ProcessForms</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,7 +32,14 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PACS-Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\PACS-Planet\PACS-Common\bin\Debug\PACS-Common.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,16 +53,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FrmMain.cs">
+    <Compile Include="frmAuthentification.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmMain.Designer.cs">
-      <DependentUpon>FrmMain.cs</DependentUpon>
+    <Compile Include="frmAuthentification.Designer.cs">
+      <DependentUpon>frmAuthentification.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="frmConnection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmConnection.Designer.cs">
+      <DependentUpon>frmConnection.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FrmMain.resx">
-      <DependentUpon>FrmMain.cs</DependentUpon>
+    <EmbeddedResource Include="frmAuthentification.resx">
+      <DependentUpon>frmAuthentification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmConnection.resx">
+      <DependentUpon>frmConnection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -65,7 +80,6 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -78,28 +92,34 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\PACS-Planet\PACS-Common\PACS-Common.csproj">
-      <Project>{ae2dfbfd-20fc-4225-9991-62edaad6b012}</Project>
-      <Name>PACS-Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\PACS-Planet\PACS-CustomControls\PACS-CustomControls.csproj">
-      <Project>{5e69e566-0081-4b55-8486-8341a9e082a1}</Project>
+      <Project>{5E69E566-0081-4B55-8486-8341A9E082A1}</Project>
       <Name>PACS-CustomControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\PACS-Planet\PACS-Services\PACS-Services.csproj">
+      <Project>{7b388d0b-119f-4423-9955-c24aaadb5998}</Project>
+      <Name>PACS-Services</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\PACS-Planet\TcpClientService\TcpClientService.csproj">
       <Project>{ac916f85-7d76-407b-90ec-97551c54d995}</Project>
       <Name>TcpClientService</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\PACS-Planet\TcpServerService\TcpServerService.csproj">
+      <Project>{1eaca337-8b9d-40cd-86a7-657772375065}</Project>
+      <Name>TcpServerService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Inner_DB_Access\Inner_DB_Access.csproj">
       <Project>{886fe758-4c70-4699-b614-f2287dcc7e48}</Project>
       <Name>Inner_DB_Access</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\qimono-earth-1756274.jpg" />
+    <ProjectReference Include="..\PACS-SpaceShips-Common\PACS-SpaceShips-Common.csproj">
+      <Project>{514c3193-185a-4db7-8e22-abd2614c76b4}</Project>
+      <Name>PACS-SpaceShips-Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SpaceShip_Encryption\SpaceShip_Encryption.csproj">
+      <Project>{89440957-6f2f-4a1e-9c53-42f5f189fc0b}</Project>
+      <Name>SpaceShip_Encryption</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

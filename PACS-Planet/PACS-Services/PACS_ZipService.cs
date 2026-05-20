@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.IO.Compression;
 using System.Security.Cryptography;
@@ -253,14 +253,17 @@ namespace PACS_Services
 		// =========================================================
 		// Este método extrae el contenido de un ZIP a una carpeta.
 
-		public PacsZipExtractResult ExtractPacsZip(string zipPath, string extractFolder)
+		public PacsZipExtractResult ExtractPacsZip(string path)
 		{
-			if (string.IsNullOrWhiteSpace(zipPath))
+			string zipPath = Path.GetFileNameWithoutExtension(path);
+			string extractFolder = Path.GetDirectoryName(path);
+
+			if (string.IsNullOrWhiteSpace(path))
 			{
 				throw new Exception("ZIP path cannot be empty.");
 			}
 
-			if (!File.Exists(zipPath))
+			if (!File.Exists(path))
 			{
 				throw new Exception("ZIP file does not exist: " + zipPath);
 			}
@@ -270,7 +273,7 @@ namespace PACS_Services
 				throw new Exception("Extract folder cannot be empty.");
 			}
 
-			zipPath = Path.GetFullPath(zipPath);
+			zipPath = Path.GetFullPath(path);
 			extractFolder = Path.GetFullPath(extractFolder);
 
 			ClearFolderContent(extractFolder);
@@ -290,6 +293,8 @@ namespace PACS_Services
 				ExtractedFiles = extractedFiles
 			};
 
+			// Si la carpeta de extracción ya existe, se borra entera
+			// para que no queden restos de extracciones anteriores.
 			return result;
 		}
 
@@ -314,41 +319,6 @@ namespace PACS_Services
 			{
 				Directory.Delete(directory, true);
 			}
-		}
-
-		// =========================================================
-		// EXTRAER ZIP USANDO LA CARPETA BASE
-		// =========================================================
-		// Este método busca la configuración XML, localiza el ZIP según
-		// esa configuración y lo extrae a una carpeta llamada ExtractedFiles.
-
-		public PacsZipExtractResult ExtractPacsZipFromBaseFolder(string baseFolder)
-		{
-			if (string.IsNullOrWhiteSpace(baseFolder))
-			{
-				throw new Exception("Base folder cannot be empty.");
-			}
-
-			if (!Directory.Exists(baseFolder))
-			{
-				throw new Exception("Base folder does not exist: " + baseFolder);
-			}
-
-			baseFolder = Path.GetFullPath(baseFolder);
-
-			XMLConfig config = LoadXMLConfig(baseFolder);
-
-			string workFolder = BuildPath(baseFolder, config.WorkFolder);
-			string zipPath = BuildPath(workFolder, config.ZipFileName);
-
-			string extractFolder = Path.Combine(
-				workFolder,
-				"ExtractedFiles"
-			);
-
-			extractFolder = Path.GetFullPath(extractFolder);
-
-			return ExtractPacsZip(zipPath, extractFolder);
 		}
 
 		// =========================================================
