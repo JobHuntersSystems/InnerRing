@@ -288,7 +288,8 @@ namespace PACS_ProcessForms
             else if(msg.EndsWith("AD"))
             {
                 LogToConsole("VR1: ACCESS DENIED. Invalid Ship ID or Delivery Code. Connection aborted (AD).", LogLevel.Warn);
-                btnPhase1.Enabled = true;
+                cancelProces();
+
             }
         }
         private void VR2(string msg)
@@ -301,7 +302,7 @@ namespace PACS_ProcessForms
             else if (msg.EndsWith("AD"))
             {
                 LogToConsole("VR2: ACCESS DENIED. RSA decryption failed or invalid validation code (AD).", LogLevel.Warn);
-                btnPhase2.Enabled = true;
+                cancelProces();
             }
         }
         private void VR3(string msg)
@@ -309,12 +310,11 @@ namespace PACS_ProcessForms
             if (msg.EndsWith("AG"))
             {
                 LogToConsole("VR3: Hash verification successful. ACCESS GRANTED. Opening planetary shields (AG).", LogLevel.Success);
-                btnPhase4.Enabled = true;
             }
             else if (msg.EndsWith("AD"))
             {
                 LogToConsole("VR3: ACCESS DENIED. Hash mismatch or file corruption detected (AD).", LogLevel.Warn);
-                btnPhase3.Enabled = true;
+                cancelProces();
             }
         }
 
@@ -391,6 +391,10 @@ namespace PACS_ProcessForms
             return LogLevel.Debug;
         }
 
+        private void cancelProces()
+        {
+            Application.Exit();
+        }
         
     }
 }

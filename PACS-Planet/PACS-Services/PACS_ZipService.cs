@@ -276,7 +276,7 @@ namespace PACS_Services
 			zipPath = Path.GetFullPath(path);
 			extractFolder = Path.GetFullPath(extractFolder);
 
-			ClearFolderContent(extractFolder);
+			//ClearFolderContent(extractFolder);
 
 			ZipFile.ExtractToDirectory(zipPath, extractFolder);
 
