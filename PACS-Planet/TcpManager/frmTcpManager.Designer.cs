@@ -42,6 +42,7 @@
             this.lblConnectionTitle = new System.Windows.Forms.Label();
             this.pnlLog = new System.Windows.Forms.Panel();
             this.pcsConsoleLog = new PACS_CustomControls.PacsConsole();
+            this.btnAbortProtocol = new System.Windows.Forms.Button();
             this.pctSpaceship = new System.Windows.Forms.PictureBox();
             this.pctPlanet = new System.Windows.Forms.PictureBox();
             this.pctSpaceBackground = new System.Windows.Forms.PictureBox();
@@ -329,6 +330,7 @@
             this.lblSpaceshipIpValue.TabIndex = 4;
             this.lblSpaceshipIpValue.Text = "--";
             this.lblSpaceshipIpValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblSpaceshipIpValue.Click += new System.EventHandler(this.lblSpaceshipIpValue_Click);
             // 
             // btnAbortProtocol
             // 

@@ -63,6 +63,14 @@ namespace TcpManager
                     lblSpaceshipIpValue.Text = Spaceship.ip;
                 });  
         }
+        private void abortProtocol()
+        {
+            Spaceship.Reset();
+            btnAbortProtocol.Visible = false;
+            isActiveCheckSumProtocol = false;
+            isActiveVkProtocol = false;
+            pctSpaceship.Visible = false;
+        }
         #endregion
         #region Events TCP Gestion
         #region Protocols

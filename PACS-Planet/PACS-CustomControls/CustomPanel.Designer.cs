@@ -1,7 +1,6 @@
-﻿
-namespace PACS_Spaceship
+﻿namespace PACS_CustomControls
 {
-    partial class Form1
+    partial class CustomPanel
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -30,12 +29,8 @@ namespace PACS_Spaceship
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
         }
 
         #endregion
     }
 }
-
