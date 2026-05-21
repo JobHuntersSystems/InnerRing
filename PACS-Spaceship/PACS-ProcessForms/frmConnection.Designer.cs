@@ -504,7 +504,7 @@ namespace PACS_ProcessForms
             // btnProceed
             // 
             this.btnProceed.BackColor = System.Drawing.Color.Transparent;
-            this.btnProceed.ButtonText = "2. SEND REQ (ER)";
+            this.btnProceed.ButtonText = "2. SAVE SETTINGS";
             this.btnProceed.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnProceed.Location = new System.Drawing.Point(31, 123);
             this.btnProceed.Margin = new System.Windows.Forms.Padding(5);
