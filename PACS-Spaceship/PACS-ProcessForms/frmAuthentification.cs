@@ -347,12 +347,24 @@ namespace PACS_ProcessForms
         {
             tcpServer.stopServer();
             tcpFileServer.stopServer();
+
+            string extractFolder = Path.GetDirectoryName(filePath);
+            if (Directory.Exists(extractFolder))
+            {
+                Directory.Delete(extractFolder, true);
+            }
         }
 
         private void frmAuthentification_FormClosed(object sender, FormClosedEventArgs e)
         {
             tcpServer.stopServer();
             tcpFileServer.stopServer();
+
+            string extractFolder = Path.GetDirectoryName(filePath);
+            if (Directory.Exists(extractFolder))
+            {
+                Directory.Delete(extractFolder, true);
+            }
 
         }
 
