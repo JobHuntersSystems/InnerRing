@@ -51,7 +51,7 @@ namespace TcpClientServices
                         {
                             string message = $"Ping to {ip} - NOK";
                             RaiseNotificationSent(
-                                LogLevel.Success, message
+                                LogLevel.Error, message
                             );
                             networkAvaible = false;
                             throw new Exception($"Error Connection: Ping to {ip} not respond");
