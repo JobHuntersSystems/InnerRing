@@ -300,7 +300,7 @@ namespace TcpManager
                 lblSpaceshipIpValue.Text = "-";
             });
         }
-        public void successFinalProtocol(string message)
+        private void successFinalProtocol(string message)
         {
             genericInvokeAction(pcsConsoleLog, () =>
             {
@@ -354,6 +354,7 @@ namespace TcpManager
                 {
                     message += "AD";
                     finishingFaildProtocol(message);
+                    RaiseNotificationSent(-1, true);
                 }
             }
             catch (Exception ex)
@@ -454,34 +455,8 @@ namespace TcpManager
                 pcsConsoleLog.AddLog(LogLevel.Error, ex.Message);
             }
 
-        }
-        #endregion
-        #region Event NotificationSent
-        public event EventHandler NotificationSent;
-        public class NotificationSentEventArgs : EventArgs
-        {
-            public int Stage { get; set; }
-            public bool Able { get; set; }
-        }
 
-        protected virtual void OnNotificationSent(NotificationSentEventArgs e)
-        {
-            if (null != NotificationSent)
-            {
-                NotificationSent(this, e);
-            }
         }
-        private void RaiseNotificationSent(int stage, bool able)
-        {
-            this.OnNotificationSent(new NotificationSentEventArgs
-            {
-                Stage = stage,
-                Able = able,
-            });
-        }
-
-        #endregion
-
         private void btnAbortProtocol_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show(
@@ -512,24 +487,51 @@ namespace TcpManager
 
                 if (result == DialogResult.Yes)
                 {
-                    if(!string.IsNullOrWhiteSpace(Spaceship.ip) && Spaceship.dataPort != 0)
+                    if (!string.IsNullOrWhiteSpace(Spaceship.ip) && Spaceship.dataPort != 0)
                     {
                         string message = "VR" + Spaceship.CurrentStage + Spaceship.code + "AD";
                         this.clientData.NotificationSent -= OnClientServiceNotifyReceived;
                         clientData.sendMessage(Spaceship.ip, Spaceship.dataPort, message);
                         Spaceship.Reset();
                     }
-                      
+
                     RaiseNotificationSent(-1, false);
                     this.Close();
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
 
             }
-        
+
         }
 
+        #endregion
+        #region Event NotificationSent
+        public event EventHandler NotificationSent;
+        public class NotificationSentEventArgs : EventArgs
+        {
+            public int Stage { get; set; }
+            public bool Able { get; set; }
+        }
+
+        protected virtual void OnNotificationSent(NotificationSentEventArgs e)
+        {
+            if (null != NotificationSent)
+            {
+                NotificationSent(this, e);
+            }
+        }
+        private void RaiseNotificationSent(int stage, bool able)
+        {
+            this.OnNotificationSent(new NotificationSentEventArgs
+            {
+                Stage = stage,
+                Able = able,
+            });
+        }
+
+        #endregion
         private void Animation_Tick(object sender, EventArgs e)
         {
             try
