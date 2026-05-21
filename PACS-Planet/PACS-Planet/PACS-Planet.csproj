@@ -118,10 +118,6 @@
       <Project>{f81b6a02-65c6-47cc-8792-693510674d9d}</Project>
       <Name>PACS-InheratedControls</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PACS-UI\PACS-UI.csproj">
-      <Project>{f553bf70-c670-4b47-a179-b027740872ee}</Project>
-      <Name>PACS-UI</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PACS-ZipGenerator\PACS-ZipGenerator.csproj">
       <Project>{482374f2-c9ce-4727-8395-4989bce82bdb}</Project>
       <Name>PACS-ZipGenerator</Name>

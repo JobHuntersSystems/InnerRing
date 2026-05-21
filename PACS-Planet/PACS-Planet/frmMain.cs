@@ -2,7 +2,6 @@
 using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
-using PACS_UI;
 using TcpManager;
 using System.Collections.Generic;
 using PACS_Center;
@@ -43,6 +42,8 @@ namespace PACS_Planet
             var zip = (FrmPacsZipGenerator.ZipSentToMainEventArgs)e;
             if(formManager != null)
             {
+                ((Form)sender).Close();
+                obtnGenerateZip.Visible = false;
                 formManager.BringToFront();
                 formManager.WindowState = FormWindowState.Maximized;
                
@@ -61,12 +62,16 @@ namespace PACS_Planet
 
                 if (check.GlobalChecksum)
                 {
+                    ((Form)sender).Close();
+                    obtnCheckSum.Visible = false;
                     pcsStageIndicator.CompleteStage(3);
 
                 }
                 else
                 {
                     pcsStageIndicator.FailStage(3);
+                    obtnCheckSum.Visible = false;
+                    obtnGenerateZip.Visible = false;
                 }
                 formManager.sendFinalValidation(Spaceship.ip, Spaceship.dataPort, check.GlobalChecksum);
                 
@@ -86,9 +91,14 @@ namespace PACS_Planet
                     }
                     else
                     {
+                        string message = "VR" + Spaceship.CurrentStage + Spaceship.code + "AD";
                         pcsStageIndicator.FailStage(stage);
+                        formManager.finishingFaildProtocol(message);
+                        obtnCheckSum.Visible = false;
+                        obtnGenerateZip.Visible = false;
                     }
                     break;
+
                 case 2:
                     if (able)
                     {
@@ -97,15 +107,25 @@ namespace PACS_Planet
                     }
                     else
                     {
+                        string message = "VR" + Spaceship.CurrentStage + Spaceship.code + "AD";
                         pcsStageIndicator.FailStage(stage);
+                        formManager.finishingFaildProtocol(message);
+                        obtnCheckSum.Visible = false;
+                        obtnGenerateZip.Visible = false;
                     }
                     break;
+
                 case 3:
                     if (able)
                     {
                         genericInvokeAction(obtnCheckSum, () => obtnCheckSum.Visible = true);
                     }
                     break;
+
+                case 200:
+                    pcsStageIndicator.ResetStages();
+                    break;
+
                 case -1:
                     pcsStageIndicator.ResetStages();
                     obtnCheckSum.Visible = false;

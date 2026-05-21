@@ -28,6 +28,8 @@ namespace PACS_CustomControls
         private int failStage = 0;
         private int failBlinkCounter = 0;
         private bool failBlinkState = false;
+        private bool failHoldRed = false;
+        private int failHoldCounter = 0;
 
         public PacsStageIndicator()
         {
@@ -67,8 +69,11 @@ namespace PACS_CustomControls
             failStage = stage;
             failBlinkCounter = 0;
             failBlinkState = false;
+            failHoldRed = false;
+            failHoldCounter = 0;
 
             tmrFailAnimation.Stop();
+            tmrFailAnimation.Interval = 120;
             tmrFailAnimation.Start();
         }
 
@@ -81,6 +86,8 @@ namespace PACS_CustomControls
             failStage = 0;
             failBlinkCounter = 0;
             failBlinkState = false;
+            failHoldRed = false;
+            failHoldCounter = 0;
 
             tmrFailAnimation.Stop();
 
@@ -101,29 +108,56 @@ namespace PACS_CustomControls
 
         private void tmrFailAnimation_Tick(object sender, EventArgs e)
         {
-            failBlinkCounter++;
-            failBlinkState = !failBlinkState;
-
             Panel targetBulb = GetBulbByStage(failStage);
 
-            if (targetBulb != null)
+            if (targetBulb == null)
             {
+                tmrFailAnimation.Stop();
+                ResetStages();
+                return;
+            }
+
+            // Fase 1: parpadeo rojo
+            if (!failHoldRed)
+            {
+                failBlinkCounter++;
+                failBlinkState = !failBlinkState;
+
                 if (failBlinkState)
                     targetBulb.BackColor = redColor;
                 else
                     targetBulb.BackColor = offColor;
 
                 targetBulb.Invalidate();
+
+                // 8 ticks a 120ms = aprox 1 segundo de parpadeo
+                if (failBlinkCounter >= 8)
+                {
+                    failHoldRed = true;
+                    failHoldCounter = 0;
+
+                    targetBulb.BackColor = redColor;
+                    targetBulb.Invalidate();
+
+                    // Fase 2: rojo fijo durante 3 segundos
+                    tmrFailAnimation.Interval = 1000;
+                }
+
+                return;
             }
 
-            if (failBlinkCounter >= 8)
+            // Fase 2: mantener rojo 3 segundos
+            failHoldCounter++;
+
+            targetBulb.BackColor = redColor;
+            targetBulb.Invalidate();
+
+            if (failHoldCounter >= 3)
             {
                 tmrFailAnimation.Stop();
-                failBlinkCounter = 0;
-                failBlinkState = false;
-                failStage = 0;
 
-                RefreshBulbs();
+                // Fase 3: reset automático porque se cancela todo
+                ResetStages();
             }
         }
 
