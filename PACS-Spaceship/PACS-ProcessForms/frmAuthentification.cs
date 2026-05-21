@@ -128,9 +128,8 @@ namespace PACS_ProcessForms
                 finalChecksum = totalGlobalChecksum.ToString();
                 btnPhase4.Enabled = true;
             });
-            
 
-			string extractFolder = Path.GetDirectoryName(filePath);
+            string extractFolder = Path.GetDirectoryName(filePath);
             if (Directory.Exists(extractFolder))
             {
                 Directory.Delete(extractFolder, true);
@@ -318,18 +317,12 @@ namespace PACS_ProcessForms
         private void OnServerStatusChanged(object sender, EventArgs e)
         {
             // Extraemos tu clase personalizada ServerStatusEventArgs
-            var args = (DataTcpServer.ServerStatusEventArgs)e;
-
-            this.Invoke((MethodInvoker)delegate {
-                if (args.Status == ServerStatus.Error)
-                {
-                    LogToConsole($"TCP FAILURE: {args.Message}", LogLevel.Warn);
-                }
-                else
-                {
-                    LogToConsole($"SERVER STATUS: {args.Message}", LogLevel.Info);
-                }
-            });
+            var tcp = (DataTcpServer.ServerStatusEventArgs)e;
+            LogLevel logL = GetLogLevelByStatus(tcp.Status);
+            genericInvokeAction(protocolConsole, () => protocolConsole.AddLog(
+                  logL,
+                  tcp.Message
+          ));
         }
         #endregion
         #region  Message File 
@@ -353,11 +346,14 @@ namespace PACS_ProcessForms
         {
 
             tcpServer.stopServer();
+            tcpFileServer.stopServer();
         }
 
         private void frmAuthentification_FormClosed(object sender, FormClosedEventArgs e)
         {
             tcpServer.stopServer();
+            tcpFileServer.stopServer();
+
         }
 
         #endregion
