@@ -118,7 +118,7 @@ namespace ProtocolsManager
             string delivery_code = messageDecoded[1];
 
 
-            ResultType validation = validateDelivery(delivery_code, spaceship_code);
+            ResultType validation = validateDelivery(spaceship_code, delivery_code);
 
             message_response += Spaceship.CurrentStage
                   + Spaceship.code
