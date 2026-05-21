@@ -36,6 +36,8 @@ namespace PACS_ProcessForms
             tcpFileServer = new FileTcpServer();
 
             tcpServer.startServer(ConnectionInfo.SpaceShipPort);
+            tcpFileServer.startServer(ConnectionInfo.SpaceShipPort1);
+
             tcpClient.NotificationSent += new EventHandler(ClientHelper);
             tcpFileServer.ServerStatusChanged += FileOnServerStatusChanged;
             tcpFileServer.FileReceived += RaiseFileReceived;
@@ -61,7 +63,6 @@ namespace PACS_ProcessForms
         private void btnPhase2_Click(object sender, EventArgs e)
         {
             btnPhase2.Enabled = false;
-            tcpFileServer.startServer(ConnectionInfo.SpaceShipPort1);
             SendVK();
         }
 
@@ -128,9 +129,8 @@ namespace PACS_ProcessForms
                 finalChecksum = totalGlobalChecksum.ToString();
                 btnPhase4.Enabled = true;
             });
-            
 
-			string extractFolder = Path.GetDirectoryName(filePath);
+            string extractFolder = Path.GetDirectoryName(filePath);
             if (Directory.Exists(extractFolder))
             {
                 Directory.Delete(extractFolder, true);
@@ -318,18 +318,12 @@ namespace PACS_ProcessForms
         private void OnServerStatusChanged(object sender, EventArgs e)
         {
             // Extraemos tu clase personalizada ServerStatusEventArgs
-            var args = (DataTcpServer.ServerStatusEventArgs)e;
-
-            this.Invoke((MethodInvoker)delegate {
-                if (args.Status == ServerStatus.Error)
-                {
-                    LogToConsole($"TCP FAILURE: {args.Message}", LogLevel.Warn);
-                }
-                else
-                {
-                    LogToConsole($"SERVER STATUS: {args.Message}", LogLevel.Info);
-                }
-            });
+            var tcp = (DataTcpServer.ServerStatusEventArgs)e;
+            LogLevel logL = GetLogLevelByStatus(tcp.Status);
+            genericInvokeAction(protocolConsole, () => protocolConsole.AddLog(
+                  logL,
+                  tcp.Message
+          ));
         }
         #endregion
         #region  Message File 
@@ -351,13 +345,27 @@ namespace PACS_ProcessForms
         #region FormClosing 
         private void frmAuthentification_FormClosing(object sender, FormClosingEventArgs e)
         {
-
             tcpServer.stopServer();
+            tcpFileServer.stopServer();
+
+            string extractFolder = Path.GetDirectoryName(filePath);
+            if (Directory.Exists(extractFolder))
+            {
+                Directory.Delete(extractFolder, true);
+            }
         }
 
         private void frmAuthentification_FormClosed(object sender, FormClosedEventArgs e)
         {
             tcpServer.stopServer();
+            tcpFileServer.stopServer();
+
+            string extractFolder = Path.GetDirectoryName(filePath);
+            if (Directory.Exists(extractFolder))
+            {
+                Directory.Delete(extractFolder, true);
+            }
+
         }
 
         #endregion

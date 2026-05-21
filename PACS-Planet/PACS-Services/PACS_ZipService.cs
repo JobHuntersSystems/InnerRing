@@ -276,7 +276,6 @@ namespace PACS_Services
 			zipPath = Path.GetFullPath(path);
 			extractFolder = Path.GetFullPath(extractFolder);
 
-			//ClearFolderContent(extractFolder);
 
 			ZipFile.ExtractToDirectory(zipPath, extractFolder);
 
@@ -298,7 +297,7 @@ namespace PACS_Services
 			return result;
 		}
 
-		private void ClearFolderContent(string folderPath)
+		public void ClearFolderContent(string folderPath)
 		{
 			if (!Directory.Exists(folderPath))
 			{
