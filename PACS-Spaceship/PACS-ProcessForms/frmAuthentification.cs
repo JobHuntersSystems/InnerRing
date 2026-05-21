@@ -103,7 +103,7 @@ namespace PACS_ProcessForms
 
         private void SendChecksum()
         {
-            tcpClient.sendMessage(ConnectionInfo.TargetPlanetIP, ConnectionInfo.PlanetDataPort, finalChecksum + "1");
+            tcpClient.sendMessage(ConnectionInfo.TargetPlanetIP, ConnectionInfo.PlanetDataPort, finalChecksum);
         }
 
         private void UnZipFolderAndCalculateCheckSum()
