@@ -26,9 +26,14 @@
             this.pctConfiguration = new System.Windows.Forms.PictureBox();
             this.lblSubStatus = new System.Windows.Forms.Label();
             this.flowMenuLeft = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.obtnRsa = new PACS_CustomControls.OptionButton();
             this.obtnValidationCode = new PACS_CustomControls.OptionButton();
             this.obtnTCP = new PACS_CustomControls.OptionButton();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.lblTools = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.obtnGenerateZip = new PACS_CustomControls.OptionButton();
             this.obtnCheckSum = new PACS_CustomControls.OptionButton();
             this.pnlLeft = new System.Windows.Forms.Panel();
@@ -38,11 +43,6 @@
             this.pnlMain = new System.Windows.Forms.Panel();
             this.optionButton4 = new PACS_CustomControls.OptionButton();
             this.optionButton1 = new PACS_CustomControls.OptionButton();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.lblTitle = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.lblTools = new System.Windows.Forms.Label();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctConfiguration)).BeginInit();
             this.flowMenuLeft.SuspendLayout();
@@ -150,6 +150,25 @@
             this.flowMenuLeft.Size = new System.Drawing.Size(249, 717);
             this.flowMenuLeft.TabIndex = 2;
             // 
+            // lblTitle
+            // 
+            this.lblTitle.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblTitle.Location = new System.Drawing.Point(7, 4);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(223, 23);
+            this.lblTitle.TabIndex = 0;
+            this.lblTitle.Text = "S E T  U P";
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.SteelBlue;
+            this.panel3.Location = new System.Drawing.Point(7, 30);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(225, 2);
+            this.panel3.TabIndex = 7;
+            // 
             // obtnRsa
             // 
             this.obtnRsa.AccentColor = System.Drawing.Color.Lavender;
@@ -187,7 +206,7 @@
             this.obtnValidationCode.Location = new System.Drawing.Point(10, 115);
             this.obtnValidationCode.Margin = new System.Windows.Forms.Padding(6);
             this.obtnValidationCode.Name = "obtnValidationCode";
-            this.obtnValidationCode.OptionIcon = null;
+            this.obtnValidationCode.OptionIcon = ((System.Drawing.Image)(resources.GetObject("obtnValidationCode.OptionIcon")));
             this.obtnValidationCode.OptionText = "Validation Code ⭐ ";
             this.obtnValidationCode.Size = new System.Drawing.Size(220, 62);
             this.obtnValidationCode.TabIndex = 3;
@@ -216,6 +235,33 @@
             this.obtnTCP.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(240)))), ((int)(((byte)(150)))));
             this.obtnTCP.Click += new System.EventHandler(this.obtnTCP_Click);
             // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.SteelBlue;
+            this.panel2.Location = new System.Drawing.Point(7, 260);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(225, 2);
+            this.panel2.TabIndex = 0;
+            // 
+            // lblTools
+            // 
+            this.lblTools.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTools.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblTools.Location = new System.Drawing.Point(7, 265);
+            this.lblTools.Name = "lblTools";
+            this.lblTools.Size = new System.Drawing.Size(223, 23);
+            this.lblTools.TabIndex = 8;
+            this.lblTools.Text = "T O O L S";
+            this.lblTools.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.SteelBlue;
+            this.panel4.Location = new System.Drawing.Point(7, 291);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(225, 2);
+            this.panel4.TabIndex = 1;
+            // 
             // obtnGenerateZip
             // 
             this.obtnGenerateZip.AccentColor = System.Drawing.Color.Lavender;
@@ -231,7 +277,7 @@
             this.obtnGenerateZip.Location = new System.Drawing.Point(10, 302);
             this.obtnGenerateZip.Margin = new System.Windows.Forms.Padding(6);
             this.obtnGenerateZip.Name = "obtnGenerateZip";
-            this.obtnGenerateZip.OptionIcon = null;
+            this.obtnGenerateZip.OptionIcon = ((System.Drawing.Image)(resources.GetObject("obtnGenerateZip.OptionIcon")));
             this.obtnGenerateZip.OptionText = "Zip    Generation";
             this.obtnGenerateZip.Size = new System.Drawing.Size(220, 62);
             this.obtnGenerateZip.TabIndex = 5;
@@ -254,7 +300,7 @@
             this.obtnCheckSum.Location = new System.Drawing.Point(10, 376);
             this.obtnCheckSum.Margin = new System.Windows.Forms.Padding(6);
             this.obtnCheckSum.Name = "obtnCheckSum";
-            this.obtnCheckSum.OptionIcon = null;
+            this.obtnCheckSum.OptionIcon = ((System.Drawing.Image)(resources.GetObject("obtnCheckSum.OptionIcon")));
             this.obtnCheckSum.OptionText = "Check Sum";
             this.obtnCheckSum.Size = new System.Drawing.Size(220, 62);
             this.obtnCheckSum.TabIndex = 6;
@@ -358,52 +404,6 @@
             this.optionButton1.Size = new System.Drawing.Size(220, 62);
             this.optionButton1.TabIndex = 2;
             this.optionButton1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(240)))), ((int)(((byte)(150)))));
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.SteelBlue;
-            this.panel2.Location = new System.Drawing.Point(7, 260);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(225, 2);
-            this.panel2.TabIndex = 0;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.SteelBlue;
-            this.panel3.Location = new System.Drawing.Point(7, 30);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(225, 2);
-            this.panel3.TabIndex = 7;
-            // 
-            // lblTitle
-            // 
-            this.lblTitle.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblTitle.Location = new System.Drawing.Point(7, 4);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(223, 23);
-            this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "S E T  U P";
-            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.SteelBlue;
-            this.panel4.Location = new System.Drawing.Point(7, 291);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(225, 2);
-            this.panel4.TabIndex = 1;
-            // 
-            // lblTools
-            // 
-            this.lblTools.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTools.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblTools.Location = new System.Drawing.Point(7, 265);
-            this.lblTools.Name = "lblTools";
-            this.lblTools.Size = new System.Drawing.Size(223, 23);
-            this.lblTools.TabIndex = 8;
-            this.lblTools.Text = "T O O L S";
-            this.lblTools.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmMain
             // 

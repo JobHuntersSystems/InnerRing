@@ -334,7 +334,7 @@
             // 
             this.btnAbortProtocol.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAbortProtocol.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(18)))), ((int)(((byte)(28)))));
-            this.btnAbortProtocol.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.btnAbortProtocol.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(18)))), ((int)(((byte)(28)))));
             this.btnAbortProtocol.FlatAppearance.BorderSize = 2;
             this.btnAbortProtocol.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAbortProtocol.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);

@@ -92,8 +92,9 @@ namespace PACS_Planet
                     }
                     else
                     {
+                        string message = "VR" + Spaceship.CurrentStage + Spaceship.code + "AD";
                         pcsStageIndicator.FailStage(stage);
-                        formManager.finishingProtocol(false);
+                        formManager.finishingFaildProtocol(message);
                         obtnCheckSum.Visible = false;
                         obtnGenerateZip.Visible = false;
                     }
@@ -107,8 +108,9 @@ namespace PACS_Planet
                     }
                     else
                     {
+                        string message = "VR" + Spaceship.CurrentStage + Spaceship.code + "AD";
                         pcsStageIndicator.FailStage(stage);
-                        formManager.finishingProtocol(false);
+                        formManager.finishingFaildProtocol(message);
                         obtnCheckSum.Visible = false;
                         obtnGenerateZip.Visible = false;
                     }

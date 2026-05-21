@@ -77,8 +77,17 @@ namespace PACS_CustomControls
             };
         public void AddLog(LogLevel type, string message)
         {
-            var config = _logConfig[type];
-            AddLine(config.Label, message, config.Color);
+            try
+            {
+                var config = _logConfig[type];
+                AddLine(config.Label, message, config.Color);
+
+            }
+            catch(Exception ex)
+            {
+
+            }
+         
         }
 
         public void ClearConsole()

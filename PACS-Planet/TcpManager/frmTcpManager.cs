@@ -54,24 +54,14 @@ namespace TcpManager
                 act();
         }
         
-        private void updateCurrentSpaceshipData(ResultType result, string protocol, string last_message)
+        private void updateCurrentSpaceshipData()
         {
-            if(result == ResultType.VP)
-            {
                 genericInvokeAction(pctSpaceship, () => {
                     string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory , @"Resources\Spaceships\Imagenes\Caza_Tie.png");
                     pctSpaceship.ImageLocation = path;
                     pctSpaceship.Visible = true;
                     lblSpaceshipIpValue.Text = Spaceship.ip;
-                });
-            }
-            else if(result == ResultType.AD) 
-            {
-                Spaceship.Reset();
-                pctSpaceship.ImageLocation = null;
-                pctSpaceship.Visible = false;
-                lblSpaceshipIpValue.Text = "-";
-            }   
+                });  
         }
         #endregion
         #region Events TCP Gestion
@@ -106,16 +96,18 @@ namespace TcpManager
                             console_message);
                     });
                     RaiseNotificationSent(Spaceship.CurrentStage, true);
+                    clientData.sendMessage(Spaceship.ip, Spaceship.dataPort, response.protocolResponse);
+                    updateCurrentSpaceshipData();
                 }
                 else
                 {
                     response = protocolManager.getDefaultDenegationResponse();
+
                     RaiseNotificationSent(Spaceship.CurrentStage, false);
+                    finishingFaildProtocol(response.protocolResponse);
                 }
-                clientData.sendMessage(Spaceship.ip, Spaceship.dataPort, response.protocolResponse);
-                updateCurrentSpaceshipData(response.result, "ER", client_message);
-                if (response.result != ResultType.VP)
-                    finishingProtocol(false);
+                
+          
             }
         }
         private void raiseVkProtocol(string client_ip, string client_message)
@@ -145,10 +137,17 @@ namespace TcpManager
                 response = protocolManager.getDefaultDenegationResponse();
                 RaiseNotificationSent(Spaceship.CurrentStage, false);
             }
-            clientData.sendMessage(Spaceship.ip, Spaceship.dataPort, response.protocolResponse);
-            updateCurrentSpaceshipData(response.result, "VK", client_message);
+           
             if (response.result != ResultType.VP)
-                finishingProtocol(false);
+            {
+                finishingFaildProtocol(response.protocolResponse);
+            }
+            else
+            {
+                clientData.sendMessage(Spaceship.ip, Spaceship.dataPort, response.protocolResponse);
+                updateCurrentSpaceshipData();
+            }
+                
         }
         #endregion
         private void OnServerStatusChanged(object sender, EventArgs e)
@@ -267,29 +266,45 @@ namespace TcpManager
         }
         #endregion
         #region Public Methods
-        public void finishingProtocol(bool validated)
+        public void finishingFaildProtocol(string message)
+        {
+            string explosionPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Resources\gifs\explosion.gif");
+            
+            genericInvokeAction(pcsConsoleLog, () =>
+            {
+                if(Spaceship.id != 0 && Spaceship.dataPort!=0)
+                {
+                    clientData.sendMessage(Spaceship.ip, Spaceship.dataPort, message);
+                }
+
+                pctSpaceship.ImageLocation = explosionPath;
+                Animation.Start();
+                pcsConsoleLog.AddLog(
+                    LogLevel.Warn,
+                    "Spaceship refused, starting destruction---- > 🚀💥"
+                );
+               
+                Spaceship.Reset();
+                btnAbortProtocol.Visible = false;
+                btnCheckConnection.Visible = false;
+                isActiveCheckSumProtocol = false;
+                isActiveVkProtocol = false;
+                lblSpaceshipIpValue.Text = "-";
+            });
+        }
+        public void successFinalProtocol(string message)
         {
             genericInvokeAction(pcsConsoleLog, () =>
             {
-                if (!validated)
-                {
-                    string explosionPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Resources\gifs\explosion.gif");
-                    pctSpaceship.ImageLocation = explosionPath;
-                    Animation.Start();
-                    clientData.sendMessage(Spaceship.ip, Spaceship.dataPort, "AD");
-                    pcsConsoleLog.AddLog(
-                       LogLevel.Warn,
-                       "Spaceship refused, starting destruction---- > 🚀💥"
-                    );
-                }
-                else
-                {
-                    pcsConsoleLog.AddLog(
-                        LogLevel.Success,
-                        $"The Spaceship {Spaceship.code} fullfil succesfully with all requirements. Open gates ✅✅✅"
-                    );
-                }
+                clientData.sendMessage(Spaceship.ip, Spaceship.dataPort, message);
+               
+                pcsConsoleLog.AddLog(
+                    LogLevel.Success,
+                    $"The Spaceship {Spaceship.code} fullfil succesfully with all requirements. Open gates ✅✅✅"
+                );
+                
                 Spaceship.Reset();
+                pctSpaceship.Visible = false;
                 btnAbortProtocol.Visible = false;
                 btnCheckConnection.Visible = false;
                 isActiveCheckSumProtocol = false;
@@ -321,18 +336,16 @@ namespace TcpManager
         {
             try
             {
-                string message = "";
+                string message = "VR"+Spaceship.CurrentStage+Spaceship.code;
                 if (validation)
                 {
-                    message = "AG";
-                    clientData.sendMessage(host_ip, file_port, message);
-                    finishingProtocol(true);    
+                    message += "AG";
+                    successFinalProtocol(message);
                 }
                 else
                 {
-                    message = "AD";
-                    clientData.sendMessage(host_ip, file_port, message);
-                    finishingProtocol(false);
+                    message += "AD";
+                    finishingFaildProtocol(message);
                 }
             }
             catch (Exception ex)
@@ -472,7 +485,8 @@ namespace TcpManager
 
             if (result == DialogResult.Yes)
             {
-                finishingProtocol(false);
+                string message = "VR" + Spaceship.CurrentStage + Spaceship.code + "AD";
+                finishingFaildProtocol(message);
                 RaiseNotificationSent(-1, false);
             }
         }
@@ -491,9 +505,13 @@ namespace TcpManager
                 if (result == DialogResult.Yes)
                 {
                     if(!string.IsNullOrWhiteSpace(Spaceship.ip) && Spaceship.dataPort != 0)
-                        clientData.sendMessage(Spaceship.ip, Spaceship.dataPort, "AD");
+                    {
+                        string message = "VR" + Spaceship.CurrentStage + Spaceship.code + "AD";
+                        this.clientData.NotificationSent -= OnClientServiceNotifyReceived;
+                        clientData.sendMessage(Spaceship.ip, Spaceship.dataPort, message);
                         Spaceship.Reset();
-
+                    }
+                      
                     RaiseNotificationSent(-1, false);
                     this.Close();
                 }
