@@ -35,6 +35,7 @@ namespace PACS_ProcessForms
             tcpServer = new DataTcpServer();
             tcpFileServer = new FileTcpServer();
 
+            tcpServer.startServer(ConnectionInfo.SpaceShipPort);
             tcpClient.NotificationSent += new EventHandler(ClientHelper);
             tcpFileServer.ServerStatusChanged += FileOnServerStatusChanged;
             tcpFileServer.FileReceived += RaiseFileReceived;
@@ -54,7 +55,6 @@ namespace PACS_ProcessForms
         private void btnPhase1_Click(object sender, EventArgs e)
         {
             btnPhase1.Enabled = false;
-            tcpServer.startServer(ConnectionInfo.SpaceShipPort);
             SendER();
         }
 
@@ -351,6 +351,7 @@ namespace PACS_ProcessForms
         #region FormClosing 
         private void frmAuthentification_FormClosing(object sender, FormClosingEventArgs e)
         {
+
             tcpServer.stopServer();
         }
 
