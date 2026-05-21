@@ -334,7 +334,6 @@ namespace PACS_ProcessForms
         private System.Windows.Forms.Label lblHeaderLeft;
         private System.Windows.Forms.Label lblHeaderRight;
         private PACS_CustomControls.PacsConsole protocolConsole;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
+
     }
 }
