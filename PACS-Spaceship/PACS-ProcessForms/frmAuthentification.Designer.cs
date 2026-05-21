@@ -35,6 +35,7 @@ namespace PACS_ProcessForms
             this.panel2 = new System.Windows.Forms.Panel();
             this.pnlControls = new PACS_CustomControls.CustomPanel();
             this.lblTarget = new System.Windows.Forms.Label();
+            this.lblControlHint = new System.Windows.Forms.Label();
             this.btnPhase1 = new PACS_CustomControls.ProcessButton();
             this.btnPhase2 = new PACS_CustomControls.ProcessButton();
             this.btnPhase3 = new PACS_CustomControls.ProcessButton();
@@ -100,6 +101,7 @@ namespace PACS_ProcessForms
             this.pnlControls.ColorArriba = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(10)))), ((int)(((byte)(25)))), ((int)(((byte)(40)))));
             this.pnlControls.ColorBordeNeon = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(0)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
             this.pnlControls.Controls.Add(this.lblTarget);
+            this.pnlControls.Controls.Add(this.lblControlHint);
             this.pnlControls.Controls.Add(this.btnPhase1);
             this.pnlControls.Controls.Add(this.btnPhase2);
             this.pnlControls.Controls.Add(this.btnPhase3);
@@ -123,6 +125,17 @@ namespace PACS_ProcessForms
             this.lblTarget.TabIndex = 7;
             this.lblTarget.Text = "/// TARGET: SECTOR 4 - PLANET ORBIT";
             this.lblTarget.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblControlHint
+            // 
+            this.lblControlHint.AutoSize = true;
+            this.lblControlHint.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblControlHint.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(228)))), ((int)(((byte)(244)))));
+            this.lblControlHint.Location = new System.Drawing.Point(33, 58);
+            this.lblControlHint.Name = "lblControlHint";
+            this.lblControlHint.Size = new System.Drawing.Size(594, 20);
+            this.lblControlHint.TabIndex = 12;
+            this.lblControlHint.Text = "/// Execute each phase sequentially to complete secure validation";
             // 
             // btnPhase1
             // 
@@ -306,6 +319,7 @@ namespace PACS_ProcessForms
         private PACS_CustomControls.CustomPanel pnlBackGround;
         private PACS_CustomControls.CustomPanel pnlControls;
         private System.Windows.Forms.Label lblTarget;
+        private System.Windows.Forms.Label lblControlHint;
         private PACS_CustomControls.ProcessButton btnPhase1;
         private PACS_CustomControls.ProcessButton btnPhase2;
         private PACS_CustomControls.ProcessButton btnPhase3;
@@ -320,5 +334,7 @@ namespace PACS_ProcessForms
         private System.Windows.Forms.Label lblHeaderLeft;
         private System.Windows.Forms.Label lblHeaderRight;
         private PACS_CustomControls.PacsConsole protocolConsole;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
     }
 }
