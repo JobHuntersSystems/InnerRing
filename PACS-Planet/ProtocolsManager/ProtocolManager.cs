@@ -114,8 +114,8 @@ namespace ProtocolsManager
             string message_response = "VR";
             Spaceship.CurrentStage += 1;
             List<string> messageDecoded = decodeMessage(code);
-            string delivery_code = messageDecoded[0];
-            string spaceship_code = messageDecoded[1];
+            string spaceship_code = messageDecoded[0];
+            string delivery_code = messageDecoded[1];
 
 
             ResultType validation = validateDelivery(delivery_code, spaceship_code);
