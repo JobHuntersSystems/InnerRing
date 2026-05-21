@@ -121,9 +121,6 @@ namespace PACS_ProcessForms
             {
                 int checksumIndividual = checksumService.CalculateFileChecksum(filePath, diccionary);
                 Interlocked.Add(ref totalGlobalChecksum, checksumIndividual);
-                this.Invoke((MethodInvoker)delegate {
-                    LogToConsole($"{filePath} has been completed. Result: {checksumIndividual}", LogLevel.Success);
-                });
             });
             
             this.Invoke((MethodInvoker)delegate {
@@ -395,6 +392,10 @@ namespace PACS_ProcessForms
         {
             Application.Exit();
         }
-        
+
+        private void lblAbort_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

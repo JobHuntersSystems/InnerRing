@@ -239,9 +239,9 @@ namespace PACS_ProcessForms
             string timeStamp = DateTime.Now.ToString("HH:mm:ss.fff");
             string logLine = $"[{timeStamp}] {message}";
 
-            if (pacsConsole2 != null)
+            if (protocolConsole != null)
             {
-                pacsConsole2.AddLog(LogLevel.Info, logLine);
+                protocolConsole.AddLog(LogLevel.Info, logLine);
             }
         }
 
@@ -249,6 +249,11 @@ namespace PACS_ProcessForms
         private void cmbTargetIP_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             SaveSelectedPlanetInfo();
+        }
+
+        private void lblClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

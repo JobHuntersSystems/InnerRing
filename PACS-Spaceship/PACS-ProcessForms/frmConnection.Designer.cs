@@ -20,8 +20,9 @@ namespace PACS_ProcessForms
         private void InitializeComponent()
         {
             this.pnlBackGround = new PACS_CustomControls.CustomPanel();
-            this.pacsConsole2 = new PACS_CustomControls.PacsConsole();
+            this.protocolConsole = new PACS_CustomControls.PacsConsole();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblClose = new System.Windows.Forms.Label();
             this.pnlTopDown = new System.Windows.Forms.Panel();
             this.pnlTopRigh = new System.Windows.Forms.Panel();
             this.pnlTopFillLeft = new System.Windows.Forms.Panel();
@@ -75,7 +76,7 @@ namespace PACS_ProcessForms
             this.pnlBackGround.ColorAbajo = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(20)))));
             this.pnlBackGround.ColorArriba = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.pnlBackGround.ColorBordeNeon = System.Drawing.Color.Red;
-            this.pnlBackGround.Controls.Add(this.pacsConsole2);
+            this.pnlBackGround.Controls.Add(this.protocolConsole);
             this.pnlBackGround.Controls.Add(this.panel1);
             this.pnlBackGround.Controls.Add(this.pnlStatus);
             this.pnlBackGround.Controls.Add(this.pnlPlanetIP);
@@ -93,20 +94,21 @@ namespace PACS_ProcessForms
             this.pnlBackGround.Size = new System.Drawing.Size(1307, 738);
             this.pnlBackGround.TabIndex = 0;
             // 
-            // pacsConsole2
+            // protocolConsole
             // 
-            this.pacsConsole2.AccentColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.pacsConsole2.BackColor = System.Drawing.Color.Transparent;
-            this.pacsConsole2.ConsoleTitle = "SYSTEM LOG CONSOLE";
-            this.pacsConsole2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pacsConsole2.Location = new System.Drawing.Point(0, 483);
-            this.pacsConsole2.Margin = new System.Windows.Forms.Padding(5);
-            this.pacsConsole2.Name = "pacsConsole2";
-            this.pacsConsole2.Size = new System.Drawing.Size(1307, 255);
-            this.pacsConsole2.TabIndex = 23;
+            this.protocolConsole.AccentColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.protocolConsole.BackColor = System.Drawing.Color.Transparent;
+            this.protocolConsole.ConsoleTitle = "SYSTEM LOG CONSOLE";
+            this.protocolConsole.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.protocolConsole.Location = new System.Drawing.Point(0, 483);
+            this.protocolConsole.Margin = new System.Windows.Forms.Padding(5);
+            this.protocolConsole.Name = "protocolConsole";
+            this.protocolConsole.Size = new System.Drawing.Size(1307, 255);
+            this.protocolConsole.TabIndex = 23;
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lblClose);
             this.panel1.Controls.Add(this.pnlTopDown);
             this.panel1.Controls.Add(this.pnlTopRigh);
             this.panel1.Controls.Add(this.pnlTopFillLeft);
@@ -118,6 +120,21 @@ namespace PACS_ProcessForms
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1307, 57);
             this.panel1.TabIndex = 20;
+            // 
+            // lblClose
+            // 
+            this.lblClose.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblClose.AutoSize = true;
+            this.lblClose.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold);
+            this.lblClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(72)))), ((int)(((byte)(136)))));
+            this.lblClose.Location = new System.Drawing.Point(1208, 21);
+            this.lblClose.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblClose.Name = "lblClose";
+            this.lblClose.Size = new System.Drawing.Size(72, 20);
+            this.lblClose.TabIndex = 17;
+            this.lblClose.Text = "[CLOSE]";
+            this.lblClose.Click += new System.EventHandler(this.lblClose_Click);
             // 
             // pnlTopDown
             // 
@@ -161,6 +178,8 @@ namespace PACS_ProcessForms
             // 
             // lblHeaderRight
             // 
+            this.lblHeaderRight.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblHeaderRight.AutoSize = true;
             this.lblHeaderRight.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold);
             this.lblHeaderRight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
@@ -647,6 +666,7 @@ namespace PACS_ProcessForms
         private System.Windows.Forms.Label lblConnTitle;
         private System.Windows.Forms.Label lblSpaceShipIP;
         private System.Windows.Forms.Label lblSpaceShipIPtxt;
-        private PACS_CustomControls.PacsConsole pacsConsole2;
+        private PACS_CustomControls.PacsConsole protocolConsole;
+        private System.Windows.Forms.Label lblClose;
     }
 }

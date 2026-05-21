@@ -32,7 +32,6 @@ namespace PACS_ProcessForms
         {
             this.pnlBackGround = new PACS_CustomControls.CustomPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.protocolConsole = new PACS_CustomControls.PacsConsole();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pnlControls = new PACS_CustomControls.CustomPanel();
             this.lblTarget = new System.Windows.Forms.Label();
@@ -42,11 +41,13 @@ namespace PACS_ProcessForms
             this.btnPhase3 = new PACS_CustomControls.ProcessButton();
             this.btnPhase4 = new PACS_CustomControls.ProcessButton();
             this.panelHeader = new System.Windows.Forms.Panel();
+            this.lblAbort = new System.Windows.Forms.Label();
             this.pnlTopDown = new System.Windows.Forms.Panel();
             this.pnlTopFillLeft = new System.Windows.Forms.Panel();
             this.pnlTopFillRight = new System.Windows.Forms.Panel();
             this.lblHeaderLeft = new System.Windows.Forms.Label();
             this.lblHeaderRight = new System.Windows.Forms.Label();
+            this.protocolConsole = new PACS_CustomControls.PacsConsole();
             this.pnlBackGround.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -76,30 +77,17 @@ namespace PACS_ProcessForms
             // 
             this.panel1.Controls.Add(this.protocolConsole);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 566);
+            this.panel1.Location = new System.Drawing.Point(0, 539);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(44, 18, 44, 30);
-            this.panel1.Size = new System.Drawing.Size(1307, 172);
+            this.panel1.Size = new System.Drawing.Size(1307, 199);
             this.panel1.TabIndex = 15;
-            // 
-            // protocolConsole
-            // 
-            this.protocolConsole.AccentColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(220)))), ((int)(((byte)(235)))));
-            this.protocolConsole.BackColor = System.Drawing.Color.Transparent;
-            this.protocolConsole.ConsoleTitle = "TCP/IP ORBITAL LINK PROTOCOL";
-            this.protocolConsole.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.protocolConsole.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.protocolConsole.Location = new System.Drawing.Point(44, 18);
-            this.protocolConsole.Margin = new System.Windows.Forms.Padding(5);
-            this.protocolConsole.Name = "protocolConsole";
-            this.protocolConsole.Size = new System.Drawing.Size(1219, 124);
-            this.protocolConsole.TabIndex = 12;
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.pnlControls);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 85);
+            this.panel2.Location = new System.Drawing.Point(0, 58);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(44, 28, 44, 20);
             this.panel2.Size = new System.Drawing.Size(1307, 481);
@@ -206,6 +194,7 @@ namespace PACS_ProcessForms
             // 
             // panelHeader
             // 
+            this.panelHeader.Controls.Add(this.lblAbort);
             this.panelHeader.Controls.Add(this.pnlTopDown);
             this.panelHeader.Controls.Add(this.pnlTopFillLeft);
             this.panelHeader.Controls.Add(this.pnlTopFillRight);
@@ -215,14 +204,29 @@ namespace PACS_ProcessForms
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
             this.panelHeader.Margin = new System.Windows.Forms.Padding(4);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(1307, 85);
+            this.panelHeader.Size = new System.Drawing.Size(1307, 58);
             this.panelHeader.TabIndex = 1;
+            // 
+            // lblAbort
+            // 
+            this.lblAbort.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblAbort.AutoSize = true;
+            this.lblAbort.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold);
+            this.lblAbort.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(72)))), ((int)(((byte)(136)))));
+            this.lblAbort.Location = new System.Drawing.Point(1208, 22);
+            this.lblAbort.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblAbort.Name = "lblAbort";
+            this.lblAbort.Size = new System.Drawing.Size(72, 20);
+            this.lblAbort.TabIndex = 8;
+            this.lblAbort.Text = "[ABORT]";
+            this.lblAbort.Click += new System.EventHandler(this.lblAbort_Click);
             // 
             // pnlTopDown
             // 
             this.pnlTopDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
             this.pnlTopDown.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlTopDown.Location = new System.Drawing.Point(27, 83);
+            this.pnlTopDown.Location = new System.Drawing.Point(27, 56);
             this.pnlTopDown.Margin = new System.Windows.Forms.Padding(4);
             this.pnlTopDown.Name = "pnlTopDown";
             this.pnlTopDown.Size = new System.Drawing.Size(1253, 2);
@@ -234,7 +238,7 @@ namespace PACS_ProcessForms
             this.pnlTopFillLeft.Location = new System.Drawing.Point(0, 0);
             this.pnlTopFillLeft.Margin = new System.Windows.Forms.Padding(4);
             this.pnlTopFillLeft.Name = "pnlTopFillLeft";
-            this.pnlTopFillLeft.Size = new System.Drawing.Size(27, 85);
+            this.pnlTopFillLeft.Size = new System.Drawing.Size(27, 58);
             this.pnlTopFillLeft.TabIndex = 3;
             // 
             // pnlTopFillRight
@@ -243,7 +247,7 @@ namespace PACS_ProcessForms
             this.pnlTopFillRight.Location = new System.Drawing.Point(1280, 0);
             this.pnlTopFillRight.Margin = new System.Windows.Forms.Padding(4);
             this.pnlTopFillRight.Name = "pnlTopFillRight";
-            this.pnlTopFillRight.Size = new System.Drawing.Size(27, 85);
+            this.pnlTopFillRight.Size = new System.Drawing.Size(27, 58);
             this.pnlTopFillRight.TabIndex = 7;
             // 
             // lblHeaderLeft
@@ -265,12 +269,24 @@ namespace PACS_ProcessForms
             this.lblHeaderRight.AutoSize = true;
             this.lblHeaderRight.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold);
             this.lblHeaderRight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            this.lblHeaderRight.Location = new System.Drawing.Point(822, 33);
+            this.lblHeaderRight.Location = new System.Drawing.Point(797, 22);
             this.lblHeaderRight.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblHeaderRight.Name = "lblHeaderRight";
             this.lblHeaderRight.Size = new System.Drawing.Size(351, 20);
             this.lblHeaderRight.TabIndex = 5;
             this.lblHeaderRight.Text = "/// PACS VALIDATION PROTOCOL | STANDBY";
+            // 
+            // protocolConsole
+            // 
+            this.protocolConsole.AccentColor = System.Drawing.Color.Empty;
+            this.protocolConsole.BackColor = System.Drawing.Color.Transparent;
+            this.protocolConsole.ConsoleTitle = "SYSTEM LOG CONSOLE";
+            this.protocolConsole.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.protocolConsole.Location = new System.Drawing.Point(44, 18);
+            this.protocolConsole.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.protocolConsole.Name = "protocolConsole";
+            this.protocolConsole.Size = new System.Drawing.Size(1219, 151);
+            this.protocolConsole.TabIndex = 0;
             // 
             // frmAuthentification
             // 
@@ -301,12 +317,6 @@ namespace PACS_ProcessForms
         #endregion
 
         private PACS_CustomControls.CustomPanel pnlBackGround;
-        private System.Windows.Forms.Panel panelHeader;
-        private System.Windows.Forms.Panel pnlTopDown;
-        private System.Windows.Forms.Panel pnlTopFillLeft;
-        private System.Windows.Forms.Panel pnlTopFillRight;
-        private System.Windows.Forms.Label lblHeaderLeft;
-        private System.Windows.Forms.Label lblHeaderRight;
         private PACS_CustomControls.CustomPanel pnlControls;
         private System.Windows.Forms.Label lblTarget;
         private System.Windows.Forms.Label lblControlHint;
@@ -314,6 +324,15 @@ namespace PACS_ProcessForms
         private PACS_CustomControls.ProcessButton btnPhase2;
         private PACS_CustomControls.ProcessButton btnPhase3;
         private PACS_CustomControls.ProcessButton btnPhase4;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panelHeader;
+        private System.Windows.Forms.Label lblAbort;
+        private System.Windows.Forms.Panel pnlTopDown;
+        private System.Windows.Forms.Panel pnlTopFillLeft;
+        private System.Windows.Forms.Panel pnlTopFillRight;
+        private System.Windows.Forms.Label lblHeaderLeft;
+        private System.Windows.Forms.Label lblHeaderRight;
         private PACS_CustomControls.PacsConsole protocolConsole;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
